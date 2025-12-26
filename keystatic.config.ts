@@ -1,10 +1,11 @@
 import { config, fields, collection } from '@keystatic/core';
 
 export default config({
-  storage: (process.env.NODE_ENV === 'production' && process.env.KEYSTATIC_GITHUB_CLIENT_ID)
+  storage: (process.env.NODE_ENV === 'production' && process.env.NEXT_PUBLIC_KEYSTATIC_GITHUB_CLIENT_ID)
     ? {
         kind: 'github',
         repo: { owner: 'destucr', name: 'porto-web' },
+        branch: 'main',
       }
     : {
         kind: 'local',
@@ -24,7 +25,7 @@ export default config({
       path: 'content/posts/*',
       format: { contentField: 'content' },
       schema: {
-        title: fields.slug({ name: { label: 'Title' } }),
+        title: fields.text({ label: 'Title' }),
         date: fields.date({ label: 'Date' }),
         excerpt: fields.text({ label: 'Excerpt' }),
         content: fields.markdoc({
@@ -48,7 +49,7 @@ export default config({
       path: 'content/projects/*',
       format: { contentField: 'details' },
       schema: {
-        title: fields.slug({ name: { label: 'Title' } }),
+        title: fields.text({ label: 'Title' }),
         description: fields.text({ label: 'Description', multiline: true }),
         image: fields.text({ label: 'Thumbnail URL' }),
         tags: fields.array(fields.text({ label: 'Tag' }), {
