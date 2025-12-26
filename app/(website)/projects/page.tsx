@@ -4,7 +4,7 @@ import { getServerSession } from "next-auth/next"
 import { Metadata } from "next"
 import { Suspense } from "react"
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 
 export const metadata: Metadata = {
   title: "Projects | iOS Developer Portfolio",
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default async function ProjectsPage() {
   const session = await getServerSession()
   const isAdmin = session?.user?.email === "destucr@gmail.com"
-  
+
   const projects = await getProjects()
 
   return (

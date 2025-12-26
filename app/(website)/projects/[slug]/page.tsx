@@ -1,7 +1,7 @@
 import { getProject } from "@/lib/keystatic"
 import { notFound } from "next/navigation"
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 
 import Link from "next/link"
 import Image from "next/image"
@@ -74,14 +74,14 @@ export default async function ProjectPage({ params }: PageProps) {
 
           {/* Hero Image: Preserving natural aspect ratio */}
           <div className="rounded-2xl border bg-muted/30 overflow-hidden shadow-sm flex items-center justify-center min-h-[400px] relative">
-            <Image 
-              src={project.image || ""} 
-              alt={project.title} 
+            <Image
+              src={project.image || ""}
+              alt={project.title}
               width={1200}
               height={700}
               priority
               unoptimized
-              className="max-w-full h-auto max-h-[700px] object-contain" 
+              className="max-w-full h-auto max-h-[700px] object-contain"
             />
           </div>
 

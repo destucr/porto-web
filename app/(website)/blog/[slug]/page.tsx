@@ -8,7 +8,7 @@ import { ChevronLeft } from "lucide-react"
 import { Metadata } from "next"
 import Markdoc from '@markdoc/markdoc'
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -42,12 +42,12 @@ export default async function BlogPostPage({ params }: PageProps) {
     console.error(errors);
   }
   const renderable = Markdoc.transform(node);
-  
+
   // Custom renderer for React elements
   // We need to use a client component for rendering if we want interactive components,
   // but for basic text server-side rendering is fine.
   // However, Markdoc.renderers.react returns React elements directly.
-  
+
   return (
     <article className="container mx-auto max-w-3xl py-12 md:py-24">
       <Button asChild variant="ghost" className="mb-8 pl-0 hover:bg-transparent hover:text-primary">
@@ -56,24 +56,24 @@ export default async function BlogPostPage({ params }: PageProps) {
           Back to Blog
         </Link>
       </Button>
-      
+
       <div className="space-y-4 text-center mb-12">
         <div className="flex justify-center gap-2 mb-4">
-             {post.entry.tags.map(tag => (
-                 <Badge key={tag} variant="secondary">{tag}</Badge>
-             ))}
+          {post.entry.tags.map(tag => (
+            <Badge key={tag} variant="secondary">{tag}</Badge>
+          ))}
         </div>
         <h1 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-            {post.entry.title}
+          {post.entry.title}
         </h1>
         <p className="text-muted-foreground">
-            Published on {post.entry.date}
+          Published on {post.entry.date}
         </p>
       </div>
 
       <div className="prose prose-gray dark:prose-invert max-w-none">
         <p className="lead text-xl">{post.entry.excerpt}</p>
-        <hr className="my-8"/>
+        <hr className="my-8" />
         {/* Render Markdoc content */}
         {Markdoc.renderers.react(renderable, React)}
       </div>

@@ -1,5 +1,5 @@
 import Link from "next/link"
-export const runtime = "edge";
+export const runtime = "nodejs";
 import { ArrowRight, LayoutGrid, PenLine, Smartphone, Layers, Cpu } from "lucide-react"
 import { getServerSession } from "next-auth/next"
 import { Button } from "@/components/ui/button"
@@ -13,7 +13,7 @@ export default async function Home() {
 
   const allProjects = await getProjects()
   const featuredProjects = allProjects.slice(0, 3)
-  
+
   const allPosts = await getPosts()
   const recentPosts = (allPosts || [])
     .sort((a, b) => new Date(b.date || "").getTime() - new Date(a.date || "").getTime())
@@ -27,7 +27,7 @@ export default async function Home() {
           <div className="space-y-8">
             <div className="space-y-4">
               <h1 className="text-5xl md:text-7xl font-bold tracking-tighter">
-                Destu Cikal <br/> Ramdani
+                Destu Cikal <br /> Ramdani
               </h1>
               <p className="text-xl text-muted-foreground font-medium uppercase tracking-widest">
                 iOS Developer & Product Manager
@@ -42,11 +42,11 @@ export default async function Home() {
               </Button>
             </div>
           </div>
-          
+
           <div className="lg:pt-4">
             <p className="text-xl md:text-2xl text-foreground/80 leading-relaxed font-medium">
-              Engineering intentional mobile experiences. I specialize in building 
-              high-performance native apps using Swift, with a focus on AVFoundation, 
+              Engineering intentional mobile experiences. I specialize in building
+              high-performance native apps using Swift, with a focus on AVFoundation,
               CoreML, and scalable product architecture.
             </p>
             <div className="mt-10 grid grid-cols-2 gap-8 border-t pt-8">
@@ -73,12 +73,12 @@ export default async function Home() {
             <div className="space-y-3">
               <h3 className="text-xl font-bold tracking-tight">iOS Engineering</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Native development with technical rigor. Expertise in real-time 
+                Native development with technical rigor. Expertise in real-time
                 audio systems, spatial tracking, and modern SwiftUI architectures.
               </p>
             </div>
           </div>
-          
+
           <div className="space-y-6 group">
             <div className="w-12 h-12 rounded-2xl bg-muted flex items-center justify-center group-hover:bg-primary/10 transition-colors">
               <Layers className="h-6 w-6 text-primary" />
@@ -86,7 +86,7 @@ export default async function Home() {
             <div className="space-y-3">
               <h3 className="text-xl font-bold tracking-tight">Product Strategy</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Driving impact through data. Experience leading cross-functional teams 
+                Driving impact through data. Experience leading cross-functional teams
                 and defining success metrics for consumer applications.
               </p>
             </div>
@@ -99,7 +99,7 @@ export default async function Home() {
             <div className="space-y-3">
               <h3 className="text-xl font-bold tracking-tight">Applied ML</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Bridging intelligence and utility. Implementing on-device models 
+                Bridging intelligence and utility. Implementing on-device models
                 for security, liveness detection, and computer vision.
               </p>
             </div>
@@ -120,7 +120,7 @@ export default async function Home() {
             </Link>
           </Button>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-20">
           {featuredProjects.length > 0 ? (
             featuredProjects.map((project) => (
@@ -128,7 +128,7 @@ export default async function Home() {
             ))
           ) : (
             <div className="col-span-full py-10">
-              <EmptyState 
+              <EmptyState
                 icon={LayoutGrid}
                 title="No projects listed"
                 description="Technical case studies are currently being finalized."
@@ -149,7 +149,7 @@ export default async function Home() {
               Occasional thoughts on mobile architecture, product management, and machine learning.
             </p>
           </div>
-          
+
           <div className="lg:col-span-8 space-y-16">
             {recentPosts.length > 0 ? (
               recentPosts.map((post) => (
@@ -179,7 +179,7 @@ export default async function Home() {
                 </article>
               ))
             ) : (
-              <EmptyState 
+              <EmptyState
                 icon={PenLine}
                 title="No posts yet"
                 description="Drafting articles on iOS architecture and system design."
