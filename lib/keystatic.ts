@@ -1,7 +1,12 @@
 import { createReader } from '@keystatic/core/reader';
 import config from '../keystatic.config';
 
-const reader = createReader(process.cwd(), config);
+// We force 'local' storage for the reader because we want to read the 
+// bundled content from the filesystem, not from GitHub API.
+const reader = createReader(process.cwd(), {
+  ...config,
+  storage: { kind: 'local' },
+});
 
 export async function getPosts() {
   const posts = await reader.collections.posts.all();
