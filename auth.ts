@@ -4,7 +4,12 @@ import GitHub from "next-auth/providers/github"
 export const { handlers, auth, signIn, signOut } = NextAuth({
     basePath: "/api/auth",
     trustHost: true,
-    providers: [GitHub],
+    providers: [
+        GitHub({
+            // Disable PKCE if you encounter pkceCodeVerifier errors in local dev
+            checks: ["none"], 
+        })
+    ],
     callbacks: {
         async signIn({ user }) {
             // ONLY allow your specific email to access the admin gateway
