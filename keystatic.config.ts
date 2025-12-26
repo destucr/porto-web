@@ -50,11 +50,7 @@ export default config({
       schema: {
         title: fields.slug({ name: { label: 'Title' } }),
         description: fields.text({ label: 'Description', multiline: true }),
-        image: fields.image({
-          label: 'Thumbnail',
-          directory: 'public/images/projects',
-          publicPath: '/images/projects',
-        }),
+        image: fields.text({ label: 'Thumbnail URL' }),
         tags: fields.array(fields.text({ label: 'Tag' }), {
           label: 'Tags',
           itemLabel: (props) => props.value,
