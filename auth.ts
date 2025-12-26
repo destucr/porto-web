@@ -14,6 +14,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     trustHost: true,
     providers: [
         GitHub({
+            clientId: process.env.NEXT_PUBLIC_KEYSTATIC_GITHUB_CLIENT_ID || process.env.AUTH_GITHUB_ID,
+            clientSecret: process.env.KEYSTATIC_GITHUB_CLIENT_SECRET || process.env.AUTH_GITHUB_SECRET,
             // Disable PKCE if you encounter pkceCodeVerifier errors in local dev
             checks: ["none"], 
         })
