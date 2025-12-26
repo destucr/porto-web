@@ -120,9 +120,8 @@ export default async function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-20">
           {featuredProjects.length > 0 ? (
-            featuredProjects.map((project: any) => (
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              <ProjectCard key={project.id} project={project as any} />
+            featuredProjects.map((project) => (
+              <ProjectCard key={project.id} project={project} />
             ))
           ) : (
             <div className="col-span-full py-10">

@@ -16,9 +16,16 @@
 # next.js
 /.next/
 /out/
+/next-env.d.ts
+
+# open-next & cloudflare
+/.open-next/
+/.worker-next/
+/.wrangler/
 
 # production
 /build
+/dist
 
 # misc
 .DS_Store
@@ -31,6 +38,7 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # local env files
+.env
 .env*.local
 
 # vercel
@@ -38,7 +46,6 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts
 
 # keystatic
 .keystatic
