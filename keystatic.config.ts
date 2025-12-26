@@ -1,14 +1,15 @@
 import { config, fields, collection } from '@keystatic/core';
 
 export default config({
-  storage: (process.env.NEXT_PUBLIC_KEYSTATIC_GITHUB_CLIENT_ID || process.env.NEXT_PUBLIC_AUTH_GITHUB_ID)
-    ? {
-        kind: 'github',
-        repo: { owner: 'destucr', name: 'porto-web' },
-      }
-    : {
-        kind: 'local',
-      },
+  storage:
+    typeof window !== 'undefined' || process.env.KEYSTATIC_SECRET
+      ? {
+          kind: 'github',
+          repo: { owner: 'destucr', name: 'porto-web' },
+        }
+      : {
+          kind: 'local',
+        },
   ui: {
     brand: {
       name: 'Destu Portfolio Admin',
