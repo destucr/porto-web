@@ -10,7 +10,7 @@ export default function AdminGateway() {
   const { data: session, status } = useSession()
   
   // Use the isAdmin flag from the session (populated securely on the server)
-  const isAdmin = (session?.user as any)?.isAdmin === true
+  const isAdmin = session?.user?.isAdmin === true
 
   if (status === "loading") {
     return (

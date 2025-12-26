@@ -1,5 +1,13 @@
-import NextAuth from "next-auth"
+import NextAuth, { type DefaultSession } from "next-auth"
 import GitHub from "next-auth/providers/github"
+
+declare module "next-auth" {
+  interface Session {
+    user: {
+      isAdmin?: boolean
+    } & DefaultSession["user"]
+  }
+}
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
     basePath: "/api/auth",
@@ -24,7 +32,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             // Minimize what's exposed in the session on the client side
             if (session.user) {
                 // Check admin status before clearing email
-                (session.user as any).isAdmin = session.user.email === "destucr@gmail.com";
+                session.user.isAdmin = session.user.email === "destucr@gmail.com";
                 session.user.email = ""; 
                 session.user.image = undefined;
             }
