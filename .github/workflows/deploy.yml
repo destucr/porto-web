@@ -26,7 +26,7 @@ jobs:
         run: npm ci
 
       - name: Build with next-on-pages
-        run: npx @cloudflare/next-on-pages
+        run: npm run build:cloudflare
 
       - name: Deploy to Cloudflare
         run: npx wrangler deploy
