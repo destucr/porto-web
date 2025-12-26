@@ -17,7 +17,7 @@ export async function getPosts() {
     
     return posts.map(post => ({
       slug: post.slug,
-      title: post.entry.title,
+      title: post.entry.title || 'Untitled Post',
       date: post.entry.date,
       excerpt: post.entry.excerpt,
       tags: post.entry.tags || [],
@@ -82,7 +82,7 @@ export async function getProjects() {
       .map(project => ({
         id: project.slug,
         slug: project.slug,
-        title: project.entry.title,
+        title: project.entry.title || 'Untitled Project',
         description: project.entry.description,
         image: project.entry.image || '',
         tags: Array.isArray(project.entry.tags) ? project.entry.tags : [],

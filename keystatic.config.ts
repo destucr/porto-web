@@ -5,7 +5,6 @@ export default config({
     ? {
         kind: 'github',
         repo: { owner: 'destucr', name: 'porto-web' },
-        branch: 'main',
       }
     : {
         kind: 'local',
