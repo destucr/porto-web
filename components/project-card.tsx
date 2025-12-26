@@ -1,14 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { Github, ExternalLink, ArrowRight } from "lucide-react"
-
-import {
-  Card,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from "@/components/ui/card"
+import { ArrowUpRight } from "lucide-react"
 
 interface ProjectCardProps {
   project: {
@@ -26,52 +18,39 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <Card className="flex flex-col h-full border rounded-lg overflow-hidden bg-card shadow-sm hover:shadow-md transition-shadow">
-      <div className="relative aspect-video w-full bg-muted border-b">
+    <div className="group flex flex-col space-y-4">
+      {/* Image: Container with fixed aspect ratio and clean reveal */}
+      <Link href={`/projects/${project.slug}`} className="block relative aspect-[16/10] overflow-hidden rounded-lg bg-muted border">
         <Image
           src={project.image}
           alt={project.title}
           fill
-          className="object-cover"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
-      </div>
-      <CardHeader className="p-5 flex-1">
-        <div className="flex flex-wrap gap-2 mb-3">
-          {(project.tags || []).slice(0, 3).map((tag) => (
-            <span key={tag} className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-muted text-muted-foreground border border-border/50">
+      </Link>
+
+      {/* Info: Direct and well-spaced */}
+      <div className="space-y-3">
+        <div className="flex flex-wrap gap-2">
+          {(project.tags || []).slice(0, 2).map((tag) => (
+            <span key={tag} className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">
               {tag}
             </span>
           ))}
         </div>
-        <div className="space-y-2">
-          <CardTitle className="text-xl font-bold tracking-tight">
-            {project.title}
-          </CardTitle>
-          <CardDescription className="text-sm leading-relaxed text-muted-foreground line-clamp-2">
+        
+        <div className="space-y-1.5">
+          <h3 className="text-lg font-bold leading-none tracking-tight group-hover:text-primary transition-colors">
+            <Link href={`/projects/${project.slug}`} className="flex items-center gap-1">
+              {project.title}
+              <ArrowUpRight className="h-3 w-3 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
+            </Link>
+          </h3>
+          <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
             {project.description}
-          </CardDescription>
+          </p>
         </div>
-      </CardHeader>
-      <CardFooter className="p-5 pt-0 flex items-center justify-between border-t mt-4">
-        <Link 
-          href={`/projects/${project.slug}`}
-          className="text-sm font-bold flex items-center gap-1 hover:text-primary transition-colors"
-        >
-          View Details <ArrowRight className="h-3.5 w-3.5" />
-        </Link>
-        <div className="flex gap-4">
-          {project.githubUrl && (
-            <Link href={project.githubUrl} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
-              <Github className="h-4 w-4" />
-            </Link>
-          )}
-          {project.appStoreUrl && (
-            <Link href={project.appStoreUrl} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
-              <ExternalLink className="h-4 w-4" />
-            </Link>
-          )}
-        </div>
-      </CardFooter>
-    </Card>
+      </div>
+    </div>
   )
 }

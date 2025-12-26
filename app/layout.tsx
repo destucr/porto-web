@@ -18,8 +18,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Destu Cikal Ramdani | iOS Developer Portfolio",
-  description: "Portfolio of Destu Cikal Ramdani, an iOS Developer & Product Manager specializing in SwiftUI, CoreML, and AVFoundation.",
+  title: "iOS Developer & Product Manager Portfolio",
+  description: "Technical portfolio showcasing native iOS engineering, product strategy, and machine learning projects.",
 };
 
 export default function RootLayout({

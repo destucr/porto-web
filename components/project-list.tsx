@@ -1,4 +1,6 @@
 import { ProjectCard } from "@/components/project-card"
+import { EmptyState } from "@/components/empty-state"
+import { LayoutGrid } from "lucide-react"
 
 interface Project {
   id: string
@@ -15,9 +17,22 @@ interface Project {
 
 interface ProjectListProps {
   projects: Project[]
+  isAdmin?: boolean
 }
 
-export function ProjectList({ projects }: ProjectListProps) {
+export function ProjectList({ projects, isAdmin }: ProjectListProps) {
+  if (projects.length === 0) {
+    return (
+      <EmptyState 
+        icon={LayoutGrid}
+        title="No projects found"
+        description="A showcase of native iOS applications and technical case studies is being prepared."
+        actionLabel={isAdmin ? "Go to Admin" : undefined}
+        actionHref={isAdmin ? "/admin" : undefined}
+      />
+    )
+  }
+
   return (
     <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
       {projects.map((project) => (

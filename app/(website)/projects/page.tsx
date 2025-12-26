@@ -1,5 +1,6 @@
 import { ProjectList } from "@/components/project-list"
 import { getProjects } from "@/lib/keystatic"
+import { getServerSession } from "next-auth/next"
 import { Metadata } from "next"
 import { Suspense } from "react"
 
@@ -9,6 +10,9 @@ export const metadata: Metadata = {
 }
 
 export default async function ProjectsPage() {
+  const session = await getServerSession()
+  const isAdmin = session?.user?.email === "destucr@gmail.com"
+  
   const projects = await getProjects()
 
   return (
@@ -22,7 +26,7 @@ export default async function ProjectsPage() {
         </p>
       </div>
       <Suspense fallback={<div>Loading projects...</div>}>
-        <ProjectList projects={projects} />
+        <ProjectList projects={projects} isAdmin={isAdmin} />
       </Suspense>
     </div>
   )

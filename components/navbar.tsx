@@ -34,9 +34,9 @@ export function Navbar() {
       <div className="container mx-auto flex h-14 items-center">
         <div className="mr-4 hidden md:flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <span className="hidden font-bold sm:inline-block">
-              Destu Cikal
-            </span>
+            <div className="bg-foreground text-background font-black text-xs w-6 h-6 flex items-center justify-center rounded-sm tracking-tighter">
+              DC
+            </div>
           </Link>
           <nav className="flex items-center space-x-6 text-sm font-medium">
             {routes.map((route) => (
@@ -66,10 +66,13 @@ export function Navbar() {
           <SheetContent side="left" className="pr-0">
             <Link
               href="/"
-              className="flex items-center"
+              className="flex items-center space-x-2"
               onClick={() => setIsOpen(false)}
             >
-              <span className="font-bold">Destu Cikal</span>
+              <div className="bg-foreground text-background font-black text-xs w-6 h-6 flex items-center justify-center rounded-sm tracking-tighter">
+                DC
+              </div>
+              <span className="font-bold">Portfolio</span>
             </Link>
             <ScrollArea className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
               <div className="flex flex-col space-y-3">
