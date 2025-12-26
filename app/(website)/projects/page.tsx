@@ -4,6 +4,8 @@ import { getServerSession } from "next-auth/next"
 import { Metadata } from "next"
 import { Suspense } from "react"
 
+export const runtime = "edge";
+
 export const metadata: Metadata = {
   title: "Projects | iOS Developer Portfolio",
   description: "A showcase of my iOS applications, side projects, and open source contributions.",

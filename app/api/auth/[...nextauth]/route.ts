@@ -1,6 +1,8 @@
 import NextAuth from "next-auth"
 import GithubProvider from "next-auth/providers/github"
 
+export const runtime = "edge";
+
 const handler = NextAuth({
   providers: [
     GithubProvider({

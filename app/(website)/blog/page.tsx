@@ -7,6 +7,8 @@ import { getPosts } from "@/lib/keystatic"
 import { EmptyState } from "@/components/empty-state"
 import { PenLine } from "lucide-react"
 
+export const runtime = "edge";
+
 export const metadata: Metadata = {
   title: "Blog | iOS Developer Portfolio",
   description: "Technical articles, tutorials, and thoughts on iOS development.",

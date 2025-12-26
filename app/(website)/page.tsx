@@ -1,4 +1,5 @@
 import Link from "next/link"
+export const runtime = "edge";
 import { ArrowRight, LayoutGrid, PenLine, Smartphone, Layers, Cpu } from "lucide-react"
 import { getServerSession } from "next-auth/next"
 import { Button } from "@/components/ui/button"
