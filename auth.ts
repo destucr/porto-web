@@ -15,6 +15,14 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             // For others, we still let them "sign in" so they see the "Access Denied" message
             return true
         },
+        async session({ session, token }) {
+            // Minimize what's exposed in the session on the client side
+            if (session.user) {
+                session.user.email = ""; 
+                session.user.image = undefined;
+            }
+            return session;
+        },
     },
     pages: {
         signIn: '/admin',
