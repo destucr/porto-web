@@ -1,10 +1,7 @@
 import { ProjectList } from "@/components/project-list"
 import { getProjects } from "@/lib/keystatic"
-import { getServerSession } from "next-auth/next"
 import { Metadata } from "next"
 import { Suspense } from "react"
-
-export const runtime = "nodejs";
 
 export const metadata: Metadata = {
   title: "Projects | iOS Developer Portfolio",
@@ -12,8 +9,7 @@ export const metadata: Metadata = {
 }
 
 export default async function ProjectsPage() {
-  const session = await getServerSession()
-  const isAdmin = session?.user?.email === "destucr@gmail.com"
+  const isAdmin = false
 
   const projects = await getProjects()
 

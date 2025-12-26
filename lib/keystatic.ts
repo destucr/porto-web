@@ -17,7 +17,7 @@ export async function getPosts() {
 export async function getPost(slug: string) {
   const post = await reader.collections.posts.read(slug);
   if (!post) return null;
-  
+
   return {
     slug,
     entry: {
@@ -29,7 +29,7 @@ export async function getPost(slug: string) {
 
 export async function getProjects() {
   const projects = await reader.collections.projects.all();
-  
+
   const order = [
     'tiny-app-baby-heartbeat-listener',
     'snorkeling-booking-app',
@@ -65,7 +65,7 @@ export async function getProject(slug: string) {
     resolveLinkedFiles: true,
   });
   if (!project) return null;
-  
+
   return {
     slug,
     entry: {

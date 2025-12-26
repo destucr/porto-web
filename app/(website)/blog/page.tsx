@@ -2,12 +2,11 @@ import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card"
 import { Metadata } from "next"
-import { getServerSession } from "next-auth/next"
 import { getPosts } from "@/lib/keystatic"
 import { EmptyState } from "@/components/empty-state"
 import { PenLine } from "lucide-react"
 
-export const runtime = "nodejs";
+
 
 export const metadata: Metadata = {
   title: "Blog | iOS Developer Portfolio",
@@ -15,8 +14,7 @@ export const metadata: Metadata = {
 }
 
 export default async function BlogPage() {
-  const session = await getServerSession()
-  const isAdmin = session?.user?.email === "destucr@gmail.com"
+  const isAdmin = false
 
   const blogPosts = await getPosts()
 

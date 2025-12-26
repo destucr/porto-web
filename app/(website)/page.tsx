@@ -1,15 +1,12 @@
 import Link from "next/link"
-export const runtime = "nodejs";
 import { ArrowRight, LayoutGrid, PenLine, Smartphone, Layers, Cpu } from "lucide-react"
-import { getServerSession } from "next-auth/next"
 import { Button } from "@/components/ui/button"
 import { ProjectCard } from "@/components/project-card"
 import { EmptyState } from "@/components/empty-state"
 import { getPosts, getProjects } from "@/lib/keystatic"
 
 export default async function Home() {
-  const session = await getServerSession()
-  const isAdmin = session?.user?.email === "destucr@gmail.com"
+  const isAdmin = false // Admin features are now handled via /admin directly or client-side
 
   const allProjects = await getProjects()
   const featuredProjects = allProjects.slice(0, 3)
@@ -123,8 +120,9 @@ export default async function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-20">
           {featuredProjects.length > 0 ? (
-            featuredProjects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
+            featuredProjects.map((project: any) => (
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              <ProjectCard key={project.id} project={project as any} />
             ))
           ) : (
             <div className="col-span-full py-10">

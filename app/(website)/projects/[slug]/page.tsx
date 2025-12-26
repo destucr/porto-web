@@ -1,7 +1,12 @@
-import { getProject } from "@/lib/keystatic"
+import { getProject, getProjects } from "@/lib/keystatic"
 import { notFound } from "next/navigation"
 
-export const runtime = "nodejs";
+export async function generateStaticParams() {
+  const projects = await getProjects()
+  return projects.map((project) => ({
+    slug: project.slug,
+  }))
+}
 
 import Link from "next/link"
 import Image from "next/image"
@@ -64,7 +69,7 @@ export default async function ProjectPage({ params }: PageProps) {
             </div>
 
             <div className="flex flex-wrap gap-2">
-              {Array.isArray(project.tags) && project.tags.map(tag => (
+              {Array.isArray(project.tags) && project.tags.map((tag: string) => (
                 <span key={tag} className="px-3 py-1 rounded-md bg-muted border text-xs font-bold text-muted-foreground uppercase tracking-wider">
                   {tag}
                 </span>

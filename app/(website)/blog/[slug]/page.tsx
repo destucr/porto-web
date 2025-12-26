@@ -8,7 +8,12 @@ import { ChevronLeft } from "lucide-react"
 import { Metadata } from "next"
 import Markdoc from '@markdoc/markdoc'
 
-export const runtime = "nodejs";
+export async function generateStaticParams() {
+  const posts = await getPosts()
+  return posts.map((post) => ({
+    slug: post.slug,
+  }))
+}
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -59,7 +64,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
       <div className="space-y-4 text-center mb-12">
         <div className="flex justify-center gap-2 mb-4">
-          {post.entry.tags.map(tag => (
+          {post.entry.tags.map((tag: string) => (
             <Badge key={tag} variant="secondary">{tag}</Badge>
           ))}
         </div>
