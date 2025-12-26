@@ -9,8 +9,8 @@ import { Info, Lock, Terminal, Cpu, ShieldAlert, CheckCircle2, Github, LogOut } 
 export default function AdminGateway() {
   const { data: session, status } = useSession()
   
-  // Replace with your actual email
-  const isAdmin = session?.user?.email === "destucr@gmail.com"
+  // Use the isAdmin flag from the session (populated securely on the server)
+  const isAdmin = (session?.user as any)?.isAdmin === true
 
   if (status === "loading") {
     return (

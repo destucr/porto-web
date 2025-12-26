@@ -23,6 +23,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         async session({ session, token }) {
             // Minimize what's exposed in the session on the client side
             if (session.user) {
+                // Check admin status before clearing email
+                (session.user as any).isAdmin = session.user.email === "destucr@gmail.com";
                 session.user.email = ""; 
                 session.user.image = undefined;
             }
