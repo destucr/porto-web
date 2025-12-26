@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Destu Cikal Ramdani
+### iOS Developer & Product Manager
 
-## Getting Started
+> *"Engineering intentional mobile experiences at the intersection of technical rigor and product vision."*
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🧭 The Pursuit
+I am driven by the challenge of moving beyond standard application development into **system-level engineering**. My focus lies in native iOS depth—specifically where hardware meets software. I pursue mastery in:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+*   **Audio Systems:** Refining how we perceive sound through `AVFoundation` and `AudioKit`.
+*   **On-Device Intelligence:** Implementing privacy-first, high-performance ML models using `CoreML`.
+*   **Spatial Context:** Building accurate, real-time tracking solutions with `MapKit` and `Core Location`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠 The Philosophy: Intentional Engineering
+I believe that code without a "Why" is just noise. My background in **Product Management** allows me to treat every technical decision as a product decision. I don't just build features; I architect solutions that:
+*   Respect the user's intelligence and time.
+*   Prioritize technical rigor (Clean Architecture, SwiftData, CI/CD).
+*   Drive measurable impact through data-informed prioritization.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ⚡ The Desire
+I desire to build tools that feel "inevitable"—apps that are so refined and technically sound that they become essential to the user's workflow. I am constantly seeking environments where performance is a feature, not an afterthought, and where cross-functional teams collaborate to solve non-trivial problems.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+### 📬 Connection
+*   **Portfolio:** [destucikal.com](https://github.com/destucikal)
+*   **LinkedIn:** [linkedin.com/in/destucikal](https://linkedin.com/in/destucikal)
+*   **Email:** destucr@gmail.com
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+*"Build with intent, or don't build at all."*
