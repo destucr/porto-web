@@ -1,6 +1,7 @@
 import { getProject } from "@/lib/keystatic"
 import { notFound } from "next/navigation"
 import Link from "next/link"
+import Image from "next/image"
 import { ChevronLeft, Github, ExternalLink, Code2, Layers } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { DocumentRenderer } from "@keystatic/core/renderer"
@@ -69,10 +70,14 @@ export default async function ProjectPage({ params }: PageProps) {
           </header>
 
           {/* Hero Image: Preserving natural aspect ratio */}
-          <div className="rounded-2xl border bg-muted/30 overflow-hidden shadow-sm flex items-center justify-center min-h-[400px]">
-            <img 
+          <div className="rounded-2xl border bg-muted/30 overflow-hidden shadow-sm flex items-center justify-center min-h-[400px] relative">
+            <Image 
               src={project.image || ""} 
               alt={project.title} 
+              width={1200}
+              height={700}
+              priority
+              unoptimized
               className="max-w-full h-auto max-h-[700px] object-contain" 
             />
           </div>

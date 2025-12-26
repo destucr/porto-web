@@ -7,7 +7,6 @@ export default config({
   ui: {
     brand: {
       name: 'Destu Portfolio Admin',
-      href: '/',
     },
     navigation: {
       'Content Management': ['posts', 'projects'],
