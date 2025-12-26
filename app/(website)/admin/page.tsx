@@ -75,7 +75,7 @@ export default function AdminGateway() {
                   </p>
                   <p className="text-[10px] text-muted-foreground">{session.user?.email}</p>
                 </div>
-                <Button variant="ghost" size="sm" onClick={() => signOut()} className="h-8">
+                <Button variant="ghost" size="sm" onClick={() => signOut({ redirectTo: "/admin" })} className="h-8">
                   <LogOut className="h-3 w-3 mr-2" /> Sign Out
                 </Button>
               </div>
@@ -112,7 +112,7 @@ export default function AdminGateway() {
                   Your account ({session.user?.email}) is not authorized to manage this portfolio.
                 </p>
               </div>
-              <Button onClick={() => signOut()} variant="outline" className="w-full">
+              <Button onClick={() => signOut({ redirectTo: "/admin" })} variant="outline" className="w-full">
                 Sign in with different account
               </Button>
             </div>

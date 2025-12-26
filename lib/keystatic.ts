@@ -1,6 +1,7 @@
 import { createReader } from '@keystatic/core/reader';
 import config from '../keystatic.config';
 import { blogPosts as fallbackPosts, projects as fallbackProjects } from './data';
+import Markdoc from '@markdoc/markdoc';
 
 // We force 'local' storage for the reader because we want to read the 
 // bundled content from the filesystem, not from GitHub API.
@@ -32,7 +33,15 @@ export async function getPost(slug: string) {
     const post = await reader.collections.posts.read(slug);
     if (!post) {
       const fallback = fallbackPosts.find(p => p.slug === slug);
-      if (fallback) return { slug, entry: { ...fallback, content: fallback.content } };
+      if (fallback) {
+        return { 
+          slug, 
+          entry: { 
+            ...fallback, 
+            content: async () => ({ node: Markdoc.parse(fallback.content) }) 
+          } 
+        };
+      }
       return null;
     }
 
