@@ -1,13 +1,13 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "porto-web",
-  "main": ".worker-next/index.mjs",
+  "main": ".open-next/worker.js",
   "compatibility_date": "2025-12-26",
   "compatibility_flags": [
     "nodejs_compat"
   ],
   "assets": {
-    "directory": ".worker-next/assets",
+    "directory": ".open-next/assets",
     "binding": "ASSETS"
   },
   "observability": {
