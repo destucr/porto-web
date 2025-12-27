@@ -1,7 +1,7 @@
 # Destu Cikal Ramdani
 ### iOS Developer & Product Manager
 
-> *"Engineering intentional mobile experiences at the intersection of technical rigor and product vision."*
+> *"Building mobile apps that deliver the message clearly and are built with intentional purpose."*
 
 ---
 
@@ -12,10 +12,10 @@ I am driven by the challenge of moving beyond standard application development i
 *   **On-Device Intelligence:** Implementing privacy-first, high-performance ML models using `CoreML`.
 *   **Spatial Context:** Building accurate, real-time tracking solutions with `MapKit` and `Core Location`.
 
-## 🛠 The Philosophy: Intentional Engineering
-I believe that code without a "Why" is just noise. My background in **Product Management** allows me to treat every technical decision as a product decision. I don't just build features; I architect solutions that:
-*   Respect the user's intelligence and time.
-*   Prioritize technical rigor (Clean Architecture, SwiftData, CI/CD).
+## 🛠 The Philosophy: Clarity and Intent
+I believe every line of code should have a clear reason for being there. My background in **Product Management** helps me ensure that technical choices always support the actual message we want to deliver. I focus on:
+*   Respecting the user's intelligence and time.
+*   Being intentional with every technical choice (Clean Architecture, SwiftData, CI/CD).
 *   Drive measurable impact through data-informed prioritization.
 
 ## ⚡ The Desire
