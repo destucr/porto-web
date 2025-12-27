@@ -1,20 +1,14 @@
 import { config, fields, collection } from '@keystatic/core';
 
-const isCloudflare = !!process.env.KEYSTATIC_GITHUB_CLIENT_ID;
-
 export default config({
-  storage: isCloudflare
+  storage: (process.env.NODE_ENV === 'production' || process.env.NEXT_PUBLIC_KEYSTATIC_GITHUB_CLIENT_ID)
     ? {
-      kind: 'github',
-      repo: {
-        owner: 'destucr',
-        name: 'porto-web',
-      },
-    }
+        kind: 'github',
+        repo: { owner: 'destucr', name: 'porto-web' },
+      }
     : {
-      kind: 'local',
-    },
-
+        kind: 'local',
+      },
   ui: {
     brand: {
       name: 'Destu Portfolio Admin',
@@ -23,7 +17,6 @@ export default config({
       'Content Management': ['posts', 'projects'],
     },
   },
-
   collections: {
     posts: collection({
       label: 'Posts',
@@ -43,13 +36,12 @@ export default config({
             },
           },
         }),
-        tags: fields.array(fields.text({ label: 'Tag' }), {
-          label: 'Tags',
-          itemLabel: props => props.value,
-        }),
+        tags: fields.array(
+          fields.text({ label: 'Tag' }),
+          { label: 'Tags', itemLabel: props => props.value }
+        ),
       },
     }),
-
     projects: collection({
       label: 'Projects',
       slugField: 'title',
@@ -61,7 +53,7 @@ export default config({
         image: fields.text({ label: 'Thumbnail URL' }),
         tags: fields.array(fields.text({ label: 'Tag' }), {
           label: 'Tags',
-          itemLabel: props => props.value,
+          itemLabel: (props) => props.value,
         }),
         githubUrl: fields.text({ label: 'GitHub URL' }),
         appStoreUrl: fields.text({ label: 'App Store URL' }),
