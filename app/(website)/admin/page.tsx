@@ -98,9 +98,7 @@ export default function AdminGateway() {
               </div>
 
               <Button asChild className="w-full py-6 text-lg">
-                <Link href={process.env.NODE_ENV === 'production' ? "/api/keystatic/github/login" : "/keystatic"}>
-                  Launch Admin Dashboard
-                </Link>
+                <Link href="/keystatic">Launch Admin Dashboard</Link>
               </Button>
             </div>
           ) : (
