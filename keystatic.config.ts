@@ -1,14 +1,9 @@
 import { config, fields, collection } from '@keystatic/core';
 
 export default config({
-  storage: process.env.NODE_ENV === 'production'
-    ? {
-        kind: 'github',
-        repo: { owner: 'destucr', name: 'porto-web' },
-      }
-    : {
-        kind: 'local',
-      },
+  storage: {
+    kind: 'local',
+  },
   ui: {
     brand: {
       name: 'Destu Portfolio Admin',
