@@ -5,6 +5,7 @@ export default config({
     ? {
         kind: 'github',
         repo: { owner: 'destucr', name: 'porto-web' },
+        clientId: process.env.NEXT_PUBLIC_KEYSTATIC_GITHUB_CLIENT_ID,
       }
     : {
         kind: 'local',
