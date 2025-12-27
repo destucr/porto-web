@@ -12,15 +12,14 @@ declare module "next-auth" {
 export const { handlers, auth, signIn, signOut } = NextAuth({
     basePath: "/api/auth",
     trustHost: true,
-    providers: [
-        GitHub({
-            clientId: process.env.AUTH_GITHUB_ID || process.env.KEYSTATIC_GITHUB_CLIENT_ID,
-            clientSecret: process.env.AUTH_GITHUB_SECRET || process.env.KEYSTATIC_GITHUB_CLIENT_SECRET,
-            // Disable PKCE if you encounter pkceCodeVerifier errors in local dev
-            checks: ["none"], 
-        })
-    ],
-    callbacks: {
+        providers: [
+            GitHub({
+                clientId: process.env.AUTH_GITHUB_ID,
+                clientSecret: process.env.AUTH_GITHUB_SECRET,
+                // Disable PKCE if you encounter pkceCodeVerifier errors in local dev
+                checks: ["none"],
+            })
+        ],    callbacks: {
         async signIn({ user }) {
             // ONLY allow your specific email to access the admin gateway
             const allowedEmails = ["destucr@gmail.com"]
