@@ -1,24 +1,47 @@
 import { blogPosts as fallbackPosts, projects as fallbackProjects } from './data';
 import Markdoc from '@markdoc/markdoc';
+import { createReader } from '@keystatic/core/reader';
+import keystaticConfig from '../keystatic.config';
 
 const isProd = process.env.NODE_ENV === 'production';
 
 // Only initialize reader in development
 const getReader = () => {
   if (isProd) return null;
-  const { createReader } = require('@keystatic/core/reader');
-  const config = require('../keystatic.config').default;
   return createReader(process.cwd(), {
-    ...config,
+    ...keystaticConfig,
     storage: { kind: 'local' },
   });
 };
 
 const reader = getReader();
 
+interface Post {
+  slug: string;
+  title: string;
+  date: string;
+  excerpt: string;
+  tags: readonly string[];
+  content: string;
+}
+
+interface Project {
+  id: string;
+  slug?: string;
+  title: string;
+  description: string;
+  image: string;
+  tags: readonly string[];
+  githubUrl: string;
+  appStoreUrl: string;
+  videoUrl: string;
+  screenshots: readonly string[];
+  details: string;
+}
+
 export async function getPosts() {
   if (isProd) {
-    return fallbackPosts.map(post => ({
+    return (fallbackPosts as Post[]).map(post => ({
       ...post,
       title: post.title || 'Untitled Post',
     }));
@@ -26,24 +49,24 @@ export async function getPosts() {
 
   try {
     const posts = await reader!.collections.posts.all();
-    if (posts.length === 0) return fallbackPosts;
+    if (posts.length === 0) return fallbackPosts as Post[];
     
     return posts.map(post => ({
       slug: post.slug,
       title: post.entry.title || 'Untitled Post',
-      date: post.entry.date,
-      excerpt: post.entry.excerpt,
+      date: post.entry.date || '',
+      excerpt: post.entry.excerpt || '',
       tags: post.entry.tags || [],
     }));
   } catch (error) {
     console.error('Error fetching posts from Keystatic:', error);
-    return fallbackPosts;
+    return fallbackPosts as Post[];
   }
 }
 
 export async function getPost(slug: string) {
   if (isProd) {
-    const fallback = fallbackPosts.find(p => p.slug === slug);
+    const fallback = (fallbackPosts as Post[]).find(p => p.slug === slug);
     if (fallback) {
       return { 
         slug, 
@@ -59,7 +82,7 @@ export async function getPost(slug: string) {
   try {
     const post = await reader!.collections.posts.read(slug);
     if (!post) {
-      const fallback = fallbackPosts.find(p => p.slug === slug);
+      const fallback = (fallbackPosts as Post[]).find(p => p.slug === slug);
       if (fallback) {
         return { 
           slug, 
@@ -94,19 +117,20 @@ export async function getProjects() {
     'p2p-lending-app-fraud-prevention'
   ];
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const formatProjects = (projs: any[]) => {
     return projs
       .map(project => ({
-        id: project.id || project.slug,
-        slug: project.slug || project.id,
+        id: (project.id || project.slug || '') as string,
+        slug: (project.slug || project.id || '') as string,
         title: project.title || 'Untitled Project',
-        description: project.description,
+        description: project.description || '',
         image: project.image || '',
-        tags: Array.isArray(project.tags) ? project.tags : [],
-        githubUrl: project.githubUrl,
-        appStoreUrl: project.appStoreUrl,
-        videoUrl: project.videoUrl,
-        screenshots: Array.isArray(project.screenshots) ? project.screenshots : [],
+        tags: Array.isArray(project.tags) ? (project.tags as readonly string[]) : [],
+        githubUrl: project.githubUrl || '',
+        appStoreUrl: project.appStoreUrl || '',
+        videoUrl: project.videoUrl || '',
+        screenshots: Array.isArray(project.screenshots) ? (project.screenshots as readonly string[]) : [],
       }))
       .sort((a, b) => {
         const aIsIOS = a.tags.some((tag: string) => tag.toLowerCase() === 'ios');
@@ -135,7 +159,8 @@ export async function getProjects() {
       return formatProjects(fallbackProjects);
     }
 
-    return formatProjects(projects.map(p => ({ ...p.entry, slug: p.slug })));
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return formatProjects(projects.map(p => ({ ...p.entry, slug: p.slug })) as any[]);
   } catch (error) {
     console.error('Error fetching projects from Keystatic:', error);
     return formatProjects(fallbackProjects);
@@ -144,7 +169,7 @@ export async function getProjects() {
 
 export async function getProject(slug: string) {
   if (isProd) {
-    const fallback = fallbackProjects.find(p => 
+    const fallback = (fallbackProjects as Project[]).find(p => 
       p.id === slug || 
       p.title.toLowerCase().replace(/ /g, '-').replace(/[^a-z0-9-]/g, '') === slug
     );
@@ -158,7 +183,7 @@ export async function getProject(slug: string) {
     });
     
     if (!project) {
-      const fallback = fallbackProjects.find(p => 
+      const fallback = (fallbackProjects as Project[]).find(p => 
         p.id === slug || 
         p.title.toLowerCase().replace(/ /g, '-').replace(/[^a-z0-9-]/g, '') === slug
       );

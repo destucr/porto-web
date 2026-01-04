@@ -30,7 +30,13 @@ export default async function ProjectPage({ params }: PageProps) {
 
   const { entry: project } = projectData
 
-  const renderImage = (props: any) => (
+  interface ImageProps {
+    src: string;
+    alt?: string;
+    title?: string;
+  }
+
+  const renderImage = (props: ImageProps) => (
     <div className="my-8 rounded-xl overflow-hidden border bg-muted/30">
       <Image
         src={props.src}
