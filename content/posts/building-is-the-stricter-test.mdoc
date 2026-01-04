@@ -1,0 +1,30 @@
+---
+title: "Building is the Stricter Test"
+date: '2025-01-05'
+excerpt: "You don't truly understand an app idea until you've tried to build it. Coding isn't just expressing a plan; it's the process of discovering that your plan was incomplete."
+tags:
+  - Engineering
+  - Philosophy
+  - iOS
+---
+Building an app, even for a problem you know well, usually shows you that you didn't know the problem as well as you thought. Putting ideas into code is a severe test. The first architecture you choose is usually wrong; you have to rewrite functions and refactor modules over and over to get them exactly right. And your product logic won't just be imprecise, but incomplete too. Half the features that end up in a shipping app will be ones you thought of while you were debugging it. Indeed, that's why I build them.
+
+Once you release an app, the convention is that whatever you shipped was what you had in mind before you started. These were your features, and now you've implemented them. But you know this isn't true. You know that putting your ideas into code changed them. And not just the features you shipped. Presumably there were others that turned out to be too broken to fix, and those you discarded instead.
+
+It's not just having to commit your logic to specific lines of code that makes engineering so exacting. The real test is using what you've built. You have to pretend to be a neutral user who knows nothing of what's in your head, only what's on the screen. When he taps this button, does the result seem correct? Does the flow feel complete? If you make an effort, you can use your app as if you were a complete stranger, and when you do, the news is usually bad. It takes me many cycles before I can get an interface past "the stranger." But the stranger is rational, so you always can, if you ask him what he needs. If he's frustrated because you failed to provide feedback for a long-running task, then you add a progress bar. Happy now? It may cost you some clean, minimal code, but you have to resign yourself to that.
+
+### The Illusion of "Up Here"
+
+There may exist people whose product visions are so perfectly formed that they just flow straight into a production-ready binary. But I've never known anyone who could do this. Indeed, this is a trope in startups: the founder who claims to have a "perfect plan" for a difficult market, and who when questioned further, taps his head and says "It's all up here." Everyone who has ever shipped code knows what that means. At best, the plan is vague. Very likely there's some undiscovered edge case that invalidates the core loop completely. At best, it's a plan for a plan.
+
+You can know a great deal about a user's problem without building a solution for it. Can you ever know so much that you wouldn't learn more from trying to implement what you know? I don't think so. I've built apps for two subjects I know well—audio processing and productivity—and in both cases, I learned a lot from building them. In both cases, there were UX hurdles I didn't consciously realize until I had to solve them in Swift. A great deal of product knowledge is unconscious, and experts have if anything a higher proportion of unconscious knowledge than beginners.
+
+### The Hill of Implementation
+
+Putting ideas into code doesn't have to mean building a full app, of course. You can also do it the old way, by sketching on paper or talking. But in my experience, coding is the stricter test. You have to commit to a single, optimal sequence of logic. Less can go unsaid when you don't have a human to interpret your "you know what I mean." The compiler is the ultimate rational stranger. It doesn't care about your intentions; it only cares about what you wrote.
+
+The reason I've spent so long establishing this rather obvious point is that it leads to another that many people will find shocking. If building your ideas always makes them more precise and more complete, then no one who hasn't built a solution has a fully formed idea of the problem. And someone who never builds has no fully formed ideas about anything nontrivial.
+
+It feels to them as if they do. Ideas can feel complete in the abstract. It's only when you try to compile them that you discover they're not. So if you never subject your ideas to the test of the screen, you'll not only never have fully formed ideas, but also never realize it.
+
+Building is certainly no guarantee that you'll be right. Far from it. But though implementation is not a sufficient condition for a great product, it is a necessary one.

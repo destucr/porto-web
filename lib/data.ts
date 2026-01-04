@@ -3,57 +3,57 @@ export const projects = [
     id: "tiny-app-baby-heartbeat-listener",
     title: "Tiny App: Baby Heartbeat Listener",
     description: "iOS app to listen to a baby’s heartbeat using Live Listen and real-time audio processing.",
-    image: "/images/tiny-splashscreen.webp",
+    image: "/images/tiny-splashscreen.png",
     tags: ["iOS", "AudioKit", "Core Animation", "SwiftLint", "GitHub Actions"],
     githubUrl: "https://github.com/destucikal",
     appStoreUrl: "https://tinymiracle.life",
     details: "#### Audio Engineering & Visualization\nDeveloped a specialized iOS solution for real-time baby heartbeat monitoring, leveraging advanced audio processing frameworks.\n\n- **Real-time Visualization**: Implemented dynamic waveform rendering using Core Animation to provide visual feedback for audio signals.\n- **Audio Filtering**: Utilized AudioKit to refine raw audio input, specifically targeting frequencies relevant to fetal heartbeats while minimizing background noise.\n- **End-to-End Experience**: Designed and built the complete user journey, from onboarding to recording and playback flows.\n\n#### Engineering Rigor\n- **Code Quality**: Integrated SwiftLint to maintain a clean and consistent codebase.\n- **Automation**: Established CI/CD pipelines using GitHub Actions to automate linting and ensure project stability.",
-    videoUrl: "/images/tiny-demo.mp4",
+    videoUrl: "",
     screenshots: [
-      "/images/tiny-splashscreen.webp",
-      "/images/tiny-livelisten-start.webp",
-      "/images/tiny-livelisten-stop.webp",
-      "/images/tiny-livelisten-playback.webp",
-      "/images/tiny-livelisten-playback-played.webp",
-      "/images/tiny-history-weekly.webp"
+      "/images/tiny-splashscreen.png",
+      "/images/tiny-livelisten-start.png",
+      "/images/tiny-livelisten-stop.png",
+      "/images/tiny-livelisten-playback.png",
+      "/images/tiny-livelisten-playback-played.png",
+      "/images/tiny-history-weekly.png"
     ]
   },
   {
     id: "telly-bisindo-sign-language-learning",
     title: "Telly: BISINDO Sign Language Learning",
     description: "Indonesian Sign Language learning app using Create ML and interactive course progression.",
-    image: "/images/telly-splashscreen.webp",
+    image: "/images/telly-splashscreen.png",
     tags: ["iOS", "SwiftUI", "Create ML", "SwiftData"],
     githubUrl: "https://github.com/destucikal",
     appStoreUrl: "",
     details: "#### Interactive Learning System\nBuilt a modern educational platform for Indonesian Sign Language (BISINDO), focusing on interactive engagement and progress tracking.\n\n- **ML-Powered Learning**: Integrated Create ML models to facilitate real-time sign recognition and interactive learning feedback.\n- **Gamified Progression**: Developed a structured course selection system with dynamic lock/unlock logic based on user performance and completion.\n- **Fluid UI/UX**: Crafted animated interface elements using SwiftUI's `withAnimation` modifier, ensuring a polished and responsive learning environment.\n\n#### Data Persistence\n- **Progress Tracking**: Leveraged SwiftData for lightweight, local storage of user course states and achievement history.",
     videoUrl: "/images/telly-demo.mp4",
     screenshots: [
-      "/images/telly-splashscreen.webp",
-      "/images/telly-onboarding-welcome.webp",
-      "/images/telly-onboarding-inputname.webp",
-      "/images/telly-onboarding-howtouse.webp",
-      "/images/telly-onboarding-guide.webp",
-      "/images/telly-home-course.webp",
-      "/images/telly-home-course-modalguide.webp",
-      "/images/telly-course-start.webp"
+      "/images/telly-splashscreen.png",
+      "/images/telly-onboarding-welcome.png",
+      "/images/telly-onboarding-inputname.png",
+      "/images/telly-onboarding-howtouse.png",
+      "/images/telly-onboarding-guide.png",
+      "/images/telly-home-course.png",
+      "/images/telly-home-course-modalguide.png",
+      "/images/telly-course-start.png"
     ]
   },
   {
     id: "solari-running-companion",
     title: "Solari: Running Tracker",
     description: "Running tracker app using SwiftUI, MapKit, and Core Location for real-time metrics and route visualization.",
-    image: "/images/solari-runhome.webp",
+    image: "/images/solari-runhome.png",
     tags: ["iOS", "SwiftUI", "MapKit", "Core Location", "SwiftData"],
     githubUrl: "https://github.com/destucikal",
     appStoreUrl: "",
     details: "#### Tracking & Spatial Data\nDeveloped a comprehensive running tracker that prioritizes accuracy and real-time user feedback.\n\n- **Precise Metrics**: Implemented Core Location to accurately calculate pace, distance, and duration during active sessions.\n- **Route Visualization**: Integrated MapKit to render real-time breadcrumb paths, allowing users to visualize their running routes as they happen.\n- **Metric Summaries**: Built intentional result screens that summarize run statistics through a clear, data-focused UI.\n\n#### Session Management\n- **Local Persistence**: Integrated SwiftData to manage and persist historical running sessions, allowing for offline access and performance trends.",
     videoUrl: "",
     screenshots: [
-      "/images/solari-runhome.webp",
-      "/images/solari-running.webp",
-      "/images/solari-runresult.webp",
-      "/images/solari-select-startpoint.webp"
+      "/images/solari-runhome.png",
+      "/images/solari-running.png",
+      "/images/solari-runresult.png",
+      "/images/solari-select-startpoint.png"
     ]
   },
   {
@@ -84,19 +84,19 @@ export const projects = [
 
 export const blogPosts = [
   {
-    slug: "mastering-swiftui-layouts",
-    title: "Mastering SwiftUI Layouts: ZStack, VStack, and HStack",
-    excerpt: "A deep dive into the layout system of SwiftUI and how to build complex interfaces with simple stacks.",
-    date: "2024-03-15",
-    content: "SwiftUI layouts are declarative and powerful. By combining ZStack, VStack, and HStack, you can create complex and responsive user interfaces with minimal code. Unlike UIKit's Auto Layout, SwiftUI's layout system is intuitive and relies on the relationship between parent and child views.\n\n### The Foundation: Three Basic Stacks\n\nAt the heart of SwiftUI layout are three containers:\n\n1. **VStack (Vertical Stack)**: Arranges its children in a vertical line. It's the most common container for building forms, lists, and general page structures.\n2. **HStack (Horizontal Stack)**: Arranges its children in a horizontal line. Perfect for toolbars, side-by-side buttons, or label-icon combinations.\n3. **ZStack (Depth Stack)**: Overlays its children on top of each other. This is essential for creating backgrounds, badges, or complex custom UI components that require layering.\n\n### How Layout Happens in SwiftUI\n\nThe SwiftUI layout process follows three simple steps:\n1. **The parent proposes a size** for the child.\n2. **The child chooses its own size**. The child is responsible for determining how much space it needs based on its content.\n3. **The parent places the child** in its coordinate space.\n\n### Building Complexity: Nesting Stacks\n\nThe real power of SwiftUI comes from nesting these stacks. By combining a `VStack` inside an `HStack`, or adding a `ZStack` as a background to a `VStack`, you can build almost any interface.\n\n### Best Practices for Sophisticated Layouts\n\n- **Use Spacers**: `Spacer()` views are invisible views that expand to fill all available space. Use them to push views to the edges of a stack.\n- **Alignment Guides**: Go beyond simple `.leading` or `.trailing` by using custom alignment guides to align views across different stacks.\n- **Fixed vs. Flexible Sizes**: Understand when to use `.fixedSize()` to prevent a view from truncating or expanding beyond its ideal size.\n- **Layout Priorities**: Use `.layoutPriority()` to tell SwiftUI which views should have first pick of the available space when space is tight.\n\nBy mastering these fundamental concepts, you'll be able to build beautiful, responsive, and maintainable iOS interfaces with ease.",
-    tags: ["SwiftUI", "Tutorial"],
+    slug: "building-is-the-stricter-test",
+    title: "Building is the Stricter Test",
+    excerpt: "You don't truly understand an app idea until you've tried to build it. Coding isn't just expressing a plan; it's the process of discovering that your plan was incomplete.",
+    date: "2025-01-05",
+    content: "Building an app, even for a problem you know well, usually shows you that you didn't know the problem as well as you thought. Putting ideas into code is a severe test. The first architecture you choose is usually wrong; you have to rewrite functions and refactor modules over and over to get them exactly right. And your product logic won't just be imprecise, but incomplete too. Half the features that end up in a shipping app will be ones you thought of while you were debugging it. Indeed, that's why I build them.\n\nOnce you release an app, the convention is that whatever you shipped was what you had in mind before you started. These were your features, and now you've implemented them. But you know this isn't true. You know that putting your ideas into code changed them. And not just the features you shipped. Presumably there were others that turned out to be too broken to fix, and those you discarded instead.\n\nIt's not just having to commit your logic to specific lines of code that makes engineering so exacting. The real test is using what you've built. You have to pretend to be a neutral user who knows nothing of what's in your head, only what's on the screen. When he taps this button, does the result seem correct? Does the flow feel complete? If you make an effort, you can use your app as if you were a complete stranger, and when you do, the news is usually bad. It takes me many cycles before I can get an interface past \"the stranger.\"\n\n### The Illusion of \"Up here\"\n\nThere may exist people whose product visions are so perfectly formed that they just flow straight into a production-ready binary. But I've never known anyone who could do this. Indeed, this is a trope in startups: the founder who claims to have a \"perfect plan\" for a difficult market, and who when questioned further, taps his head and says \"It's all up here.\" Everyone who has ever shipped code knows what that means. At best, the plan is vague. Very likely there's some undiscovered edge case that invalidates the core loop completely.\n\nYou can know a great deal about a user's problem without building a solution for it. Can you ever know so much that you wouldn't learn more from trying to implement what you know? I don't think so. I've built apps for two subjects I know well—audio processing and productivity—and in both cases, I learned a lot from building them. In both cases, there were UX hurdles I didn't consciously realize until I had to solve them in Swift. A great deal of product knowledge is unconscious, and experts have if anything a higher proportion of unconscious knowledge than beginners.\n\n### The Hill of Implementation\n\nPutting ideas into code doesn't have to mean building a full app, of course. You can also do it the old way, by sketching on paper or talking. But in my experience, coding is the stricter test. You have to commit to a single, optimal sequence of logic. Less can go unsaid when you don't have a human to interpret your \"you know what I mean.\" The compiler is the ultimate rational stranger. It doesn't care about your intentions; it only cares about what you wrote.\n\nThe reason I've spent so long establishing this rather obvious point is that it leads to another that many people will find shocking. If building your ideas always makes them more precise and more complete, then no one who hasn't built a solution has a fully formed idea of the problem. And someone who never builds has no fully formed ideas about anything nontrivial.\n\nBuilding is certainly no guarantee that you'll be right. Far from it. But though implementation is not a sufficient condition for a great product, it is a necessary one.",
+    tags: ["Engineering", "Philosophy", "iOS"],
   },
   {
-    slug: "getting-started-with-ios-development",
-    title: "Getting Started with iOS Development in 2025",
-    excerpt: "The landscape of iOS development is evolving. Here's what you need to focus on this year.",
-    date: "2025-12-25",
-    content: "The landscape of iOS development is evolving rapidly. As we move into 2025, the barrier to entry has changed, and the tools at our disposal are more powerful than ever. Whether you're a beginner or looking to refresh your skills, here's what you need to focus on this year.\n\n### 1. Master Swift 6 and Structured Concurrency\n\nSwift 6 is the current standard, and its focus on safety—especially data race safety—is paramount.\n- **Async/Await**: Move beyond completion handlers. Understand how to use structured concurrency to write clean, readable asynchronous code.\n- **Actors**: Learn how actors protect mutable state from data races in a multi-threaded environment.\n- **Safe Data Contention**: Understand how the compiler now helps you avoid common concurrency bugs before they even reach production.\n\n### 2. Deep Dive into Modern SwiftUI\n\nSwiftUI is no longer the \"new\" framework; it is the *standard* framework.\n- **SwiftData**: Replace Core Data with SwiftData for your persistence needs. It's designed to work seamlessly with SwiftUI's declarative syntax.\n- **NavigationStack**: Master the modern navigation API to handle complex deep-linking and state-driven navigation.\n- **Animations**: iOS users expect fluid interfaces. Learn how to use phase-based and keyframe-based animations to make your apps feel alive.\n\n### 3. Integrate Apple Intelligence (AI)\n\nWith the release of Apple Intelligence, users expect smarter apps.\n- **Core ML**: Learn how to integrate on-device machine learning models for tasks like image classification, text analysis, and sound recognition.\n- **App Intents**: Make your app's features available to Siri and the wider system through App Intents.\n- **Personalization**: Use on-device data to provide tailored experiences without compromising user privacy.\n\n### 4. Engineering Rigor: Testing and Automation\n\nBuilding an app is one thing; maintaining it is another.\n- **Unit and UI Testing**: Write meaningful tests using the latest Swift Testing framework.\n- **CI/CD**: Automate your builds and deployments using tools like GitHub Actions or Xcode Cloud.\n- **SwiftLint**: Maintain a consistent coding style across your team or personal projects.\n\n### Conclusion\n\nThe journey into iOS development in 2025 is about more than just writing code; it's about building intentional, safe, and intelligent experiences. Focus on the core fundamentals of Swift and SwiftUI, embrace the new AI capabilities, and never stop learning.",
-    tags: ["Career", "Swift", "iOS"],
+    slug: "the-screen-is-a-harsh-mirror",
+    title: "The Screen is a Harsh Mirror",
+    excerpt: "The gap between a 'beautiful mockup' and a 'useful app' is where the actual engineering happens. Here is why the screen is the only place truth exists.",
+    date: "2025-01-06",
+    content: "Mockups are dangerous because they are static. In a design tool, everything is perfect. The data is exactly the right length, the user always follows the intended path, and the network never fails.\n\nBut the moment you move that design onto a real device, the mirror reflects a much harsher reality.\n\n### Truth in Motion\n\nThe first thing the screen tells you is that your animations are too slow. In your head, that transition was \"elegant.\" On the device, it feels like an obstacle. You realize that the user doesn't want to watch your clever code; they want to get their work done.\n\nThis is the \"Stranger Test\" again. The device is a neutral observer. It shows you the friction you were too close to see. It shows you that the button you thought was accessible is actually too small for a thumb in a hurry.\n\n### The Pedagogy of the Bug\n\nWe often think of bugs as mistakes, but they are actually lessons. A bug is the computer telling you: **\"You didn't think about this.\"**\n\nWhen I was building the recording flow for my heartbeat app, I had a perfect mental model of how the audio would save. But the first time I ran it on a real device, it crashed. Why? Because I hadn't considered what happens if a user gets a phone call in the middle of a session.\n\nThat crash forced me to learn about `AVAudioSession` interruptions—something I never would have researched if I had just stayed in the \"idea phase.\"\n\n### Beyond the Mockup\n\nI've learned to stop spending weeks in design tools. Now, I try to get a prototype on the screen as fast as possible. The screen is where the narrative of your app actually begins. It's where you stop talking about what the app *could* be and start dealing with what it *is*. It forces you to be honest.\n\nAnd most importantly, it forces you to be helpful. A beautiful mockup can win an award, but only a functioning, battle-tested app can solve a problem.",
+    tags: ["Design", "Engineering", "iOS"],
   },
 ]

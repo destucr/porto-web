@@ -59,19 +59,18 @@ export default async function ProjectPage({ params }: PageProps) {
       {project.image && (
         <link rel="preload" as="image" href={project.image} fetchPriority="high" />
       )}
-      {/* Sub-Nav: Focus on returning to work */}
       <nav className="border-b sticky top-14 bg-background/80 backdrop-blur-md z-40">
         <div className="container mx-auto px-4 h-14 flex items-center justify-between">
           <Button asChild variant="ghost" size="sm" className="-ml-2 text-muted-foreground">
             <Link href="/projects">
-              <ChevronLeft className="mr-1 h-4 w-4" /> Back to Projects
+              <ChevronLeft className="mr-1 h-4 w-4" /> Back
             </Link>
           </Button>
           <div className="flex gap-3">
             {project.githubUrl && (
               <Button asChild variant="outline" size="sm">
                 <Link href={project.githubUrl} target="_blank">
-                  <Github className="mr-2 h-4 w-4" /> Source
+                  <Github className="mr-2 h-4 w-4" /> Code
                 </Link>
               </Button>
             )}
@@ -91,7 +90,7 @@ export default async function ProjectPage({ params }: PageProps) {
           {/* Header */}
           <header className="space-y-8">
             <div className="space-y-4">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">Technical Case Study</p>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">Project Story</p>
               <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight">
                 {project.title || 'Untitled Project'}
               </h1>
@@ -123,7 +122,7 @@ export default async function ProjectPage({ params }: PageProps) {
           {project.videoUrl && (
             <section className="space-y-8">
               <h3 className="text-[10px] font-bold uppercase tracking-widest text-primary flex items-center gap-2">
-                <ExternalLink className="h-4 w-4" /> Video Demonstration
+                <ExternalLink className="h-4 w-4" /> Video Demo
               </h3>
               <div className="rounded-2xl border bg-black overflow-hidden shadow-xl aspect-video md:aspect-[16/9] flex items-center justify-center">
                 <video 
@@ -147,9 +146,9 @@ export default async function ProjectPage({ params }: PageProps) {
             <section className="space-y-8">
               <div className="flex items-center justify-between">
                 <h3 className="text-[10px] font-bold uppercase tracking-widest text-primary flex items-center gap-2">
-                  <Smartphone className="h-4 w-4" /> App Screenshots
+                  <Smartphone className="h-4 w-4" /> App Screens
                 </h3>
-                <p className="text-[10px] text-muted-foreground uppercase tracking-widest">Scroll Horizontal →</p>
+                <p className="text-[10px] text-muted-foreground uppercase tracking-widest">Swipe to see more →</p>
               </div>
               <div className="relative -mx-4 px-4 md:-mx-8 md:px-8 overflow-x-auto pb-8 scrollbar-hide">
                 <div className="flex gap-6 min-w-max">
@@ -178,10 +177,10 @@ export default async function ProjectPage({ params }: PageProps) {
             <aside className="md:col-span-1 space-y-8">
               <div className="space-y-4 pt-1">
                 <h3 className="text-[10px] font-bold uppercase tracking-widest text-primary flex items-center gap-2">
-                  <Code2 className="h-4 w-4" /> Role & Context
+                  <Code2 className="h-4 w-4" /> The Focus
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Developed as a native iOS solution {Array.isArray(project.tags) && project.tags.length > 0 ? `with a focus on ${project.tags[0]} integration` : ""} and clean architecture.
+                  I built this as a native iOS app using clean code and a simple design.
                 </p>
               </div>
             </aside>
@@ -190,7 +189,7 @@ export default async function ProjectPage({ params }: PageProps) {
             <div className="md:col-span-2 space-y-12">
               <section className="space-y-6">
                 <h3 className="text-[10px] font-bold uppercase tracking-widest text-primary flex items-center gap-2">
-                  <Layers className="h-4 w-4" /> Overview
+                  <Layers className="h-4 w-4" /> What is it?
                 </h3>
                 <p className="text-xl md:text-2xl text-foreground font-medium leading-relaxed tracking-tight">
                   {project.description}
@@ -198,7 +197,7 @@ export default async function ProjectPage({ params }: PageProps) {
               </section>
 
               <section className="space-y-8 prose dark:prose-invert max-w-none prose-h4:text-2xl prose-h4:font-bold prose-h4:tracking-tight prose-p:text-muted-foreground prose-p:text-[17px] prose-li:text-muted-foreground prose-li:text-[17px]">
-                <h3 className="text-[10px] font-bold uppercase tracking-widest text-primary not-prose mb-6">Implementation Details</h3>
+                <h3 className="text-[10px] font-bold uppercase tracking-widest text-primary not-prose mb-6">How I built it</h3>
                 {project.details && typeof project.details === 'string' ? (
                   /* Handle raw Markdoc string (Static mode) */
                   Markdoc.renderers.react(
@@ -242,7 +241,7 @@ export default async function ProjectPage({ params }: PageProps) {
                     }}
                   />
                 ) : (
-                  <p className="text-muted-foreground italic text-sm">No implementation details provided.</p>
+                  <p className="text-muted-foreground italic text-sm">No details provided.</p>
                 )}
               </section>
             </div>

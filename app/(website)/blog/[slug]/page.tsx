@@ -71,8 +71,8 @@ export default async function BlogPostPage({ params }: PageProps) {
         <h1 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
           {post.entry.title || 'Untitled Post'}
         </h1>
-        <p className="text-muted-foreground">
-          Published on {post.entry.date}
+        <p className="text-muted-foreground italic">
+          {new Date(post.entry.date || "").toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
         </p>
       </div>
 
