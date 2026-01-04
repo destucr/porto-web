@@ -90,6 +90,25 @@ export default async function ProjectPage({ params }: PageProps) {
             />
           </div>
 
+          {/* Video Demo Section */}
+          {project.videoUrl && (
+            <section className="space-y-8">
+              <h3 className="text-[10px] font-bold uppercase tracking-widest text-primary flex items-center gap-2">
+                <ExternalLink className="h-4 w-4" /> Video Demonstration
+              </h3>
+              <div className="rounded-2xl border bg-black overflow-hidden shadow-xl aspect-video md:aspect-[16/9] flex items-center justify-center">
+                <video 
+                  controls 
+                  className="w-full h-full"
+                  poster={project.image || ""}
+                >
+                  <source src={project.videoUrl} type={project.videoUrl.endsWith('.mov') ? 'video/quicktime' : 'video/mp4'} />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </section>
+          )}
+
           {/* Case Study Body */}
           <div className="grid md:grid-cols-3 gap-16 pt-8">
             {/* Sidebar Metadata */}
@@ -118,9 +137,55 @@ export default async function ProjectPage({ params }: PageProps) {
               <section className="space-y-8 prose dark:prose-invert max-w-none prose-h4:text-2xl prose-h4:font-bold prose-h4:tracking-tight prose-p:text-muted-foreground prose-p:text-[17px] prose-li:text-muted-foreground prose-li:text-[17px]">
                 <h3 className="text-[10px] font-bold uppercase tracking-widest text-primary not-prose mb-6">Implementation Details</h3>
                 {project.details && (typeof project.details === 'object' && 'content' in project.details && Array.isArray(project.details.content)) ? (
-                  <DocumentRenderer document={project.details.content} />
+                  <DocumentRenderer 
+                    document={project.details.content} 
+                    renderers={{
+                      block: {
+                        image: (props) => (
+                          <div className="my-8 rounded-xl overflow-hidden border bg-muted/30">
+                            <Image
+                              src={props.src}
+                              alt={props.alt || ""}
+                              width={1200}
+                              height={800}
+                              className="w-full h-auto"
+                              unoptimized
+                            />
+                            {props.title && (
+                              <p className="text-center text-xs text-muted-foreground py-3 border-t bg-background/50">
+                                {props.title}
+                              </p>
+                            )}
+                          </div>
+                        ),
+                      },
+                    }}
+                  />
                 ) : project.details && Array.isArray(project.details) ? (
-                  <DocumentRenderer document={project.details} />
+                  <DocumentRenderer 
+                    document={project.details}
+                    renderers={{
+                      block: {
+                        image: (props) => (
+                          <div className="my-8 rounded-xl overflow-hidden border bg-muted/30">
+                            <Image
+                              src={props.src}
+                              alt={props.alt || ""}
+                              width={1200}
+                              height={800}
+                              className="w-full h-auto"
+                              unoptimized
+                            />
+                            {props.title && (
+                              <p className="text-center text-xs text-muted-foreground py-3 border-t bg-background/50">
+                                {props.title}
+                              </p>
+                            )}
+                          </div>
+                        ),
+                      },
+                    }}
+                  />
                 ) : (
                   <p className="text-muted-foreground italic text-sm">No implementation details provided.</p>
                 )}

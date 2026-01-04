@@ -91,6 +91,12 @@ export async function getProjects() {
         videoUrl: project.entry.videoUrl,
       }))
       .sort((a, b) => {
+        const aIsIOS = a.tags.some(tag => tag.toLowerCase() === 'ios');
+        const bIsIOS = b.tags.some(tag => tag.toLowerCase() === 'ios');
+        
+        if (aIsIOS && !bIsIOS) return -1;
+        if (!aIsIOS && bIsIOS) return 1;
+
         const indexA = order.indexOf(a.slug);
         const indexB = order.indexOf(b.slug);
         if (indexA !== -1 && indexB !== -1) return indexA - indexB;

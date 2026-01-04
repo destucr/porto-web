@@ -20,7 +20,10 @@ export function ProjectCard({ project }: ProjectCardProps) {
   return (
     <div className="group flex flex-col space-y-4">
       {/* Image: Container with fixed aspect ratio and clean reveal */}
-      <Link href={`/projects/${project.slug}`} className="block relative aspect-[16/10] overflow-hidden rounded-lg bg-muted border">
+      <Link 
+        href={`/projects/${project.slug}`} 
+        className="block relative aspect-[16/10] overflow-hidden rounded-xl bg-muted border transition-colors group-hover:border-primary/20"
+      >
         <Image
           src={project.image}
           alt={project.title}
