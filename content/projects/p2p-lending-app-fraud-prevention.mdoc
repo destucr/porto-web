@@ -11,11 +11,15 @@ appStoreUrl: ""
 videoUrl: ""
 ---
 #### Computer Vision & Security
-Engineered a document liveness detection system to mitigate fraud within a P2P lending platform.
+Engineered a document liveness detection system to mitigate fraud within a P2P lending platform. This system was designed to prevent users from using photos of screens or printed copies of documents during the KYC process.
 
-- **Model Development**: Built a multiclass image classification model designed to distinguish between authentic KTP documents and fraudulent reproductions.
-- **Dataset Engineering**: Prepared, curated, and augmented datasets to improve model robustness across various lighting and orientation conditions.
-- **Evaluation & Training**: Utilized Google Colab for model training and iterative evaluation of accuracy and precision metrics.
+- **Model Development**: Built a multiclass image classification model designed to distinguish between authentic KTP documents and fraudulent reproductions. I experimented with different architectures to find the best balance between accuracy and inference speed.
+- **Dataset Engineering**: Prepared, curated, and augmented datasets to improve model robustness across various lighting and orientation conditions. I implemented custom augmentation pipelines to simulate common camera artifacts.
+- **Evaluation & Training**: Utilized Google Colab for model training and iterative evaluation of accuracy and precision metrics. The model achieved over 95% accuracy on our validation set.
 
 #### Taxonomy Design
-- **Class Definition**: Defined a rigorous class taxonomy for liveness detection to handle nuanced fraud patterns.
+- **Class Definition**: Defined a rigorous class taxonomy for liveness detection to handle nuanced fraud patterns, such as "screen-re-photography" vs "paper-re-photography".
+- **Integration Strategy**: Worked closely with the mobile engineering team to design an efficient workflow for capturing high-quality document images while providing real-time feedback to the user.
+
+#### Security Impact
+By automating the liveness check, we reduced the manual verification workload by 40% and significantly lowered the rate of fraudulent account creations. This contributed to a safer lending ecosystem and increased investor confidence in the platform.
