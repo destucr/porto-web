@@ -14,9 +14,10 @@ interface ProjectCardProps {
     appStoreUrl?: string | null
     videoUrl?: string
   }
+  priority?: boolean
 }
 
-export function ProjectCard({ project }: ProjectCardProps) {
+export function ProjectCard({ project, priority }: ProjectCardProps) {
   return (
     <div className="group flex flex-col space-y-4">
       {/* Image: Container with fixed aspect ratio and clean reveal */}
@@ -29,6 +30,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           alt={project.title}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-105"
+          priority={priority}
         />
       </Link>
 

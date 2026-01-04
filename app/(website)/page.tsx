@@ -18,6 +18,9 @@ export default async function Home() {
 
   return (
     <div className="container mx-auto px-4 md:px-6">
+      {featuredProjects.slice(0, 2).map((project) => (
+        <link key={project.id} rel="preload" as="image" href={project.image} fetchPriority="high" />
+      ))}
       {/* Balanced Hero Section */}
       <section className="pt-20 pb-16 md:pt-32 md:pb-24 border-b">
         <div className="grid lg:grid-cols-2 gap-12 items-start">
@@ -120,8 +123,8 @@ export default async function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-20">
           {featuredProjects.length > 0 ? (
-            featuredProjects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
+            featuredProjects.map((project, index) => (
+              <ProjectCard key={project.id} project={project} priority={index < 2} />
             ))
           ) : (
             <div className="col-span-full py-10">

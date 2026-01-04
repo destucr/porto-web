@@ -3,57 +3,57 @@ export const projects = [
     id: "tiny-app-baby-heartbeat-listener",
     title: "Tiny App: Baby Heartbeat Listener",
     description: "iOS app to listen to a baby’s heartbeat using Live Listen and real-time audio processing.",
-    image: "/images/tiny-splashscreen.png",
+    image: "/images/tiny-splashscreen.webp",
     tags: ["iOS", "AudioKit", "Core Animation", "SwiftLint", "GitHub Actions"],
     githubUrl: "https://github.com/destucikal",
     appStoreUrl: "https://tinymiracle.life",
     details: "#### Audio Engineering & Visualization\nDeveloped a specialized iOS solution for real-time baby heartbeat monitoring, leveraging advanced audio processing frameworks.\n\n- **Real-time Visualization**: Implemented dynamic waveform rendering using Core Animation to provide visual feedback for audio signals.\n- **Audio Filtering**: Utilized AudioKit to refine raw audio input, specifically targeting frequencies relevant to fetal heartbeats while minimizing background noise.\n- **End-to-End Experience**: Designed and built the complete user journey, from onboarding to recording and playback flows.\n\n#### Engineering Rigor\n- **Code Quality**: Integrated SwiftLint to maintain a clean and consistent codebase.\n- **Automation**: Established CI/CD pipelines using GitHub Actions to automate linting and ensure project stability.",
     videoUrl: "/images/tiny-demo.mp4",
     screenshots: [
-      "/images/tiny-splashscreen.png",
-      "/images/tiny-livelisten-start.png",
-      "/images/tiny-livelisten-stop.png",
-      "/images/tiny-livelisten-playback.png",
-      "/images/tiny-livelisten-playback-played.png",
-      "/images/tiny-history-weekly.png"
+      "/images/tiny-splashscreen.webp",
+      "/images/tiny-livelisten-start.webp",
+      "/images/tiny-livelisten-stop.webp",
+      "/images/tiny-livelisten-playback.webp",
+      "/images/tiny-livelisten-playback-played.webp",
+      "/images/tiny-history-weekly.webp"
     ]
   },
   {
     id: "telly-bisindo-sign-language-learning",
     title: "Telly: BISINDO Sign Language Learning",
     description: "Indonesian Sign Language learning app using Create ML and interactive course progression.",
-    image: "/images/telly-splashscreen.png",
+    image: "/images/telly-splashscreen.webp",
     tags: ["iOS", "SwiftUI", "Create ML", "SwiftData"],
     githubUrl: "https://github.com/destucikal",
     appStoreUrl: "",
     details: "#### Interactive Learning System\nBuilt a modern educational platform for Indonesian Sign Language (BISINDO), focusing on interactive engagement and progress tracking.\n\n- **ML-Powered Learning**: Integrated Create ML models to facilitate real-time sign recognition and interactive learning feedback.\n- **Gamified Progression**: Developed a structured course selection system with dynamic lock/unlock logic based on user performance and completion.\n- **Fluid UI/UX**: Crafted animated interface elements using SwiftUI's `withAnimation` modifier, ensuring a polished and responsive learning environment.\n\n#### Data Persistence\n- **Progress Tracking**: Leveraged SwiftData for lightweight, local storage of user course states and achievement history.",
-    videoUrl: "/images/telly-demo.mov",
+    videoUrl: "/images/telly-demo.mp4",
     screenshots: [
-      "/images/telly-splashscreen.png",
-      "/images/telly-onboarding-welcome.png",
-      "/images/telly-onboarding-inputname.png",
-      "/images/telly-onboarding-howtouse.png",
-      "/images/telly-onboarding-guide.png",
-      "/images/telly-home-course.png",
-      "/images/telly-home-course-modalguide.png",
-      "/images/telly-course-start.png"
+      "/images/telly-splashscreen.webp",
+      "/images/telly-onboarding-welcome.webp",
+      "/images/telly-onboarding-inputname.webp",
+      "/images/telly-onboarding-howtouse.webp",
+      "/images/telly-onboarding-guide.webp",
+      "/images/telly-home-course.webp",
+      "/images/telly-home-course-modalguide.webp",
+      "/images/telly-course-start.webp"
     ]
   },
   {
     id: "solari-running-companion",
     title: "Solari: Running Tracker",
     description: "Running tracker app using SwiftUI, MapKit, and Core Location for real-time metrics and route visualization.",
-    image: "/images/solari-runhome.png",
+    image: "/images/solari-runhome.webp",
     tags: ["iOS", "SwiftUI", "MapKit", "Core Location", "SwiftData"],
     githubUrl: "https://github.com/destucikal",
     appStoreUrl: "",
     details: "#### Tracking & Spatial Data\nDeveloped a comprehensive running tracker that prioritizes accuracy and real-time user feedback.\n\n- **Precise Metrics**: Implemented Core Location to accurately calculate pace, distance, and duration during active sessions.\n- **Route Visualization**: Integrated MapKit to render real-time breadcrumb paths, allowing users to visualize their running routes as they happen.\n- **Metric Summaries**: Built intentional result screens that summarize run statistics through a clear, data-focused UI.\n\n#### Session Management\n- **Local Persistence**: Integrated SwiftData to manage and persist historical running sessions, allowing for offline access and performance trends.",
     videoUrl: "",
     screenshots: [
-      "/images/solari-runhome.png",
-      "/images/solari-running.png",
-      "/images/solari-runresult.png",
-      "/images/solari-select-startpoint.png"
+      "/images/solari-runhome.webp",
+      "/images/solari-running.webp",
+      "/images/solari-runresult.webp",
+      "/images/solari-select-startpoint.webp"
     ]
   },
   {

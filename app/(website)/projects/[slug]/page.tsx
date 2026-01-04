@@ -56,7 +56,10 @@ export default async function ProjectPage({ params }: PageProps) {
 
   return (
     <article className="min-h-screen bg-background pb-24">
-      {/* ... previous nav and header code ... */}
+      {project.image && (
+        <link rel="preload" as="image" href={project.image} fetchPriority="high" />
+      )}
+      {/* Sub-Nav: Focus on returning to work */}
       <nav className="border-b sticky top-14 bg-background/80 backdrop-blur-md z-40">
         <div className="container mx-auto px-4 h-14 flex items-center justify-between">
           <Button asChild variant="ghost" size="sm" className="-ml-2 text-muted-foreground">
@@ -124,6 +127,10 @@ export default async function ProjectPage({ params }: PageProps) {
               </h3>
               <div className="rounded-2xl border bg-black overflow-hidden shadow-xl aspect-video md:aspect-[16/9] flex items-center justify-center">
                 <video 
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
                   controls 
                   className="w-full h-full"
                   poster={project.image || ""}
@@ -151,8 +158,9 @@ export default async function ProjectPage({ params }: PageProps) {
                       <Image
                         src={screenshot}
                         alt={`${project.title} screenshot ${index + 1}`}
-                        fill
-                        className="object-cover"
+                        width={230}
+                        height={500}
+                        className="object-cover h-full w-auto"
                         unoptimized
                       />
                       {/* Dynamic Island Mockup */}
