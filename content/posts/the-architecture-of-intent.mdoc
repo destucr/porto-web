@@ -1,0 +1,34 @@
+---
+title: "The Architecture of Intent"
+date: '2025-01-08'
+excerpt: "Clean code isn't just about making things easy for other developers. It's a way of ensuring that our intentions for the user aren't lost in the noise of complexity."
+tags:
+  - Engineering
+  - Philosophy
+  - iOS
+---
+We often talk about "clean architecture" or "SOLID principles" as if they are abstract rules for making code pretty. We debate over MVVM versus Composable Architecture as if we are theologians arguing over ancient texts. 
+
+But after years of building iOS apps, I’ve come to see architecture differently. Architecture is the physical manifestation of your intent for the user.
+
+### Complexity is a Choice
+
+Every app starts out simple. But as we add features, the connections between components multiply. If we aren't careful, the app becomes a "black box" where a change in one corner causes a crash in another. 
+
+When your app crashes because of a data race or a missing state update, that isn't just a technical failure. It’s a failure of intent. You *intended* for the user to have a smooth experience, but the architecture you chose wasn't robust enough to protect that intention.
+
+### Rigor as Respect
+
+This is why I’m obsessed with engineering rigor. Tools like **SwiftLint** or strict concurrency checks in **Swift 6** can feel like chores. They are like the "stranger" I mentioned in a previous post—they don't care about your feelings; they only care about what is true.
+
+But using these tools is an act of respect for the user. It’s saying: "I care enough about your experience that I won't let my own laziness or oversight break the tool you rely on." When I spend two days refactoring a module to be more testable, I’m not just playing with code. I’m building a foundation that ensures the app will still work two years from now.
+
+### The Invisible Craft
+
+The user will never see your project structure. They will never know if you used dependency injection or if your views are decoupled from your logic. 
+
+But they will *feel* it. 
+
+They feel it in the way the app handles a lost internet connection without losing their data. They feel it in the way the UI remains responsive even when the phone is doing heavy math in the background. They feel it in the sense of "solidity" that comes from an app that has been built with intent.
+
+Good architecture is invisible. It’s the absence of frustration. It’s the quiet confidence that the app will do exactly what it says it will do, every single time. And that confidence only comes from a developer who treats their code as a craft, not just a career.
