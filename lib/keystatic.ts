@@ -106,6 +106,7 @@ export async function getProjects() {
         githubUrl: project.githubUrl,
         appStoreUrl: project.appStoreUrl,
         videoUrl: project.videoUrl,
+        screenshots: Array.isArray(project.screenshots) ? project.screenshots : [],
       }))
       .sort((a, b) => {
         const aIsIOS = a.tags.some((tag: string) => tag.toLowerCase() === 'ios');

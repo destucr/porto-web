@@ -10,7 +10,7 @@ export async function generateStaticParams() {
 
 import Link from "next/link"
 import Image from "next/image"
-import { ChevronLeft, Github, ExternalLink, Code2, Layers } from "lucide-react"
+import { ChevronLeft, Github, ExternalLink, Code2, Layers, Smartphone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { DocumentRenderer } from "@keystatic/core/renderer"
 import Markdoc from "@markdoc/markdoc"
@@ -125,6 +125,35 @@ export default async function ProjectPage({ params }: PageProps) {
                   <source src={project.videoUrl} type={project.videoUrl.endsWith('.mov') ? 'video/quicktime' : 'video/mp4'} />
                   Your browser does not support the video tag.
                 </video>
+              </div>
+            </section>
+          )}
+
+          {/* App Screenshots Gallery */}
+          {project.screenshots && project.screenshots.length > 0 && (
+            <section className="space-y-8">
+              <div className="flex items-center justify-between">
+                <h3 className="text-[10px] font-bold uppercase tracking-widest text-primary flex items-center gap-2">
+                  <Smartphone className="h-4 w-4" /> App Screenshots
+                </h3>
+                <p className="text-[10px] text-muted-foreground uppercase tracking-widest">Scroll Horizontal →</p>
+              </div>
+              <div className="relative -mx-4 px-4 md:-mx-8 md:px-8 overflow-x-auto pb-8 scrollbar-hide">
+                <div className="flex gap-6 min-w-max">
+                  {project.screenshots.map((screenshot: string, index: number) => (
+                    <div key={index} className="relative h-[500px] aspect-[9/19.5] rounded-[2rem] border-[6px] border-muted shadow-lg overflow-hidden bg-background">
+                      <Image
+                        src={screenshot}
+                        alt={`${project.title} screenshot ${index + 1}`}
+                        fill
+                        className="object-cover"
+                        unoptimized
+                      />
+                      {/* Dynamic Island Mockup */}
+                      <div className="absolute top-3 left-1/2 -translate-x-1/2 w-20 h-5 bg-black rounded-full z-10" />
+                    </div>
+                  ))}
+                </div>
               </div>
             </section>
           )}

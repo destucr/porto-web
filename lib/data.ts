@@ -7,8 +7,16 @@ export const projects = [
     tags: ["iOS", "AudioKit", "Core Animation", "SwiftLint", "GitHub Actions"],
     githubUrl: "https://github.com/destucikal",
     appStoreUrl: "https://tinymiracle.life",
-    details: "#### Audio Engineering & Visualization\nDeveloped a specialized iOS solution for real-time baby heartbeat monitoring, leveraging advanced audio processing frameworks.\n\n- **Real-time Visualization**: Implemented dynamic waveform rendering using Core Animation to provide visual feedback for audio signals.\n- **Audio Filtering**: Utilized AudioKit to refine raw audio input, specifically targeting frequencies relevant to fetal heartbeats while minimizing background noise.\n- **End-to-End Experience**: Designed and built the complete user journey, from onboarding to recording and playback flows.\n\n#### App Interfaces\n\n![The splash screen welcoming users to the experience.](/images/tiny-splashscreen.png)\n![The core Live Listen interface showing the real-time audio waveform.](/images/tiny-livelisten-start.png)\n![A safe and secure monitoring environment for parents.](/images/tiny-livelisten-stop.png)\n\n#### Recording & Playback\n\n![Users can easily playback and review previous heartbeat recordings.](/images/tiny-livelisten-playback.png)\n![Detailed view of a specific recording session.](/images/tiny-livelisten-playback-played.png)\n\n#### Historical Insights\n\n![Weekly history view allows parents to track progress over time.](/images/tiny-history-weekly.png)\n\n#### Engineering Rigor\n- **Code Quality**: Integrated SwiftLint to maintain a clean and consistent codebase.\n- **Automation**: Established CI/CD pipelines using GitHub Actions to automate linting and ensure project stability.",
+    details: "#### Audio Engineering & Visualization\nDeveloped a specialized iOS solution for real-time baby heartbeat monitoring, leveraging advanced audio processing frameworks.\n\n- **Real-time Visualization**: Implemented dynamic waveform rendering using Core Animation to provide visual feedback for audio signals.\n- **Audio Filtering**: Utilized AudioKit to refine raw audio input, specifically targeting frequencies relevant to fetal heartbeats while minimizing background noise.\n- **End-to-End Experience**: Designed and built the complete user journey, from onboarding to recording and playback flows.\n\n#### Engineering Rigor\n- **Code Quality**: Integrated SwiftLint to maintain a clean and consistent codebase.\n- **Automation**: Established CI/CD pipelines using GitHub Actions to automate linting and ensure project stability.",
     videoUrl: "/images/tiny-demo.mp4",
+    screenshots: [
+      "/images/tiny-splashscreen.png",
+      "/images/tiny-livelisten-start.png",
+      "/images/tiny-livelisten-stop.png",
+      "/images/tiny-livelisten-playback.png",
+      "/images/tiny-livelisten-playback-played.png",
+      "/images/tiny-history-weekly.png"
+    ]
   },
   {
     id: "telly-bisindo-sign-language-learning",
@@ -18,8 +26,18 @@ export const projects = [
     tags: ["iOS", "SwiftUI", "Create ML", "SwiftData"],
     githubUrl: "https://github.com/destucikal",
     appStoreUrl: "",
-    details: "#### Interactive Learning System\nBuilt a modern educational platform for Indonesian Sign Language (BISINDO), focusing on interactive engagement and progress tracking.\n\n- **ML-Powered Learning**: Integrated Create ML models to facilitate real-time sign recognition and interactive learning feedback.\n- **Gamified Progression**: Developed a structured course selection system with dynamic lock/unlock logic based on user performance and completion.\n- **Fluid UI/UX**: Crafted animated interface elements using SwiftUI's `withAnimation` modifier, ensuring a polished and responsive learning environment.\n\n#### Onboarding Journey\n\n![Initial splash screen designed to be warm and inviting.](/images/telly-splashscreen.png)\n![The onboarding welcome screen introducing the app's purpose.](/images/telly-onboarding-welcome.png)\n![Personalizing the experience by capturing the user's name.](/images/telly-onboarding-inputname.png)\n\n#### Feature Education\n\n![Explaining the core features and how to interact with the ML models.](/images/telly-onboarding-howtouse.png)\n![A comprehensive guide to navigating the sign language courses.](/images/telly-onboarding-guide.png)\n\n#### Learning Environment\n\n![The main course selection hub with progress tracking.](/images/telly-home-course.png)\n![Interactive guides help users understand the correct hand signs.](/images/telly-home-course-modalguide.png)\n![Starting a specific sign language lesson.](/images/telly-course-start.png)\n\n#### Data Persistence\n- **Progress Tracking**: Leveraged SwiftData for lightweight, local storage of user course states and achievement history.",
+    details: "#### Interactive Learning System\nBuilt a modern educational platform for Indonesian Sign Language (BISINDO), focusing on interactive engagement and progress tracking.\n\n- **ML-Powered Learning**: Integrated Create ML models to facilitate real-time sign recognition and interactive learning feedback.\n- **Gamified Progression**: Developed a structured course selection system with dynamic lock/unlock logic based on user performance and completion.\n- **Fluid UI/UX**: Crafted animated interface elements using SwiftUI's `withAnimation` modifier, ensuring a polished and responsive learning environment.\n\n#### Data Persistence\n- **Progress Tracking**: Leveraged SwiftData for lightweight, local storage of user course states and achievement history.",
     videoUrl: "/images/telly-demo.mov",
+    screenshots: [
+      "/images/telly-splashscreen.png",
+      "/images/telly-onboarding-welcome.png",
+      "/images/telly-onboarding-inputname.png",
+      "/images/telly-onboarding-howtouse.png",
+      "/images/telly-onboarding-guide.png",
+      "/images/telly-home-course.png",
+      "/images/telly-home-course-modalguide.png",
+      "/images/telly-course-start.png"
+    ]
   },
   {
     id: "solari-running-companion",
@@ -29,8 +47,14 @@ export const projects = [
     tags: ["iOS", "SwiftUI", "MapKit", "Core Location", "SwiftData"],
     githubUrl: "https://github.com/destucikal",
     appStoreUrl: "",
-    details: "#### Tracking & Spatial Data\nDeveloped a comprehensive running tracker that prioritizes accuracy and real-time user feedback.\n\n- **Precise Metrics**: Implemented Core Location to accurately calculate pace, distance, and duration during active sessions.\n- **Route Visualization**: Integrated MapKit to render real-time breadcrumb paths, allowing users to visualize their running routes as they happen.\n- **Metric Summaries**: Built intentional result screens that summarize run statistics through a clear, data-focused UI.\n\n#### Run Dashboard & Tracking\n\n![The main home screen where users can start their activity.](/images/solari-runhome.png)\n![Real-time tracking screen showing pace, distance, and time.](/images/solari-running.png)\n\n#### Results & History\n\n![A detailed summary screen providing insights after each run.](/images/solari-runresult.png)\n![Selecting and reviewing previous running routes on the map.](/images/solari-select-startpoint.png)\n\n#### Session Management\n- **Local Persistence**: Integrated SwiftData to manage and persist historical running sessions, allowing for offline access and performance trends.",
+    details: "#### Tracking & Spatial Data\nDeveloped a comprehensive running tracker that prioritizes accuracy and real-time user feedback.\n\n- **Precise Metrics**: Implemented Core Location to accurately calculate pace, distance, and duration during active sessions.\n- **Route Visualization**: Integrated MapKit to render real-time breadcrumb paths, allowing users to visualize their running routes as they happen.\n- **Metric Summaries**: Built intentional result screens that summarize run statistics through a clear, data-focused UI.\n\n#### Session Management\n- **Local Persistence**: Integrated SwiftData to manage and persist historical running sessions, allowing for offline access and performance trends.",
     videoUrl: "",
+    screenshots: [
+      "/images/solari-runhome.png",
+      "/images/solari-running.png",
+      "/images/solari-runresult.png",
+      "/images/solari-select-startpoint.png"
+    ]
   },
   {
     id: "snorkeling-booking-app",
@@ -42,6 +66,7 @@ export const projects = [
     appStoreUrl: "",
     details: "#### Product Strategy & Leadership\nLed a cross-functional squad to redefine the post-purchase experience, focusing on user retention and satisfaction. The goal was to bridge the gap between booking a tour and the actual physical experience on the water.\n\n- **Cross-Functional Leadership**: Managed a team of 7 stakeholders across design, engineering, and operations to deliver an initial end-to-end solution.\n- **Decision Frameworks**: Employed effort-impact matrices to evaluate potential solutions and prioritize features for the MVP, ensuring we hit our deadline for the high season.\n- **Concept Validation**: Conducted structured user interviews to test concepts and gather qualitative feedback before full implementation.\n\n#### Requirements Engineering\n- **Definition & QA**: Authored comprehensive epics, user stories, and test cases covering both positive and edge-case negative flows to ensure product quality.\n- **Iterative Feedback**: Implemented a feedback loop where tour operators could report issues directly, allowing for rapid iteration on the booking management system.\n\n#### Outcomes\nThe project resulted in a 15% increase in repeat bookings and a significant reduction in customer support tickets related to tour logistics. By providing users with clear, real-time updates after their purchase, we built trust and improved the overall brand perception.",
     videoUrl: "",
+    screenshots: []
   },
   {
     id: "p2p-lending-app-fraud-prevention",
@@ -53,6 +78,7 @@ export const projects = [
     appStoreUrl: "",
     details: "#### Computer Vision & Security\nEngineered a document liveness detection system to mitigate fraud within a P2P lending platform. This system was designed to prevent users from using photos of screens or printed copies of documents during the KYC process.\n\n- **Model Development**: Built a multiclass image classification model designed to distinguish between authentic KTP documents and fraudulent reproductions. I experimented with different architectures to find the best balance between accuracy and inference speed.\n- **Dataset Engineering**: Prepared, curated, and augmented datasets to improve model robustness across various lighting and orientation conditions. I implemented custom augmentation pipelines to simulate common camera artifacts.\n- **Evaluation & Training**: Utilized Google Colab for model training and iterative evaluation of accuracy and precision metrics. The model achieved over 95% accuracy on our validation set.\n\n#### Taxonomy Design\n- **Class Definition**: Defined a rigorous class taxonomy for liveness detection to handle nuanced fraud patterns, such as \"screen-re-photography\" vs \"paper-re-photography\".\n- **Integration Strategy**: Worked closely with the mobile engineering team to design an efficient workflow for capturing high-quality document images while providing real-time feedback to the user.\n\n#### Security Impact\nBy automating the liveness check, we reduced the manual verification workload by 40% and significantly lowered the rate of fraudulent account creations. This contributed to a safer lending ecosystem and increased investor confidence in the platform.",
     videoUrl: "",
+    screenshots: []
   },
 ]
 

@@ -66,6 +66,10 @@ export default config({
             },
           },
         }),
+        screenshots: fields.array(fields.text({ label: 'Screenshot URL' }), {
+          label: 'Screenshots',
+          itemLabel: (props) => props.value,
+        }),
         videoUrl: fields.text({ label: 'Video URL' }),
       },
     }),
