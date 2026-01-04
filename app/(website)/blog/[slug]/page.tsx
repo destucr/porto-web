@@ -64,7 +64,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
       <div className="space-y-4 text-center mb-12">
         <div className="flex justify-center gap-2 mb-4">
-          {post.entry.tags.map((tag: string) => (
+          {(post.entry.tags || []).map((tag: string) => (
             <Badge key={tag} variant="secondary">{tag}</Badge>
           ))}
         </div>

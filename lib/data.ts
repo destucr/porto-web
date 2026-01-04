@@ -3,57 +3,57 @@ export const projects = [
     id: "tiny-app-baby-heartbeat-listener",
     title: "Tiny App: Baby Heartbeat Listener",
     description: "iOS app to listen to a baby’s heartbeat using Live Listen and real-time audio processing.",
-    image: "/images/tiny-splashscreen.png",
+    image: "/images/tiny-splashscreen.webp",
     tags: ["iOS", "AudioKit", "Core Animation", "SwiftLint", "GitHub Actions"],
     githubUrl: "https://github.com/destucikal",
     appStoreUrl: "https://tinymiracle.life",
     details: "#### Audio Engineering & Visualization\nDeveloped a specialized iOS solution for real-time baby heartbeat monitoring, leveraging advanced audio processing frameworks.\n\n- **Real-time Visualization**: Implemented dynamic waveform rendering using Core Animation to provide visual feedback for audio signals.\n- **Audio Filtering**: Utilized AudioKit to refine raw audio input, specifically targeting frequencies relevant to fetal heartbeats while minimizing background noise.\n- **End-to-End Experience**: Designed and built the complete user journey, from onboarding to recording and playback flows.\n\n#### Engineering Rigor\n- **Code Quality**: Integrated SwiftLint to maintain a clean and consistent codebase.\n- **Automation**: Established CI/CD pipelines using GitHub Actions to automate linting and ensure project stability.",
     videoUrl: "",
     screenshots: [
-      "/images/tiny-splashscreen.png",
-      "/images/tiny-livelisten-start.png",
-      "/images/tiny-livelisten-stop.png",
-      "/images/tiny-livelisten-playback.png",
-      "/images/tiny-livelisten-playback-played.png",
-      "/images/tiny-history-weekly.png"
+      "/images/tiny-splashscreen.webp",
+      "/images/tiny-livelisten-start.webp",
+      "/images/tiny-livelisten-stop.webp",
+      "/images/tiny-livelisten-playback.webp",
+      "/images/tiny-livelisten-playback-played.webp",
+      "/images/tiny-history-weekly.webp"
     ]
   },
   {
     id: "telly-bisindo-sign-language-learning",
     title: "Telly: BISINDO Sign Language Learning",
     description: "Indonesian Sign Language learning app using Create ML and interactive course progression.",
-    image: "/images/telly-splashscreen.png",
+    image: "/images/telly-splashscreen.webp",
     tags: ["iOS", "SwiftUI", "Create ML", "SwiftData"],
     githubUrl: "https://github.com/destucikal",
     appStoreUrl: "",
     details: "#### Interactive Learning System\nBuilt a modern educational platform for Indonesian Sign Language (BISINDO), focusing on interactive engagement and progress tracking.\n\n- **ML-Powered Learning**: Integrated Create ML models to facilitate real-time sign recognition and interactive learning feedback.\n- **Gamified Progression**: Developed a structured course selection system with dynamic lock/unlock logic based on user performance and completion.\n- **Fluid UI/UX**: Crafted animated interface elements using SwiftUI's `withAnimation` modifier, ensuring a polished and responsive learning environment.\n\n#### Data Persistence\n- **Progress Tracking**: Leveraged SwiftData for lightweight, local storage of user course states and achievement history.",
     videoUrl: "/images/telly-demo.mp4",
     screenshots: [
-      "/images/telly-splashscreen.png",
-      "/images/telly-onboarding-welcome.png",
-      "/images/telly-onboarding-inputname.png",
-      "/images/telly-onboarding-howtouse.png",
-      "/images/telly-onboarding-guide.png",
-      "/images/telly-home-course.png",
-      "/images/telly-home-course-modalguide.png",
-      "/images/telly-course-start.png"
+      "/images/telly-splashscreen.webp",
+      "/images/telly-onboarding-welcome.webp",
+      "/images/telly-onboarding-inputname.webp",
+      "/images/telly-onboarding-howtouse.webp",
+      "/images/telly-onboarding-guide.webp",
+      "/images/telly-home-course.webp",
+      "/images/telly-home-course-modalguide.webp",
+      "/images/telly-course-start.webp"
     ]
   },
   {
     id: "solari-running-companion",
     title: "Solari: Running Tracker",
     description: "Running tracker app using SwiftUI, MapKit, and Core Location for real-time metrics and route visualization.",
-    image: "/images/solari-runhome.png",
+    image: "/images/solari-runhome.webp",
     tags: ["iOS", "SwiftUI", "MapKit", "Core Location", "SwiftData"],
     githubUrl: "https://github.com/destucikal",
     appStoreUrl: "",
     details: "#### Tracking & Spatial Data\nDeveloped a comprehensive running tracker that prioritizes accuracy and real-time user feedback.\n\n- **Precise Metrics**: Implemented Core Location to accurately calculate pace, distance, and duration during active sessions.\n- **Route Visualization**: Integrated MapKit to render real-time breadcrumb paths, allowing users to visualize their running routes as they happen.\n- **Metric Summaries**: Built intentional result screens that summarize run statistics through a clear, data-focused UI.\n\n#### Session Management\n- **Local Persistence**: Integrated SwiftData to manage and persist historical running sessions, allowing for offline access and performance trends.",
     videoUrl: "",
     screenshots: [
-      "/images/solari-runhome.png",
-      "/images/solari-running.png",
-      "/images/solari-runresult.png",
-      "/images/solari-select-startpoint.png"
+      "/images/solari-runhome.webp",
+      "/images/solari-running.webp",
+      "/images/solari-runresult.webp",
+      "/images/solari-select-startpoint.webp"
     ]
   },
   {
@@ -84,35 +84,10 @@ export const projects = [
 
 export const blogPosts = [
   {
-    slug: "building-is-the-stricter-test",
-    title: "Building is the Stricter Test",
-    excerpt: "You don't truly understand an app idea until you've tried to build it. Coding isn't just expressing a plan; it's the process of discovering that your plan was incomplete.",
-    date: "2025-01-05",
-    content: "Building an app, even for a problem you know well, usually shows you that you didn't know the problem as well as you thought. Putting ideas into code is a severe test. The first architecture you choose is usually wrong; you have to rewrite functions and refactor modules over and over to get them exactly right. And your product logic won't just be imprecise, but incomplete too. Half the features that end up in a shipping app will be ones you thought of while you were debugging it. Indeed, that's why I build them.\n\nOnce you release an app, the convention is that whatever you shipped was what you had in mind before you started. These were your features, and now you've implemented them. But you know this isn't true. You know that putting your ideas into code changed them. And not just the features you shipped. Presumably there were others that turned out to be too broken to fix, and those you discarded instead.\n\nIt's not just having to commit your logic to specific lines of code that makes engineering so exacting. The real test is using what you've built. You have to pretend to be a neutral user who knows nothing of what's in your head, only what's on the screen. When he taps this button, does the result seem correct? Does the flow feel complete? If you make an effort, you can use your app as if you were a complete stranger, and when you do, the news is usually bad. It takes me many cycles before I can get an interface past \"the stranger.\"\n\n### The Illusion of \"Up here\"\n\nThere may exist people whose product visions are so perfectly formed that they just flow straight into a production-ready binary. But I've never known anyone who could do this. Indeed, this is a trope in startups: the founder who claims to have a \"perfect plan\" for a difficult market, and who when questioned further, taps his head and says \"It's all up here.\" Everyone who has ever shipped code knows what that means. At best, the plan is vague. Very likely there's some undiscovered edge case that invalidates the core loop completely.\n\nYou can know a great deal about a user's problem without building a solution for it. Can you ever know so much that you wouldn't learn more from trying to implement what you know? I don't think so. I've built apps for two subjects I know well—audio processing and productivity—and in both cases, I learned a lot from building them. In both cases, there were UX hurdles I didn't consciously realize until I had to solve them in Swift. A great deal of product knowledge is unconscious, and experts have if anything a higher proportion of unconscious knowledge than beginners.\n\n### The Hill of Implementation\n\nPutting ideas into code doesn't have to mean building a full app, of course. You can also do it the old way, by sketching on paper or talking. But in my experience, coding is the stricter test. You have to commit to a single, optimal sequence of logic. Less can go unsaid when you don't have a human to interpret your \"you know what I mean.\" The compiler is the ultimate rational stranger. It doesn't care about your intentions; it only cares about what you wrote.\n\nThe reason I've spent so long establishing this rather obvious point is that it leads to another that many people will find shocking. If building your ideas always makes them more precise and more complete, then no one who hasn't built a solution has a fully formed idea of the problem. And someone who never builds has no fully formed ideas about anything nontrivial.\n\nBuilding is certainly no guarantee that you'll be right. Far from it. But though implementation is not a sufficient condition for a great product, it is a necessary one.",
-    tags: ["Engineering", "Philosophy", "iOS"],
-  },
-  {
-    slug: "the-screen-is-a-harsh-mirror",
-    title: "The Screen is a Harsh Mirror",
-    excerpt: "The gap between a 'beautiful mockup' and a 'useful app' is where the actual engineering happens. Here is why the screen is the only place truth exists.",
-    date: "2025-01-06",
-    content: "Mockups are dangerous because they are static. In a design tool, everything is perfect. The data is exactly the right length, the user always follows the intended path, and the network never fails.\n\nBut the moment you move that design onto a real device, the mirror reflects a much harsher reality.\n\n### Truth in Motion\n\nThe first thing the screen tells you is that your animations are too slow. In your head, that transition was \"elegant.\" On the device, it feels like an obstacle. You realize that the user doesn't want to watch your clever code; they want to get their work done.\n\nThis is the \"Stranger Test\" again. The device is a neutral observer. It shows you the friction you were too close to see. It shows you that the button you thought was accessible is actually too small for a thumb in a hurry.\n\n### The Pedagogy of the Bug\n\nWe often think of bugs as mistakes, but they are actually lessons. A bug is the computer telling you: **\"You didn't think about this.\"**\n\nWhen I was building the recording flow for my heartbeat app, I had a perfect mental model of how the audio would save. But the first time I ran it on a real device, it crashed. Why? Because I hadn't considered what happens if a user gets a phone call in the middle of a session.\n\nThat crash forced me to learn about `AVAudioSession` interruptions—something I never would have researched if I had just stayed in the \"idea phase.\"\n\n### Beyond the Mockup\n\nI've learned to stop spending weeks in design tools. Now, I try to get a prototype on the screen as fast as possible. The screen is where the narrative of your app actually begins. It's where you stop talking about what the app *could* be and start dealing with what it *is*. It forces you to be honest.\n\nAnd most importantly, it forces you to be helpful. A beautiful mockup can win an award, but only a functioning, battle-tested app can solve a problem.",
-    tags: ["Design", "Engineering", "iOS"],
-  },
-  {
-    slug: "the-intelligence-in-your-pocket",
-    title: "The Intelligence in Your Pocket",
-    excerpt: "On-device AI isn't just about speed or saving money on server costs. It's about building a relationship of trust between the user and their device.",
-    date: "2025-01-07",
-    content: "When people talk about AI today, they usually imagine a massive cluster of servers in a data center somewhere, consuming enough electricity to power a small city. We’ve been taught that intelligence is something that happens \"out there,\" in the cloud.\n\nBut when you build for iOS, you realize that the most profound intelligence is the kind that stays in your pocket.\n\n### The Latency of Thought\n\nWhen I was building \"Telly,\" the sign language learning app, I faced a choice. I could have sent every frame of video to a powerful server. It would have been easier to implement. But every millisecond of latency is a tax on the user’s focus. If the app has to wait for a response from the cloud to tell you if your hand is in the right position, the \"flow\" of learning is broken.\n\nBy using **Core ML** to keep the intelligence on the device, the feedback becomes instant. It stops feeling like a \"request and response\" and starts feeling like a mirror. This isn't just a technical optimization; it's a pedagogical one. Instant feedback allows the human brain to learn at the speed of thought.\n\n### The Privacy of the Physical\n\nThere is also a deeper, more human reason to keep the \"brain\" local. Some data is too personal to ever leave the device. When an app listens to a baby's heartbeat or watches a user's movements, it is entering a private space.\n\nAs developers, we often treat privacy as a compliance checkbox. But privacy is actually a design constraint that forces better engineering. When you can’t rely on the infinite resources of the cloud, you have to be precise. You have to optimize your models. You have to understand exactly what data you need and why.\n\n### The Craftsman’s Choice\n\nChoosing the local path is harder. You have to worry about thermal throttling, battery life, and the limited memory of a smartphone. But this is where the real craft of iOS engineering lies.\n\nIn 2025, the \"cool\" thing is to have the biggest model in the cloud. But I believe the most *impactful* thing is to have the smartest app in the pocket. Because when the intelligence is local, the power belongs to the user, not the server.",
-    tags: ["AI", "Ethics", "iOS"],
-  },
-  {
-    slug: "the-architecture-of-intent",
-    title: "The Architecture of Intent",
-    excerpt: "Clean code isn't just about making things easy for other developers. It's a way of ensuring that our intentions for the user aren't lost in the noise of complexity.",
+    slug: "the-architecture-of-trust",
+    title: "The Architecture of Trust: Why Your UIKit Brain is Fighting SwiftUI",
+    excerpt: "Moving from UIKit to SwiftUI isn't just a syntax change; it's a fundamental shift from being a master puppeteer to becoming a scriptwriter. Here is how to stop fighting the system and start building with intent.",
     date: "2025-01-08",
-    content: "We often talk about \"clean architecture\" or \"SOLID principles\" as if they are abstract rules for making code pretty. We debate over MVVM versus Composable Architecture as if we are theologians arguing over ancient texts.\n\nBut after years of building iOS apps, I’ve come to see architecture differently. Architecture is the physical manifestation of your intent for the user.\n\n### Complexity is a Choice\n\nEvery app starts out simple. But as we add features, the connections between components multiply. If we aren't careful, the app becomes a \"black box\" where a change in one corner causes a crash in another.\n\nWhen your app crashes because of a data race or a missing state update, that isn't just a technical failure. It’s a failure of intent. You *intended* for the user to have a smooth experience, but the architecture you chose wasn't robust enough to protect that intention.\n\n### Rigor as Respect\n\nThis is why I’m obsessed with engineering rigor. Tools like **SwiftLint** or strict concurrency checks in **Swift 6** can feel like chores. They are like the \"stranger\" I mentioned in a previous post—they don't care about your feelings; they only care about what is true.\n\nBut using these tools is an act of respect for the user. It’s saying: \"I care enough about your experience that I won't let my own laziness or oversight break the tool you rely on.\"\n\n### The Invisible Craft\n\nThe user will never see your project structure. They will never know if you used dependency injection or if your views are decoupled from your logic. But they will *feel* it.\n\nThey feel it in the way the app handles a lost internet connection without losing their data. They feel it in the way the UI remains responsive even when the phone is doing heavy math in the background. Good architecture is invisible. It’s the absence of frustration.",
-    tags: ["Engineering", "Philosophy", "iOS"],
+    content: "Building an app in UIKit always felt like being a master puppeteer. You had your strings (the delegates), your stage (the window), and your puppets (the views). If a puppet needed to raise its arm, you manually sent a command to pull that specific string at exactly the right time. It was precise, it was explicit, and for any nontrivial app, it was utterly exhausting. When I first moved to SwiftUI, I tried to keep my hands on those strings. I kept looking for the `updateUI()` method or trying to find where the \"real\" view lived so I could poke it with a new value. This is the first and most painful hurdle for any mid-level developer: realizing that in SwiftUI, you aren't the puppeteer anymore; you are the scriptwriter. You describe *what* should happen, and you must learn to trust the system to move the puppets.\n\nThe struggle usually begins with layout. In UIKit, we lived and died by Auto Layout constraints. We told the system exactly how many points separated a label from an image, often creating a fragile web of math that would break the moment a dynamic type size changed. SwiftUI replaces this rigid control with a \"negotiation\". A parent view proposes a size, the child view chooses its own size based on its content, and the parent then places it. This can feel like chaos to a developer used to absolute positioning. From a UI/UX design perspective, however, this is a massive win. It moves us away from \"pixel perfection\" toward \"intent perfection\". When you use a `VStack`, you aren't just stacking items; you are declaring that these elements belong together in a vertical narrative. The system handles the math of whether that’s on an iPhone 16 Pro Max or an iPad in split-view.\n\n```swift\n// The \"UIKit\" way of thinking (even in SwiftUI) - Fragile and over-constrained\nText(\"Hello World\")\n    .frame(width: 200, height: 50) // Hardcoded control that breaks on small devices\n    .border(Color.red)\n\n// The \"SwiftUI\" way of thinking - Flexible and intent-based\nText(\"Hello World\")\n    .padding() // Let the content breathe based on system standards\n    .frame(maxWidth: .infinity) // Negotiate for all available horizontal space\n    .background(RoundedRectangle(cornerRadius: 12).fill(Color.blue.opacity(0.1)))\n```\n\nThe second, deeper struggle is state management. In UIKit, the \"Source of Truth\" was often fragmented. You had data in a model, a copy of that data in a text field, and maybe another copy in a view controller property. Syncing them required a complex web of delegates and notifications. If you missed even one update, the user saw a \"wrong\" screen—a classic bug that kills user trust. From a product manager's standpoint, these \"out-of-sync\" issues are the silent killers of adoption metrics. They create a sense of unreliability that users can't always name but can definitely feel. SwiftUI solves this by forcing a Single Source of Truth through property wrappers like `@State` and `@Binding`. The UI is no longer a separate entity that needs to be updated; it is simply a function of the state. If the data exists, the UI reflects it. If the data changes, the UI re-renders.\n\n```javascript\n// A clean, reactive approach to a simple toggle\nstruct ToggleGallery: View {\n    @State private var isExpanded: Bool = false // The ONLY source of truth\n\n    var body: {\n        VStack(spacing: 20) {\n            Button(isExpanded ? \"Hide Details\" : \"Show Details\") {\n                // We change the DATA, and the UI reacts\n                withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {\n                    isExpanded.toggle()\n                }\n            }\n            \n            if isExpanded {\n                // This view only exists in the hierarchy if the state says so\n                ProjectInfoView()\n                    .transition(.move(edge: .bottom).combined(with: .opacity))\n            }\n        }\n    }\n}\n```\n\nThis shift leads to what I call \"The Architecture of Intent\". When we stop worrying about *how* to update a label's text and start focusing on *what* the state of the app is, we become better product builders. We start thinking about the user's journey as a series of valid states rather than a series of transitions. For a mid-level developer, the most actionable advice I can give is this: stop trying to \"force\" SwiftUI to behave like UIKit. Don't use `ObservableObject` as a bucket for all your old delegate logic. Instead, embrace the safety of **Swift 6** and the clarity of the new **@Observable** macro. Treat your code as a craft where the goal is to make the invisible foundations so solid that the user never has to think about the technology—they only feel the intent. When you build with trust in the system, you aren't just writing shorter code; you are building a more resilient, human-centered product.",
   },
 ]

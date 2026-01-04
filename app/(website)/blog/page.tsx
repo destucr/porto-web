@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default async function BlogPage() {
   const isAdmin = false
 
-  const blogPosts = await getPosts()
+  const blogPosts = (await getPosts()) || []
 
   // Sort posts by date descending
   blogPosts.sort((a, b) => new Date(b.date || "").getTime() - new Date(a.date || "").getTime())
@@ -37,7 +37,9 @@ export default async function BlogPage() {
         {blogPosts.map((post) => (
           <Card key={post.slug} className="flex flex-col h-full hover:shadow-lg transition-shadow">
             <CardHeader>
-              <div className="text-sm text-muted-foreground mb-2">{post.date}</div>
+              <div className="text-sm text-muted-foreground mb-2">
+                {post.date ? new Date(post.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : 'Unknown Date'}
+              </div>
               <CardTitle className="line-clamp-2">
                 <Link href={`/blog/${post.slug}`} className="hover:underline">
                   {post.title}
@@ -51,7 +53,7 @@ export default async function BlogPage() {
             </CardContent>
             <CardFooter>
               <div className="flex gap-2 flex-wrap">
-                {post.tags.map(tag => (
+                {(post.tags || []).map(tag => (
                   <Badge key={tag} variant="outline">{tag}</Badge>
                 ))}
               </div>
