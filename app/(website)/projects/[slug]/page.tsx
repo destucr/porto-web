@@ -13,6 +13,8 @@ import Image from "next/image"
 import { ChevronLeft, Github, ExternalLink, Code2, Layers } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { DocumentRenderer } from "@keystatic/core/renderer"
+import Markdoc from "@markdoc/markdoc"
+import React from "react"
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -28,9 +30,27 @@ export default async function ProjectPage({ params }: PageProps) {
 
   const { entry: project } = projectData
 
+  const renderImage = (props: any) => (
+    <div className="my-8 rounded-xl overflow-hidden border bg-muted/30">
+      <Image
+        src={props.src}
+        alt={props.alt || ""}
+        width={1200}
+        height={800}
+        className="w-full h-auto"
+        unoptimized
+      />
+      {props.title && (
+        <p className="text-center text-xs text-muted-foreground py-3 border-t bg-background/50">
+          {props.title}
+        </p>
+      )}
+    </div>
+  );
+
   return (
     <article className="min-h-screen bg-background pb-24">
-      {/* Sub-Nav: Focus on returning to work */}
+      {/* ... previous nav and header code ... */}
       <nav className="border-b sticky top-14 bg-background/80 backdrop-blur-md z-40">
         <div className="container mx-auto px-4 h-14 flex items-center justify-between">
           <Button asChild variant="ghost" size="sm" className="-ml-2 text-muted-foreground">
@@ -136,53 +156,45 @@ export default async function ProjectPage({ params }: PageProps) {
 
               <section className="space-y-8 prose dark:prose-invert max-w-none prose-h4:text-2xl prose-h4:font-bold prose-h4:tracking-tight prose-p:text-muted-foreground prose-p:text-[17px] prose-li:text-muted-foreground prose-li:text-[17px]">
                 <h3 className="text-[10px] font-bold uppercase tracking-widest text-primary not-prose mb-6">Implementation Details</h3>
-                {project.details && (typeof project.details === 'object' && 'content' in project.details && Array.isArray(project.details.content)) ? (
+                {project.details && typeof project.details === 'string' ? (
+                  /* Handle raw Markdoc string (Static mode) */
+                  Markdoc.renderers.react(
+                    Markdoc.transform(Markdoc.parse(project.details), {
+                      nodes: {
+                        image: {
+                          render: 'Image',
+                          attributes: {
+                            src: { type: String },
+                            alt: { type: String },
+                            title: { type: String }
+                          }
+                        }
+                      }
+                    }), 
+                    React, 
+                    {
+                      components: {
+                        Image: renderImage
+                      }
+                    }
+                  )
+                ) : project.details && (typeof project.details === 'object' && 'content' in project.details && Array.isArray(project.details.content)) ? (
+                  /* Handle Keystatic content object */
                   <DocumentRenderer 
                     document={project.details.content} 
                     renderers={{
                       block: {
-                        image: (props) => (
-                          <div className="my-8 rounded-xl overflow-hidden border bg-muted/30">
-                            <Image
-                              src={props.src}
-                              alt={props.alt || ""}
-                              width={1200}
-                              height={800}
-                              className="w-full h-auto"
-                              unoptimized
-                            />
-                            {props.title && (
-                              <p className="text-center text-xs text-muted-foreground py-3 border-t bg-background/50">
-                                {props.title}
-                              </p>
-                            )}
-                          </div>
-                        ),
+                        image: renderImage,
                       },
                     }}
                   />
                 ) : project.details && Array.isArray(project.details) ? (
+                  /* Handle Keystatic nodes array */
                   <DocumentRenderer 
                     document={project.details}
                     renderers={{
                       block: {
-                        image: (props) => (
-                          <div className="my-8 rounded-xl overflow-hidden border bg-muted/30">
-                            <Image
-                              src={props.src}
-                              alt={props.alt || ""}
-                              width={1200}
-                              height={800}
-                              className="w-full h-auto"
-                              unoptimized
-                            />
-                            {props.title && (
-                              <p className="text-center text-xs text-muted-foreground py-3 border-t bg-background/50">
-                                {props.title}
-                              </p>
-                            )}
-                          </div>
-                        ),
+                        image: renderImage,
                       },
                     }}
                   />
