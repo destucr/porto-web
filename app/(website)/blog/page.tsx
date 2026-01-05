@@ -2,7 +2,7 @@ import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card"
 import { Metadata } from "next"
-import { getPosts } from "@/lib/keystatic"
+import { getPosts } from "@/lib/content"
 import { EmptyState } from "@/components/empty-state"
 import { PenLine } from "lucide-react"
 
@@ -53,7 +53,7 @@ export default async function BlogPage() {
             </CardContent>
             <CardFooter>
               <div className="flex gap-2 flex-wrap">
-                {(post.tags || []).map(tag => (
+                {(post.tags || []).map((tag: string) => (
                   <Badge key={tag} variant="outline">{tag}</Badge>
                 ))}
               </div>

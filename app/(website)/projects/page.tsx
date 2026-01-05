@@ -1,5 +1,5 @@
 import { ProjectList } from "@/components/project-list"
-import { getProjects } from "@/lib/keystatic"
+import { getProjects } from "@/lib/content"
 import { Metadata } from "next"
 import { Suspense } from "react"
 

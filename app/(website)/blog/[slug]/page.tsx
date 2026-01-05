@@ -1,6 +1,6 @@
 import React from 'react'
 import { notFound } from "next/navigation"
-import { getPost, getPosts } from "@/lib/keystatic"
+import { getPost, getPosts } from "@/lib/content"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
