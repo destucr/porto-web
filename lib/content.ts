@@ -128,6 +128,7 @@ export async function getProjects() {
         appStoreUrl: project.appStoreUrl || '',
         videoUrl: project.videoUrl || '',
         screenshots: Array.isArray(project.screenshots) ? (project.screenshots as readonly string[]) : [],
+        details: project.details || project.content || '',
       }))
       .sort((a, b) => {
         const aIsIOS = a.tags.some((tag: string) => tag.toLowerCase() === 'ios');

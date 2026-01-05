@@ -1,0 +1,87 @@
+
+> porto-web@0.1.0 build:cloudflare
+> npx @opennextjs/cloudflare build
+
+
+┌─────────────────────────────┐
+│ OpenNext — Cloudflare build │
+└─────────────────────────────┘
+
+WARN The direct mode queue is not recommended for use in production.
+App directory: /Users/destucr/Desktop/porto-web
+Next.js version : 15.5.9
+@opennextjs/cloudflare version: 1.14.7
+@opennextjs/aws version: 3.9.7
+
+┌─────────────────────────────────┐
+│ OpenNext — Building Next.js app │
+└─────────────────────────────────┘
+
+
+> porto-web@0.1.0 build
+> next build
+
+   ▲ Next.js 15.5.9
+   - Environments: .env.local
+
+   Creating an optimized production build ...
+Failed to compile.
+
+./lib/data.ts
+Error:   [31mx[0m Expected ',', got 'swift'
+     ,-[[36;1;4m/Users/destucr/Desktop/porto-web/lib/data.ts[0m:171:1]
+ [2m168[0m | 
+ [2m169[0m | The first thing that hits you is the loss of the \"Single Source of Truth.\" In SwiftUI, if the data changes, the UI reflects it. It’s a law of nature. But in UIKit, the data and the UI are two strangers living in different houses who only talk if you manually carry a message between them. From a product manager’s perspective, this is where the danger lies. UIKit apps are prone to \"ghost states\"—where the data says the user is logged in, but the button still says \"Sign In\" because someone forgot to call    exttt{button.setTitle()} in one specific edge case. To survive this, you have to stop thinking of your UI as a function of state and start thinking of it as a series of manual events that you must orchestrate perfectly. 
+ [2m170[0m | 
+ [2m171[0m | \`\\`swift
+     : [35;1m     ^^^^^[0m
+ [2m172[0m | // SwiftUI: The UI simply IS.
+ [2m173[0m | Toggle("Enable Notifications", isOn: $isEnabled)
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./lib/data.ts
+./lib/content.ts
+./app/(website)/page.tsx
+
+
+> Build failed because of webpack errors
+opennextjs-cloudflare build
+
+Build an OpenNext Cloudflare worker
+
+Options:
+      --help                        Show help                          [boolean]
+      --version                     Show version number                [boolean]
+  -c, --config                      Path to Wrangler configuration file [string]
+      --configPath                  Path to Wrangler configuration file
+                                                           [deprecated] [string]
+  -e, --env                         Wrangler environment to use for operations
+                                                                        [string]
+  -s, --skipNextBuild, --skipBuild  Skip building the Next.js app
+                                                      [boolean] [default: false]
+      --noMinify                    Disable worker minification
+                                                      [boolean] [default: false]
+      --skipWranglerConfigCheck     Skip checking for a Wrangler config
+                                                      [boolean] [default: false]
+      --openNextConfigPath          Path to the OpenNext configuration file
+                                                                        [string]
+
+Error: Command failed: npm run build
+    at genericNodeError (node:internal/errors:983:15)
+    at wrappedFn (node:internal/errors:537:14)
+    at checkExecSyncError (node:child_process:882:11)
+    at Object.execSync (node:child_process:954:15)
+    at buildNextjsApp (file:///Users/destucr/Desktop/porto-web/node_modules/@opennextjs/aws/dist/build/buildNextApp.js:15:8)
+    at build (file:///Users/destucr/Desktop/porto-web/node_modules/@opennextjs/cloudflare/dist/cli/build/build.js:47:9)
+    at buildCommand (file:///Users/destucr/Desktop/porto-web/node_modules/@opennextjs/cloudflare/dist/cli/commands/build.js:21:11) {
+  status: 1,
+  signal: null,
+  output: [ null, null, null ],
+  pid: 49823,
+  stdout: null,
+  stderr: null
+}

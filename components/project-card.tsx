@@ -36,9 +36,9 @@ export function ProjectCard({ project, priority }: ProjectCardProps) {
 
       {/* Info: Direct and well-spaced */}
       <div className="space-y-3">
-        <div className="flex flex-wrap gap-2">
-          {(project.tags || []).slice(0, 2).map((tag) => (
-            <span key={tag} className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">
+        <div className="flex flex-wrap gap-1.5">
+          {(project.tags || []).slice(0, 4).map((tag) => (
+            <span key={tag} className="px-2 py-0.5 rounded-full bg-muted border text-[9px] font-bold uppercase tracking-wider text-muted-foreground/80">
               {tag}
             </span>
           ))}

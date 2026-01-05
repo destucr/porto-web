@@ -25,14 +25,9 @@ Users learn BISINDO signs by watching demonstrations, then practicing with their
 on-device machine learning to verify their hand shapes and provide instant feedback.
 
 #### How I built it
-Trained Create ML models to recognize 50+ common BISINDO signs using a dataset I compiled from video
-demonstrations. The models run entirely on-device for privacy and speed—no internet required after download.
-
-Built the interface in SwiftUI with a course structure that unlocks new lessons as users demonstrate
-proficiency. The camera feed shows real-time overlay feedback when the model detects their hand position matches the
-target sign.
-
-Used SwiftData to track progress locally, storing completion rates and accuracy scores for each sign.
+- **On-Device Vision**: Trained Create ML models to recognize 50+ BISINDO signs, optimized for low-latency execution directly on the device.
+- **Reactive SwiftUI UI**: Built an interactive course system with real-time camera overlays providing instant gesture feedback.
+- **Local Data Persistence**: Used SwiftData to manage user progress, lesson states, and achievement history without server dependency.
 
 #### Challenges
 The hardest part was getting enough training data—BISINDO resources are scarce compared to ASL. I had to film
