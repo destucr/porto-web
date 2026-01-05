@@ -3,31 +3,31 @@ export const projects = [
     id: "tiny-app-baby-heartbeat-listener",
     slug: "tiny-app-baby-heartbeat-listener",
     title: "Tiny App: Baby Heartbeat Listener",
-    description: "An **iOS** app using **AirPods** and **AVFoundation** to create an intimate bonding experience for expecting parents.",
+    description: "An iOS app using AirPods and AVFoundation to create an intimate bonding experience for expecting parents.",
     image: "/images/tiny-thumbnail.webp",
     tags: ["iOS", "AudioKit", "AVFoundation", "Accelerate", "SwiftUI", "Firebase"],
     githubUrl: "https://github.com/destucikal",
     appStoreUrl: "https://tinymiracle.life",
     details: `#### What it does
-Tiny is an **iOS** app designed to create an intimate bonding experience for expecting parents. Using your **iPhone's microphone** and **AirPods**, parents can listen to sounds from the womb while watching a beautiful, **reactive "Orb" visualization** that responds to audio input. The app includes an **interactive pregnancy timeline** and the ability to record and privately share these special moments with family through **secure, code-protected rooms**.
+Tiny is an iOS app designed to create an intimate bonding experience for expecting parents. Using your iPhone's microphone and AirPods, parents can listen to sounds from the womb while watching a beautiful, reactive "Orb" visualization that responds to audio input. The app includes an interactive pregnancy timeline and the ability to record and privately share these special moments with family through secure, code-protected rooms.
 
 Note: This app is for emotional bonding and entertainment purposes only, not medical monitoring. iPhones cannot reliably detect fetal heartbeats—always consult your healthcare provider for medical concerns.
 
 #### How I built it
-Built the app in **SwiftUI** with a focus on creating a tactile, high-end experience that makes parents feel connected to their baby.
+Built the app in SwiftUI with a focus on creating a tactile, high-end experience that makes parents feel connected to their baby.
 
- - **The "Orb" Visualization**: Created a custom **Canvas-based component** that transforms audio input into fluid, organic animations. The **OrbLiveListenViewModel** maps **real-time sound amplitude** to dynamic shape changes, giving the interface a "living" quality that reacts to what parents hear.
+ - The "Orb" Visualization: Created a custom Canvas-based component that transforms audio input into fluid, organic animations. The OrbLiveListenViewModel maps real-time sound amplitude to dynamic shape changes, giving the interface a "living" quality that reacts to what parents hear.
 
- - **Audio Processing**: Used **AVFoundation** and **AudioKit** to process microphone input through a **Parametric EQ** and **High Shelf Filter**, emphasizing lower frequencies around **200Hz** to highlight rhythmic sounds while preserving the natural ambient audio of the experience.
+ - Audio Processing: Used AVFoundation and AudioKit to process microphone input through a Parametric EQ and High Shelf Filter, emphasizing lower frequencies around 200Hz to highlight rhythmic sounds while preserving the natural ambient audio of the experience.
 
- - **Signal Analysis**: Built a custom audio analyzer using the **Accelerate framework** with **FFT processing**. A **dynamic peak buffer** detects rhythmic patterns in the audio without aggressive filtering, keeping the soundscape natural and immersive rather than artificially silent.
+ - Signal Analysis: Built a custom audio analyzer using the Accelerate framework with FFT processing. A dynamic peak buffer detects rhythmic patterns in the audio without aggressive filtering, keeping the soundscape natural and immersive rather than artificially silent.
 
- - **AirPods Integration**: Implemented seamless audio routing for **AirPods** using **AVAudioSession**, ensuring **low-latency monitoring** while simultaneously recording high-quality audio to **Firebase Storage** for safekeeping.
+ - AirPods Integration: Implemented seamless audio routing for AirPods using AVAudioSession, ensuring low-latency monitoring while simultaneously recording high-quality audio to Firebase Storage for safekeeping.
 
 #### Challenges
 The biggest challenge was creating an immersive audio experience that felt authentic and emotionally resonant.
 
- - **Solution**: Instead of using harsh noise gates that create unnatural silence, I implemented a **dynamic peak buffer** that adapts to the **ambient noise floor**. This preserves the natural "whooshing" and environmental sounds that make the experience feel real, while still identifying rhythmic patterns to drive the **Orb's visualization**. The result is an interface that feels alive and responsive without feeling clinical or artificial.`,
+ - Solution: Instead of using harsh noise gates that create unnatural silence, I implemented a dynamic peak buffer that adapts to the ambient noise floor. This preserves the natural "whooshing" and environmental sounds that make the experience feel real, while still identifying rhythmic patterns to drive the Orb's visualization. The result is an interface that feels alive and responsive without feeling clinical or artificial.`,
     videoUrl: "",
     screenshots: [
       "/images/tiny-thumbnail.webp",
@@ -42,25 +42,25 @@ The biggest challenge was creating an immersive audio experience that felt authe
     id: "telly-bisindo-sign-language-learning",
     slug: "telly-bisindo-sign-language-learning",
     title: "Telly: BISINDO Sign Language Learning",
-    description: "A native **iOS** app teaching Indonesian Sign Language (**BISINDO**) through **real-time gesture recognition**.",
+    description: "A native iOS app teaching Indonesian Sign Language (BISINDO) through real-time gesture recognition.",
     image: "/images/telly-thumbnail.webp",
     tags: ["iOS", "SwiftUI", "Create ML", "SwiftData"],
     githubUrl: "https://github.com/destucikal",
     appStoreUrl: "",
     details: `#### What it does
-Users learn **BISINDO** signs by watching demonstrations, then practicing with their device's camera. The app uses **on-device machine learning** to verify their hand shapes and provide **instant feedback**.
+Users learn BISINDO signs by watching demonstrations, then practicing with their device's camera. The app uses on-device machine learning to verify their hand shapes and provide instant feedback.
 
 #### How I built it
-Trained **Create ML models** to recognize 50+ common **BISINDO** signs using a **dataset** I compiled from video demonstrations. The models run entirely **on-device** for privacy and speed—no internet required after download.
+Trained Create ML models to recognize 50+ common BISINDO signs using a dataset I compiled from video demonstrations. The models run entirely on-device for privacy and speed—no internet required after download.
 
-Built the interface in **SwiftUI** with a **course structure** that unlocks new lessons as users demonstrate proficiency. The camera feed shows **real-time overlay feedback** when the model detects their hand position matches the target sign.
+Built the interface in SwiftUI with a course structure that unlocks new lessons as users demonstrate proficiency. The camera feed shows real-time overlay feedback when the model detects their hand position matches the target sign.
 
-Used **SwiftData** to track progress **locally**, storing completion rates and accuracy scores for each sign.
+Used SwiftData to track progress locally, storing completion rates and accuracy scores for each sign.
 
 #### Challenges
-The hardest part was getting enough **training data**—**BISINDO** resources are scarce compared to ASL. I had to film and **annotate** my own reference videos, then **augment** the dataset with **rotations** and **lighting variations** to make the model robust to different environments.
+The hardest part was getting enough training data—BISINDO resources are scarce compared to ASL. I had to film and annotate my own reference videos, then augment the dataset with rotations and lighting variations to make the model robust to different environments.
 
-Balancing **model accuracy** with **file size** was tricky since the entire model ships with the app.`,
+Balancing model accuracy with file size was tricky since the entire model ships with the app.`,
     videoUrl: "/images/telly-demo.mp4",
     screenshots: [
       "/images/telly-thumbnail.webp",
@@ -85,12 +85,12 @@ Balancing **model accuracy** with **file size** was tricky since the entire mode
     details: `#### Tracking & Spatial Data
 Developed a comprehensive running tracker that prioritizes accuracy and real-time user feedback.
 
-- **Precise Metrics**: Implemented Core Location to accurately calculate pace, distance, and duration during active sessions.
-- **Route Visualization**: Integrated MapKit to render real-time breadcrumb paths, allowing users to visualize their running routes as they happen.
-- **Metric Summaries**: Built intentional result screens that summarize run statistics through a clear, data-focused UI.
+- Precise Metrics: Implemented Core Location to accurately calculate pace, distance, and duration during active sessions.
+- Route Visualization: Integrated MapKit to render real-time breadcrumb paths, allowing users to visualize their running routes as they happen.
+- Metric Summaries: Built intentional result screens that summarize run statistics through a clear, data-focused UI.
 
 #### Session Management
-- **Local Persistence**: Integrated SwiftData to manage and persist historical running sessions, allowing for offline access and performance trends.`,
+- Local Persistence: Integrated SwiftData to manage and persist historical running sessions, allowing for offline access and performance trends.`,
     videoUrl: "",
     screenshots: [
       "/images/solari-thumbnail.webp",
@@ -111,14 +111,14 @@ Developed a comprehensive running tracker that prioritizes accuracy and real-tim
     details: `#### Transit Management System
 Developed a robust ecosystem for managing General Transit Feed Specification (GTFS) data, optimized for high-density information display and intuitive operator workflows.
 
-- **Proximal Hub Overlay Pattern**: Implemented a custom UI architecture where sidebars handle entity selection while floating, draggable hubs facilitate deep-data editing, maximizing map visibility.
-- **Dual-Frontend Architecture**: Engineered a specialized **CMS** for transit operators with X-Style high-density layouts and a separate **Web Viewer** for public commuters.
-- **Geospatial Route Studio**: Built an interactive mapping engine using **Leaflet** and **React** for real-time stop placement, route pathfinding, and visual trip pattern validation.
+- Proximal Hub Overlay Pattern: Implemented a custom UI architecture where sidebars handle entity selection while floating, draggable hubs facilitate deep-data editing, maximizing map visibility.
+- Dual-Frontend Architecture: Engineered a specialized CMS for transit operators with X-Style high-density layouts and a separate Web Viewer for public commuters.
+- Geospatial Route Studio: Built an interactive mapping engine using Leaflet and React for real-time stop placement, route pathfinding, and visual trip pattern validation.
 
 #### High-Performance Backend
-- **Go-Powered API**: Leveraged **Go 1.24** and the **Gin** framework to create a high-concurrency RESTful API for handling complex transit relational data.
-- **Relational Data Integrity**: Utilized **GORM** with **PostgreSQL** to manage intricate GTFS schemas, ensuring strict consistency across agencies, routes, stops, and schedules.
-- **Dockerized Infrastructure**: Standardized the development and deployment environments using **Docker Compose**, streamlining the orchestration of the backend, database, and dual-frontend services.`,
+- Go-Powered API: Leveraged Go 1.24 and the Gin framework to create a high-concurrency RESTful API for handling complex transit relational data.
+- Relational Data Integrity: Utilized GORM with PostgreSQL to manage intricate GTFS schemas, ensuring strict consistency across agencies, routes, stops, and schedules.
+- Dockerized Infrastructure: Standardized the development and deployment environments using Docker Compose, streamlining the orchestration of the backend, database, and dual-frontend services.`,
     videoUrl: "",
     screenshots: [
       "/images/gtfs-web/dashboard.webp",
@@ -138,7 +138,7 @@ Developed a robust ecosystem for managing General Transit Feed Specification (GT
     tags: ["Product Management", "UX Research", "Metric Definition"],
     githubUrl: "https://github.com/destucikal",
     appStoreUrl: "",
-    details: "#### Product Strategy & Leadership\nLed a cross-functional squad to redefine the post-purchase experience, focusing on user retention and satisfaction. The goal was to bridge the gap between booking a tour and the actual physical experience on the water.\n\n- **Cross-Functional Leadership**: Managed a team of 7 stakeholders across design, engineering, and operations to deliver an initial end-to-end solution.\n- **Decision Frameworks**: Employed effort-impact matrices to evaluate potential solutions and prioritize features for the MVP, ensuring we hit our deadline for the high season.\n- **Concept Validation**: Conducted structured user interviews to test concepts and gather qualitative feedback before full implementation.\n\n#### Requirements Engineering\n- **Definition & QA**: Authored comprehensive epics, user stories, and test cases covering both positive and edge-case negative flows to ensure product quality.\n- **Iterative Feedback**: Implemented a feedback loop where tour operators could report issues directly, allowing for rapid iteration on the booking management system.\n\n#### Outcomes\nThe project resulted in a 15% increase in repeat bookings and a significant reduction in customer support tickets related to tour logistics. By providing users with clear, real-time updates after their purchase, we built trust and improved the overall brand perception.",
+    details: "#### Product Strategy & Leadership\nLed a cross-functional squad to redefine the post-purchase experience, focusing on user retention and satisfaction. The goal was to bridge the gap between booking a tour and the actual physical experience on the water.\n\n- Cross-Functional Leadership: Managed a team of 7 stakeholders across design, engineering, and operations to deliver an initial end-to-end solution.\n- Decision Frameworks: Employed effort-impact matrices to evaluate potential solutions and prioritize features for the MVP, ensuring we hit our deadline for the high season.\n- Concept Validation: Conducted structured user interviews to test concepts and gather qualitative feedback before full implementation.\n\n#### Requirements Engineering\n- Definition & QA: Authored comprehensive epics, user stories, and test cases covering both positive and edge-case negative flows to ensure product quality.\n- Iterative Feedback: Implemented a feedback loop where tour operators could report issues directly, allowing for rapid iteration on the booking management system.\n\n#### Outcomes\nThe project resulted in a 15% increase in repeat bookings and a significant reduction in customer support tickets related to tour logistics. By providing users with clear, real-time updates after their purchase, we built trust and improved the overall brand perception.",
     videoUrl: "",
     screenshots: []
   },
@@ -151,7 +151,7 @@ Developed a robust ecosystem for managing General Transit Feed Specification (GT
     tags: ["Machine Learning", "Image Classification", "Computer Vision"],
     githubUrl: "https://github.com/destucikal",
     appStoreUrl: "",
-    details: "#### Computer Vision & Security\nEngineered a document liveness detection system to mitigate fraud within a P2P lending platform. This system was designed to prevent users from using photos of screens or printed copies of documents during the KYC process.\n\n- **Model Development**: Built a multiclass image classification model designed to distinguish between authentic KTP documents and fraudulent reproductions. I experimented with different architectures to find the best balance between accuracy and inference speed.\n- **Dataset Engineering**: Prepared, curated, and augmented datasets to improve model robustness across various lighting and orientation conditions. I implemented custom augmentation pipelines to simulate common camera artifacts.\n- **Evaluation & Training**: Utilized Google Colab for model training and iterative evaluation of accuracy and precision metrics. The model achieved over 95% accuracy on our validation set.\n\n#### Taxonomy Design\n- **Class Definition**: Defined a rigorous class taxonomy for liveness detection to handle nuanced fraud patterns, such as \"screen-re-photography\" vs \"paper-re-photography\".\n- **Integration Strategy**: Worked closely with the mobile engineering team to design an efficient workflow for capturing high-quality document images while providing real-time feedback to the user.\n- **Security Impact\nBy automating the liveness check, we reduced the manual verification workload by 40% and significantly lowered the rate of fraudulent account creations. This contributed to a safer lending ecosystem and increased investor confidence in the platform.",
+    details: "#### Computer Vision & Security\nEngineered a document liveness detection system to mitigate fraud within a P2P lending platform. This system was designed to prevent users from using photos of screens or printed copies of documents during the KYC process.\n\n- Model Development: Built a multiclass image classification model designed to distinguish between authentic KTP documents and fraudulent reproductions. I experimented with different architectures to find the best balance between accuracy and inference speed.\n- Dataset Engineering: Prepared, curated, and augmented datasets to improve model robustness across various lighting and orientation conditions. I implemented custom augmentation pipelines to simulate common camera artifacts.\n- Evaluation & Training: Utilized Google Colab for model training and iterative evaluation of accuracy and precision metrics. The model achieved over 95% accuracy on our validation set.\n\n#### Taxonomy Design\n- Class Definition: Defined a rigorous class taxonomy for liveness detection to handle nuanced fraud patterns, such as \"screen-re-photography\" vs \"paper-re-photography\".\n- Integration Strategy: Worked closely with the mobile engineering team to design an efficient workflow for capturing high-quality document images while providing real-time feedback to the user.\n- Security Impact\nBy automating the liveness check, we reduced the manual verification workload by 40% and significantly lowered the rate of fraudulent account creations. This contributed to a safer lending ecosystem and increased investor confidence in the platform.",
     videoUrl: "",
     screenshots: []
   },
@@ -201,7 +201,7 @@ NSLayoutConstraint.activate([
 ])
 \`\`\`
 
-The \"Architecture of Intent\" changes here, too. To be a good mid-level developer in UIKit, you have to embrace the **Delegate Pattern**. It is the oldest conversation in iOS development. It feels like a chore—creating protocols, setting 	exttt{weak var delegate}, and implementing methods—but it is how you keep your app from becoming a tangled mess. My actionable advice for anyone making this move: don't fight the lifecycle. In SwiftUI, we barely care about *when* a view appears. In UIKit, the 	exttt{viewDidLoad} vs. 	exttt{viewWillAppear} distinction is the heartbeat of your performance. If you do heavy work in the wrong method, the app feels sluggish. 
+The \"Architecture of Intent\" changes here, too. To be a good mid-level developer in UIKit, you have to embrace the Delegate Pattern. It is the oldest conversation in iOS development. It feels like a chore—creating protocols, setting 	exttt{weak var delegate}, and implementing methods—but it is how you keep your app from becoming a tangled mess. My actionable advice for anyone making this move: don't fight the lifecycle. In SwiftUI, we barely care about *when* a view appears. In UIKit, the 	exttt{viewDidLoad} vs. 	exttt{viewWillAppear} distinction is the heartbeat of your performance. If you do heavy work in the wrong method, the app feels sluggish. 
 
 The transition is hard because it forces you to be a craftsman of the \"invisible.\" You have to care about the memory cycles, the layout passes, and the manual synchronization of every label. But there is a hidden reward: once you master UIKit, you finally understand what SwiftUI is actually doing under the hood. You realize that the \"magic\" isn't magic at all—it’s just a very good puppeteer hiding the strings. Building in UIKit makes you more precise, more defensive, and ultimately, more intentional about every single frame you put in front of a user.`,
   },

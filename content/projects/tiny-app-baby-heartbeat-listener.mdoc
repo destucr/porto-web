@@ -22,37 +22,37 @@ screenshots:
 ---
 
 #### What it does
-Tiny is an **iOS** app designed to create an intimate bonding experience for expecting parents. Using your **iPhone's
-microphone** and **AirPods**, parents can listen to sounds from the womb while watching a beautiful, **reactive "Orb"
-visualization** that responds to audio input. The app includes an **interactive pregnancy timeline** and the ability to
-record and privately share these special moments with family through **secure, code-protected rooms**.
+Tiny is an iOS app designed to create an intimate bonding experience for expecting parents. Using your iPhone's
+microphone and AirPods, parents can listen to sounds from the womb while watching a beautiful, reactive "Orb"
+visualization that responds to audio input. The app includes an interactive pregnancy timeline and the ability to
+record and privately share these special moments with family through secure, code-protected rooms.
 
 Note: This app is for emotional bonding and entertainment purposes only, not medical monitoring. iPhones cannot reliably
 detect fetal heartbeats—always consult your healthcare provider for medical concerns.
 
 #### How I built it
-Built the app in **SwiftUI** with a focus on creating a tactile, high-end experience that makes parents feel connected
+Built the app in SwiftUI with a focus on creating a tactile, high-end experience that makes parents feel connected
 to their baby.
 
-- **The "Orb" Visualization**: Created a custom **Canvas-based component** that transforms audio input into fluid,
-organic animations. The **OrbLiveListenViewModel** maps **real-time sound amplitude** to dynamic shape changes, giving
+- The "Orb" Visualization: Created a custom Canvas-based component that transforms audio input into fluid,
+organic animations. The OrbLiveListenViewModel maps real-time sound amplitude to dynamic shape changes, giving
 the interface a "living" quality that reacts to what parents hear.
 
-- **Audio Processing**: Used **AVFoundation** and **AudioKit** to process microphone input through a **Parametric EQ**
-and **High Shelf Filter**, emphasizing lower frequencies around **200Hz** to highlight rhythmic sounds while preserving
+- Audio Processing: Used AVFoundation and AudioKit to process microphone input through a Parametric EQ
+and High Shelf Filter, emphasizing lower frequencies around 200Hz to highlight rhythmic sounds while preserving
 the natural ambient audio of the experience.
 
-- **Signal Analysis**: Built a custom audio analyzer using the **Accelerate framework** with **FFT processing**. A
-**dynamic peak buffer** detects rhythmic patterns in the audio without aggressive filtering, keeping the soundscape
+- Signal Analysis: Built a custom audio analyzer using the Accelerate framework with FFT processing. A
+dynamic peak buffer detects rhythmic patterns in the audio without aggressive filtering, keeping the soundscape
 natural and immersive rather than artificially silent.
 
-- **AirPods Integration**: Implemented seamless audio routing for **AirPods** using **AVAudioSession**, ensuring
-**low-latency monitoring** while simultaneously recording high-quality audio to **Firebase Storage** for safekeeping.
+- AirPods Integration: Implemented seamless audio routing for AirPods using AVAudioSession, ensuring
+low-latency monitoring while simultaneously recording high-quality audio to Firebase Storage for safekeeping.
 
 #### Challenges
 The biggest challenge was creating an immersive audio experience that felt authentic and emotionally resonant.
 
-- **Solution**: Instead of using harsh noise gates that create unnatural silence, I implemented a **dynamic peak
-buffer** that adapts to the **ambient noise floor**. This preserves the natural "whooshing" and environmental sounds
-that make the experience feel real, while still identifying rhythmic patterns to drive the **Orb's visualization**. The
+- Solution: Instead of using harsh noise gates that create unnatural silence, I implemented a dynamic peak
+buffer that adapts to the ambient noise floor. This preserves the natural "whooshing" and environmental sounds
+that make the experience feel real, while still identifying rhythmic patterns to drive the Orb's visualization. The
 result is an interface that feels alive and responsive without feeling clinical or artificial.
