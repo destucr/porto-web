@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Smartphone, Monitor, Cpu, ChevronRight, Play, Layers, Code2, ArrowRight } from "lucide-react"
+import { Smartphone, Monitor, Cpu, Play, Layers, Code2, ArrowRight, X, RefreshCw, ExternalLink } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
@@ -19,6 +19,7 @@ interface Project {
   videoUrl?: string
   screenshots: readonly string[]
   details: string
+  demoUrl?: string
 }
 
 interface InteractiveShowcaseProps {
@@ -33,10 +34,32 @@ const CATEGORIES = [
 
 export function InteractiveShowcase({ projects }: InteractiveShowcaseProps) {
   const [activeTab, setActiveTab] = React.useState(CATEGORIES[0].id)
-  
+  const [isInteractive, setIsInteractive] = React.useState(false)
+  const containerRef = React.useRef<HTMLDivElement>(null)
+  const [containerWidth, setContainerWidth] = React.useState(0)
+
+  // Reset interactive state when tab changes
+  React.useEffect(() => {
+    setIsInteractive(false)
+  }, [activeTab])
+
+  // Handle dynamic scaling
+  React.useEffect(() => {
+    if (!containerRef.current) return
+    const updateWidth = () => {
+      if (containerRef.current) {
+        setContainerWidth(containerRef.current.offsetWidth)
+      }
+    }
+    const obs = new ResizeObserver(updateWidth)
+    obs.observe(containerRef.current)
+    updateWidth()
+    return () => obs.disconnect()
+  }, [])
+
   const activeProject = React.useMemo(() => {
     const category = CATEGORIES.find(c => c.id === activeTab)
-    return projects.find(p => p.tags.some(t => t.toLowerCase() === category?.tag || 
+    return projects.find(p => p.tags.some(t => t.toLowerCase() === category?.tag ||
       (category?.id === "web" && (t.toLowerCase() === "go" || t.toLowerCase() === "react")) ||
       (category?.id === "ai" && (t.toLowerCase() === "create ml" || t.toLowerCase() === "computer vision"))
     ))
@@ -89,23 +112,91 @@ export function InteractiveShowcase({ projects }: InteractiveShowcaseProps) {
           <AnimatePresence mode="wait">
             <motion.div
               key={activeProject.id}
+              ref={containerRef}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.4 }}
               className={cn(
-                "relative transition-all duration-500 mx-auto bg-zinc-950 ring-1 ring-white/10 shadow-2xl overflow-hidden",
-                isMobileProject 
-                  ? "aspect-[9/19.5] w-full max-w-[300px] rounded-[2.5rem] border-[6px] border-zinc-800" 
+                "group relative transition-all duration-500 mx-auto bg-zinc-950 ring-1 ring-white/10 shadow-2xl overflow-hidden",
+                isMobileProject
+                  ? "aspect-[9/19.5] w-full max-w-[300px] rounded-[2.5rem] border-[6px] border-zinc-800"
                   : "aspect-video w-full rounded-2xl border border-zinc-800"
               )}
             >
-              {/* Dynamic Island / Notch Mockup for Mobile */}
               {isMobileProject && (
                 <div className="absolute top-0 inset-x-0 h-10 z-30 pointer-events-none flex justify-center">
                   <div className="mt-3 w-24 h-6 bg-black rounded-full shadow-inner" />
                 </div>
               )}
+
+              {/* Interactive Viewport Container */}
+              <div
+                className="absolute inset-0 z-40 bg-zinc-50 flex flex-col overflow-hidden transition-all duration-500 origin-center shadow-2xl"
+                style={{
+                  opacity: isInteractive ? 1 : 0,
+                  pointerEvents: isInteractive ? 'auto' : 'none',
+                  transform: isInteractive ? 'scale(1)' : 'scale(0.95)'
+                }}
+              >
+                {/* Browser Header */}
+                <div className="h-10 bg-zinc-900 border-b border-white/10 flex items-center px-4 justify-between gap-4 shrink-0 rounded-t-2xl">
+                  <div className="flex gap-1.5 items-center">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setIsInteractive(false);
+                      }}
+                      className="h-3 w-3 rounded-full bg-red-500/80 hover:bg-red-500 transition-colors"
+                    />
+                    <div className="h-3 w-3 rounded-full bg-amber-500/80" />
+                    <div className="h-3 w-3 rounded-full bg-emerald-500/80" />
+                  </div>
+                  <div className="flex-1 max-w-[200px] sm:max-w-md h-6 bg-black/40 rounded-md border border-white/5 flex items-center px-3 gap-2">
+                    <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                    <span className="text-[10px] text-zinc-400 font-medium truncate">
+                      {activeProject.demoUrl?.startsWith('/') ? `localhost:3000${activeProject.demoUrl}` : activeProject.demoUrl?.replace('https://', '')}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <a
+                      href={activeProject.demoUrl || '#'}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-zinc-500 hover:text-white transition-colors"
+                      title="Open in new tab"
+                    >
+                      <ExternalLink className="h-3.5 w-3.5" />
+                    </a>
+                    <RefreshCw className="h-3 w-3 text-zinc-500 hidden sm:block" />
+                    <button onClick={(e) => {
+                      e.stopPropagation();
+                      setIsInteractive(false);
+                    }}>
+                      <X className="h-4 w-4 text-zinc-500 hover:text-white transition-colors" />
+                    </button>
+                  </div>
+                </div>
+                {/* Scaled Iframe Content */}
+                <div className="flex-1 bg-white relative overflow-hidden">
+                  <div
+                    className="absolute top-0 left-0 origin-top-left"
+                    style={{
+                      width: isMobileProject ? '375px' : '1440px',
+                      height: isMobileProject ? '812px' : '900px',
+                      transform: `scale(${isMobileProject ? (containerWidth / 375) : (containerWidth / 1440)})`,
+                    }}
+                  >
+                    {isInteractive && activeProject.demoUrl && (
+                      <iframe
+                        src={activeProject.demoUrl}
+                        className="w-full h-full border-0"
+                        title={`${activeProject.title} Demo`}
+                      />
+                    )}
+                  </div>
+                </div>
+              </div>
 
               {activeProject.videoUrl ? (
                 <video
@@ -127,18 +218,23 @@ export function InteractiveShowcase({ projects }: InteractiveShowcaseProps) {
                   className="object-cover"
                 />
               )}
-              
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
-                <div className="flex gap-4">
-                   <Button asChild variant="secondary" className="rounded-full font-bold">
-                    <Link href={`/projects/${activeProject.slug}`}>
-                      Case Study <ChevronRight className="ml-1 h-4 w-4" />
-                    </Link>
-                  </Button>
-                </div>
-              </div>
+
+              {/* Overlay removed as requested to keep video clean */}
             </motion.div>
           </AnimatePresence>
+
+          {/* Relocated Launch Button for better visibility and to keep thumbnail clean */}
+          {activeProject.demoUrl && (
+            <div className="mt-6 flex justify-center lg:justify-start">
+              <Button
+                size="lg"
+                onClick={() => setIsInteractive(true)}
+                className="w-full sm:w-fit rounded-full font-bold h-14 shadow-xl hover:shadow-2xl transition-all group bg-primary text-primary-foreground"
+              >
+                Launch Interactive Preview <Play className="ml-2 h-4 w-4 fill-current group-hover:scale-110 transition-transform" />
+              </Button>
+            </div>
+          )}
         </div>
 
         {/* Right Side: Technical Context */}
@@ -155,7 +251,7 @@ export function InteractiveShowcase({ projects }: InteractiveShowcaseProps) {
                 <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary">Featured Project</span>
               </div>
               <h3 className="text-3xl md:text-4xl font-extrabold tracking-tight leading-tight">{activeProject.title}</h3>
-              <p className="text-lg text-muted-foreground mt-4 leading-relaxed">
+              <p className="text-lg text-muted-foreground mt-4 leading-relaxed line-clamp-3">
                 {activeProject.description}
               </p>
             </motion.div>
@@ -203,11 +299,13 @@ export function InteractiveShowcase({ projects }: InteractiveShowcaseProps) {
               </ul>
             </div>
 
-            <Button asChild size="lg" className="w-full rounded-full font-bold h-14 shadow-lg hover:shadow-xl transition-all group">
-              <Link href={`/projects/${activeProject.slug}`}>
-                View Full Technical Report <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </Button>
+            <div className="flex flex-col gap-3">
+              <Button asChild size="lg" variant="outline" className="w-full rounded-full font-bold h-14 shadow-sm hover:shadow-md transition-all group">
+                <Link href={`/projects/${activeProject.slug}`}>
+                  {activeProject.demoUrl ? "View Technical Report" : "View Full Technical Report"} <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
       </div>
@@ -221,7 +319,7 @@ export function InteractiveShowcase({ projects }: InteractiveShowcaseProps) {
         <ScrollArea className="w-full whitespace-nowrap">
           <div className="flex w-max space-x-4 p-1">
             {activeProject.screenshots.map((screen, idx) => (
-              <motion.div 
+              <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}

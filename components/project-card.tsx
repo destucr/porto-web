@@ -12,6 +12,7 @@ interface ProjectCardProps {
     tags: readonly string[]
     githubUrl?: string
     appStoreUrl?: string | null
+    demoUrl?: string
     videoUrl?: string
   }
   priority?: boolean
@@ -21,8 +22,8 @@ export function ProjectCard({ project, priority }: ProjectCardProps) {
   return (
     <div className="group flex flex-col space-y-4">
       {/* Image: Container with fixed aspect ratio and clean reveal */}
-      <Link 
-        href={`/projects/${project.slug}`} 
+      <Link
+        href={`/projects/${project.slug}`}
         className="block relative aspect-[16/10] overflow-hidden rounded-xl bg-muted border transition-colors group-hover:border-primary/20"
       >
         <Image
@@ -43,7 +44,7 @@ export function ProjectCard({ project, priority }: ProjectCardProps) {
             </span>
           ))}
         </div>
-        
+
         <div className="space-y-1.5">
           <h3 className="text-lg font-bold leading-none tracking-tight group-hover:text-primary transition-colors">
             <Link href={`/projects/${project.slug}`} className="flex items-center gap-1">
@@ -55,6 +56,19 @@ export function ProjectCard({ project, priority }: ProjectCardProps) {
             {project.description}
           </p>
         </div>
+
+        {project.demoUrl && (
+          <div className="pt-2">
+            <Link
+              href={project.demoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[10px] font-bold uppercase tracking-widest text-primary flex items-center gap-1 hover:underline"
+            >
+              Live Demo <ArrowUpRight className="h-3 w-3" />
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   )
