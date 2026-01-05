@@ -28,7 +28,7 @@ Built the app in SwiftUI with a focus on creating a tactile, high-end experience
 The biggest challenge was creating an immersive audio experience that felt authentic and emotionally resonant.
 
  - Solution: Instead of using harsh noise gates that create unnatural silence, I implemented a dynamic peak buffer that adapts to the ambient noise floor. This preserves the natural "whooshing" and environmental sounds that make the experience feel real, while still identifying rhythmic patterns to drive the Orb's visualization. The result is an interface that feels alive and responsive without feeling clinical or artificial.`,
-    videoUrl: "",
+    videoUrl: "/images/tiny-demo.mp4",
     screenshots: [
       "/images/tiny-splashscreen.webp",
       "/images/tiny-livelisten-start.webp",
@@ -51,11 +51,9 @@ The biggest challenge was creating an immersive audio experience that felt authe
 Users learn BISINDO signs by watching demonstrations, then practicing with their device's camera. The app uses on-device machine learning to verify their hand shapes and provide instant feedback.
 
 #### How I built it
-Trained Create ML models to recognize 50+ common BISINDO signs using a dataset I compiled from video demonstrations. The models run entirely on-device for privacy and speed—no internet required after download.
-
-Built the interface in SwiftUI with a course structure that unlocks new lessons as users demonstrate proficiency. The camera feed shows real-time overlay feedback when the model detects their hand position matches the target sign.
-
-Used SwiftData to track progress locally, storing completion rates and accuracy scores for each sign.
+- **On-Device Vision**: Trained Create ML models to recognize 50+ BISINDO signs, optimized for low-latency execution directly on the device.
+- **Reactive SwiftUI UI**: Built an interactive course system with real-time camera overlays providing instant gesture feedback.
+- **Local Data Persistence**: Used SwiftData to manage user progress, lesson states, and achievement history without server dependency.
 
 #### Challenges
 The hardest part was getting enough training data—BISINDO resources are scarce compared to ASL. I had to film and annotate my own reference videos, then augment the dataset with rotations and lighting variations to make the model robust to different environments.
@@ -63,7 +61,6 @@ The hardest part was getting enough training data—BISINDO resources are scarce
 Balancing model accuracy with file size was tricky since the entire model ships with the app.`,
     videoUrl: "/images/telly-demo.mp4",
     screenshots: [
-      "/images/telly-splashscreen.webp",
       "/images/telly-onboarding-welcome.webp",
       "/images/telly-onboarding-inputname.webp",
       "/images/telly-onboarding-howtouse.webp",
@@ -93,7 +90,6 @@ Developed a comprehensive running tracker that prioritizes accuracy and real-tim
 - Local Persistence: Integrated SwiftData to manage and persist historical running sessions, allowing for offline access and performance trends.`,
     videoUrl: "",
     screenshots: [
-      "/images/solari-runhome.webp",
       "/images/solari-running.webp",
       "/images/solari-runresult.webp",
       "/images/solari-select-startpoint.webp"
@@ -115,10 +111,14 @@ Developed a robust ecosystem for managing General Transit Feed Specification (GT
 - Dual-Frontend Architecture: Engineered a specialized CMS for transit operators with X-Style high-density layouts and a separate Web Viewer for public commuters.
 - Geospatial Route Studio: Built an interactive mapping engine using Leaflet and React for real-time stop placement, route pathfinding, and visual trip pattern validation.
 
-#### High-Performance Backend
-- Go-Powered API: Leveraged Go 1.24 and the Gin framework to create a high-concurrency RESTful API for handling complex transit relational data.
-- Relational Data Integrity: Utilized GORM with PostgreSQL to manage intricate GTFS schemas, ensuring strict consistency across agencies, routes, stops, and schedules.
-- Dockerized Infrastructure: Standardized the development and deployment environments using Docker Compose, streamlining the orchestration of the backend, database, and dual-frontend services.`,
+#### How I built it
+- **Full-Stack Transit Engine**: Built a Go backend with PostgreSQL using GORM to handle complex relational integrity across agencies, routes, and schedules.
+- **Dual-Frontend Architecture**: Created specialized React interfaces—a high-density CMS for operators and a clean Leaflet-based map viewer for the public.
+- **Geospatial Studio**: Built an interactive route editor allowing real-time map-based stop placement and trip pattern validation.
+- **Containerized Orchestration**: Dockerized the entire ecosystem for consistent deployment and scaling.
+
+#### Challenges
+The hardest part was designing the CMS interface to display high-density transit data without overwhelming operators—GTFS files can have thousands of interconnected records, and a single mistake cascades through the entire system.`,
     videoUrl: "",
     screenshots: [
       "/images/gtfs-web/route-studio-path.webp",

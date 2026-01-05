@@ -25,17 +25,10 @@ Transit agencies use the CMS to create and edit routes, stops, and schedules. Co
 transit maps and timetables in real-time.
 
 #### How I built it
-Built a Go backend with PostgreSQL to handle the complex relationships in GTFS data—agencies, routes, stops,
-trips, and schedules all need to stay in sync. Used GORM to enforce referential integrity across these
-interconnected tables.
-
-Created two React frontends: a dense, data-heavy CMS for operators and a clean map viewer for the public. The CMS
-uses a sidebar-and-floating-panel layout that keeps the map visible while editing detailed route information.
-
-The route editor lets operators click directly on a map to place stops, draw paths, and preview trip patterns in
-real-time using Leaflet. This beats editing coordinates in spreadsheets.
-
-Dockerized everything to make deployment consistent across environments.
+- **Full-Stack Transit Engine**: Built a Go backend with PostgreSQL using GORM to handle complex relational integrity across agencies, routes, and schedules.
+- **Dual-Frontend Architecture**: Created specialized React interfaces—a high-density CMS for operators and a clean Leaflet-based map viewer for the public.
+- **Geospatial Studio**: Built an interactive route editor allowing real-time map-based stop placement and trip pattern validation.
+- **Containerized Orchestration**: Dockerized the entire ecosystem for consistent deployment and scaling.
 
 #### Challenges
 The hardest part was designing the CMS interface to display high-density transit data without overwhelming

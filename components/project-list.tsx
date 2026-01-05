@@ -27,41 +27,59 @@ interface ProjectListProps {
   layout?: "grid" | "scroll"
 }
 
-type FilterCategory = "All" | "iOS" | "Web" | "Backend" | "AI/ML"
+type FilterCategory = "All Projects" | "iOS Engineering" | "Full-Stack / Web" | "Systems / Backend" | "AI & Machine Learning"
 
 export function ProjectList({ projects, isAdmin, layout = "grid" }: ProjectListProps) {
-  const [selectedCategory, setSelectedCategory] = useState<FilterCategory>("All")
+  const [selectedCategory, setSelectedCategory] = useState<FilterCategory>("All Projects")
 
   const filteredProjects = projects.filter((project) => {
-    if (selectedCategory === "All") return true
+    if (selectedCategory === "All Projects") return true
     
     // Normalize tags for case-insensitive comparison
     const tags = project.tags.map(t => t.toLowerCase())
     
-    if (selectedCategory === "iOS") return tags.includes("ios")
-    if (selectedCategory === "Web") return tags.includes("web") || tags.includes("react") || tags.includes("next.js")
-    if (selectedCategory === "Backend") return tags.includes("backend") || tags.includes("go") || tags.includes("postgresql")
-    if (selectedCategory === "AI/ML") return tags.includes("machine learning") || tags.includes("create ml") || tags.includes("computer vision")
+    if (selectedCategory === "iOS Engineering") return tags.includes("ios")
+    if (selectedCategory === "Full-Stack / Web") return tags.includes("web") || tags.includes("react") || tags.includes("next.js")
+    if (selectedCategory === "Systems / Backend") return tags.includes("backend") || tags.includes("go") || tags.includes("postgresql") || tags.includes("docker")
+    if (selectedCategory === "AI & Machine Learning") return tags.includes("machine learning") || tags.includes("create ml") || tags.includes("computer vision")
     
     return false
   })
 
-  const categories: FilterCategory[] = ["All", "iOS", "Web", "Backend", "AI/ML"]
+  const categories: FilterCategory[] = ["All Projects", "iOS Engineering", "Full-Stack / Web", "Systems / Backend", "AI & Machine Learning"]
+
+  const getCount = (category: FilterCategory) => {
+    if (category === "All Projects") return projects.length
+    return projects.filter(project => {
+      const tags = project.tags.map(t => t.toLowerCase())
+      if (category === "iOS Engineering") return tags.includes("ios")
+      if (category === "Full-Stack / Web") return tags.includes("web") || tags.includes("react") || tags.includes("next.js")
+      if (category === "Systems / Backend") return tags.includes("backend") || tags.includes("go") || tags.includes("postgresql") || tags.includes("docker")
+      if (category === "AI & Machine Learning") return tags.includes("machine learning") || tags.includes("create ml") || tags.includes("computer vision")
+      return false
+    }).length
+  }
 
   return (
     <div className="space-y-8">
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-3">
         {categories.map((category) => (
           <Button
             key={category}
             variant={selectedCategory === category ? "default" : "outline"}
             onClick={() => setSelectedCategory(category)}
             className={cn(
-              "rounded-full transition-all",
-              selectedCategory === category && "shadow-md"
+              "rounded-full transition-all flex gap-2 items-center px-5 h-10",
+              selectedCategory === category ? "shadow-md scale-105" : "text-muted-foreground hover:text-foreground"
             )}
           >
             {category}
+            <span className={cn(
+              "text-[10px] px-1.5 py-0.5 rounded-full",
+              selectedCategory === category ? "bg-primary-foreground/20 text-primary-foreground" : "bg-muted text-muted-foreground"
+            )}>
+              {getCount(category)}
+            </span>
           </Button>
         ))}
       </div>
@@ -70,7 +88,7 @@ export function ProjectList({ projects, isAdmin, layout = "grid" }: ProjectListP
         <EmptyState 
           icon={LayoutGrid}
           title="No projects found"
-          description={`No ${selectedCategory !== "All" ? selectedCategory : ""} projects found.`}
+          description={`No ${selectedCategory !== "All Projects" ? selectedCategory : ""} projects found.`}
           actionLabel={isAdmin ? "Go to Admin" : undefined}
           actionHref={isAdmin ? "/admin" : undefined}
         />

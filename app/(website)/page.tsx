@@ -1,10 +1,11 @@
 import Link from "next/link"
-import { ArrowRight, PenLine, Smartphone, Layers, Cpu } from "lucide-react"
+import { ArrowRight, PenLine, Smartphone, Layers, Cpu, Code2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { EmptyState } from "@/components/empty-state"
 import { getPosts, getProjects } from "@/lib/content"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { ProjectList } from "@/components/project-list"
+import { InteractiveShowcase } from "@/components/interactive-showcase"
 
 export default async function Home() {
   const isAdmin = false // Admin features are now handled via /admin directly or client-side
@@ -22,7 +23,7 @@ export default async function Home() {
       {featuredProjects.slice(0, 2).map((project) => (
         <link key={project.id} rel="preload" as="image" href={project.image} fetchPriority="high" />
       ))}
-      {/* Balanced Hero Section */}
+      {/* Recruiter-Focused Hero Section */}
       <section className="pt-20 pb-16 md:pt-32 md:pb-24 border-b">
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           <div className="space-y-8">
@@ -30,90 +31,117 @@ export default async function Home() {
               <h1 className="text-5xl md:text-7xl font-bold tracking-tighter">
                 Destu Cikal <br /> Ramdani
               </h1>
-              <p className="text-xl text-muted-foreground font-medium uppercase tracking-widest">
-                I build iOS apps and manage products
+              <p className="text-xl text-primary font-bold uppercase tracking-widest">
+                iOS Engineer & Full-Stack Developer
               </p>
             </div>
             <div className="flex wrap gap-3">
-              <Button asChild size="lg" className="rounded-full px-8">
-                <Link href="/projects">See my work</Link>
+              <Button asChild size="lg" className="rounded-full px-8 font-bold">
+                <Link href="/projects">View Case Studies</Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="rounded-full px-8">
-                <Link href="/blog">Read my blog</Link>
+              <Button asChild variant="outline" size="lg" className="rounded-full px-8 font-bold">
+                <Link href="/blog">Read Engineering Blog</Link>
               </Button>
             </div>
           </div>
 
           <div className="lg:pt-4">
-            <p className="text-xl md:text-2xl text-foreground/80 leading-relaxed font-medium">
-              I build iOS apps that are fast, easy to use, and actually helpful. 
-              I love turning complex ideas into simple interfaces that anyone can understand.
+            <p className="text-xl md:text-2xl text-foreground/90 leading-relaxed font-medium">
+              I build software that balances technical depth with intentional design. 
+              Currently specializing in native iOS engineering, on-device machine learning, and scalable systems in Go.
             </p>
             <div className="mt-10 grid grid-cols-2 gap-8 border-t pt-8">
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground mb-2">Based in</p>
-                <p className="text-sm font-semibold italic">South Tangerang, Indonesia</p>
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground mb-2">Availability</p>
+                <p className="text-sm font-semibold text-primary">Open to New Opportunities</p>
               </div>
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground mb-2">What I do</p>
-                <p className="text-sm font-semibold italic">iOS • Product • AI</p>
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground mb-2">Location</p>
+                <p className="text-sm font-semibold italic">Tangerang, Indonesia (GMT+7)</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Expertise Grid: More Visual Weight */}
+      {/* Technical Core: Streamlined Competencies */}
       <section className="py-20 md:py-32 border-b">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
-          <div className="space-y-6 group">
-            <div className="w-12 h-12 rounded-2xl bg-muted flex items-center justify-center group-hover:bg-primary/10 transition-colors">
-              <Smartphone className="h-6 w-6 text-primary" />
-            </div>
-            <div className="space-y-3">
-              <h3 className="text-xl font-bold tracking-tight">iOS Apps</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                I build high-quality apps for iPhone. I focus on making them fast, smooth, and reliable using the latest Apple technologies.
-              </p>
-            </div>
+        <div className="flex flex-col md:flex-row justify-between gap-16">
+          <div className="md:w-1/3 space-y-4">
+            <h2 className="text-3xl font-bold tracking-tight uppercase tracking-widest text-primary/80">Technical Core</h2>
+            <p className="text-muted-foreground leading-relaxed">
+              Core competencies developed through building high-performance mobile and web systems.
+            </p>
           </div>
+          
+          <div className="md:w-2/3 space-y-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-10">
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <Smartphone className="h-5 w-5 text-primary" />
+                  <h3 className="font-bold text-lg">iOS Engineering</h3>
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  SwiftUI, UIKit, AudioKit, SwiftData, Core Location, AVFoundation, GCD/Concurrency.
+                </p>
+              </div>
 
-          <div className="space-y-6 group">
-            <div className="w-12 h-12 rounded-2xl bg-muted flex items-center justify-center group-hover:bg-primary/10 transition-colors">
-              <Layers className="h-6 w-6 text-primary" />
-            </div>
-            <div className="space-y-3">
-              <h3 className="text-xl font-bold tracking-tight">Building the Product</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                I don&apos;t just write code. I help figure out what features users actually need and how to build them in the best way possible.
-              </p>
-            </div>
-          </div>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <Layers className="h-5 w-5 text-primary" />
+                  <h3 className="font-bold text-lg">Full-Stack Systems</h3>
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Go 1.24 (Gin, GORM), PostgreSQL, TypeScript, React, Next.js, Docker, RESTful APIs.
+                </p>
+              </div>
 
-          <div className="space-y-6 group">
-            <div className="w-12 h-12 rounded-2xl bg-muted flex items-center justify-center group-hover:bg-primary/10 transition-colors">
-              <Cpu className="h-6 w-6 text-primary" />
-            </div>
-            <div className="space-y-3">
-              <h3 className="text-xl font-bold tracking-tight">Smart Features (AI)</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                I use machine learning to make apps smarter, like recognizing hand signs or checking if an ID photo is real.
-              </p>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <Cpu className="h-5 w-5 text-primary" />
+                  <h3 className="font-bold text-lg">On-Device AI/ML</h3>
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Create ML, Vision Framework, Accelerate (FFT), Gesture Recognition, Core ML optimization.
+                </p>
+              </div>
+
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <Code2 className="h-5 w-5 text-primary" />
+                  <h3 className="font-bold text-lg">Technical Leadership</h3>
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Technical Roadmapping, UX Research, Metric Definition, Architectural Post-Mortems.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Projects: Scrollable with Filter */}
+      {/* Technical Spotlight: Interactive Deep Dive */}
+      <section className="py-20 md:py-32 border-b">
+        <div className="space-y-4 mb-12">
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight">Technical Spotlight</h2>
+          <p className="text-muted-foreground max-w-2xl text-lg">
+            Interact with my core technical contributions. Choose a domain to see on-device execution, architectural summaries, and platform-specific implementations.
+          </p>
+        </div>
+        
+        <InteractiveShowcase projects={featuredProjects} />
+      </section>
+
+      {/* Project Directory: Full Catalog */}
       <section className="py-20 md:py-32 border-b">
         <div className="flex items-end justify-between mb-12 px-1">
           <div className="space-y-4">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight">Featured Work</h2>
-            <p className="text-muted-foreground max-w-md">Some of the projects I&apos;ve built, focusing on engineering and product design.</p>
+            <h2 className="text-3xl font-bold tracking-tight uppercase tracking-widest text-primary/80">Project Directory</h2>
+            <p className="text-muted-foreground max-w-md">Comprehensive catalog of engineering projects and case studies.</p>
           </div>
           <Button asChild variant="ghost" className="hidden md:flex items-center gap-2 group font-bold tracking-tight">
             <Link href="/projects">
-              See all projects <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              Full Portfolio <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </Button>
         </div>
@@ -121,13 +149,13 @@ export default async function Home() {
         <ProjectList projects={featuredProjects} isAdmin={isAdmin} layout="scroll" />
       </section>
 
-      {/* Writing Section: Scrollable */}
+      {/* Engineering Insights Section: Scrollable */}
       <section className="py-20 md:py-32">
         <div className="space-y-12">
           <div className="space-y-4 px-1">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight italic font-serif">Writing</h2>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight italic font-serif">Engineering Insights</h2>
             <p className="text-muted-foreground leading-relaxed max-w-2xl">
-              I like to share what I learn about building apps, managing products, and using AI.
+              Technical post-mortems and deep dives into iOS architecture, concurrency, and performance optimization.
             </p>
           </div>
 
@@ -179,6 +207,29 @@ export default async function Home() {
             )}
           </div>
         </div>
+      </section>
+
+      {/* Recruiter-Focused CTA */}
+      <section className="py-20 md:py-32 mb-12 rounded-[2rem] bg-zinc-950 text-white p-12 overflow-hidden relative">
+        <div className="relative z-10 space-y-8 max-w-2xl">
+          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter leading-tight">
+            Building something <br /> ambitious?
+          </h2>
+          <p className="text-xl text-zinc-400 font-medium">
+            I’m looking for my next challenge in iOS engineering or technical product management. 
+            If you value an engineer who thinks about the product as much as the code, I’d love to connect.
+          </p>
+          <div className="flex flex-wrap gap-4 pt-4">
+            <Button asChild size="lg" className="rounded-full px-8 font-bold bg-white text-black hover:bg-zinc-200 transition-colors">
+              <a href="mailto:destucr@gmail.com">Contact Me</a>
+            </Button>
+            <Button asChild size="lg" className="rounded-full px-8 font-bold border border-white/20 bg-transparent text-white hover:bg-white hover:text-black transition-colors">
+              <a href="https://linkedin.com/in/destucikal" target="_blank" rel="noreferrer">LinkedIn</a>
+            </Button>
+          </div>
+        </div>
+        {/* Abstract Background Element */}
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-br from-primary/20 to-transparent opacity-50 pointer-events-none" />
       </section>
     </div>
   )
