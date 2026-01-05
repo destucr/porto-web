@@ -1,0 +1,44 @@
+---
+title: "GTFS-Web: High-Performance Transit Management Ecosystem"
+description: A web-based platform for managing and visualizing public transit data using the GTFS standard.
+image: /images/gtfs-web/dashboard.webp
+tags:
+- Go
+- React
+- TypeScript
+- PostgreSQL
+- Leaflet
+- Docker
+githubUrl: https://github.com/destucr/GTFS-Web
+appStoreUrl: ""
+videoUrl: ""
+screenshots:
+- /images/gtfs-web/dashboard.webp
+- /images/gtfs-web/route-studio-path.webp
+- /images/gtfs-web/stop-and-routes.webp
+- /images/gtfs-web/trip-mapping.webp
+- /images/gtfs-web/web-viewer.webp
+- /images/gtfs-web/agencies.webp
+---
+
+#### What it does
+Transit agencies use the CMS to create and edit routes, stops, and schedules. Commuters use the public viewer to explore
+transit maps and timetables in real-time.
+
+#### How I built it
+Built a **Go** backend with **PostgreSQL** to handle the complex relationships in GTFS data—agencies, routes, stops,
+trips, and schedules all need to stay in sync. Used **GORM** to enforce referential integrity across these
+interconnected tables.
+
+Created two **React** frontends: a dense, data-heavy CMS for operators and a clean map viewer for the public. The CMS
+uses a sidebar-and-floating-panel layout that keeps the map visible while editing detailed route information.
+
+The route editor lets operators click directly on a map to place stops, draw paths, and preview trip patterns in
+real-time using **Leaflet**. This beats editing coordinates in spreadsheets.
+
+Dockerized everything to make deployment consistent across environments.
+
+#### Challenges
+The hardest part was designing the CMS interface to display high-density transit data without overwhelming
+operators—GTFS files can have thousands of interconnected records, and a single mistake cascades through the entire
+system.

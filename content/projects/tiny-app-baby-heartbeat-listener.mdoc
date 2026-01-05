@@ -1,31 +1,58 @@
 ---
 title: "Tiny App: Baby Heartbeat Listener"
-description: iOS app to listen to a baby’s heartbeat using Live Listen and real-time audio processing.
-image: /images/tiny-splashscreen.webp
+description: An iOS app using AirPods and AVFoundation to create an intimate bonding experience for expecting parents.
+image: /images/tiny-thumbnail.webp
 tags:
-  - iOS
-  - AudioKit
-  - Core Animation
-  - SwiftLint
-  - GitHub Actions
+- iOS
+- AudioKit
+- AVFoundation
+- Accelerate
+- SwiftUI
+- Firebase
 githubUrl: https://github.com/destucikal
 appStoreUrl: https://tinymiracle.life
 videoUrl: ""
 screenshots:
-  - /images/tiny-splashscreen.webp
-  - /images/tiny-livelisten-start.webp
-  - /images/tiny-livelisten-stop.webp
-  - /images/tiny-livelisten-playback.webp
-  - /images/tiny-livelisten-playback-played.webp
-  - /images/tiny-history-weekly.webp
+- /images/tiny-splashscreen.webp
+- /images/tiny-livelisten-start.webp
+- /images/tiny-livelisten-stop.webp
+- /images/tiny-livelisten-playback.webp
+- /images/tiny-livelisten-playback-played.webp
+- /images/tiny-history-weekly.webp
 ---
-#### Audio Engineering & Visualization
-Developed a specialized iOS solution for real-time baby heartbeat monitoring, leveraging advanced audio processing frameworks.
 
-- **Real-time Visualization**: Implemented dynamic waveform rendering using Core Animation to provide visual feedback for audio signals.
-- **Audio Filtering**: Utilized AudioKit to refine raw audio input, specifically targeting frequencies relevant to fetal heartbeats while minimizing background noise.
-- **End-to-End Experience**: Designed and built the complete user journey, from onboarding to recording and playback flows.
+#### What it does
+Tiny is an **iOS** app designed to create an intimate bonding experience for expecting parents. Using your **iPhone's
+microphone** and **AirPods**, parents can listen to sounds from the womb while watching a beautiful, **reactive "Orb"
+visualization** that responds to audio input. The app includes an **interactive pregnancy timeline** and the ability to
+record and privately share these special moments with family through **secure, code-protected rooms**.
 
-#### Engineering Rigor
-- **Code Quality**: Integrated SwiftLint to maintain a clean and consistent codebase.
-- **Automation**: Established CI/CD pipelines using GitHub Actions to automate linting and ensure project stability.
+Note: This app is for emotional bonding and entertainment purposes only, not medical monitoring. iPhones cannot reliably
+detect fetal heartbeats—always consult your healthcare provider for medical concerns.
+
+#### How I built it
+Built the app in **SwiftUI** with a focus on creating a tactile, high-end experience that makes parents feel connected
+to their baby.
+
+- **The "Orb" Visualization**: Created a custom **Canvas-based component** that transforms audio input into fluid,
+organic animations. The **OrbLiveListenViewModel** maps **real-time sound amplitude** to dynamic shape changes, giving
+the interface a "living" quality that reacts to what parents hear.
+
+- **Audio Processing**: Used **AVFoundation** and **AudioKit** to process microphone input through a **Parametric EQ**
+and **High Shelf Filter**, emphasizing lower frequencies around **200Hz** to highlight rhythmic sounds while preserving
+the natural ambient audio of the experience.
+
+- **Signal Analysis**: Built a custom audio analyzer using the **Accelerate framework** with **FFT processing**. A
+**dynamic peak buffer** detects rhythmic patterns in the audio without aggressive filtering, keeping the soundscape
+natural and immersive rather than artificially silent.
+
+- **AirPods Integration**: Implemented seamless audio routing for **AirPods** using **AVAudioSession**, ensuring
+**low-latency monitoring** while simultaneously recording high-quality audio to **Firebase Storage** for safekeeping.
+
+#### Challenges
+The biggest challenge was creating an immersive audio experience that felt authentic and emotionally resonant.
+
+- **Solution**: Instead of using harsh noise gates that create unnatural silence, I implemented a **dynamic peak
+buffer** that adapts to the **ambient noise floor**. This preserves the natural "whooshing" and environmental sounds
+that make the experience feel real, while still identifying rhythmic patterns to drive the **Orb's visualization**. The
+result is an interface that feels alive and responsive without feeling clinical or artificial.
