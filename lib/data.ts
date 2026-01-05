@@ -168,7 +168,7 @@ export const blogPosts = [
 
 The first thing that hits you is the loss of the \"Single Source of Truth.\" In SwiftUI, if the data changes, the UI reflects it. It’s a law of nature. But in UIKit, the data and the UI are two strangers living in different houses who only talk if you manually carry a message between them. From a product manager’s perspective, this is where the danger lies. UIKit apps are prone to \"ghost states\"—where the data says the user is logged in, but the button still says \"Sign In\" because someone forgot to call 	exttt{button.setTitle()} in one specific edge case. To survive this, you have to stop thinking of your UI as a function of state and start thinking of it as a series of manual events that you must orchestrate perfectly. 
 
-\`\\`swift
+\`\`\`swift
 // SwiftUI: The UI simply IS.
 Toggle("Enable Notifications", isOn: $isEnabled)
 
@@ -181,11 +181,11 @@ toggle.addTarget(self, action: #selector(handleToggle), for: .valueChanged)
     self.userSettings.notificationsEnabled = sender.isOn
     updateOtherPartsOfUI(isEnabled: sender.isOn) // Manually cascading changes
 }
-\\`\`
+\`\`\`
 
 Then comes the layout. If SwiftUI is a \"negotiation\" where views find their own space, UIKit is a \"dictatorship\" of math. Auto Layout doesn't care about your design \"intent\"; it only cares about whether your constraints are mathematically satisfiable. From a UI/UX designer’s point of view, UIKit allows for a level of pixel-level precision that SwiftUI sometimes struggles with, but it comes at the cost of extreme rigidity. You aren't just saying \"put this in the center\"; you are writing a system of linear equations. The \"Stranger Test\" here is brutal: a stranger (or the compiler) looks at your constraints and asks, \"What happens if the text gets longer?\" In SwiftUI, the box grows. In UIKit, the box clips, or worse, the entire layout \"breaks\" and throws a wall of red text into the console. 
 
-\`\\`swift
+\`\`\`swift
 // The SwiftUI \"Negotiation\"
 VStack {
     Text("Hello")
@@ -199,7 +199,7 @@ NSLayoutConstraint.activate([
     label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
     // If you forget one, the label disappears. If you add a conflicting one, it breaks.
 ])
-\\`\`
+\`\`\`
 
 The \"Architecture of Intent\" changes here, too. To be a good mid-level developer in UIKit, you have to embrace the **Delegate Pattern**. It is the oldest conversation in iOS development. It feels like a chore—creating protocols, setting 	exttt{weak var delegate}, and implementing methods—but it is how you keep your app from becoming a tangled mess. My actionable advice for anyone making this move: don't fight the lifecycle. In SwiftUI, we barely care about *when* a view appears. In UIKit, the 	exttt{viewDidLoad} vs. 	exttt{viewWillAppear} distinction is the heartbeat of your performance. If you do heavy work in the wrong method, the app feels sluggish. 
 
