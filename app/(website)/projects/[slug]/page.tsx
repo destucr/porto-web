@@ -1,4 +1,4 @@
-import { getProject, getProjects } from "@/lib/keystatic"
+import { getProject, getProjects } from "@/lib/content"
 import { notFound } from "next/navigation"
 
 export async function generateStaticParams() {
@@ -10,9 +10,8 @@ export async function generateStaticParams() {
 
 import Link from "next/link"
 import Image from "next/image"
-import { ChevronLeft, Github, ExternalLink, Code2, Layers, Smartphone } from "lucide-react"
+import { ChevronLeft, Github, ExternalLink, Code2, Layers, Smartphone, Monitor } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { DocumentRenderer } from "@keystatic/core/renderer"
 import Markdoc from "@markdoc/markdoc"
 import React from "react"
 
@@ -29,6 +28,9 @@ export default async function ProjectPage({ params }: PageProps) {
   }
 
   const { entry: project } = projectData
+  const isMobile = project.tags?.some((tag: string) => 
+    tag.toLowerCase() === 'ios' || tag.toLowerCase() === 'mobile'
+  )
 
   interface ImageProps {
     src: string;
@@ -141,30 +143,44 @@ export default async function ProjectPage({ params }: PageProps) {
             </section>
           )}
 
-          {/* App Screenshots Gallery */}
+          {/* Screenshots Gallery */}
           {project.screenshots && project.screenshots.length > 0 && (
             <section className="space-y-8">
               <div className="flex items-center justify-between">
                 <h3 className="text-[10px] font-bold uppercase tracking-widest text-primary flex items-center gap-2">
-                  <Smartphone className="h-4 w-4" /> App Screens
+                  {isMobile ? <Smartphone className="h-4 w-4" /> : <Monitor className="h-4 w-4" />} 
+                  {isMobile ? 'App Screens' : 'Platform Gallery'}
                 </h3>
                 <p className="text-[10px] text-muted-foreground uppercase tracking-widest">Swipe to see more →</p>
               </div>
               <div className="relative -mx-4 px-4 md:-mx-8 md:px-8 overflow-x-auto pb-8 scrollbar-hide">
                 <div className="flex gap-6 min-w-max">
                   {project.screenshots.map((screenshot: string, index: number) => (
-                    <div key={index} className="relative h-[500px] aspect-[9/19.5] rounded-[2rem] border-[6px] border-muted shadow-lg overflow-hidden bg-background">
-                      <Image
-                        src={screenshot}
-                        alt={`${project.title} screenshot ${index + 1}`}
-                        width={230}
-                        height={500}
-                        className="object-cover h-full w-auto"
-                        unoptimized
-                      />
-                      {/* Dynamic Island Mockup */}
-                      <div className="absolute top-3 left-1/2 -translate-x-1/2 w-20 h-5 bg-black rounded-full z-10" />
-                    </div>
+                    isMobile ? (
+                      <div key={index} className="relative h-[500px] aspect-[9/19.5] rounded-[2rem] border-[6px] border-muted shadow-lg overflow-hidden bg-background">
+                        <Image
+                          src={screenshot}
+                          alt={`${project.title} screenshot ${index + 1}`}
+                          width={230}
+                          height={500}
+                          className="object-cover h-full w-auto"
+                          unoptimized
+                        />
+                        {/* Dynamic Island Mockup */}
+                        <div className="absolute top-3 left-1/2 -translate-x-1/2 w-20 h-5 bg-black rounded-full z-10" />
+                      </div>
+                    ) : (
+                      <div key={index} className="relative h-[300px] md:h-[400px] aspect-video rounded-xl border border-muted shadow-lg overflow-hidden bg-background">
+                        <Image
+                          src={screenshot}
+                          alt={`${project.title} screenshot ${index + 1}`}
+                          width={800}
+                          height={500}
+                          className="object-cover h-full w-full"
+                          unoptimized
+                        />
+                      </div>
+                    )
                   ))}
                 </div>
               </div>
@@ -180,7 +196,9 @@ export default async function ProjectPage({ params }: PageProps) {
                   <Code2 className="h-4 w-4" /> The Focus
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  I built this as a native iOS app using clean code and a simple design.
+                  {isMobile 
+                    ? "I built this as a native iOS app using clean code and a simple design."
+                    : "I developed this as a responsive web platform with a focus on high-performance data visualization."}
                 </p>
               </div>
             </aside>
@@ -220,26 +238,6 @@ export default async function ProjectPage({ params }: PageProps) {
                       }
                     }
                   )
-                ) : project.details && (typeof project.details === 'object' && 'content' in project.details && Array.isArray(project.details.content)) ? (
-                  /* Handle Keystatic content object */
-                  <DocumentRenderer 
-                    document={project.details.content} 
-                    renderers={{
-                      block: {
-                        image: renderImage,
-                      },
-                    }}
-                  />
-                ) : project.details && Array.isArray(project.details) ? (
-                  /* Handle Keystatic nodes array */
-                  <DocumentRenderer 
-                    document={project.details}
-                    renderers={{
-                      block: {
-                        image: renderImage,
-                      },
-                    }}
-                  />
                 ) : (
                   <p className="text-muted-foreground italic text-sm">No details provided.</p>
                 )}
