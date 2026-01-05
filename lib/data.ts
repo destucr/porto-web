@@ -30,7 +30,7 @@ The biggest challenge was creating an immersive audio experience that felt authe
  - Solution: Instead of using harsh noise gates that create unnatural silence, I implemented a dynamic peak buffer that adapts to the ambient noise floor. This preserves the natural "whooshing" and environmental sounds that make the experience feel real, while still identifying rhythmic patterns to drive the Orb's visualization. The result is an interface that feels alive and responsive without feeling clinical or artificial.`,
     videoUrl: "",
     screenshots: [
-      "/images/tiny-thumbnail.webp",
+      "/images/tiny-splashscreen.webp",
       "/images/tiny-livelisten-start.webp",
       "/images/tiny-livelisten-stop.webp",
       "/images/tiny-livelisten-playback.webp",
@@ -63,7 +63,7 @@ The hardest part was getting enough training data—BISINDO resources are scarce
 Balancing model accuracy with file size was tricky since the entire model ships with the app.`,
     videoUrl: "/images/telly-demo.mp4",
     screenshots: [
-      "/images/telly-thumbnail.webp",
+      "/images/telly-splashscreen.webp",
       "/images/telly-onboarding-welcome.webp",
       "/images/telly-onboarding-inputname.webp",
       "/images/telly-onboarding-howtouse.webp",
@@ -93,7 +93,7 @@ Developed a comprehensive running tracker that prioritizes accuracy and real-tim
 - Local Persistence: Integrated SwiftData to manage and persist historical running sessions, allowing for offline access and performance trends.`,
     videoUrl: "",
     screenshots: [
-      "/images/solari-thumbnail.webp",
+      "/images/solari-runhome.webp",
       "/images/solari-running.webp",
       "/images/solari-runresult.webp",
       "/images/solari-select-startpoint.webp"
@@ -121,7 +121,6 @@ Developed a robust ecosystem for managing General Transit Feed Specification (GT
 - Dockerized Infrastructure: Standardized the development and deployment environments using Docker Compose, streamlining the orchestration of the backend, database, and dual-frontend services.`,
     videoUrl: "",
     screenshots: [
-      "/images/gtfs-web/dashboard.webp",
       "/images/gtfs-web/route-studio-path.webp",
       "/images/gtfs-web/stop-and-routes.webp",
       "/images/gtfs-web/trip-mapping.webp",

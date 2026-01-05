@@ -32,6 +32,9 @@ export default async function ProjectPage({ params }: PageProps) {
     tag.toLowerCase() === 'ios' || tag.toLowerCase() === 'mobile'
   )
 
+  // Filter out the thumbnail from screenshots to avoid duplication
+  const galleryScreenshots = project.screenshots?.filter((s: string) => s !== project.image) || []
+
   interface ImageProps {
     src: string;
     alt?: string;
@@ -144,7 +147,7 @@ export default async function ProjectPage({ params }: PageProps) {
           )}
 
           {/* Screenshots Gallery */}
-          {project.screenshots && project.screenshots.length > 0 && (
+          {galleryScreenshots.length > 0 && (
             <section className="space-y-8">
               <div className="flex items-center justify-between">
                 <h3 className="text-[10px] font-bold uppercase tracking-widest text-primary flex items-center gap-2">
@@ -155,7 +158,7 @@ export default async function ProjectPage({ params }: PageProps) {
               </div>
               <div className="relative -mx-4 px-4 md:-mx-8 md:px-8 overflow-x-auto pb-8 scrollbar-hide">
                 <div className="flex gap-6 min-w-max">
-                  {project.screenshots.map((screenshot: string, index: number) => (
+                  {galleryScreenshots.map((screenshot: string, index: number) => (
                     isMobile ? (
                       <div key={index} className="relative h-[500px] aspect-[9/19.5] rounded-[2rem] border-[6px] border-muted shadow-lg overflow-hidden bg-background">
                         <Image
