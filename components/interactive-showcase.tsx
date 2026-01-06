@@ -155,7 +155,9 @@ export function InteractiveShowcase({ projects }: InteractiveShowcaseProps) {
                   <div className="flex-1 max-w-[200px] sm:max-w-md h-6 bg-black/40 rounded-md border border-white/5 flex items-center px-3 gap-2">
                     <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
                     <span className="text-[10px] text-zinc-400 font-medium truncate">
-                      {activeProject.demoUrl?.startsWith('/') ? `localhost:3000${activeProject.demoUrl}` : activeProject.demoUrl?.replace('https://', '')}
+                      {activeProject.demoUrl?.startsWith('/') 
+                        ? `${typeof window !== 'undefined' ? window.location.host : 'localhost:3000'}${activeProject.demoUrl}` 
+                        : activeProject.demoUrl?.replace('https://', '')}
                     </span>
                   </div>
                   <div className="flex items-center gap-3">

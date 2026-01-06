@@ -9,7 +9,7 @@ export const projects = [
     githubUrl: "https://github.com/destucikal",
     appStoreUrl: "https://tinymiracle.life",
     details: `#### What it does
-Tiny is an iOS app designed to create an intimate bonding experience for expecting parents. Using your iPhone's microphone and AirPods, parents can listen to sounds from the womb while watching a beautiful, reactive "Orb" visualization that responds to audio input. The app includes an interactive pregnancy timeline and the ability to record and privately share these special moments with family through secure, code-protected rooms.
+Tiny is an iOS app designed to create an intimate bonding experience for expecting parents. Using your iPhone"""s microphone and AirPods, parents can listen to sounds from the womb while watching a beautiful, reactive "Orb" visualization that responds to audio input. The app includes an interactive pregnancy timeline and the ability to record and privately share these special moments with family through secure, code-protected rooms.
 
 Note: This app is for emotional bonding and entertainment purposes only, not medical monitoring. iPhones cannot reliably detect fetal heartbeats—always consult your healthcare provider for medical concerns.
 
@@ -27,7 +27,7 @@ Built the app in SwiftUI with a focus on creating a tactile, high-end experience
 #### Challenges
 The biggest challenge was creating an immersive audio experience that felt authentic and emotionally resonant.
 
- - Solution: Instead of using harsh noise gates that create unnatural silence, I implemented a dynamic peak buffer that adapts to the ambient noise floor. This preserves the natural "whooshing" and environmental sounds that make the experience feel real, while still identifying rhythmic patterns to drive the Orb's visualization. The result is an interface that feels alive and responsive without feeling clinical or artificial.`,
+ - Solution: Instead of using harsh noise gates that create unnatural silence, I implemented a dynamic peak buffer that adapts to the ambient noise floor. This preserves the natural "whooshing" and environmental sounds that make the experience feel real, while still identifying rhythmic patterns to drive the Orb"""s visualization. The result is an interface that feels alive and responsive without feeling clinical or artificial.`,
     videoUrl: "/images/tiny-demo.mp4",
     screenshots: [
       "/images/tiny-splashscreen.webp",
@@ -48,7 +48,7 @@ The biggest challenge was creating an immersive audio experience that felt authe
     githubUrl: "https://github.com/destucikal",
     appStoreUrl: "",
     details: `#### What it does
-Users learn BISINDO signs by watching demonstrations, then practicing with their device's camera. The app uses on-device machine learning to verify their hand shapes and provide instant feedback.
+Users learn BISINDO signs by watching demonstrations, then practicing with their device"""s camera. The app uses on-device machine learning to verify their hand shapes and provide instant feedback.
 
 #### How I built it
 - **On-Device Vision**: Trained Create ML models to recognize 50+ BISINDO signs, optimized for low-latency execution directly on the device.
@@ -163,9 +163,9 @@ export const blogPosts = [
     excerpt: "Moving from SwiftUI back to UIKit feels like being told you now have to build the stage and move every puppet yourself. Here is how to survive the transition from declarative to imperative thinking.",
     date: "2025-01-08",
     tags: ["Engineering", "Philosophy", "iOS"],
-    content: `There is a specific kind of silence that happens when an iOS developer, raised on the magic of SwiftUI, opens a legacy UIKit file for the first time. It’s the sound of a \"scriptwriter\" being told they now have to build the entire stage, sew the costumes, and manually push every puppet across the floor. In SwiftUI, we got used to saying \"make a list,\" and it appeared. In UIKit, you have to explain exactly how to register a cell, how to calculate its height, and what happens to the memory when that cell disappears. Moving \"backward\" from SwiftUI to UIKit isn't just a change in tools; it’s a transition from trusting the system to taking total, exhaustive responsibility for every single frame. 
+    content: `There is a specific kind of silence that happens when an iOS developer, raised on the magic of SwiftUI, opens a legacy UIKit file for the first time. It’s the sound of a "scriptwriter" being told they now have to build the entire stage, sew the costumes, and manually push every puppet across the floor. In SwiftUI, we got used to saying "make a list," and it appeared. In UIKit, you have to explain exactly how to register a cell, how to calculate its height, and what happens to the memory when that cell disappears. Moving "backward" from SwiftUI to UIKit isn't just a change in tools; it’s a transition from trusting the system to taking total, exhaustive responsibility for every single frame. 
 
-The first thing that hits you is the loss of the \"Single Source of Truth.\" In SwiftUI, if the data changes, the UI reflects it. It’s a law of nature. But in UIKit, the data and the UI are two strangers living in different houses who only talk if you manually carry a message between them. From a product manager’s perspective, this is where the danger lies. UIKit apps are prone to \"ghost states\"—where the data says the user is logged in, but the button still says \"Sign In\" because someone forgot to call 	exttt{button.setTitle()} in one specific edge case. To survive this, you have to stop thinking of your UI as a function of state and start thinking of it as a series of manual events that you must orchestrate perfectly. 
+The first thing that hits you is the loss of the "Single Source of Truth." In SwiftUI, if the data changes, the UI reflects it. It’s a law of nature. But in UIKit, the data and the UI are two strangers living in different houses who only talk if you manually carry a message between them. From a product manager’s perspective, this is where the danger lies. UIKit apps are prone to "ghost states"—where the data says the user is logged in, but the button still says "Sign In" because someone forgot to call \`button.setTitle()\` in one specific edge case. To survive this, you have to stop thinking of your UI as a function of state and start thinking of it as a series of manual events that you must orchestrate perfectly. 
 
 \`\`\`swift
 // SwiftUI: The UI simply IS.
@@ -182,16 +182,16 @@ toggle.addTarget(self, action: #selector(handleToggle), for: .valueChanged)
 }
 \`\`\`
 
-Then comes the layout. If SwiftUI is a \"negotiation\" where views find their own space, UIKit is a \"dictatorship\" of math. Auto Layout doesn't care about your design \"intent\"; it only cares about whether your constraints are mathematically satisfiable. From a UI/UX designer’s point of view, UIKit allows for a level of pixel-level precision that SwiftUI sometimes struggles with, but it comes at the cost of extreme rigidity. You aren't just saying \"put this in the center\"; you are writing a system of linear equations. The \"Stranger Test\" here is brutal: a stranger (or the compiler) looks at your constraints and asks, \"What happens if the text gets longer?\" In SwiftUI, the box grows. In UIKit, the box clips, or worse, the entire layout \"breaks\" and throws a wall of red text into the console. 
+Then comes the layout. If SwiftUI is a "negotiation" where views find their own space, UIKit is a "dictatorship" of math. Auto Layout doesn't care about your design "intent"; it only cares about whether your constraints are mathematically satisfiable. From a UI/UX designer’s point of view, UIKit allows for a level of pixel-level precision that SwiftUI sometimes struggles with, but it comes at the cost of extreme rigidity. You aren't just saying "put this in the center"; you are writing a system of linear equations. The "Stranger Test" here is brutal: a stranger (or the compiler) looks at your constraints and asks, "What happens if the text gets longer?" In SwiftUI, the box grows. In UIKit, the box clips, or worse, the entire layout "breaks" and throws a wall of red text into the console. 
 
 \`\`\`swift
-// The SwiftUI \"Negotiation\"
+// The SwiftUI "Negotiation"
 VStack {
     Text("Hello")
     Text("World")
 }
 
-// The UIKit \"Dictatorship\" (Manual Constraints)
+// The UIKit "Dictatorship" (Manual Constraints)
 NSLayoutConstraint.activate([
     label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
     label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
@@ -200,8 +200,8 @@ NSLayoutConstraint.activate([
 ])
 \`\`\`
 
-The \"Architecture of Intent\" changes here, too. To be a good mid-level developer in UIKit, you have to embrace the Delegate Pattern. It is the oldest conversation in iOS development. It feels like a chore—creating protocols, setting 	exttt{weak var delegate}, and implementing methods—but it is how you keep your app from becoming a tangled mess. My actionable advice for anyone making this move: don't fight the lifecycle. In SwiftUI, we barely care about *when* a view appears. In UIKit, the 	exttt{viewDidLoad} vs. 	exttt{viewWillAppear} distinction is the heartbeat of your performance. If you do heavy work in the wrong method, the app feels sluggish. 
+The "Architecture of Intent" changes here, too. To be a good mid-level developer in UIKit, you have to embrace the Delegate Pattern. It is the oldest conversation in iOS development. It feels like a chore—creating protocols, setting \`weak var delegate\`, and implementing methods—but it is how you keep your app from becoming a tangled mess. My actionable advice for anyone making this move: don't fight the lifecycle. In SwiftUI, we barely care about *when* a view appears. In UIKit, the \`viewDidLoad\` vs. \`viewWillAppear\` distinction is the heartbeat of your performance. If you do heavy work in the wrong method, the app feels sluggish. 
 
-The transition is hard because it forces you to be a craftsman of the \"invisible.\" You have to care about the memory cycles, the layout passes, and the manual synchronization of every label. But there is a hidden reward: once you master UIKit, you finally understand what SwiftUI is actually doing under the hood. You realize that the \"magic\" isn't magic at all—it’s just a very good puppeteer hiding the strings. Building in UIKit makes you more precise, more defensive, and ultimately, more intentional about every single frame you put in front of a user.`,
+The transition is hard because it forces you to be a craftsman of the "invisible." You have to care about the memory cycles, the layout passes, and the manual synchronization of every label. But there is a hidden reward: once you master UIKit, you finally understand what SwiftUI is actually doing under the hood. You realize that the "magic" isn"""t magic at all—it’s just a very good puppeteer hiding the strings. Building in UIKit makes you more precise, more defensive, and ultimately, more intentional about every single frame you put in front of a user.`,
   },
 ]
