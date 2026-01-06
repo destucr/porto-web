@@ -61,6 +61,7 @@ The hardest part was getting enough training data—BISINDO resources are scarce
 Balancing model accuracy with file size was tricky since the entire model ships with the app.`,
     videoUrl: "/images/telly-demo.mp4",
     screenshots: [
+      "/images/telly-splashscreen.webp",
       "/images/telly-onboarding-welcome.webp",
       "/images/telly-onboarding-inputname.webp",
       "/images/telly-onboarding-howtouse.webp",
@@ -90,6 +91,7 @@ Developed a comprehensive running tracker that prioritizes accuracy and real-tim
 - Local Persistence: Integrated SwiftData to manage and persist historical running sessions, allowing for offline access and performance trends.`,
     videoUrl: "",
     screenshots: [
+      "/images/solari-runhome.webp",
       "/images/solari-running.webp",
       "/images/solari-runresult.webp",
       "/images/solari-select-startpoint.webp"
@@ -104,6 +106,7 @@ Developed a comprehensive running tracker that prioritizes accuracy and real-tim
     tags: ["Go", "React", "TypeScript", "PostgreSQL", "Leaflet", "Docker"],
     githubUrl: "https://github.com/destucr/GTFS-Web",
     appStoreUrl: "",
+    demoUrl: "/gtfs-cms/index.html",
     details: `#### Transit Management System
 Developed a robust ecosystem for managing General Transit Feed Specification (GTFS) data, optimized for high-density information display and intuitive operator workflows.
 
