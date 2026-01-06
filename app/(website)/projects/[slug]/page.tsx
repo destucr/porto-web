@@ -15,6 +15,8 @@ import { Button } from "@/components/ui/button"
 import Markdoc from "@markdoc/markdoc"
 import React from "react"
 
+import { ProjectShowcase } from "@/components/project-showcase"
+
 interface PageProps {
   params: Promise<{ slug: string }>
 }
@@ -27,7 +29,13 @@ export default async function ProjectPage({ params }: PageProps) {
     notFound()
   }
 
-  const { entry: project } = projectData
+  const { entry: projectEntry } = projectData
+  const project = {
+    ...projectEntry,
+    id: slug,
+    slug: slug,
+  }
+
   const isMobile = project.tags?.some((tag: string) => 
     tag.toLowerCase() === 'ios' || tag.toLowerCase() === 'mobile'
   )
@@ -110,21 +118,11 @@ export default async function ProjectPage({ params }: PageProps) {
             </div>
           </header>
 
-          {/* Hero Image: Preserving natural aspect ratio */}
-          <div className="rounded-2xl border bg-muted/30 overflow-hidden shadow-sm flex items-center justify-center min-h-[400px] relative">
-            <Image
-              src={project.image || ""}
-              alt={project.title || 'Untitled Project'}
-              width={1200}
-              height={700}
-              priority
-              unoptimized
-              className="max-w-full h-auto max-h-[700px] object-contain"
-            />
-          </div>
+          {/* Hero Image / Project Showcase */}
+          <ProjectShowcase project={project} />
 
           {/* Video Demo Section */}
-          {project.videoUrl && (
+          {project.videoUrl && !project.demoUrl && (
             <section className="space-y-8">
               <h3 className="text-[10px] font-bold uppercase tracking-widest text-primary flex items-center gap-2">
                 <ExternalLink className="h-4 w-4" /> Video Demo
