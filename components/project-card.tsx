@@ -26,13 +26,19 @@ export function ProjectCard({ project, priority }: ProjectCardProps) {
         href={`/projects/${project.slug}`}
         className="block relative aspect-[16/10] overflow-hidden rounded-xl bg-muted border transition-colors group-hover:border-primary/20"
       >
-        <Image
-          src={project.image}
-          alt={project.title}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-          priority={priority}
-        />
+        {project.image ? (
+          <Image
+            src={project.image}
+            alt={project.title}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            priority={priority}
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
+            <span className="text-xs">No image available</span>
+          </div>
+        )}
       </Link>
 
       {/* Info: Direct and well-spaced */}

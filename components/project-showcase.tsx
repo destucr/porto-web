@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import { motion } from "framer-motion"
 import { Play, X, RefreshCw, ExternalLink } from "lucide-react"
 import Image from "next/image"
 import { cn } from "@/lib/utils"
@@ -26,6 +25,8 @@ export function ProjectShowcase({ project }: ProjectShowcaseProps) {
   const [containerWidth, setContainerWidth] = React.useState(0)
 
   const isMobileProject = project.tags?.some(t => t.toLowerCase() === "ios" || t.toLowerCase() === "mobile")
+  const isGameProject = project.tags?.some(t => t.toLowerCase() === "spritekit")
+  const isLandscapeFormat = isGameProject // Games use landscape format
 
   React.useEffect(() => {
     if (!containerRef.current) return
@@ -44,11 +45,13 @@ export function ProjectShowcase({ project }: ProjectShowcaseProps) {
     return (
       <div className={cn(
         "group relative transition-all duration-500 mx-auto bg-zinc-950 ring-1 ring-white/10 shadow-2xl overflow-hidden",
-        isMobileProject
-          ? "aspect-[9/19.5] w-full max-w-[300px] rounded-[2.5rem] border-[6px] border-zinc-800"
-          : "aspect-video w-full rounded-2xl border border-zinc-800"
+        isLandscapeFormat
+          ? "aspect-video w-full rounded-2xl border border-zinc-800"
+          : isMobileProject
+            ? "aspect-[9/19.5] w-full max-w-[300px] rounded-[2.5rem] border-[6px] border-zinc-800"
+            : "aspect-video w-full rounded-2xl border border-zinc-800"
       )}>
-        {isMobileProject && (
+        {isMobileProject && !isLandscapeFormat && (
           <div className="absolute top-0 inset-x-0 h-10 z-30 pointer-events-none flex justify-center">
             <div className="mt-3 w-24 h-6 bg-black rounded-full shadow-inner" />
           </div>
@@ -62,13 +65,17 @@ export function ProjectShowcase({ project }: ProjectShowcaseProps) {
             className="w-full h-full object-cover"
             src={project.videoUrl}
           />
-        ) : (
+        ) : project.image ? (
           <Image
             src={project.image}
             alt={project.title}
             fill
             className="object-cover"
           />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center bg-muted">
+            <span className="text-muted-foreground">No image available</span>
+          </div>
         )}
       </div>
     )
@@ -80,12 +87,14 @@ export function ProjectShowcase({ project }: ProjectShowcaseProps) {
         ref={containerRef}
         className={cn(
           "group relative transition-all duration-500 mx-auto bg-zinc-950 ring-1 ring-white/10 shadow-2xl overflow-hidden",
-          isMobileProject
-            ? "aspect-[9/19.5] w-full max-w-[300px] rounded-[2.5rem] border-[6px] border-zinc-800"
-            : "aspect-video w-full rounded-2xl border border-zinc-800"
+          isLandscapeFormat
+            ? "aspect-video w-full rounded-2xl border border-zinc-800"
+            : isMobileProject
+              ? "aspect-[9/19.5] w-full max-w-[300px] rounded-[2.5rem] border-[6px] border-zinc-800"
+              : "aspect-video w-full rounded-2xl border border-zinc-800"
         )}
       >
-        {isMobileProject && (
+        {isMobileProject && !isLandscapeFormat && (
           <div className="absolute top-0 inset-x-0 h-10 z-30 pointer-events-none flex justify-center">
             <div className="mt-3 w-24 h-6 bg-black rounded-full shadow-inner" />
           </div>
@@ -116,8 +125,8 @@ export function ProjectShowcase({ project }: ProjectShowcaseProps) {
             <div className="flex-1 max-w-[200px] sm:max-w-md h-6 bg-black/40 rounded-md border border-white/5 flex items-center px-3 gap-2">
               <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
               <span className="text-[10px] text-zinc-400 font-medium truncate">
-                {project.demoUrl.startsWith('/') 
-                  ? `${typeof window !== 'undefined' ? window.location.host : 'localhost:3000'}${project.demoUrl}` 
+                {project.demoUrl.startsWith('/')
+                  ? `${typeof window !== 'undefined' ? window.location.host : 'localhost:3000'}${project.demoUrl}`
                   : project.demoUrl.replace('https://', '')}
               </span>
             </div>
@@ -170,13 +179,17 @@ export function ProjectShowcase({ project }: ProjectShowcaseProps) {
             className="w-full h-full object-cover"
             src={project.videoUrl}
           />
-        ) : (
+        ) : project.image ? (
           <Image
             src={project.image}
             alt={project.title}
             fill
             className="object-cover"
           />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center bg-muted">
+            <span className="text-muted-foreground">No image available</span>
+          </div>
         )}
       </div>
 

@@ -32,6 +32,7 @@ const CATEGORIES = [
   { id: "mobile", label: "Mobile Engineering", icon: Smartphone, tag: "ios" },
   { id: "web", label: "Full-Stack Systems", icon: Monitor, tag: "web" },
   { id: "ai", label: "On-Device AI", icon: Cpu, tag: "machine learning" },
+  { id: "game", label: "Game Development", icon: Layers, tag: "spritekit" },
 ]
 
 export function InteractiveShowcase({ projects }: InteractiveShowcaseProps) {
@@ -48,6 +49,8 @@ export function InteractiveShowcase({ projects }: InteractiveShowcaseProps) {
   if (!activeProject) return null
 
   const isMobileProject = activeProject.tags.some(t => t.toLowerCase() === "ios")
+  const isGameProject = activeProject.tags.some(t => t.toLowerCase() === "spritekit")
+  const isLandscapeFormat = isGameProject // Games like Go Line use landscape format
 
   // Process tech highlights outside JSX to avoid parser issues
   const techHighlights = activeProject.details
@@ -137,7 +140,7 @@ export function InteractiveShowcase({ projects }: InteractiveShowcaseProps) {
                   <Layers className="h-3 w-3" /> Stack
                 </div>
                 <p className="text-sm font-bold">
-                  {isMobileProject ? "iOS / SwiftUI" : "Go / React"}
+                  {isGameProject ? "Swift / SpriteKit" : isMobileProject ? "iOS / SwiftUI" : "Go / React"}
                 </p>
               </div>
               <div className="space-y-2">
@@ -191,15 +194,17 @@ export function InteractiveShowcase({ projects }: InteractiveShowcaseProps) {
                 transition={{ delay: idx * 0.05 }}
                 className={cn(
                   "relative overflow-hidden border bg-muted/30 shadow-sm transition-all hover:border-primary/30 hover:shadow-md",
-                  isMobileProject ? "h-56 aspect-[9/19.5] rounded-2xl" : "h-40 aspect-video rounded-xl"
+                  isLandscapeFormat ? "h-40 aspect-video rounded-xl" : isMobileProject ? "h-56 aspect-[9/19.5] rounded-2xl" : "h-40 aspect-video rounded-xl"
                 )}
               >
-                <Image
-                  src={screen}
-                  alt={`Screenshot ${idx + 1}`}
-                  fill
-                  className="object-cover"
-                />
+                {screen && (
+                  <Image
+                    src={screen}
+                    alt={`Screenshot ${idx + 1}`}
+                    fill
+                    className="object-cover"
+                  />
+                )}
               </motion.div>
             ))}
           </div>

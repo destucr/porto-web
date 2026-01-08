@@ -40,6 +40,10 @@ export default async function ProjectPage({ params }: PageProps) {
     tag.toLowerCase() === 'ios' || tag.toLowerCase() === 'mobile'
   )
 
+  const isLandscape = project.tags?.some((tag: string) => 
+    tag.toLowerCase() === 'spritekit' || tag.toLowerCase() === 'game'
+  )
+
   // Filter out the thumbnail from screenshots to avoid duplication
   const galleryScreenshots = project.screenshots?.filter((s: string) => s !== project.image) || []
 
@@ -50,21 +54,23 @@ export default async function ProjectPage({ params }: PageProps) {
   }
 
   const renderImage = (props: ImageProps) => (
-    <div className="my-8 rounded-xl overflow-hidden border bg-muted/30">
-      <Image
-        src={props.src}
-        alt={props.alt || ""}
-        width={1200}
-        height={800}
-        className="w-full h-auto"
-        unoptimized
-      />
-      {props.title && (
-        <p className="text-center text-xs text-muted-foreground py-3 border-t bg-background/50">
-          {props.title}
-        </p>
-      )}
-    </div>
+    props.src ? (
+      <div className="my-8 rounded-xl overflow-hidden border bg-muted/30">
+        <Image
+          src={props.src}
+          alt={props.alt || ""}
+          width={1200}
+          height={800}
+          className="w-full h-auto"
+          unoptimized
+        />
+        {props.title && (
+          <p className="text-center text-xs text-muted-foreground py-3 border-t bg-background/50">
+            {props.title}
+          </p>
+        )}
+      </div>
+    ) : null
   );
 
   return (
@@ -135,7 +141,7 @@ export default async function ProjectPage({ params }: PageProps) {
                   playsInline
                   controls 
                   className="w-full h-full"
-                  poster={project.image || ""}
+                  poster={project.image || undefined}
                 >
                   <source src={project.videoUrl} type={project.videoUrl.endsWith('.mov') ? 'video/quicktime' : 'video/mp4'} />
                   Your browser does not support the video tag.
@@ -157,29 +163,33 @@ export default async function ProjectPage({ params }: PageProps) {
               <div className="relative -mx-4 px-4 md:-mx-8 md:px-8 overflow-x-auto pb-8 scrollbar-hide">
                 <div className="flex gap-6 min-w-max">
                   {galleryScreenshots.map((screenshot: string, index: number) => (
-                    isMobile ? (
+                    isMobile && !isLandscape ? (
                       <div key={index} className="relative h-[500px] aspect-[9/19.5] rounded-[2rem] border-[6px] border-muted shadow-lg overflow-hidden bg-background">
-                        <Image
-                          src={screenshot}
-                          alt={`${project.title} screenshot ${index + 1}`}
-                          width={230}
-                          height={500}
-                          className="object-cover h-full w-auto"
-                          unoptimized
-                        />
+                        {screenshot && (
+                          <Image
+                            src={screenshot}
+                            alt={`${project.title} screenshot ${index + 1}`}
+                            width={230}
+                            height={500}
+                            className="object-cover h-full w-auto"
+                            unoptimized
+                          />
+                        )}
                         {/* Dynamic Island Mockup */}
                         <div className="absolute top-3 left-1/2 -translate-x-1/2 w-20 h-5 bg-black rounded-full z-10" />
                       </div>
                     ) : (
                       <div key={index} className="relative h-[300px] md:h-[400px] aspect-video rounded-xl border border-muted shadow-lg overflow-hidden bg-background">
-                        <Image
-                          src={screenshot}
-                          alt={`${project.title} screenshot ${index + 1}`}
-                          width={800}
-                          height={500}
-                          className="object-cover h-full w-full"
-                          unoptimized
-                        />
+                        {screenshot && (
+                          <Image
+                            src={screenshot}
+                            alt={`${project.title} screenshot ${index + 1}`}
+                            width={800}
+                            height={500}
+                            className="object-cover h-full w-full"
+                            unoptimized
+                          />
+                        )}
                       </div>
                     )
                   ))}

@@ -21,7 +21,7 @@ export default async function Home() {
   return (
     <div className="container mx-auto px-4 md:px-6">
       {featuredProjects.slice(0, 2).map((project) => (
-        <link key={project.id} rel="preload" as="image" href={project.image} fetchPriority="high" />
+        project.image && <link key={project.id} rel="preload" as="image" href={project.image} fetchPriority="high" />
       ))}
       {/* Recruiter-Focused Hero Section */}
       <section className="pt-20 pb-16 md:pt-32 md:pb-24 border-b">
