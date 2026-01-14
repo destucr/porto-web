@@ -62,14 +62,14 @@ export function InteractiveShowcase({ projects }: InteractiveShowcaseProps) {
   return (
     <div className="space-y-8">
       {/* iOS Style Segmented Control */}
-      <div className="flex justify-center">
-        <div className="inline-flex p-1 bg-muted rounded-2xl border shadow-inner w-full max-w-2xl">
+      <div className="flex justify-center px-4 sm:px-0">
+        <div className="inline-flex max-w-full overflow-x-auto p-1 bg-muted rounded-2xl border shadow-inner scrollbar-none">
           {CATEGORIES.map((category) => (
             <button
               key={category.id}
               onClick={() => setActiveTab(category.id)}
               className={cn(
-                "relative flex-1 flex items-center justify-center gap-2 py-2.5 text-sm font-bold transition-all rounded-xl",
+                "relative flex items-center justify-center gap-1.5 sm:gap-2 py-2 sm:py-2.5 px-3 sm:px-6 text-[10px] sm:text-sm font-bold transition-all rounded-xl whitespace-nowrap shrink-0",
                 activeTab === category.id ? "text-foreground" : "text-muted-foreground hover:text-foreground/80"
               )}
             >
@@ -80,9 +80,11 @@ export function InteractiveShowcase({ projects }: InteractiveShowcaseProps) {
                   transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                 />
               )}
-              <category.icon className="h-4 w-4 relative z-10" />
+              <category.icon className="h-3.5 w-3.5 sm:h-4 sm:w-4 relative z-10 shrink-0" />
               <span className="relative z-10 hidden sm:inline">{category.label}</span>
-              <span className="relative z-10 sm:hidden">{category.label.split(' ')[0]}</span>
+              <span className="relative z-10 sm:hidden">
+                {category.id === "ai" ? "On-Device" : category.label.split(' ')[0]}
+              </span>
             </button>
           ))}
         </div>
