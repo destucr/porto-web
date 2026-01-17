@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "iOS Developer & Product Manager Portfolio",
-  description: "Technical portfolio showcasing native iOS engineering, product strategy, and machine learning projects.",
+  title: "iOS & Full-stack Developer Portfolio",
+  description: "Technical portfolio showcasing native iOS engineering, full-stack systems, and machine learning projects.",
 };
 
 export default function RootLayout({

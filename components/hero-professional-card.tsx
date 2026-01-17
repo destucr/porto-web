@@ -11,35 +11,35 @@ export function ProfessionalCard() {
 
   return (
     <div className="lg:col-span-2 w-full">
-      <div className="relative pl-6 md:pl-8 border-l-2 border-primary/20 space-y-10 py-2">
+      <div className="relative pl-6 md:pl-8 border-l-2 border-primary/20 space-y-8 py-2">
         
         {/* Current Role Node */}
         <div className="relative">
-          {/* Node Indicator */}
-          <div className="absolute -left-[31px] md:-left-[39px] top-1 w-5 h-5 rounded-full bg-primary border-4 border-background shadow-sm z-10" />
+          {/* Centered Indicator */}
+          <div className="absolute -left-[31px] md:-left-[39px] top-1.5 w-5 h-5 rounded-full bg-primary border-4 border-background shadow-sm z-10" />
           
-          <div className="space-y-5">
+          <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-widest">
-                <Sparkles className="w-3 h-3" /> Now
+              <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[9px] font-bold uppercase tracking-widest">
+                <Sparkles className="w-2.5 h-2.5" /> Now
               </span>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-start gap-6 group">
-              <div className="relative w-20 h-20 rounded-3xl overflow-hidden bg-secondary/50 flex items-center justify-center border border-border/50 shadow-sm transition-all group-hover:scale-105 group-hover:border-primary/30 group-hover:shadow-md shrink-0">
+            <div className="flex items-start gap-6 group">
+              <div className="relative w-16 h-16 flex items-center justify-center shrink-0">
                 <Image 
                   src="/images/bullion-logo.png" 
                   alt="Bullion Ecosystem International" 
                   fill
-                  className="object-contain p-3"
+                  className="object-contain transition-transform group-hover:scale-110"
                 />
               </div>
-              <div className="space-y-1.5 pt-1">
+              <div className="space-y-1 pt-1">
                 <h3 className="font-bold text-xl text-foreground leading-tight tracking-tight">iOS Developer</h3>
                 <p className="text-sm text-muted-foreground font-medium">Bullion Ecosystem International</p>
-                <div className="flex flex-wrap gap-1.5 pt-1">
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-primary/5 text-primary border border-primary/10">UIKit</span>
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-secondary text-muted-foreground border border-border/40">SwiftUI</span>
+                <div className="flex flex-wrap gap-1.5 pt-1.5">
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-neutral-100 text-neutral-600 border border-neutral-200">UIKit</span>
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-neutral-100 text-neutral-600 border border-neutral-200">SwiftUI</span>
                 </div>
               </div>
             </div>
@@ -50,7 +50,7 @@ export function ProfessionalCard() {
         <div className="space-y-8">
           <div className="hidden lg:block h-px bg-gradient-to-r from-border/60 to-transparent" />
           
-          {/* Mobile Toggle for Education/Tech */}
+          {/* Mobile Toggle */}
           <button 
             className="lg:hidden flex items-center gap-2 text-[10px] font-bold text-primary uppercase tracking-widest"
             onClick={() => setIsExpanded(!isExpanded)}
@@ -60,29 +60,29 @@ export function ProfessionalCard() {
           </button>
 
           <div className={cn(
-            "space-y-10 transition-all duration-500 overflow-hidden lg:overflow-visible lg:max-h-none",
+            "space-y-8 transition-all duration-500 overflow-hidden lg:overflow-visible lg:max-h-none",
             isExpanded ? "max-h-[1200px] opacity-100" : "max-h-0 opacity-0 lg:opacity-100"
           )}>
             
             {/* Combined Education Node */}
             <div className="relative">
-              <div className="absolute -left-[31px] md:-left-[39px] top-0 w-5 h-5 rounded-full bg-secondary border-4 border-background z-10" />
-              <div className="space-y-6">
+              {/* Centered Indicator */}
+              <div className="absolute -left-[31px] md:-left-[39px] top-0 w-4 h-4 rounded-full bg-neutral-200 border-4 border-background z-10" />
+              <div className="space-y-5">
                 <div className="flex items-center gap-2">
-                  <GraduationCap className="w-4 h-4 text-muted-foreground" />
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/80">Education & Training</span>
+                  <GraduationCap className="w-3.5 h-3.5 text-muted-foreground" />
+                  <span className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground/80">Education & Training</span>
                 </div>
 
                 <div className="space-y-6">
                   {/* Academy */}
-                  <div className="flex items-center gap-5 group">
-                    <div className="w-16 h-16 rounded-2xl bg-secondary/30 flex items-center justify-center border border-border/40 shrink-0 group-hover:bg-secondary/50 transition-all">
+                  <div className="flex items-center gap-6 group">
+                    <div className="relative w-14 h-14 flex items-center justify-center shrink-0">
                       <Image 
                         src="/images/apple-developer-academy-binus.png" 
                         alt="Apple Developer Academy @ BINUS" 
-                        width={44} 
-                        height={44}
-                        className="opacity-90 grayscale group-hover:grayscale-0 transition-all"
+                        fill
+                        className="object-contain opacity-90 grayscale group-hover:grayscale-0 transition-all group-hover:scale-110"
                       />
                     </div>
                     <div className="space-y-0.5">
@@ -92,16 +92,14 @@ export function ProfessionalCard() {
                   </div>
 
                   {/* University */}
-                  <div className="flex items-center gap-5 group">
-                    <div className="w-16 h-16 rounded-2xl bg-secondary/30 flex items-center justify-center border border-border/40 shrink-0 group-hover:bg-secondary/50 transition-all">
-                      <div className="relative w-11 h-11">
-                        <Image 
-                          src="/images/telkom-university-logo.png" 
-                          alt="Telkom University" 
-                          fill
-                          className="opacity-90 grayscale group-hover:grayscale-0 transition-all object-contain"
-                        />
-                      </div>
+                  <div className="flex items-center gap-6 group">
+                    <div className="relative w-14 h-14 flex items-center justify-center shrink-0">
+                      <Image 
+                        src="/images/telkom-university-logo.png" 
+                        alt="Telkom University" 
+                        fill
+                        className="object-contain opacity-90 grayscale group-hover:grayscale-0 transition-all group-hover:scale-110"
+                      />
                     </div>
                     <div className="space-y-0.5">
                       <h4 className="font-bold text-sm leading-tight">Telkom University</h4>
@@ -117,26 +115,26 @@ export function ProfessionalCard() {
             {/* Specialized Focus */}
             <div className="space-y-5">
               <div className="flex items-center gap-2">
-                <Code2 className="w-4 h-4 text-muted-foreground" />
-                <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/80">Specialized Focus</span>
+                <Code2 className="w-3.5 h-3.5 text-muted-foreground" />
+                <span className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground/80">Specialized Focus</span>
               </div>
               
-              <div className="grid grid-cols-1 gap-3">
+              <div className="space-y-5 pl-1">
                 {[
-                  { title: "iOS Engineering", tech: ["UIKit", "SwiftUI"], desc: "High-performance interfaces & complex app lifecycles." },
-                  { title: "Systems Architecture", tech: ["Go"], desc: "Concurrent services and transit-scale data processing." },
-                  { title: "On-Device Intelligence", tech: ["Core ML"], desc: "Edge-computed vision and audio analysis models." }
+                  { title: "iOS Engineering", tech: ["UIKit", "SwiftUI"], desc: "Native interfaces & complex app lifecycles." },
+                  { title: "Backend", tech: ["Go", "PostgreSQL"], desc: "Concurrent services & robust data systems." },
+                  { title: "DevOps", tech: ["Docker", "Cloudflare"], desc: "Automated deployment & edge infrastructure." }
                 ].map((item, i) => (
-                  <div key={i} className="group p-3.5 rounded-2xl bg-secondary/10 border border-border/40 hover:border-primary/20 hover:bg-secondary/20 transition-all">
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-xs font-bold text-foreground">{item.title}</span>
+                  <div key={i} className="group space-y-1 relative">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[13px] font-bold text-foreground group-hover:text-primary transition-colors">{item.title}</span>
                       <div className="flex gap-1">
                         {item.tech.map(t => (
-                          <span key={t} className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-background/50 border border-border/40">{t}</span>
+                          <span key={t} className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-neutral-100 text-neutral-600 border border-neutral-200">{t}</span>
                         ))}
                       </div>
                     </div>
-                    <p className="text-[11px] text-muted-foreground leading-normal">{item.desc}</p>
+                    <p className="text-[11px] text-muted-foreground leading-snug max-w-[240px]">{item.desc}</p>
                   </div>
                 ))}
               </div>

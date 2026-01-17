@@ -8,8 +8,8 @@ import { PenLine } from "lucide-react"
 
 
 export const metadata: Metadata = {
-  title: "Blog | iOS Developer Portfolio",
-  description: "Technical articles, tutorials, and thoughts on iOS development.",
+  title: "Blog | Software Engineering Portfolio",
+  description: "Technical articles, tutorials, and thoughts on software engineering and mobile architecture.",
 }
 
 export default async function BlogPage() {

@@ -55,7 +55,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     }
   }
   return {
-    title: `${post.entry.title} | iOS Developer Blog`,
+    title: `${post.entry.title} | Engineering Blog`,
     description: post.entry.excerpt,
   }
 }
