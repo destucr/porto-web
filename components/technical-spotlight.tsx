@@ -132,10 +132,16 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3, ease: [0.25, 0.4, 0.25, 1] }}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start"
+            className={cn(
+              "grid grid-cols-1 lg:grid-cols-2 gap-8 items-start",
+              isVerticalMobile ? "lg:gap-10 max-w-4xl mx-auto" : "lg:gap-12"
+            )}
           >
             {/* Left: Device Mockup / Media */}
-            <div className="flex justify-center lg:justify-start w-full">
+            <div className={cn(
+              "flex justify-center w-full",
+              isVerticalMobile ? "lg:justify-end" : "lg:justify-start"
+            )}>
               <div className={cn(
                 "relative overflow-hidden bg-neutral-100 dark:bg-neutral-900 w-full",
                 // Dynamic sizing based on content type
