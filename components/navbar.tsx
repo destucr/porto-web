@@ -8,7 +8,7 @@ import { ModeToggle } from "@/components/mode-toggle"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Menu } from "lucide-react"
+import { Menu, Linkedin, Mail } from "lucide-react"
 
 export function Navbar() {
   const pathname = usePathname()
@@ -94,7 +94,21 @@ export function Navbar() {
           <div className="w-full flex-1 md:w-auto md:flex-none">
             {/* Search or other items could go here */}
           </div>
-          <ModeToggle />
+          <div className="flex items-center gap-1">
+            <Button variant="ghost" size="icon" className="h-9 w-9" asChild>
+              <a href="https://linkedin.com/in/destucikal" target="_blank" rel="noreferrer">
+                <Linkedin className="h-4 w-4" />
+                <span className="sr-only">LinkedIn</span>
+              </a>
+            </Button>
+            <Button variant="ghost" size="icon" className="h-9 w-9" asChild>
+              <a href="mailto:destucr@gmail.com">
+                <Mail className="h-4 w-4" />
+                <span className="sr-only">Email</span>
+              </a>
+            </Button>
+            <ModeToggle />
+          </div>
         </div>
       </div>
     </header>
