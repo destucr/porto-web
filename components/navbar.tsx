@@ -29,14 +29,18 @@ export function Navbar() {
     },
   ]
 
+  const Logo = () => (
+    <div className="w-8 h-8 rounded-lg bg-foreground text-background flex items-center justify-center font-bold text-sm">
+      DC
+    </div>
+  )
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto flex h-14 items-center">
+      <div className="container mx-auto flex h-14 items-center px-4 md:px-6">
         <div className="mr-4 hidden md:flex">
-          <Link href="/" className="mr-6 flex items-center space-x-2">
-            <div className="bg-foreground text-background font-black text-xs w-6 h-6 flex items-center justify-center rounded-sm tracking-tighter">
-              DC
-            </div>
+          <Link href="/" className="mr-6 flex items-center">
+            <Logo />
           </Link>
           <nav className="flex items-center space-x-6 text-sm font-medium">
             {routes.map((route) => (
@@ -66,13 +70,11 @@ export function Navbar() {
           <SheetContent side="left" className="pr-0">
             <Link
               href="/"
-              className="flex items-center space-x-2"
+              className="flex items-center space-x-3"
               onClick={() => setIsOpen(false)}
             >
-              <div className="bg-foreground text-background font-black text-xs w-6 h-6 flex items-center justify-center rounded-sm tracking-tighter">
-                DC
-              </div>
-              <span className="font-bold">Portfolio</span>
+              <Logo />
+              <span className="font-medium">Destu Cikal</span>
             </Link>
             <ScrollArea className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
               <div className="flex flex-col space-y-3">
@@ -91,8 +93,11 @@ export function Navbar() {
           </SheetContent>
         </Sheet>
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-          <div className="w-full flex-1 md:w-auto md:flex-none">
-            {/* Search or other items could go here */}
+          <div className="w-full flex-1 md:w-auto md:flex-none md:hidden">
+            {/* Mobile logo */}
+            <Link href="/" className="flex items-center">
+              <Logo />
+            </Link>
           </div>
           <div className="flex items-center gap-1">
             <Button variant="ghost" size="icon" className="h-9 w-9" asChild>

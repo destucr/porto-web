@@ -14,25 +14,24 @@ export default async function ProjectsPage() {
   const projects = await getProjects()
 
   return (
-    <div className="min-h-screen">
-      {/* Header with glow */}
-      <section className="relative glow-subtle">
-        <div className="container mx-auto px-4 md:px-6 py-20 md:py-32">
+    <div className="min-h-screen bg-background">
+      {/* Header */}
+      <section className="relative border-b border-border/40">
+        <div className="container mx-auto px-6 py-20 md:py-28">
           <div className="max-w-2xl space-y-6">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
-              Projects
+            <h1 className="text-5xl md:text-6xl font-serif font-medium tracking-tight text-foreground">
+              Selected Works
             </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed">
-              Technical case studies spanning native iOS engineering, product strategy, and computer vision.
+            <p className="text-xl text-muted-foreground leading-relaxed font-light">
+              Technical case studies spanning native iOS engineering, system architecture, and product design.
             </p>
           </div>
         </div>
-        <div className="divider-fade" />
       </section>
 
-      {/* Project list with dot grid */}
-      <section className="relative dot-grid">
-        <div className="container mx-auto px-4 md:px-6 py-16 md:py-24">
+      {/* Project list */}
+      <section className="relative bg-secondary/20">
+        <div className="container mx-auto px-6 py-16 md:py-24">
           <Suspense fallback={<div>Loading projects...</div>}>
             <ProjectList projects={projects} isAdmin={isAdmin} />
           </Suspense>

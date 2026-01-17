@@ -86,24 +86,24 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
   }, [activeProject?.details])
 
   return (
-    <div className="space-y-8">
-      {/* Section Header */}
-      <div className="space-y-3">
-        <h2 className="text-2xl md:text-3xl font-serif font-medium tracking-tight text-foreground">Technical Spotlight</h2>
-        <p className="text-muted-foreground text-base md:text-lg leading-relaxed max-w-xl">
-          Deep dives into specific engineering domains.
-        </p>
-      </div>
+    <div className="space-y-8 md:space-y-12">
+      {/* Section Header & Tabs */}
+      <div className="flex flex-col items-center text-center space-y-6">
+        <div className="space-y-3">
+          <h2 className="text-2xl md:text-3xl font-serif font-medium tracking-tight text-foreground">Technical Spotlight</h2>
+          <p className="text-muted-foreground text-base md:text-lg leading-relaxed max-w-xl mx-auto">
+            Deep dives into specific engineering domains.
+          </p>
+        </div>
 
-      {/* iOS-style Segmented Control */}
-      <div className="flex justify-start">
-        <div className="inline-flex p-1 bg-secondary/80 rounded-xl border border-border/50">
+        {/* iOS-style Segmented Control */}
+        <div className="inline-flex p-1 bg-secondary/80 rounded-xl border border-border/50 backdrop-blur-sm">
           {CATEGORIES.map((category) => (
             <button
               key={category.id}
               onClick={() => setActiveTab(category.id)}
               className={cn(
-                "relative flex items-center gap-1.5 px-4 md:px-6 py-2 md:py-2.5 rounded-lg text-xs md:text-sm font-medium transition-all duration-200",
+                "relative flex items-center gap-1.5 px-4 md:px-5 py-2 md:py-2.5 rounded-lg text-xs md:text-sm font-medium transition-all duration-200",
                 activeTab === category.id 
                   ? "bg-background text-foreground shadow-sm" 
                   : "text-muted-foreground hover:text-foreground"
@@ -111,6 +111,13 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
             >
               <category.icon className="w-3.5 h-3.5 md:w-4 md:h-4" />
               <span className="hidden sm:inline">{category.label}</span>
+              {activeTab === category.id && (
+                <motion.div
+                  layoutId="activeTab"
+                  className="absolute inset-0 bg-background rounded-lg -z-10 shadow-sm"
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                />
+              )}
             </button>
           ))}
         </div>
@@ -125,7 +132,7 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3, ease: [0.25, 0.4, 0.25, 1] }}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center"
+            className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start"
           >
             {/* Left: Device Mockup / Media */}
             <div className="flex justify-center lg:justify-start w-full">
@@ -144,8 +151,6 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
                   <div className="relative bg-[#1a1a1a] rounded-[44px] md:rounded-[55px] p-[10px] md:p-[12px] shadow-xl mx-auto">
                     {/* Screen container with proper iPhone 15 Pro aspect ratio */}
                     <div className="relative bg-black rounded-[34px] md:rounded-[43px] overflow-hidden aspect-[393/852]">
-                      {/* Dynamic Island */}
-                      <div className="absolute top-3 md:top-4 left-1/2 -translate-x-1/2 w-[90px] md:w-[126px] h-[28px] md:h-[37px] bg-black rounded-full z-30" />
                       
                       {/* Video/Image content */}
                       {showVideo ? (
@@ -192,11 +197,10 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
                     <div className="flex-1 relative overflow-hidden bg-white">
                        <iframe 
                         src={activeProject.demoUrl} 
-                        className="absolute inset-0 w-full h-full border-0"
+                        className="absolute top-0 left-0 w-[180%] h-[180%] origin-top-left scale-[0.55] border-0"
                         title={`${activeProject.title} Demo`}
                         loading="lazy"
                       />
-                      <Link href={`/projects/${activeProject.slug}`} className="absolute inset-0 z-10" aria-label={`View project ${activeProject.title}`} />
                     </div>
                   </div>
                 )}
