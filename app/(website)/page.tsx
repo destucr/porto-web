@@ -1,206 +1,116 @@
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, PenLine, Smartphone, Layers, Cpu, Code2 } from "lucide-react"
+import { ArrowUpRight, Plus, Terminal } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { EmptyState } from "@/components/empty-state"
 import { getPosts, getProjects } from "@/lib/content"
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { ProjectList } from "@/components/project-list"
-import { InteractiveShowcase } from "@/components/interactive-showcase"
 
 export default async function Home() {
-  const isAdmin = false // Admin features are now handled via /admin directly or client-side
+  const isAdmin = false 
 
   const allProjects = await getProjects()
-  // Show all projects in scrollable view
-  const featuredProjects = allProjects
-
-  const allPosts = await getPosts()
-  const recentPosts = (allPosts || [])
-    .sort((a, b) => new Date(b.date || "").getTime() - new Date(a.date || "").getTime())
+  const featuredProjects = allProjects.slice(0, 4) // Show more projects for grid impact
 
   return (
-    <div className="min-h-screen">
-      {featuredProjects.slice(0, 2).map((project) => (
-        project.image && <link key={project.id} rel="preload" as="image" href={project.image} fetchPriority="high" />
-      ))}
+    <div className="min-h-screen bg-background relative overflow-hidden font-mono selection:bg-primary selection:text-black">
+      {/* Background Grid - Digital Brutalism */}
+      <div className="fixed inset-0 bg-grid-lines opacity-[0.15] pointer-events-none z-0" />
       
-      {/* Hero - Compact, dense, high-impact layout */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-32">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="flex flex-col gap-16 md:gap-24">
+      {/* Hero - Stark, Bold, Brutalist */}
+      <section className="relative pt-32 pb-24 md:pt-48 md:pb-32 z-10 border-b border-border">
+        <div className="container mx-auto px-4">
+          <div className="max-w-[90vw]">
+            {/* Super Massive Headline */}
+            <h1 className="text-[12vw] leading-[0.8] font-black tracking-tighter uppercase mb-8 mix-blend-difference text-foreground">
+              <span className="block hover-glitch" data-text="DESTU">DESTU</span>
+              <span className="block text-primary hover-glitch" data-text="CIKAL">CIKAL</span>
+            </h1>
             
-            {/* Top: Introduction */}
-            <div className="max-w-3xl">
-              <p className="text-base font-medium text-muted-foreground mb-3">iOS Developer</p>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground mb-6">
-                Destu Cikal Ramdani
-              </h1>
-              <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed font-normal">
-                Trained at <span className="text-foreground font-medium">Apple Developer Academy</span>, now building production iOS apps at <span className="text-foreground font-medium">Bullion Ecosystem International</span>.
-              </p>
-              
-              <div className="flex flex-wrap gap-4 mt-8">
-                <Button asChild className="rounded-full px-8 h-12 text-base font-medium">
-                  <Link href="/projects">View Projects</Link>
-                </Button>
-                <Button asChild variant="outline" className="rounded-full px-8 h-12 text-base font-medium bg-transparent border-input hover:bg-secondary hover:text-foreground">
-                  <a href="https://linkedin.com/in/destucikal" target="_blank" rel="noreferrer">LinkedIn</a>
-                </Button>
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 border-t border-border pt-8">
+              <div className="max-w-xl space-y-6">
+                <p className="text-xl md:text-2xl font-bold uppercase tracking-wide leading-relaxed">
+                  <span className="text-primary">/// SYSTEM STATUS: ONLINE</span><br/>
+                  iOS Engineer & Digital Architect building high-performance native experiences.
+                </p>
+                <div className="flex gap-4">
+                  <Button asChild className="btn-brutalist rounded-none h-14 px-8 text-lg font-bold uppercase tracking-widest border-2">
+                    <Link href="/projects">
+                      Initialize <Terminal className="ml-2 h-5 w-5" />
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+
+              {/* Raw Data Credentials */}
+              <div className="grid grid-cols-1 gap-px bg-border border border-border">
+                <a href="https://bullionecosystem.com" target="_blank" className="bg-background p-6 hover:bg-primary hover:text-black transition-colors group">
+                  <div className="text-xs font-bold uppercase tracking-widest mb-1 opacity-60">CURRENT_NODE</div>
+                  <div className="text-2xl font-black uppercase">BULLION ECOSYSTEM</div>
+                  <div className="text-sm font-bold mt-2 font-mono group-hover:translate-x-2 transition-transform">iOS ENGINEER [ACTIVE]</div>
+                </a>
+                <a href="https://developeracademy.apps.binus.ac.id" target="_blank" className="bg-background p-6 hover:bg-primary hover:text-black transition-colors group">
+                  <div className="text-xs font-bold uppercase tracking-widest mb-1 opacity-60">ORIGIN_NODE</div>
+                  <div className="text-2xl font-black uppercase">APPLE ACADEMY</div>
+                  <div className="text-sm font-bold mt-2 font-mono group-hover:translate-x-2 transition-transform">COHORT 2025 [COMPLETE]</div>
+                </a>
               </div>
             </div>
-
-            {/* Bottom: Credentials Grid - Dense & Visual */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-              {/* Current Role */}
-              <a 
-                href="https://bullionecosystem.com"
-                target="_blank"
-                rel="noreferrer"
-                className="group flex items-start gap-6 -ml-4 p-4 rounded-3xl transition-all hover:bg-secondary/30"
-              >
-                <div className="relative h-20 w-20 shrink-0 mt-1.5">
-                  <Image
-                    src="https://bullionecosystem.com/wp-content/uploads/2020/10/default-logo.png"
-                    alt="Bullion Ecosystem International"
-                    fill
-                    className="object-contain drop-shadow-sm transition-transform group-hover:scale-105"
-                    sizes="80px"
-                  />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-foreground text-lg group-hover:text-primary transition-colors">Bullion Ecosystem International</h3>
-                  <p className="text-sm font-medium text-muted-foreground mt-0.5">iOS Developer • Jan 2026 – Present</p>
-                  <p className="text-base text-muted-foreground/80 mt-2 leading-relaxed">
-                    Developing the core iOS application for a gold trading platform. Focusing on secure transactions, real-time data synchronization, and native UI implementation.
-                  </p>
-                </div>
-              </a>
-
-              {/* Education */}
-              <a 
-                href="https://developeracademy.apps.binus.ac.id/" 
-                target="_blank" 
-                rel="noreferrer"
-                className="group flex items-start gap-6 -ml-4 p-4 rounded-3xl transition-all hover:bg-secondary/30"
-              >
-                <div className="relative h-20 w-20 shrink-0 mt-1.5">
-                  <Image
-                    src="/images/apple-developer-academy-binus.png"
-                    alt="Apple Developer Academy"
-                    fill
-                    className="object-contain drop-shadow-sm transition-transform group-hover:scale-105"
-                    sizes="80px"
-                  />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-foreground text-lg group-hover:text-primary transition-colors">Apple Developer Academy</h3>
-                  <p className="text-sm font-medium text-muted-foreground mt-0.5">Graduate • Cohort 2025</p>
-                  <p className="text-base text-muted-foreground/80 mt-2 leading-relaxed">
-                    Selected for the world-class 10-month program. Specialized in Swift, SwiftUI, and Challenge Based Learning (CBL) methodology to ship multiple apps.
-                  </p>
-                </div>
-              </a>
-            </div>
-
           </div>
         </div>
       </section>
 
-      {/* Projects */}
-      <section className="relative">
-        <div className="container mx-auto px-4 md:px-6 py-20 md:py-28">
-          <div className="flex items-end justify-between mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Projects</h2>
-            <Link href="/projects" className="link-underline text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-              View All
+      {/* Marquee Separator */}
+      <div className="border-b border-border py-4 overflow-hidden bg-primary text-black">
+        <div className="animate-marquee font-black text-4xl uppercase tracking-tighter">
+          NATIVE PERFORMANCE /// SWIFTUI ARCHITECTURE /// METAL RENDERER /// CORE ML INTEGRATION /// NATIVE PERFORMANCE /// SWIFTUI ARCHITECTURE /// METAL RENDERER /// CORE ML INTEGRATION ///
+        </div>
+      </div>
+
+      {/* Projects - Grid of Raw Power */}
+      <section className="relative py-24 z-10">
+        <div className="container mx-auto px-4">
+          <div className="flex items-baseline justify-between mb-16 border-b border-border pb-4">
+            <h2 className="text-6xl md:text-8xl font-black uppercase tracking-tighter">
+              Projects
+            </h2>
+            <Link href="/projects" className="text-xl font-bold uppercase hover:text-primary hover:underline decoration-4 underline-offset-4">
+              View Database_ALL <ArrowUpRight className="inline h-6 w-6" />
             </Link>
           </div>
-          <ProjectList projects={featuredProjects} isAdmin={isAdmin} layout="scroll" />
+          
+          <ProjectList projects={featuredProjects} isAdmin={isAdmin} layout="grid" />
         </div>
-        <div className="divider-fade" />
       </section>
 
-      {/* Technical Spotlight */}
-      <section className="relative">
-        <div className="container mx-auto px-4 md:px-6 py-20 md:py-28 relative z-10">
-          <div className="mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Technical Spotlight</h2>
-            <p className="text-muted-foreground mt-3 max-w-lg">
-              Mobile, full-stack, on-device AI, and game dev. Pick a category to explore.
-            </p>
-          </div>
-          <InteractiveShowcase projects={featuredProjects} />
-        </div>
-        <div className="divider-fade" />
-      </section>
-
-      {/* Blog */}
-      <section className="relative">
-        <div className="container mx-auto px-4 md:px-6 py-20 md:py-28">
-          <div className="flex items-end justify-between mb-10">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Blog</h2>
-              <p className="text-muted-foreground mt-3">I write about what I learn. Mostly iOS, sometimes product.</p>
-            </div>
-          </div>
-          {recentPosts.length > 0 ? (
-            <ScrollArea className="w-full whitespace-nowrap -mx-4 md:-mx-6">
-              <div className="flex w-max space-x-6 px-4 md:px-6 py-2">
-                {recentPosts.map((post) => (
-                  <article key={post.slug} className="card-hover group w-[320px] shrink-0 whitespace-normal glass rounded-2xl p-6 shadow-sm">
-                    <Link href={`/blog/${post.slug}`} className="flex flex-col gap-3 h-full">
-                      <div className="flex items-center gap-2 text-[10px] font-medium text-muted-foreground uppercase tracking-wider">
-                        <time>{new Date(post.date || "").toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</time>
-                        {post.tags?.[0] && <><span>·</span><span>{post.tags[0]}</span></>}
-                      </div>
-                      <h3 className="text-xl font-bold leading-snug group-hover:text-foreground/70 transition-colors">
-                        {post.title}
-                      </h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2 flex-1">
-                        {post.excerpt}
-                      </p>
-                    </Link>
-                  </article>
-                ))}
-              </div>
-              <ScrollBar orientation="horizontal" />
-            </ScrollArea>
-          ) : (
-            <EmptyState
-              icon={PenLine}
-              title="No posts yet"
-              description="New articles coming soon."
-              actionLabel={isAdmin ? "New Post" : undefined}
-              actionHref={isAdmin ? "/admin" : undefined}
-            />
-          )}
-        </div>
-        <div className="divider-fade" />
-      </section>
-
-      {/* CTA - Strong contrast block */}
-      <section className="container mx-auto px-4 md:px-6 pb-16">
-        <div className="relative overflow-hidden rounded-3xl bg-foreground text-background px-8 md:px-16 py-16 md:py-20">
-          <div className="relative z-10 max-w-xl space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-              Let's work together
+      {/* Footer / CTA - Massive Block */}
+      <section className="border-t border-border bg-foreground text-background py-32">
+        <div className="container mx-auto px-4">
+          <div className="max-w-[90vw]">
+            <h2 className="text-[8vw] leading-[0.85] font-black uppercase tracking-tighter mb-12">
+              READY TO<br/>
+              <span className="text-primary">DEPLOY?</span>
             </h2>
-            <p className="text-background/60 text-lg leading-relaxed">
-              I'm an engineer who thinks about the product as much as the code. If that sounds like what you need, reach out.
-            </p>
-            <div className="flex flex-wrap gap-4 pt-2">
-              <Button asChild size="lg" className="rounded-full px-8 font-bold h-12 bg-background text-foreground hover:bg-background/90">
-                <a href="mailto:destucr@gmail.com">Contact Me</a>
-              </Button>
-              <Button asChild size="lg" className="rounded-full px-8 font-bold h-12 border-2 border-background/20 bg-transparent text-background hover:bg-background hover:text-foreground transition-colors">
-                <a href="https://linkedin.com/in/destucikal" target="_blank" rel="noreferrer">LinkedIn</a>
-              </Button>
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="space-y-8">
+                 <p className="text-2xl font-bold uppercase max-w-md">
+                  Available for select contract work and technical consultation.
+                </p>
+                <div className="flex flex-col gap-4 items-start">
+                  <a href="mailto:destucr@gmail.com" className="text-4xl md:text-6xl font-black uppercase hover:text-primary transition-colors underline decoration-4 underline-offset-8">
+                    destucr@gmail.com
+                  </a>
+                  <div className="flex gap-6 mt-8">
+                    <a href="https://linkedin.com/in/destucikal" className="px-6 py-3 border-2 border-background font-bold uppercase hover:bg-primary hover:border-primary hover:text-black transition-all">
+                      LinkedIn
+                    </a>
+                    <a href="https://github.com/destucikal" className="px-6 py-3 border-2 border-background font-bold uppercase hover:bg-primary hover:border-primary hover:text-black transition-all">
+                      GitHub
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          {/* Abstract shape */}
-          <div className="absolute -right-20 -top-20 w-80 h-80 rounded-full bg-background/5 blur-3xl" />
-          <div className="absolute -right-10 bottom-0 w-60 h-60 rounded-full bg-background/10 blur-2xl" />
         </div>
       </section>
     </div>
