@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { AmbientBackground } from "@/components/ambient-background";
 
 
 const geistSans = Geist({
@@ -15,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "iOS Developer & Product Manager Portfolio",
-  description: "Technical portfolio showcasing native iOS engineering, product strategy, and machine learning projects.",
+  title: "iOS & Full-stack Developer Portfolio",
+  description: "Technical portfolio showcasing native iOS engineering, full-stack systems, and machine learning projects.",
 };
 
 export default function RootLayout({
@@ -44,6 +45,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <AmbientBackground />
           {children}
         </ThemeProvider>
       </body>
