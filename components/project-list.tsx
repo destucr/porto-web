@@ -62,24 +62,23 @@ export function ProjectList({ projects, isAdmin, layout = "grid" }: ProjectListP
 
   return (
     <div className="space-y-8">
-      <div className="flex flex-wrap gap-3">
+      <div className="flex flex-wrap gap-x-8 gap-y-4 pb-4 border-b border-border/40">
         {categories.map((category) => (
           <Button
             key={category}
-            variant={selectedCategory === category ? "default" : "outline"}
+            variant="ghost"
             onClick={() => setSelectedCategory(category)}
             className={cn(
-              "rounded-full transition-all flex gap-2 items-center px-5 h-10",
-              selectedCategory === category ? "shadow-md scale-105" : "text-muted-foreground hover:text-foreground"
+              "rounded-none h-auto px-0 py-1 text-sm font-medium transition-colors hover:bg-transparent hover:text-foreground",
+              selectedCategory === category 
+                ? "text-foreground border-b border-foreground" 
+                : "text-muted-foreground border-b border-transparent"
             )}
           >
             {category}
-            <span className={cn(
-              "text-[10px] px-1.5 py-0.5 rounded-full",
-              selectedCategory === category ? "bg-primary-foreground/20 text-primary-foreground" : "bg-muted text-muted-foreground"
-            )}>
+            <sup className="ml-1 text-[10px] text-muted-foreground font-normal">
               {getCount(category)}
-            </span>
+            </sup>
           </Button>
         ))}
       </div>
@@ -94,9 +93,9 @@ export function ProjectList({ projects, isAdmin, layout = "grid" }: ProjectListP
         />
       ) : (
         layout === "grid" ? (
-          <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-y-16 gap-x-12 md:grid-cols-2 lg:grid-cols-2">
             {filteredProjects.map((project) => (
-              <div key={project.id} className="animate-in fade-in zoom-in duration-500">
+              <div key={project.id} className="animate-in fade-in slide-in-from-bottom-4 duration-700">
                 <ProjectCard project={project} />
               </div>
             ))}
