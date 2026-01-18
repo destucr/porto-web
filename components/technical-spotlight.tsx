@@ -275,7 +275,7 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
                 
                 {activeProject.demoUrl && (
                   <Button asChild variant="ghost" className="rounded-full h-12 px-8 text-sm font-bold text-neutral-400 hover:text-foreground">
-                    <Link href={activeProject.demoUrl} target="_blank">
+                    <Link href={activeProject.demoUrl} target="_blank" rel="noopener noreferrer">
                       Live Preview <Globe className="ml-2 w-4 h-4" />
                     </Link>
                   </Button>

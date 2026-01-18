@@ -25,8 +25,8 @@ export default async function Home() {
                 Destu Cikal
               </h1>
               <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-2xl leading-relaxed">
-                I’m an iOS developer at Bullion Ecosystem International. <br className="hidden md:block" />
-                I craft mobile experiences, full-stack tools, and machine learning experiments.
+                I build high-performance mobile ecosystems at Bullion International. <br className="hidden md:block" />
+                Specializing in the intersection of elegant iOS experiences and robust full-stack engineering.
               </p>
             </div>
 
