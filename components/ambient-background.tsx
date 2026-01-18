@@ -43,7 +43,7 @@ export function AmbientBackground() {
         className="absolute -top-[20%] -right-[10%] w-[90vw] h-[90vw] rounded-full opacity-20 blur-[120px] mix-blend-multiply dark:mix-blend-soft-light"
         style={{
           background: "radial-gradient(circle, rgba(230, 230, 230, 0.5) 0%, transparent 70%)",
-          animation: "drift-slow 60s ease-in-out infinite alternate",
+          animation: "drift 60s ease-in-out infinite alternate",
         }}
       />
       
@@ -52,7 +52,7 @@ export function AmbientBackground() {
         className="absolute -bottom-[20%] -left-[10%] w-[80vw] h-[80vw] rounded-full opacity-10 blur-[100px] mix-blend-multiply dark:mix-blend-soft-light"
         style={{
           background: "radial-gradient(circle, rgba(200, 200, 200, 0.3) 0%, transparent 70%)",
-          animation: "drift-slow 75s ease-in-out infinite alternate-reverse",
+          animation: "drift 75s ease-in-out infinite alternate-reverse",
         }}
       />
 

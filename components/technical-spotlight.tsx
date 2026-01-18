@@ -125,13 +125,16 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-            className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start"
+            className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start"
           >
-            {/* Left: Immersive Media Stage (Column 1-7) */}
-            <div className="lg:col-span-7 flex justify-center w-full">
+            {/* Left: Immersive Media Stage (Column 1-7 or 1-8 for web) */}
+            <div className={cn(
+              "flex justify-center w-full",
+              showIframe ? "lg:col-span-8" : "lg:col-span-7"
+            )}>
               <div className={cn(
-                "relative w-full rounded-[48px] bg-neutral-50/50 border border-neutral-100 flex items-center justify-center p-6 md:p-12 overflow-hidden shadow-[inset_0_2px_40px_rgba(0,0,0,0.02)]",
-                isVerticalMobile ? "aspect-[4/5] lg:aspect-square" : "aspect-[16/10] lg:aspect-[16/9]"
+                "relative w-full rounded-[48px] bg-neutral-50/50 border border-neutral-100 flex items-center justify-center p-4 md:p-8 overflow-hidden shadow-[inset_0_2px_40px_rgba(0,0,0,0.02)]",
+                showIframe ? "aspect-[16/10]" : isVerticalMobile ? "aspect-[4/5] lg:aspect-square" : "aspect-[16/10] lg:aspect-[16/9]"
               )}>
                 
                 {/* Structural Platform Accents */}
@@ -141,7 +144,7 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
                 </div>
 
                 <div className={cn(
-                  "relative transition-transform duration-500 hover:scale-[1.02]",
+                  "relative transition-transform duration-500 hover:scale-[1.01]",
                   showIframe ? "w-full h-full shadow-2xl rounded-2xl overflow-hidden border border-neutral-200" : 
                   isVerticalMobile ? "h-full w-auto aspect-[393/852]" : "w-full aspect-video rounded-2xl overflow-hidden border border-neutral-200 shadow-xl"
                 )}>
@@ -167,26 +170,29 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
                   {/* Web iframe */}
                   {showIframe && (
                     <div className="w-full h-full flex flex-col bg-white">
-                      <div className="h-8 bg-neutral-100 border-b border-neutral-200 flex items-center px-4 gap-3 shrink-0">
+                      <div className="h-10 bg-neutral-100 border-b border-neutral-200 flex items-center px-4 gap-3 shrink-0">
                         <div className="flex gap-1.5">
                           <div className="w-2.5 h-2.5 rounded-full bg-neutral-300" />
                           <div className="w-2.5 h-2.5 rounded-full bg-neutral-300" />
                           <div className="w-2.5 h-2.5 rounded-full bg-neutral-300" />
                         </div>
                         <div className="flex-1 flex justify-center">
-                          <div className="bg-white border border-neutral-200 rounded-md px-3 py-1 text-[10px] text-neutral-400 truncate font-mono">
+                          <div className="bg-white border border-neutral-200 rounded-md px-4 py-1 text-[10px] text-neutral-400 truncate font-mono max-w-[200px]">
                             {activeProject.slug}.dev
                           </div>
                         </div>
-                        <div className="flex items-center gap-1.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                          <span className="text-[9px] font-bold uppercase tracking-wider text-neutral-500">Live</span>
+                        <div className="flex items-center gap-2">
+                          <span className="hidden md:inline text-[10px] font-bold text-neutral-400 uppercase tracking-tight">Try it out</span>
+                          <div className="flex items-center gap-1.5 bg-green-50 px-2 py-0.5 rounded-full border border-green-100">
+                            <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                            <span className="text-[9px] font-bold uppercase tracking-wider text-green-600">Live</span>
+                          </div>
                         </div>
                       </div>
                       <div className="flex-1 relative overflow-hidden bg-white">
                          <iframe 
                           src={activeProject.demoUrl} 
-                          className="absolute top-0 left-0 w-[180%] h-[180%] origin-top-left scale-[0.55] border-0"
+                          className="absolute top-0 left-0 w-[140%] h-[140%] origin-top-left scale-[0.714] border-0"
                           title={`${activeProject.title} Demo`}
                           loading="lazy"
                         />
@@ -213,8 +219,11 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
               </div>
             </div>
 
-            {/* Right: Refined Detail Panel (Column 8-12) */}
-            <div className="lg:col-span-5 space-y-10 lg:pt-4">
+            {/* Right: Refined Detail Panel (Column 8-12 or 9-12 for web) */}
+            <div className={cn(
+              "space-y-10 lg:pt-4",
+              showIframe ? "lg:col-span-4" : "lg:col-span-5"
+            )}>
               <div className="space-y-6">
                 <div className="flex flex-wrap gap-2">
                   {activeProject.tags.slice(0, 4).map(tag => (
@@ -231,6 +240,12 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
                   <p className="text-lg text-neutral-500 leading-relaxed font-medium">
                     {activeProject.description}
                   </p>
+                  
+                  {showIframe && (
+                    <p className="text-sm font-medium text-primary bg-primary/5 border border-primary/10 rounded-2xl px-4 py-3 inline-block animate-fade-in">
+                      ✨ Go ahead, give it a spin—it&apos;s a fully functional live demo!
+                    </p>
+                  )}
                 </div>
               </div>
 
