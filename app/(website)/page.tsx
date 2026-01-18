@@ -1,236 +1,138 @@
 import Link from "next/link"
-import { ArrowRight, PenLine, Smartphone, Layers, Cpu, Code2 } from "lucide-react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { EmptyState } from "@/components/empty-state"
-import { getPosts, getProjects } from "@/lib/content"
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
+import { getProjects, getPosts } from "@/lib/content"
 import { ProjectList } from "@/components/project-list"
-import { InteractiveShowcase } from "@/components/interactive-showcase"
+import { TechnicalSpotlight } from "@/components/technical-spotlight"
+import { ProfessionalCard } from "@/components/hero-professional-card"
+import { ArrowRight, BookOpen } from "lucide-react"
 
 export default async function Home() {
-  const isAdmin = false // Admin features are now handled via /admin directly or client-side
-
   const allProjects = await getProjects()
-  // Show all projects in scrollable view
-  const featuredProjects = allProjects
-
   const allPosts = await getPosts()
-  const recentPosts = (allPosts || [])
-    .sort((a, b) => new Date(b.date || "").getTime() - new Date(a.date || "").getTime())
+  const latestPosts = allPosts.slice(0, 2)
 
   return (
-    <div className="container mx-auto px-4 md:px-6">
-      {featuredProjects.slice(0, 2).map((project) => (
-        project.image && <link key={project.id} rel="preload" as="image" href={project.image} fetchPriority="high" />
-      ))}
-      {/* Recruiter-Focused Hero Section */}
-      <section className="pt-20 pb-16 md:pt-32 md:pb-24 border-b">
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          <div className="space-y-8">
-            <div className="space-y-4">
-              <h1 className="text-5xl md:text-7xl font-bold tracking-tighter">
-                Destu Cikal <br /> Ramdani
+    <div className="min-h-screen relative font-sans selection:bg-primary/20 selection:text-foreground">
+      
+      {/* Hero Section */}
+      <section className="relative px-4 md:px-6 pt-6 md:pt-10 pb-8 md:pb-12">
+        <div className="max-w-6xl mx-auto w-full grid lg:grid-cols-5 gap-8 items-start animate-fade-in">
+          
+          <div className="lg:col-span-3 space-y-10 pt-2">
+            <div className="space-y-6">
+              <h1 className="text-5xl md:text-6xl lg:text-8xl font-medium tracking-tight text-foreground leading-[1.05]">
+                Destu Cikal
               </h1>
-              <p className="text-xl text-primary font-bold uppercase tracking-widest">
-                iOS Engineer & Full-Stack Developer
+              <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-2xl leading-relaxed">
+                iOS Developer at Bullion International, building native apps with UIKit and SwiftUI.
               </p>
             </div>
-            <div className="flex wrap gap-3">
-              <Button asChild size="lg" className="rounded-full px-8 font-bold">
-                <Link href="/projects">View Case Studies</Link>
+
+            <div className="flex flex-col sm:flex-row gap-4">
+               <Button asChild className="rounded-full h-12 px-10 text-base shadow-sm w-full sm:w-auto">
+                <Link href="/projects">
+                  See my work
+                </Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="rounded-full px-8 font-bold">
-                <Link href="/blog">Read Engineering Blog</Link>
+              <Button asChild variant="outline" className="rounded-full h-12 px-10 text-base w-full sm:w-auto">
+                <Link href="https://linkedin.com/in/destucikal" target="_blank">
+                  Connect on LinkedIn
+                </Link>
               </Button>
             </div>
           </div>
 
-          <div className="lg:pt-4">
-            <p className="text-xl md:text-2xl text-foreground/90 leading-relaxed font-medium">
-              I build software that balances technical depth with intentional design. 
-              Currently specializing in native iOS engineering, on-device machine learning, and scalable systems in Go.
-            </p>
-            <div className="mt-10 grid grid-cols-2 gap-8 border-t pt-8">
-              <div>
-                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground mb-2">Availability</p>
-                <p className="text-sm font-semibold text-primary">Open to New Opportunities</p>
-              </div>
-              <div>
-                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground mb-2">Location</p>
-                <p className="text-sm font-semibold italic">Tangerang, Indonesia (GMT+7)</p>
-              </div>
-            </div>
-          </div>
+          <ProfessionalCard />
+
         </div>
       </section>
 
-      {/* Technical Core: Streamlined Competencies */}
-      <section className="py-20 md:py-32 border-b">
-        <div className="flex flex-col md:flex-row justify-between gap-16">
-          <div className="md:w-1/3 space-y-4">
-            <h2 className="text-3xl font-bold tracking-tight uppercase tracking-widest text-primary/80">Technical Core</h2>
-            <p className="text-muted-foreground leading-relaxed">
-              Core competencies developed through building high-performance mobile and web systems.
-            </p>
+      {/* Technical Spotlight */}
+      <section className="py-10 md:py-14 px-4 md:px-6 border-y border-border/40">
+        <div className="max-w-6xl mx-auto">
+          <TechnicalSpotlight projects={allProjects} />
+        </div>
+      </section>
+
+      {/* Selected Works */}
+      <section className="py-12 md:py-16 px-4 md:px-6">
+        <div className="max-w-6xl mx-auto space-y-6">
+          <div className="space-y-1">
+            <h2 className="text-xl md:text-2xl font-serif font-medium tracking-tight">Selected Works</h2>
+            <p className="text-muted-foreground text-sm md:text-base">iOS apps, web projects, and ML experiments.</p>
           </div>
           
-          <div className="md:w-2/3 space-y-10">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-10">
-              <div className="space-y-3">
-                <div className="flex items-center gap-3">
-                  <Smartphone className="h-5 w-5 text-primary" />
-                  <h3 className="font-bold text-lg">iOS Engineering</h3>
-                </div>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  SwiftUI, UIKit, AudioKit, SwiftData, Core Location, AVFoundation, GCD/Concurrency.
-                </p>
-              </div>
+          <ProjectList projects={allProjects} limit={3} />
+        </div>
+      </section>
 
-              <div className="space-y-3">
-                <div className="flex items-center gap-3">
-                  <Layers className="h-5 w-5 text-primary" />
-                  <h3 className="font-bold text-lg">Full-Stack Systems</h3>
-                </div>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Go 1.24 (Gin, GORM), PostgreSQL, TypeScript, React, Next.js, Docker, RESTful APIs.
-                </p>
-              </div>
+      {/* Blog / Writing */}
+      <section className="relative py-16 md:py-24 px-4 md:px-6 overflow-hidden">
+        {/* Fluid Background Pattern - Neutral */}
+        <div className="absolute inset-0 -z-10 opacity-[0.02] dark:opacity-[0.04] pointer-events-none">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="fluid-pattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                <path d="M0 50 Q 25 0 50 50 T 100 50" fill="none" stroke="currentColor" strokeWidth="1" />
+                <path d="M0 70 Q 25 20 50 70 T 100 70" opacity="0.3" fill="none" stroke="currentColor" strokeWidth="0.5" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#fluid-pattern)" />
+          </svg>
+        </div>
 
-              <div className="space-y-3">
-                <div className="flex items-center gap-3">
-                  <Cpu className="h-5 w-5 text-primary" />
-                  <h3 className="font-bold text-lg">On-Device AI/ML</h3>
-                </div>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Create ML, Vision Framework, Accelerate (FFT), Gesture Recognition, Core ML optimization.
-                </p>
-              </div>
-
-              <div className="space-y-3">
-                <div className="flex items-center gap-3">
-                  <Code2 className="h-5 w-5 text-primary" />
-                  <h3 className="font-bold text-lg">Technical Leadership</h3>
-                </div>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Technical Roadmapping, UX Research, Metric Definition, Architectural Post-Mortems.
-                </p>
-              </div>
+        <div className="max-w-6xl mx-auto space-y-12">
+          <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6">
+            <div className="space-y-3">
+              <h2 className="text-2xl md:text-3xl font-serif font-medium tracking-tight text-foreground">Writing</h2>
+              <p className="text-muted-foreground text-base md:text-lg leading-relaxed max-w-xl">
+                Deep dives into engineering challenges and software philosophy.
+              </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Technical Spotlight: Interactive Deep Dive */}
-      <section className="py-20 md:py-32 border-b">
-        <div className="space-y-4 mb-12">
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight">Technical Spotlight</h2>
-          <p className="text-muted-foreground max-w-2xl text-lg">
-            Interact with my core technical contributions. Choose a domain to see on-device execution, architectural summaries, and platform-specific implementations.
-          </p>
-        </div>
-        
-        <InteractiveShowcase projects={featuredProjects} />
-      </section>
-
-      {/* Project Directory: Full Catalog */}
-      <section className="py-20 md:py-32 border-b">
-        <div className="flex items-end justify-between mb-12 px-1">
-          <div className="space-y-4">
-            <h2 className="text-3xl font-bold tracking-tight uppercase tracking-widest text-primary/80">Project Directory</h2>
-            <p className="text-muted-foreground max-w-md">Comprehensive catalog of engineering projects and case studies.</p>
-          </div>
-          <Button asChild variant="ghost" className="hidden md:flex items-center gap-2 group font-bold tracking-tight">
-            <Link href="/projects">
-              Full Portfolio <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </Button>
-        </div>
-
-        <ProjectList projects={featuredProjects} isAdmin={isAdmin} layout="scroll" />
-      </section>
-
-      {/* Engineering Insights Section: Scrollable */}
-      <section className="py-20 md:py-32">
-        <div className="space-y-12">
-          <div className="space-y-4 px-1">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight italic font-serif">Engineering Insights</h2>
-            <p className="text-muted-foreground leading-relaxed max-w-2xl">
-              Technical post-mortems and deep dives into iOS architecture, concurrency, and performance optimization.
-            </p>
+            <Button asChild variant="ghost" className="rounded-full group pr-2">
+              <Link href="/blog">
+                View all posts <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </Button>
           </div>
 
-          <div className="relative">
-             {recentPosts.length > 0 ? (
-                <ScrollArea className="w-full whitespace-nowrap -mx-4 md:-mx-6">
-                  <div className="flex w-max space-x-6 md:space-x-8 px-4 md:px-6 py-1">
-                    {recentPosts.map((post) => (
-                      <article key={post.slug} className="group w-[300px] md:w-[350px] shrink-0 whitespace-normal select-none">
-                        <Link href={`/blog/${post.slug}`} className="flex flex-col gap-3 h-full">
-                          <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground/60 uppercase tracking-wider">
-                            <time>{new Date(post.date || "").toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</time>
-                            {post.tags && post.tags.length > 0 && (
-                              <>
-                                <span>•</span>
-                                <span className="text-foreground/80">{post.tags[0]}</span>
-                              </>
-                            )}
-                          </div>
-                          
-                          <div className="space-y-3">
-                            <h3 className="text-2xl font-bold leading-tight group-hover:text-primary transition-colors">
-                              {post.title}
-                            </h3>
-                            <p className="text-muted-foreground text-base leading-relaxed line-clamp-3">
-                              {post.excerpt}
-                            </p>
-                          </div>
-
-                          <div className="pt-2">
-                            <span className="text-sm font-semibold underline decoration-border underline-offset-4 group-hover:decoration-primary group-hover:text-primary transition-all">
-                              Read story
-                            </span>
-                          </div>
-                        </Link>
-                      </article>
-                    ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+            {latestPosts.map((post) => (
+              <Link 
+                key={post.slug} 
+                href={`/blog/${post.slug}`}
+                className="group flex flex-col space-y-4 p-6 rounded-3xl transition-all hover:bg-secondary/50 border border-transparent hover:border-border/50"
+              >
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-primary/60">
+                    <BookOpen className="w-3 h-3" />
+                    <span>Engineering Log</span>
                   </div>
-                  <ScrollBar orientation="horizontal" />
-                </ScrollArea>
-            ) : (
-              <EmptyState
-                icon={PenLine}
-                title="No posts yet"
-                description="I'm working on some new articles about iOS development."
-                actionLabel={isAdmin ? "New Post" : undefined}
-                actionHref={isAdmin ? "/admin" : undefined}
-              />
-            )}
+                  <h3 className="text-xl md:text-2xl font-semibold text-foreground group-hover:text-primary transition-colors leading-tight">
+                    {post.title}
+                  </h3>
+                </div>
+                <p className="text-sm md:text-base text-muted-foreground leading-relaxed line-clamp-2">
+                  {post.excerpt}
+                </p>
+                <div className="pt-2 flex items-center text-xs font-bold text-primary opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0">
+                  Read article <ArrowRight className="ml-1.5 w-3.5 h-3.5" />
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Recruiter-Focused CTA */}
-      <section className="py-20 md:py-32 mb-12 rounded-[2rem] bg-zinc-950 text-white p-12 overflow-hidden relative">
-        <div className="relative z-10 space-y-8 max-w-2xl">
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter leading-tight">
-            Building something <br /> ambitious?
-          </h2>
-          <p className="text-xl text-zinc-400 font-medium">
-            I’m looking for my next challenge in iOS engineering or technical product management. 
-            If you value an engineer who thinks about the product as much as the code, I’d love to connect.
-          </p>
-          <div className="flex flex-wrap gap-4 pt-4">
-            <Button asChild size="lg" className="rounded-full px-8 font-bold bg-white text-black hover:bg-zinc-200 transition-colors">
-              <a href="mailto:destucr@gmail.com">Contact Me</a>
-            </Button>
-            <Button asChild size="lg" className="rounded-full px-8 font-bold border border-white/20 bg-transparent text-white hover:bg-white hover:text-black transition-colors">
-              <a href="https://linkedin.com/in/destucikal" target="_blank" rel="noreferrer">LinkedIn</a>
-            </Button>
-          </div>
+      {/* Footer */}
+      <footer className="py-10 md:py-12 px-4 md:px-6 border-t border-border/40">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+          
         </div>
-        {/* Abstract Background Element */}
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-br from-primary/20 to-transparent opacity-50 pointer-events-none" />
-      </section>
+      </footer>
+
     </div>
   )
 }
+

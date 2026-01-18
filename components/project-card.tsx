@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowUpRight } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 interface ProjectCardProps {
   project: {
@@ -19,62 +19,53 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project, priority }: ProjectCardProps) {
+  const isMobile = project.tags?.some(tag => 
+    ['ios', 'mobile', 'machine learning', 'create ml'].includes(tag.toLowerCase())
+  )
+
   return (
-    <div className="group flex flex-col space-y-4">
-      {/* Image: Container with fixed aspect ratio and clean reveal */}
+    <div className="group flex flex-col space-y-3">
+      {/* Image: Smaller, cleaner */}
       <Link
         href={`/projects/${project.slug}`}
-        className="block relative aspect-[16/10] overflow-hidden rounded-xl bg-muted border transition-colors group-hover:border-primary/20"
+        className="block relative aspect-[16/9] overflow-hidden rounded-lg bg-muted border border-border/40"
       >
         {project.image ? (
           <Image
             src={project.image}
             alt={project.title}
             fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            className="object-cover object-top transition-all duration-500 ease-out group-hover:scale-[1.02]"
             priority={priority}
           />
         ) : (
-          <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
-            <span className="text-xs">No image available</span>
+          <div className="absolute inset-0 flex items-center justify-center bg-muted text-muted-foreground">
+            <span className="text-xs uppercase tracking-widest font-medium opacity-50">No Preview</span>
           </div>
         )}
       </Link>
 
-      {/* Info: Direct and well-spaced */}
-      <div className="space-y-3">
-        <div className="flex flex-wrap gap-1.5">
-          {(project.tags || []).slice(0, 4).map((tag) => (
-            <span key={tag} className="px-2 py-0.5 rounded-full bg-muted border text-[9px] font-bold uppercase tracking-wider text-muted-foreground/80">
+      {/* Info: Compact */}
+      <div className="space-y-1.5">
+        <div className="flex flex-wrap items-center gap-1.5 text-[10px] font-medium tracking-wide uppercase text-muted-foreground/70">
+          {(project.tags || []).slice(0, 2).map((tag, i) => (
+            <span key={tag} className="flex items-center">
               {tag}
+              {i < (project.tags || []).slice(0, 2).length - 1 && (
+                <span className="mx-1.5 opacity-30">•</span>
+              )}
             </span>
           ))}
         </div>
 
-        <div className="space-y-1.5">
-          <h3 className="text-lg font-bold leading-none tracking-tight group-hover:text-primary transition-colors">
-            <Link href={`/projects/${project.slug}`} className="flex items-center gap-1">
-              {project.title}
-              <ArrowUpRight className="h-3 w-3 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
-            </Link>
-          </h3>
-          <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
-            {project.description}
-          </p>
-        </div>
-
-        {project.demoUrl && (
-          <div className="pt-2">
-            <Link
-              href={project.demoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[10px] font-bold uppercase tracking-widest text-primary flex items-center gap-1 hover:underline"
-            >
-              Live Demo <ArrowUpRight className="h-3 w-3" />
-            </Link>
-          </div>
-        )}
+        <h3 className="text-base md:text-lg font-medium leading-tight text-foreground group-hover:text-foreground/70 transition-colors">
+          <Link href={`/projects/${project.slug}`}>
+            {project.title}
+          </Link>
+        </h3>
+        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
+          {project.description}
+        </p>
       </div>
     </div>
   )

@@ -12,10 +12,9 @@ import Link from "next/link"
 import Image from "next/image"
 import { ChevronLeft, Github, ExternalLink, Code2, Layers, Smartphone, Monitor } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 import Markdoc from "@markdoc/markdoc"
 import React from "react"
-
-import { ProjectShowcase } from "@/components/project-showcase"
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -78,23 +77,23 @@ export default async function ProjectPage({ params }: PageProps) {
       {project.image && (
         <link rel="preload" as="image" href={project.image} fetchPriority="high" />
       )}
-      <nav className="border-b sticky top-14 bg-background/80 backdrop-blur-md z-40">
-        <div className="container mx-auto px-4 h-14 flex items-center justify-between">
-          <Button asChild variant="ghost" size="sm" className="-ml-2 text-muted-foreground">
+      <nav className="border-b sticky top-0 bg-background/80 backdrop-blur-md z-40 transition-all duration-300">
+        <div className="container mx-auto px-6 h-16 flex items-center justify-between">
+          <Button asChild variant="ghost" size="sm" className="-ml-2 text-muted-foreground hover:text-foreground">
             <Link href="/projects">
-              <ChevronLeft className="mr-1 h-4 w-4" /> Back
+              <ChevronLeft className="mr-1 h-4 w-4" /> Back to Works
             </Link>
           </Button>
           <div className="flex gap-3">
             {project.githubUrl && (
-              <Button asChild variant="outline" size="sm">
+              <Button asChild variant="outline" size="sm" className="rounded-full">
                 <Link href={project.githubUrl} target="_blank">
                   <Github className="mr-2 h-4 w-4" /> Code
                 </Link>
               </Button>
             )}
             {project.appStoreUrl && (
-              <Button asChild size="sm">
+              <Button asChild size="sm" className="rounded-full">
                 <Link href={project.appStoreUrl} target="_blank">
                   <ExternalLink className="mr-2 h-4 w-4" /> App Store
                 </Link>
@@ -104,28 +103,38 @@ export default async function ProjectPage({ params }: PageProps) {
         </div>
       </nav>
 
-      <div className="container mx-auto px-4 py-12 md:py-20">
+      <div className="container mx-auto px-6 py-12 md:py-20">
         <div className="max-w-4xl mx-auto space-y-16">
-          {/* Header */}
-          <header className="space-y-8">
+          {/* Header - Centered & Elegant */}
+          <header className="space-y-8 text-center max-w-2xl mx-auto">
             <div className="space-y-4">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">Project Story</p>
-              <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight">
+              <div className="text-xs font-medium uppercase tracking-widest text-muted-foreground">Project Case Study</div>
+              <h1 className="text-4xl md:text-5xl font-serif font-medium tracking-tight text-foreground">
                 {project.title || 'Untitled Project'}
               </h1>
             </div>
 
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap justify-center gap-2">
               {Array.isArray(project.tags) && project.tags.map((tag: string) => (
-                <span key={tag} className="px-3 py-1 rounded-md bg-muted border text-xs font-bold text-muted-foreground uppercase tracking-wider">
+                <span key={tag} className="px-3 py-1 rounded-full bg-secondary text-secondary-foreground text-xs font-medium tracking-wide">
                   {tag}
                 </span>
               ))}
             </div>
           </header>
 
-          {/* Hero Image / Project Showcase */}
-          <ProjectShowcase project={project} />
+          {/* Hero Image - Simple & Clean */}
+          {project.image && (
+            <div className="rounded-2xl overflow-hidden shadow-sm border border-border/40 aspect-video relative bg-muted">
+               <Image
+                 src={project.image}
+                 alt={project.title}
+                 fill
+                 className="object-cover object-top"
+                 priority
+               />
+            </div>
+          )}
 
           {/* Video Demo Section */}
           {project.videoUrl && !project.demoUrl && (
@@ -215,18 +224,22 @@ export default async function ProjectPage({ params }: PageProps) {
             </aside>
 
             {/* Main Content Area */}
-            <div className="md:col-span-2 space-y-12">
+            <div className="md:col-span-2 space-y-16">
               <section className="space-y-6">
                 <h3 className="text-[10px] font-bold uppercase tracking-widest text-primary flex items-center gap-2">
-                  <Layers className="h-4 w-4" /> What is it?
+                  <Layers className="h-4 w-4" /> Overview
                 </h3>
                 <p className="text-xl md:text-2xl text-foreground font-medium leading-relaxed tracking-tight">
                   {project.description}
                 </p>
               </section>
 
-              <section className="space-y-8 prose dark:prose-invert max-w-none prose-h4:text-2xl prose-h4:font-bold prose-h4:tracking-tight prose-p:text-muted-foreground prose-p:text-[17px] prose-li:text-muted-foreground prose-li:text-[17px]">
-                <h3 className="text-[10px] font-bold uppercase tracking-widest text-primary not-prose mb-6">How I built it</h3>
+              <section className="prose dark:prose-invert max-w-none 
+                prose-headings:font-serif prose-headings:font-medium prose-headings:tracking-tight
+                prose-h4:text-2xl prose-h4:mt-12 prose-h4:mb-6
+                prose-p:text-muted-foreground prose-p:text-[17px] prose-p:leading-relaxed
+                prose-li:text-muted-foreground prose-li:text-[17px] prose-li:my-2
+                prose-strong:text-foreground prose-strong:font-bold">
                 {project.details && typeof project.details === 'string' ? (
                   /* Handle raw Markdoc string (Static mode) */
                   Markdoc.renderers.react(
