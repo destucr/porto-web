@@ -224,18 +224,22 @@ export default async function ProjectPage({ params }: PageProps) {
             </aside>
 
             {/* Main Content Area */}
-            <div className="md:col-span-2 space-y-12">
+            <div className="md:col-span-2 space-y-16">
               <section className="space-y-6">
                 <h3 className="text-[10px] font-bold uppercase tracking-widest text-primary flex items-center gap-2">
-                  <Layers className="h-4 w-4" /> What is it?
+                  <Layers className="h-4 w-4" /> Overview
                 </h3>
                 <p className="text-xl md:text-2xl text-foreground font-medium leading-relaxed tracking-tight">
                   {project.description}
                 </p>
               </section>
 
-              <section className="space-y-8 prose dark:prose-invert max-w-none prose-h4:text-2xl prose-h4:font-bold prose-h4:tracking-tight prose-p:text-muted-foreground prose-p:text-[17px] prose-li:text-muted-foreground prose-li:text-[17px]">
-                <h3 className="text-[10px] font-bold uppercase tracking-widest text-primary not-prose mb-6">How I built it</h3>
+              <section className="prose dark:prose-invert max-w-none 
+                prose-headings:font-serif prose-headings:font-medium prose-headings:tracking-tight
+                prose-h4:text-2xl prose-h4:mt-12 prose-h4:mb-6
+                prose-p:text-muted-foreground prose-p:text-[17px] prose-p:leading-relaxed
+                prose-li:text-muted-foreground prose-li:text-[17px] prose-li:my-2
+                prose-strong:text-foreground prose-strong:font-bold">
                 {project.details && typeof project.details === 'string' ? (
                   /* Handle raw Markdoc string (Static mode) */
                   Markdoc.renderers.react(
