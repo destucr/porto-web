@@ -130,9 +130,7 @@ export default async function ProjectPage({ params }: PageProps) {
                  src={project.image}
                  alt={project.title}
                  fill
-                 className={cn(
-                   isMobile && !isLandscape ? "object-contain p-4" : "object-cover object-top"
-                 )}
+                 className="object-cover object-top"
                  priority
                />
             </div>

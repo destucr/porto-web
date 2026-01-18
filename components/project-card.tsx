@@ -35,10 +35,7 @@ export function ProjectCard({ project, priority }: ProjectCardProps) {
             src={project.image}
             alt={project.title}
             fill
-            className={cn(
-              "transition-all duration-500 ease-out group-hover:scale-[1.02]",
-              isMobile ? "object-contain p-2" : "object-cover object-top"
-            )}
+            className="object-cover object-top transition-all duration-500 ease-out group-hover:scale-[1.02]"
             priority={priority}
           />
         ) : (
