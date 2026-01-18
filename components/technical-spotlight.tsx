@@ -156,11 +156,11 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
                         {showVideo ? (
                           <video 
                             src={activeProject.videoUrl} 
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-cover object-top"
                             autoPlay muted loop playsInline poster={activeProject.image}
                           />
                         ) : (
-                          <Image src={activeProject.image} alt={activeProject.title} fill className="object-cover" />
+                          <Image src={activeProject.image} alt={activeProject.title} fill className="object-cover object-top" />
                         )}
                         <Link href={`/projects/${activeProject.slug}`} className="absolute inset-0 z-20" />
                       </div>
@@ -206,11 +206,11 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
                       {showVideo ? (
                         <video 
                           src={activeProject.videoUrl} 
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover object-top"
                           autoPlay muted loop playsInline poster={activeProject.image}
                         />
                       ) : (
-                        <Image src={activeProject.image} alt={activeProject.title} fill className="object-cover" />
+                        <Image src={activeProject.image} alt={activeProject.title} fill className="object-cover object-top" />
                       )}
                       <Link href={`/projects/${activeProject.slug}`} className="absolute inset-0 z-10" />
                     </>

@@ -12,6 +12,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { ChevronLeft, Github, ExternalLink, Code2, Layers, Smartphone, Monitor } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 import Markdoc from "@markdoc/markdoc"
 import React from "react"
 
@@ -129,7 +130,9 @@ export default async function ProjectPage({ params }: PageProps) {
                  src={project.image}
                  alt={project.title}
                  fill
-                 className="object-cover"
+                 className={cn(
+                   isMobile && !isLandscape ? "object-contain p-4" : "object-cover object-top"
+                 )}
                  priority
                />
             </div>

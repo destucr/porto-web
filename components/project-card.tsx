@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
+import { cn } from "@/lib/utils"
 
 interface ProjectCardProps {
   project: {
@@ -18,19 +19,26 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project, priority }: ProjectCardProps) {
+  const isMobile = project.tags?.some(tag => 
+    ['ios', 'mobile', 'machine learning', 'create ml'].includes(tag.toLowerCase())
+  )
+
   return (
     <div className="group flex flex-col space-y-3">
       {/* Image: Smaller, cleaner */}
       <Link
         href={`/projects/${project.slug}`}
-        className="block relative aspect-[16/9] overflow-hidden rounded-lg bg-muted"
+        className="block relative aspect-[16/9] overflow-hidden rounded-lg bg-muted border border-border/40"
       >
         {project.image ? (
           <Image
             src={project.image}
             alt={project.title}
             fill
-            className="object-cover transition-all duration-500 ease-out group-hover:scale-[1.02]"
+            className={cn(
+              "transition-all duration-500 ease-out group-hover:scale-[1.02]",
+              isMobile ? "object-contain p-2" : "object-cover object-top"
+            )}
             priority={priority}
           />
         ) : (
