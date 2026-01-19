@@ -73,6 +73,13 @@ function SpotlightVideo({ src, isActive }: { src: string, isActive: boolean }) {
     }
   }, [isActive])
 
+  // Safety timeout: If video event doesn't fire (e.g. cached or minimal buffering),
+  // force show video after a short delay so user isn't stuck with skeleton.
+  React.useEffect(() => {
+    const timer = setTimeout(() => setIsLoaded(true), 2500)
+    return () => clearTimeout(timer)
+  }, [])
+
   return (
     <div className="relative w-full h-full">
       {!isLoaded && <Skeleton className="absolute inset-0 w-full h-full rounded-none" />}
@@ -83,9 +90,9 @@ function SpotlightVideo({ src, isActive }: { src: string, isActive: boolean }) {
         muted 
         loop 
         playsInline 
-        // poster={poster} // Removed poster to use shimmer instead
         preload="auto"
         onLoadedData={() => setIsLoaded(true)}
+        onCanPlay={() => setIsLoaded(true)}
       />
     </div>
   )
@@ -93,6 +100,12 @@ function SpotlightVideo({ src, isActive }: { src: string, isActive: boolean }) {
 
 function IframeWrapper({ url, title, isActive }: { url: string, title: string, isActive: boolean }) {
   const [isLoaded, setIsLoaded] = React.useState(false)
+
+  // Safety timeout for iframe as well
+  React.useEffect(() => {
+    const timer = setTimeout(() => setIsLoaded(true), 3000)
+    return () => clearTimeout(timer)
+  }, [])
 
   return (
     <>
