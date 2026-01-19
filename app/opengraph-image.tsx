@@ -75,7 +75,7 @@ export default async function Image() {
             color: '#444',
           }}
         >
-          destucikal.dev
+          destucr.dev
         </div>
       </div>
     ),

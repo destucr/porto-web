@@ -98,7 +98,7 @@ I desire to build tools that feel "inevitable"—apps that are so refined and te
 
 ### 📬 Connection
 *   **Portfolio:** [porto-web.destucr.workers.dev](https://porto-web.destucr.workers.dev/)
-*   **LinkedIn:** [linkedin.com/in/destucikal](https://linkedin.com/in/destucikal)
+*   **LinkedIn:** [linkedin.com/in/destucr](https://linkedin.com/in/destucr)
 *   **Email:** destucr@gmail.com
 
 *"Build with intent, or don't build at all."*
