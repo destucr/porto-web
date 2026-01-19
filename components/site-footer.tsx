@@ -8,7 +8,7 @@ export function SiteFooter() {
         <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
           Built by{" "}
           <a
-            href="https://linkedin.com/in/destucr"
+            href="https://linkedin.com/in/destucikal"
             target="_blank"
             rel="noreferrer"
             className="font-medium underline underline-offset-4"
@@ -25,7 +25,7 @@ export function SiteFooter() {
                  <Github className="h-5 w-5" />
                  <span className="sr-only">GitHub</span>
              </Link>
-             <Link href="https://linkedin.com/in/destucr" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground">
+             <Link href="https://linkedin.com/in/destucikal" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground">
                  <Linkedin className="h-5 w-5" />
                  <span className="sr-only">LinkedIn</span>
              </Link>

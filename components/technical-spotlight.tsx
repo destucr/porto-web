@@ -7,6 +7,7 @@ import Link from "next/link"
 import { ArrowRight, Smartphone, Globe, Cpu, Gamepad2 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import { Skeleton } from "@/components/ui/skeleton"
 
 interface Project {
   id: string
@@ -51,14 +52,6 @@ const CATEGORIES = [
   },
 ]
 
-function Shimmer({ className }: { className?: string }) {
-  return (
-    <div className={cn("absolute inset-0 bg-neutral-100 overflow-hidden", className)}>
-      <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-neutral-200/50 to-transparent" />
-    </div>
-  )
-}
-
 function SpotlightVideo({ src, isActive }: { src: string, isActive: boolean }) {
   const videoRef = React.useRef<HTMLVideoElement>(null)
   const [isLoaded, setIsLoaded] = React.useState(false)
@@ -82,7 +75,7 @@ function SpotlightVideo({ src, isActive }: { src: string, isActive: boolean }) {
 
   return (
     <div className="relative w-full h-full">
-      {!isLoaded && <Shimmer />}
+      {!isLoaded && <Skeleton className="absolute inset-0 w-full h-full rounded-none" />}
       <video 
         ref={videoRef}
         src={src} 
@@ -103,7 +96,7 @@ function IframeWrapper({ url, title, isActive }: { url: string, title: string, i
 
   return (
     <>
-      {!isLoaded && <Shimmer />}
+      {!isLoaded && <Skeleton className="absolute inset-0 w-full h-full rounded-none" />}
       <iframe 
         src={url} 
         className={cn(

@@ -35,7 +35,7 @@ export default async function Home() {
                 </Link>
               </Button>
               <Button asChild variant="outline" className="rounded-full h-12 px-10 text-base w-full sm:w-auto">
-                <Link href="https://linkedin.com/in/destucr" target="_blank">
+                <Link href="https://linkedin.com/in/destucikal" target="_blank">
                   Connect on LinkedIn
                 </Link>
               </Button>
