@@ -54,7 +54,7 @@ const CATEGORIES = [
 export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
   const [activeTab, setActiveTab] = React.useState(CATEGORIES[0].id)
   const containerRef = React.useRef(null)
-  const isInView = useInView(containerRef, { once: true, margin: "200px" })
+  const isInView = useInView(containerRef, { once: false, margin: "-10% 0px -10% 0px" })
 
   const activeCategory = CATEGORIES.find(c => c.id === activeTab)
   
@@ -162,7 +162,6 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
                               src={activeProject.videoUrl} 
                               className="w-full h-full object-cover object-top"
                               autoPlay muted loop playsInline poster={activeProject.image}
-                              preload="none"
                             />
                           ) : (
                             <Image src={activeProject.image} alt={activeProject.title} fill className="object-cover object-top" />
@@ -203,6 +202,7 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
                           className="absolute top-0 left-0 w-[140%] h-[140%] origin-top-left scale-[0.714] border-0"
                           title={`${activeProject.title} Demo`}
                           loading="lazy"
+                          sandbox="allow-scripts allow-same-origin"
                         />
                       </div>
                     </div>
@@ -217,7 +217,6 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
                             src={activeProject.videoUrl} 
                             className="w-full h-full object-cover object-top"
                             autoPlay muted loop playsInline poster={activeProject.image}
-                            preload="none"
                           />
                         ) : (
                           <Image src={activeProject.image} alt={activeProject.title} fill className="object-cover object-top" />
