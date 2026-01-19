@@ -7,6 +7,7 @@ import Link from "next/link"
 import { ArrowRight, Smartphone, Globe, Cpu, Gamepad2 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import { Skeleton } from "@/components/ui/skeleton"
 
 interface Project {
   id: string
@@ -51,13 +52,19 @@ const CATEGORIES = [
   },
 ]
 
-function SpotlightVideo({ src, poster, isActive }: { src: string, poster: string, isActive: boolean }) {
+function SpotlightVideo({ src, isActive }: { src: string, isActive: boolean }) {
   const videoRef = React.useRef<HTMLVideoElement>(null)
+  const [isLoaded, setIsLoaded] = React.useState(false)
 
   React.useEffect(() => {
     const video = videoRef.current
     if (!video) return
     
+    // Check if video is already ready (e.g. from cache)
+    if (video.readyState >= 3) {
+      setIsLoaded(true)
+    }
+
     if (isActive) {
       // Small delay to ensure the transition has started
       const timer = setTimeout(() => {
@@ -72,16 +79,48 @@ function SpotlightVideo({ src, poster, isActive }: { src: string, poster: string
   }, [isActive])
 
   return (
-    <video 
-      ref={videoRef}
-      src={src} 
-      className="w-full h-full object-cover object-top"
-      muted 
-      loop 
-      playsInline 
-      poster={poster}
-      preload="auto"
-    />
+    <div className="relative w-full h-full">
+      {!isLoaded && <Skeleton className="absolute inset-0 w-full h-full rounded-none" />}
+      <video 
+        ref={videoRef}
+        src={src} 
+        className={cn("w-full h-full object-cover object-top transition-opacity duration-500", isLoaded ? "opacity-100" : "opacity-0")}
+        muted 
+        loop 
+        playsInline 
+        preload="auto"
+        onLoadedData={() => setIsLoaded(true)}
+        onCanPlay={() => setIsLoaded(true)}
+      />
+    </div>
+  )
+}
+
+function IframeWrapper({ url, title, isActive }: { url: string, title: string, isActive: boolean }) {
+  const [isLoaded, setIsLoaded] = React.useState(false)
+
+  // Safety timeout: Iframe events can sometimes be unreliable. 
+  // 1.5s is a reasonable max wait time for the skeleton before showing content.
+  React.useEffect(() => {
+    const timer = setTimeout(() => setIsLoaded(true), 1500)
+    return () => clearTimeout(timer)
+  }, [])
+
+  return (
+    <>
+      {!isLoaded && <Skeleton className="absolute inset-0 w-full h-full rounded-none" />}
+      <iframe 
+        src={url} 
+        className={cn(
+          "absolute top-0 left-0 w-[140%] h-[140%] origin-top-left scale-[0.714] border-0 transition-opacity duration-500",
+          isActive && isLoaded ? "opacity-100" : "opacity-0 pointer-events-none"
+        )}
+        title={`${title} Demo`}
+        loading="lazy"
+        sandbox="allow-scripts allow-same-origin"
+        onLoad={() => setIsLoaded(true)}
+      />
+    </>
   )
 }
 
@@ -203,7 +242,6 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
                             {showVideo ? (
                               <SpotlightVideo 
                                 src={project.videoUrl!}
-                                poster={project.image} 
                                 isActive={isActive} 
                               />
                             ) : (
@@ -238,16 +276,11 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
                           </div>
                           <div className="flex-1 relative overflow-hidden bg-white">
                              {/* Keep iframe in DOM once active to prevent reload */}
-                             <iframe 
-                              src={project.demoUrl} 
-                              className={cn(
-                                "absolute top-0 left-0 w-[140%] h-[140%] origin-top-left scale-[0.714] border-0 transition-opacity duration-500",
-                                isActive ? "opacity-100" : "opacity-0 pointer-events-none"
-                              )}
-                              title={`${project.title} Demo`}
-                              loading="lazy"
-                              sandbox="allow-scripts allow-same-origin"
-                            />
+                             <IframeWrapper 
+                               url={project.demoUrl!} 
+                               title={project.title} 
+                               isActive={isActive} 
+                             />
                           </div>
                         </div>
                       )}
@@ -258,7 +291,6 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
                           {showVideo ? (
                             <SpotlightVideo 
                               src={project.videoUrl!}
-                              poster={project.image} 
                               isActive={isActive} 
                             />
                           ) : (
@@ -295,7 +327,7 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
                       
                       {showIframe && (
                         <p className="text-sm font-medium text-primary bg-primary/5 border border-primary/10 rounded-2xl px-4 py-3 inline-block animate-fade-in">
-                          ✨ Go ahead, give it a spin—it&apos;s a fully functional live demo!
+                          ✨ Go ahead, try it out—this is the real app running live.
                         </p>
                       )}
                     </div>

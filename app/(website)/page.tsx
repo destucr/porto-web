@@ -24,7 +24,7 @@ export default async function Home() {
                 Destu Cikal
               </h1>
               <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-2xl leading-relaxed">
-                iOS Developer at Bullion International, building native apps with UIKit and SwiftUI.
+                iOS Developer at Bullion Ecosystem International, building native apps with UIKit and SwiftUI.
               </p>
             </div>
 

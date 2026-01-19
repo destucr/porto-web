@@ -16,8 +16,25 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "iOS & Full-stack Developer Portfolio",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://porto-web.destucr.workers.dev"),
+  title: {
+    default: "Destu Cikal | iOS & Full-stack Developer",
+    template: "%s | Destu Cikal",
+  },
   description: "Technical portfolio showcasing native iOS engineering, full-stack systems, and machine learning projects.",
+  openGraph: {
+    title: "Destu Cikal | iOS & Full-stack Developer",
+    description: "Technical portfolio showcasing native iOS engineering, full-stack systems, and machine learning projects.",
+    url: "./",
+    siteName: "Destu Cikal Portfolio",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Destu Cikal | iOS & Full-stack Developer",
+    description: "Technical portfolio showcasing native iOS engineering, full-stack systems, and machine learning projects.",
+  },
 };
 
 export default function RootLayout({

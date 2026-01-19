@@ -6,7 +6,7 @@ export const projects = [
     description: "An iOS app using AirPods and AVFoundation to create an intimate bonding experience for expecting parents.",
     image: "/images/tiny-thumbnail.webp",
     tags: ["iOS", "AudioKit", "AVFoundation", "Accelerate", "SwiftUI", "Firebase"],
-    githubUrl: "https://github.com/destucikal",
+    githubUrl: "https://github.com/destucr",
     appStoreUrl: "https://tinymiracle.life",
     details: `#### What it does
 Tiny is an iOS app designed to create an intimate bonding experience for expecting parents. Using your iPhone"""s microphone and AirPods, parents can listen to sounds from the womb while watching a beautiful, reactive "Orb" visualization that responds to audio input. The app includes an interactive pregnancy timeline and the ability to record and privately share these special moments with family through secure, code-protected rooms.
@@ -45,7 +45,7 @@ The biggest challenge was creating an immersive audio experience that felt authe
     description: "A native iOS app teaching Indonesian Sign Language (BISINDO) through real-time gesture recognition.",
     image: "/images/telly-thumbnail.webp",
     tags: ["iOS", "SwiftUI", "Create ML", "SwiftData"],
-    githubUrl: "https://github.com/destucikal",
+    githubUrl: "https://github.com/destucr",
     appStoreUrl: "",
     details: `#### What it does
 Users learn BISINDO signs by watching demonstrations, then practicing with their device"""s camera. The app uses on-device machine learning to verify their hand shapes and provide instant feedback.
@@ -78,7 +78,7 @@ Balancing model accuracy with file size was tricky since the entire model ships 
     description: "Running tracker app using SwiftUI, MapKit, and Core Location for real-time metrics and route visualization.",
     image: "/images/solari-thumbnail.webp",
     tags: ["iOS", "SwiftUI", "MapKit", "Core Location", "SwiftData"],
-    githubUrl: "https://github.com/destucikal",
+    githubUrl: "https://github.com/destucr",
     appStoreUrl: "",
     details: `#### Tracking & Spatial Data
 Developed a comprehensive running tracker that prioritizes accuracy and real-time user feedback.
@@ -167,7 +167,7 @@ The hardest part was designing the CMS interface to display high-density transit
     description: "Led cross-functional teams to improve the post-purchase experience for a consumer snorkeling app.",
     image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=1000",
     tags: ["Product Management", "UX Research", "Metric Definition"],
-    githubUrl: "https://github.com/destucikal",
+    githubUrl: "https://github.com/destucr",
     appStoreUrl: "",
     details: "#### Product Strategy & Leadership\nLed a cross-functional squad to redefine the post-purchase experience, focusing on user retention and satisfaction. The goal was to bridge the gap between booking a tour and the actual physical experience on the water.\n\n- Cross-Functional Leadership: Managed a team of 7 stakeholders across design, engineering, and operations to deliver an initial end-to-end solution.\n- Decision Frameworks: Employed effort-impact matrices to evaluate potential solutions and prioritize features for the MVP, ensuring we hit our deadline for the high season.\n- Concept Validation: Conducted structured user interviews to test concepts and gather qualitative feedback before full implementation.\n\n#### Requirements Engineering\n- Definition & QA: Authored comprehensive epics, user stories, and test cases covering both positive and edge-case negative flows to ensure product quality.\n- Iterative Feedback: Implemented a feedback loop where tour operators could report issues directly, allowing for rapid iteration on the booking management system.\n\n#### Outcomes\nThe project resulted in a 15% increase in repeat bookings and a significant reduction in customer support tickets related to tour logistics. By providing users with clear, real-time updates after their purchase, we built trust and improved the overall brand perception.",
     videoUrl: "",
@@ -180,7 +180,7 @@ The hardest part was designing the CMS interface to display high-density transit
     description: "Developed document liveness detection using machine learning to prevent user fraud.",
     image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=1000",
     tags: ["Machine Learning", "Image Classification", "Computer Vision"],
-    githubUrl: "https://github.com/destucikal",
+    githubUrl: "https://github.com/destucr",
     appStoreUrl: "",
     details: "#### Computer Vision & Security\nEngineered a document liveness detection system to mitigate fraud within a P2P lending platform. This system was designed to prevent users from using photos of screens or printed copies of documents during the KYC process.\n\n- Model Development: Built a multiclass image classification model designed to distinguish between authentic KTP documents and fraudulent reproductions. I experimented with different architectures to find the best balance between accuracy and inference speed.\n- Dataset Engineering: Prepared, curated, and augmented datasets to improve model robustness across various lighting and orientation conditions. I implemented custom augmentation pipelines to simulate common camera artifacts.\n- Evaluation & Training: Utilized Google Colab for model training and iterative evaluation of accuracy and precision metrics. The model achieved over 95% accuracy on our validation set.\n\n#### Taxonomy Design\n- Class Definition: Defined a rigorous class taxonomy for liveness detection to handle nuanced fraud patterns, such as \"screen-re-photography\" vs \"paper-re-photography\".\n- Integration Strategy: Worked closely with the mobile engineering team to design an efficient workflow for capturing high-quality document images while providing real-time feedback to the user.\n- Security Impact\nBy automating the liveness check, we reduced the manual verification workload by 40% and significantly lowered the rate of fraudulent account creations. This contributed to a safer lending ecosystem and increased investor confidence in the platform.",
     videoUrl: "",
