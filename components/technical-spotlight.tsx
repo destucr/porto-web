@@ -54,7 +54,9 @@ const CATEGORIES = [
 export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
   const [activeTab, setActiveTab] = React.useState(CATEGORIES[0].id)
   const containerRef = React.useRef(null)
-  const isInView = useInView(containerRef, { once: false, margin: "-10% 0px -10% 0px" })
+  
+  // Use a more generous margin and once: true to prevent flickering
+  const isInView = useInView(containerRef, { once: true, margin: "400px" })
 
   const activeCategory = CATEGORIES.find(c => c.id === activeTab)
   
@@ -64,6 +66,15 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
       return activeCategory?.filter(lowerTags)
     })
   }, [activeCategory, projects])
+
+  // Get the next project in line to preload its video
+  const nextProjects = React.useMemo(() => {
+    return projects.filter(p => {
+      const lowerTags = p.tags.map(t => t.toLowerCase())
+      // Check if it matches any of the categories
+      return CATEGORIES.some(c => c.filter(lowerTags))
+    }).slice(0, 3)
+  }, [projects])
 
   const showIframe = activeProject?.demoUrl && (activeProject.slug === 'gtfs-web' || activeProject.tags.some(t => t.toLowerCase() === 'web'))
   const showVideo = activeProject?.videoUrl && !showIframe
@@ -82,6 +93,11 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
 
   return (
     <div ref={containerRef} className="space-y-12 md:space-y-16">
+      {/* Performance Optimization: Preload first few videos */}
+      {nextProjects.map(p => p.videoUrl && (
+        <link key={`preload-${p.id}`} rel="prefetch" href={p.videoUrl} as="video" />
+      ))}
+      
       {/* Section Header & Tabs */}
       <div className="flex flex-col items-center text-center space-y-8">
         <div className="space-y-3">
@@ -157,15 +173,15 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
                     <div className="relative bg-[#050505] rounded-[44px] md:rounded-[55px] p-[10px] md:p-[12px] shadow-2xl mx-auto border border-white/10">
                       <div className="relative bg-black rounded-[34px] md:rounded-[43px] overflow-hidden aspect-[393/852]">
                         {showVideo ? (
-                          isInView ? (
-                            <video 
-                              src={activeProject.videoUrl} 
-                              className="w-full h-full object-cover object-top"
-                              autoPlay muted loop playsInline poster={activeProject.image}
-                            />
-                          ) : (
-                            <Image src={activeProject.image} alt={activeProject.title} fill className="object-cover object-top" />
-                          )
+                          <video 
+                            src={isInView ? activeProject.videoUrl : undefined} 
+                            className="w-full h-full object-cover object-top"
+                            autoPlay 
+                            muted 
+                            loop 
+                            playsInline 
+                            poster={activeProject.image}
+                          />
                         ) : (
                           <Image src={activeProject.image} alt={activeProject.title} fill className="object-cover object-top" />
                         )}
@@ -212,15 +228,15 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
                   {!isVerticalMobile && !showIframe && (
                     <>
                       {showVideo ? (
-                        isInView ? (
-                          <video 
-                            src={activeProject.videoUrl} 
-                            className="w-full h-full object-cover object-top"
-                            autoPlay muted loop playsInline poster={activeProject.image}
-                          />
-                        ) : (
-                          <Image src={activeProject.image} alt={activeProject.title} fill className="object-cover object-top" />
-                        )
+                        <video 
+                          src={isInView ? activeProject.videoUrl : undefined} 
+                          className="w-full h-full object-cover object-top"
+                          autoPlay 
+                          muted 
+                          loop 
+                          playsInline 
+                          poster={activeProject.image}
+                        />
                       ) : (
                         <Image src={activeProject.image} alt={activeProject.title} fill className="object-cover object-top" />
                       )}
