@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { codeToHtml } from "shiki"
 import { cn } from "@/lib/utils"
 
 interface CodeBlockProps {
@@ -19,6 +18,8 @@ export function CodeBlock({ children, language = "text", filename }: CodeBlockPr
   useEffect(() => {
     async function highlight() {
       try {
+        // Dynamically import shiki to avoid bundling it in the main chunk
+        const { codeToHtml } = await import("shiki")
         const highlighted = await codeToHtml(code, {
           lang: language,
           themes: {
