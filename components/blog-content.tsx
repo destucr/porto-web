@@ -1,12 +1,20 @@
 "use client"
 
 import React from "react"
-import Markdoc, { RenderableTreeNode } from "@markdoc/markdoc"
-import { CodeBlock, InlineCode } from "@/components/code-block"
+import Markdoc from "@markdoc/markdoc"
 import Image from "next/image"
+import dynamic from "next/dynamic"
+
+const CodeBlock = dynamic(() => import("@/components/code-block").then(mod => mod.CodeBlock), {
+  ssr: false,
+})
+
+const InlineCode = dynamic(() => import("@/components/code-block").then(mod => mod.InlineCode), {
+  ssr: false,
+})
 
 interface BlogContentProps {
-  content: RenderableTreeNode
+  content: string // Serialized Markdoc content
 }
 
 // Custom components for Markdoc
@@ -41,9 +49,11 @@ const components = {
 }
 
 export function BlogContent({ content }: BlogContentProps) {
+  const parsedContent = React.useMemo(() => JSON.parse(content), [content])
+  
   return (
     <div className="prose prose-sm md:prose-lg dark:prose-invert max-w-none prose-headings:font-serif prose-headings:font-medium prose-p:leading-relaxed prose-p:text-muted-foreground prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-pre:p-0 prose-pre:bg-transparent prose-pre:border-0">
-      {Markdoc.renderers.react(content, React, { components })}
+      {Markdoc.renderers.react(parsedContent, React, { components })}
     </div>
   )
 }
