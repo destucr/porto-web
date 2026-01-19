@@ -51,36 +51,30 @@ const CATEGORIES = [
   },
 ]
 
-function SpotlightVideo({ src, poster, isActive, isInView }: { src: string, poster: string, isActive: boolean, isInView: boolean }) {
+function SpotlightVideo({ src, poster, isActive }: { src: string, poster: string, isActive: boolean }) {
   const videoRef = React.useRef<HTMLVideoElement>(null)
-  const [loadedSrc, setLoadedSrc] = React.useState<string | undefined>(undefined)
-
-  // Lock in the source as soon as it's in view to prevent any reset flashes
-  React.useEffect(() => {
-    if (isInView && !loadedSrc) {
-      setLoadedSrc(src)
-    }
-  }, [isInView, src, loadedSrc])
 
   React.useEffect(() => {
     const video = videoRef.current
     if (!video) return
     
-    if (isActive && isInView) {
+    if (isActive) {
       // Small delay to ensure the transition has started
       const timer = setTimeout(() => {
-        video.play().catch(() => {})
+        video.play().catch(() => {
+          // Autoplay might be blocked until user interaction
+        })
       }, 50)
       return () => clearTimeout(timer)
     } else {
       video.pause()
     }
-  }, [isActive, isInView])
+  }, [isActive])
 
   return (
     <video 
       ref={videoRef}
-      src={loadedSrc} 
+      src={src} 
       className="w-full h-full object-cover object-top"
       muted 
       loop 
@@ -106,12 +100,9 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
     })
   }, [projects])
 
-  // Generous margin to trigger preloading early
-  const isInView = useInView(containerRef, { once: true, margin: "600px" })
-
   return (
     <div ref={containerRef} className="space-y-12 md:space-y-16">
-      {/* Preload all videos with high priority */}
+      {/* Preload all videos with high priority for instant availability */}
       {spotlightContent.map(({ project }) => project?.videoUrl && (
         <link key={`preload-${project.id}`} rel="preload" href={project.videoUrl} as="video" />
       ))}
@@ -212,9 +203,8 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
                             {showVideo ? (
                               <SpotlightVideo 
                                 src={project.videoUrl!}
-                                poster={project.image}
-                                isActive={isActive}
-                                isInView={isInView}
+                                poster={project.image} 
+                                isActive={isActive} 
                               />
                             ) : (
                               <Image src={project.image} alt={project.title} fill className="object-cover object-top" />
@@ -249,7 +239,7 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
                           <div className="flex-1 relative overflow-hidden bg-white">
                              {/* Keep iframe in DOM once active to prevent reload */}
                              <iframe 
-                              src={project.demoUrl}
+                              src={project.demoUrl} 
                               className={cn(
                                 "absolute top-0 left-0 w-[140%] h-[140%] origin-top-left scale-[0.714] border-0 transition-opacity duration-500",
                                 isActive ? "opacity-100" : "opacity-0 pointer-events-none"
@@ -268,9 +258,8 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
                           {showVideo ? (
                             <SpotlightVideo 
                               src={project.videoUrl!}
-                              poster={project.image}
-                              isActive={isActive}
-                              isInView={isInView}
+                              poster={project.image} 
+                              isActive={isActive} 
                             />
                           ) : (
                             <Image src={project.image} alt={project.title} fill className="object-cover object-top" />
