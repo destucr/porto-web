@@ -295,7 +295,7 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
                       
                       {showIframe && (
                         <p className="text-sm font-medium text-primary bg-primary/5 border border-primary/10 rounded-2xl px-4 py-3 inline-block animate-fade-in">
-                          ✨ Go ahead, give it a spin—it&apos;s a fully functional live demo!
+                          ✨ Go ahead, try it out—this is the real app running live.
                         </p>
                       )}
                     </div>
