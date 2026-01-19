@@ -6,34 +6,8 @@ import Link from "next/link"
 import { ChevronLeft } from "lucide-react"
 import { Metadata } from "next"
 import Markdoc from '@markdoc/markdoc'
-import Image from "next/image"
 import { markdocConfig } from "@/lib/markdoc-config"
-import { CodeBlock, InlineCode } from "@/components/code-block"
-
-// Markdoc components for server-side rendering
-const markdocComponents = {
-  CodeBlock: CodeBlock,
-  InlineCode: InlineCode,
-  Image: ({ src, alt, title }: { src: string; alt?: string; title?: string }) => (
-    <figure className="my-8">
-      <div className="rounded-xl overflow-hidden border border-border/40 bg-muted/30">
-        <Image
-          src={src}
-          alt={alt || ""}
-          width={1200}
-          height={800}
-          className="w-full h-auto"
-          unoptimized
-        />
-      </div>
-      {title && (
-        <figcaption className="text-center text-sm text-muted-foreground mt-3">
-          {title}
-        </figcaption>
-      )}
-    </figure>
-  ),
-}
+import { BlogContent } from "@/components/blog-content"
 
 export async function generateStaticParams() {
   const posts = await getPosts()
@@ -69,8 +43,8 @@ export default async function BlogPostPage({ params }: PageProps) {
   }
 
   const { node } = await post.entry.content();
-  const renderable = Markdoc.transform(node, markdocConfig);
-  const content = Markdoc.renderers.react(renderable, React, { components: markdocComponents });
+  const content = Markdoc.transform(node, markdocConfig);
+  const serializedContent = JSON.stringify(content);
 
   return (
     <article className="min-h-screen bg-background">
@@ -110,8 +84,8 @@ export default async function BlogPostPage({ params }: PageProps) {
             {post.entry.excerpt}
           </p>
           <hr className="border-border/60 my-8 md:my-12" />
-          {/* Render Markdoc content with syntax highlighting */}
-          {content}
+          {/* Render Markdoc content with Client Component to keep Shiki out of Server bundle */}
+          <BlogContent content={serializedContent} />
         </div>
       </div>
     </article>
