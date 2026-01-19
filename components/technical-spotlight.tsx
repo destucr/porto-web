@@ -1,10 +1,10 @@
 "use client"
 
 import * as React from "react"
-import { motion, AnimatePresence, useInView } from "framer-motion"
+import { motion, useInView } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Smartphone, Globe, Cpu, Gamepad2, Layers } from "lucide-react"
+import { ArrowRight, Smartphone, Globe, Cpu, Gamepad2 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 
