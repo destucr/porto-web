@@ -53,28 +53,40 @@ const CATEGORIES = [
 
 function SpotlightVideo({ src, poster, isActive, isInView }: { src: string, poster: string, isActive: boolean, isInView: boolean }) {
   const videoRef = React.useRef<HTMLVideoElement>(null)
+  const [loadedSrc, setLoadedSrc] = React.useState<string | undefined>(undefined)
+
+  // Lock in the source as soon as it's in view to prevent any reset flashes
+  React.useEffect(() => {
+    if (isInView && !loadedSrc) {
+      setLoadedSrc(src)
+    }
+  }, [isInView, src, loadedSrc])
 
   React.useEffect(() => {
-    if (!videoRef.current) return
+    const video = videoRef.current
+    if (!video) return
     
     if (isActive && isInView) {
-      videoRef.current.play().catch(() => {
-        // Autoplay might be blocked until user interaction
-      })
+      // Small delay to ensure the transition has started
+      const timer = setTimeout(() => {
+        video.play().catch(() => {})
+      }, 50)
+      return () => clearTimeout(timer)
     } else {
-      videoRef.current.pause()
+      video.pause()
     }
   }, [isActive, isInView])
 
   return (
     <video 
       ref={videoRef}
-      src={isInView ? src : undefined} 
+      src={loadedSrc} 
       className="w-full h-full object-cover object-top"
       muted 
       loop 
       playsInline 
       poster={poster}
+      preload="auto"
     />
   )
 }
@@ -94,12 +106,12 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
     })
   }, [projects])
 
-  // Use a very generous margin to trigger preloading early
+  // Generous margin to trigger preloading early
   const isInView = useInView(containerRef, { once: true, margin: "600px" })
 
   return (
     <div ref={containerRef} className="space-y-12 md:space-y-16">
-      {/* Performance Trick: High-priority preloading for all spotlight videos */}
+      {/* Preload all videos with high priority */}
       {spotlightContent.map(({ project }) => project?.videoUrl && (
         <link key={`preload-${project.id}`} rel="preload" href={project.videoUrl} as="video" />
       ))}
@@ -141,8 +153,8 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
         </div>
       </div>
 
-      {/* Content Area - Permanent Mounting for Performance */}
-      <div className="relative min-h-[500px]">
+      {/* Content Area - Permanent Mounting for Instant Switching */}
+      <div className="relative min-h-[600px] lg:min-h-[500px]">
         {spotlightContent.map(({ categoryId, project }) => {
           if (!project) return null
           
@@ -166,8 +178,8 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
               className={cn(
                 "transition-all duration-500 ease-[0.23,1,0.32,1]",
                 isActive 
-                  ? "opacity-100 translate-y-0 relative z-10 visible" 
-                  : "opacity-0 translate-y-8 absolute inset-0 z-0 invisible pointer-events-none"
+                  ? "opacity-100 translate-y-0 relative z-10 block" 
+                  : "opacity-0 translate-y-8 absolute inset-0 z-0 pointer-events-none"
               )}
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
@@ -235,15 +247,17 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
                             </div>
                           </div>
                           <div className="flex-1 relative overflow-hidden bg-white">
-                             {isActive && (
-                               <iframe 
-                                src={project.demoUrl}
-                                className="absolute top-0 left-0 w-[140%] h-[140%] origin-top-left scale-[0.714] border-0"
-                                title={`${project.title} Demo`}
-                                loading="lazy"
-                                sandbox="allow-scripts allow-same-origin"
-                              />
-                             )}
+                             {/* Keep iframe in DOM once active to prevent reload */}
+                             <iframe 
+                              src={project.demoUrl}
+                              className={cn(
+                                "absolute top-0 left-0 w-[140%] h-[140%] origin-top-left scale-[0.714] border-0 transition-opacity duration-500",
+                                isActive ? "opacity-100" : "opacity-0 pointer-events-none"
+                              )}
+                              title={`${project.title} Demo`}
+                              loading="lazy"
+                              sandbox="allow-scripts allow-same-origin"
+                            />
                           </div>
                         </div>
                       )}
