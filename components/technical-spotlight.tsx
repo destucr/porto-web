@@ -51,8 +51,17 @@ const CATEGORIES = [
   },
 ]
 
-function SpotlightVideo({ src, poster, isActive }: { src: string, poster: string, isActive: boolean }) {
+function Shimmer({ className }: { className?: string }) {
+  return (
+    <div className={cn("absolute inset-0 bg-neutral-100 overflow-hidden", className)}>
+      <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-neutral-200/50 to-transparent" />
+    </div>
+  )
+}
+
+function SpotlightVideo({ src, isActive }: { src: string, isActive: boolean }) {
   const videoRef = React.useRef<HTMLVideoElement>(null)
+  const [isLoaded, setIsLoaded] = React.useState(false)
 
   React.useEffect(() => {
     const video = videoRef.current
@@ -72,16 +81,41 @@ function SpotlightVideo({ src, poster, isActive }: { src: string, poster: string
   }, [isActive])
 
   return (
-    <video 
-      ref={videoRef}
-      src={src} 
-      className="w-full h-full object-cover object-top"
-      muted 
-      loop 
-      playsInline 
-      poster={poster}
-      preload="auto"
-    />
+    <div className="relative w-full h-full">
+      {!isLoaded && <Shimmer />}
+      <video 
+        ref={videoRef}
+        src={src} 
+        className={cn("w-full h-full object-cover object-top transition-opacity duration-500", isLoaded ? "opacity-100" : "opacity-0")}
+        muted 
+        loop 
+        playsInline 
+        // poster={poster} // Removed poster to use shimmer instead
+        preload="auto"
+        onLoadedData={() => setIsLoaded(true)}
+      />
+    </div>
+  )
+}
+
+function IframeWrapper({ url, title, isActive }: { url: string, title: string, isActive: boolean }) {
+  const [isLoaded, setIsLoaded] = React.useState(false)
+
+  return (
+    <>
+      {!isLoaded && <Shimmer />}
+      <iframe 
+        src={url} 
+        className={cn(
+          "absolute top-0 left-0 w-[140%] h-[140%] origin-top-left scale-[0.714] border-0 transition-opacity duration-500",
+          isActive && isLoaded ? "opacity-100" : "opacity-0 pointer-events-none"
+        )}
+        title={`${title} Demo`}
+        loading="lazy"
+        sandbox="allow-scripts allow-same-origin"
+        onLoad={() => setIsLoaded(true)}
+      />
+    </>
   )
 }
 
@@ -203,7 +237,6 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
                             {showVideo ? (
                               <SpotlightVideo 
                                 src={project.videoUrl!}
-                                poster={project.image} 
                                 isActive={isActive} 
                               />
                             ) : (
@@ -238,16 +271,11 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
                           </div>
                           <div className="flex-1 relative overflow-hidden bg-white">
                              {/* Keep iframe in DOM once active to prevent reload */}
-                             <iframe 
-                              src={project.demoUrl} 
-                              className={cn(
-                                "absolute top-0 left-0 w-[140%] h-[140%] origin-top-left scale-[0.714] border-0 transition-opacity duration-500",
-                                isActive ? "opacity-100" : "opacity-0 pointer-events-none"
-                              )}
-                              title={`${project.title} Demo`}
-                              loading="lazy"
-                              sandbox="allow-scripts allow-same-origin"
-                            />
+                             <IframeWrapper 
+                               url={project.demoUrl!} 
+                               title={project.title} 
+                               isActive={isActive} 
+                             />
                           </div>
                         </div>
                       )}
@@ -258,7 +286,6 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
                           {showVideo ? (
                             <SpotlightVideo 
                               src={project.videoUrl!}
-                              poster={project.image} 
                               isActive={isActive} 
                             />
                           ) : (
