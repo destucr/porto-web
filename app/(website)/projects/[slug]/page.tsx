@@ -12,7 +12,6 @@ import Link from "next/link"
 import Image from "next/image"
 import { ChevronLeft, Github, ExternalLink, Code2, Layers, Smartphone, Monitor } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
 import Markdoc from "@markdoc/markdoc"
 import React from "react"
 

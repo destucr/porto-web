@@ -29,7 +29,7 @@ interface ProjectListProps {
 
 type FilterCategory = "All" | "iOS" | "Systems" | "Machine Learning"
 
-export function ProjectList({ projects, isAdmin, layout = "grid", limit }: ProjectListProps) {
+export function ProjectList({ projects, isAdmin, limit }: ProjectListProps) {
   const [selectedCategory, setSelectedCategory] = useState<FilterCategory>("All")
   const [isExpanded, setIsExpanded] = useState(false)
 

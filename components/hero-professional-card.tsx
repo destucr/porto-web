@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import Image from "next/image"
-import { motion } from "framer-motion"
 import { ChevronDown, ChevronUp, GraduationCap, Code2, Sparkles } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -28,14 +27,15 @@ export function ProfessionalCard() {
             <div className="flex items-start gap-6 group">
               <div className="relative w-16 h-16 flex items-center justify-center shrink-0">
                 <Image 
-                  src="/images/bullion-logo.png" 
+                  src="/images/bullion-logo.webp" 
                   alt="Bullion Ecosystem International" 
                   fill
+                  priority
                   className="object-contain transition-transform group-hover:scale-110"
                 />
               </div>
               <div className="space-y-1 pt-1">
-                <h3 className="font-bold text-xl text-foreground leading-tight tracking-tight">iOS Developer</h3>
+                <h2 className="font-bold text-xl text-foreground leading-tight tracking-tight">iOS Developer</h2>
                 <p className="text-sm text-muted-foreground font-medium">Bullion Ecosystem International</p>
                 <div className="flex flex-wrap gap-1.5 pt-1.5">
                   <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-neutral-100 text-neutral-600 border border-neutral-200">UIKit</span>
@@ -79,14 +79,14 @@ export function ProfessionalCard() {
                   <div className="flex items-center gap-6 group">
                     <div className="relative w-14 h-14 flex items-center justify-center shrink-0">
                       <Image 
-                        src="/images/apple-developer-academy-binus.png" 
+                        src="/images/apple-developer-academy-binus.webp" 
                         alt="Apple Developer Academy @ BINUS" 
                         fill
                         className="object-contain opacity-90 grayscale group-hover:grayscale-0 transition-all group-hover:scale-110"
                       />
                     </div>
                     <div className="space-y-0.5">
-                      <h4 className="font-bold text-sm leading-tight">Apple Developer Academy @ BINUS</h4>
+                      <h3 className="font-bold text-sm leading-tight">Apple Developer Academy @ BINUS</h3>
                       <p className="text-xs text-muted-foreground font-medium">Graduate Cohort 2025</p>
                     </div>
                   </div>
@@ -95,14 +95,14 @@ export function ProfessionalCard() {
                   <div className="flex items-center gap-6 group">
                     <div className="relative w-14 h-14 flex items-center justify-center shrink-0">
                       <Image 
-                        src="/images/telkom-university-logo.png" 
+                        src="/images/telkom-university-logo.webp" 
                         alt="Telkom University" 
                         fill
                         className="object-contain opacity-90 grayscale group-hover:grayscale-0 transition-all group-hover:scale-110"
                       />
                     </div>
                     <div className="space-y-0.5">
-                      <h4 className="font-bold text-sm leading-tight">Telkom University</h4>
+                      <h3 className="font-bold text-sm leading-tight">Telkom University</h3>
                       <p className="text-xs text-muted-foreground font-medium">Software Engineering (Exp. 2026)</p>
                     </div>
                   </div>

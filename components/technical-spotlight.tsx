@@ -1,10 +1,10 @@
 "use client"
 
 import * as React from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, useInView } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Smartphone, Globe, Cpu, Gamepad2, Layers, Code2 } from "lucide-react"
+import { ArrowRight, Smartphone, Globe, Cpu, Gamepad2, Layers } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 
@@ -53,6 +53,8 @@ const CATEGORIES = [
 
 export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
   const [activeTab, setActiveTab] = React.useState(CATEGORIES[0].id)
+  const containerRef = React.useRef(null)
+  const isInView = useInView(containerRef, { once: true, margin: "200px" })
 
   const activeCategory = CATEGORIES.find(c => c.id === activeTab)
   
@@ -79,7 +81,7 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
   }, [activeProject?.details])
 
   return (
-    <div className="space-y-12 md:space-y-16">
+    <div ref={containerRef} className="space-y-12 md:space-y-16">
       {/* Section Header & Tabs */}
       <div className="flex flex-col items-center text-center space-y-8">
         <div className="space-y-3">
@@ -95,11 +97,12 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
             <button
               key={category.id}
               onClick={() => setActiveTab(category.id)}
+              aria-label={`View ${category.label} projects`}
               className={cn(
                 "relative flex items-center gap-2 px-5 md:px-7 py-2.5 rounded-xl text-xs md:text-sm font-bold tracking-tight transition-all duration-300",
                 activeTab === category.id 
                   ? "text-foreground" 
-                  : "text-neutral-400 hover:text-neutral-600"
+                  : "text-neutral-600 hover:text-neutral-600"
               )}
             >
               <category.icon className="w-3.5 h-3.5 md:w-4 h-4" />
@@ -154,15 +157,20 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
                     <div className="relative bg-[#050505] rounded-[44px] md:rounded-[55px] p-[10px] md:p-[12px] shadow-2xl mx-auto border border-white/10">
                       <div className="relative bg-black rounded-[34px] md:rounded-[43px] overflow-hidden aspect-[393/852]">
                         {showVideo ? (
-                          <video 
-                            src={activeProject.videoUrl} 
-                            className="w-full h-full object-cover object-top"
-                            autoPlay muted loop playsInline poster={activeProject.image}
-                          />
+                          isInView ? (
+                            <video 
+                              src={activeProject.videoUrl} 
+                              className="w-full h-full object-cover object-top"
+                              autoPlay muted loop playsInline poster={activeProject.image}
+                              preload="none"
+                            />
+                          ) : (
+                            <Image src={activeProject.image} alt={activeProject.title} fill className="object-cover object-top" />
+                          )
                         ) : (
                           <Image src={activeProject.image} alt={activeProject.title} fill className="object-cover object-top" />
                         )}
-                        <Link href={`/projects/${activeProject.slug}`} className="absolute inset-0 z-20" />
+                        <Link href={`/projects/${activeProject.slug}`} className="absolute inset-0 z-20" aria-label={`View ${activeProject.title} case study`} />
                       </div>
                     </div>
                   )}
@@ -177,12 +185,12 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
                           <div className="w-2.5 h-2.5 rounded-full bg-neutral-300" />
                         </div>
                         <div className="flex-1 flex justify-center">
-                          <div className="bg-white border border-neutral-200 rounded-md px-4 py-1 text-[10px] text-neutral-400 truncate font-mono max-w-[200px]">
+                          <div className="bg-white border border-neutral-200 rounded-md px-4 py-1 text-[10px] text-neutral-600 truncate font-mono max-w-[200px]">
                             {activeProject.slug}.dev
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
-                          <span className="hidden md:inline text-[10px] font-bold text-neutral-400 uppercase tracking-tight">Try it out</span>
+                          <span className="hidden md:inline text-[10px] font-bold text-neutral-600 uppercase tracking-tight">Try it out</span>
                           <div className="flex items-center gap-1.5 bg-green-50 px-2 py-0.5 rounded-full border border-green-100">
                             <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
                             <span className="text-[9px] font-bold uppercase tracking-wider text-green-600">Live</span>
@@ -204,15 +212,20 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
                   {!isVerticalMobile && !showIframe && (
                     <>
                       {showVideo ? (
-                        <video 
-                          src={activeProject.videoUrl} 
-                          className="w-full h-full object-cover object-top"
-                          autoPlay muted loop playsInline poster={activeProject.image}
-                        />
+                        isInView ? (
+                          <video 
+                            src={activeProject.videoUrl} 
+                            className="w-full h-full object-cover object-top"
+                            autoPlay muted loop playsInline poster={activeProject.image}
+                            preload="none"
+                          />
+                        ) : (
+                          <Image src={activeProject.image} alt={activeProject.title} fill className="object-cover object-top" />
+                        )
                       ) : (
                         <Image src={activeProject.image} alt={activeProject.title} fill className="object-cover object-top" />
                       )}
-                      <Link href={`/projects/${activeProject.slug}`} className="absolute inset-0 z-10" />
+                      <Link href={`/projects/${activeProject.slug}`} className="absolute inset-0 z-10" aria-label={`View ${activeProject.title} case study`} />
                     </>
                   )}
                 </div>
@@ -227,7 +240,7 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
               <div className="space-y-6">
                 <div className="flex flex-wrap gap-2">
                   {activeProject.tags.slice(0, 4).map(tag => (
-                    <span key={tag} className="text-[10px] font-bold uppercase tracking-widest text-neutral-400 border border-neutral-200 px-3 py-1 rounded-lg">
+                    <span key={tag} className="text-[10px] font-bold uppercase tracking-widest text-neutral-600 border border-neutral-200 px-3 py-1 rounded-lg">
                       {tag}
                     </span>
                   ))}
@@ -274,7 +287,7 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
                 </Button>
                 
                 {activeProject.demoUrl && (
-                  <Button asChild variant="ghost" className="rounded-full h-12 px-8 text-sm font-bold text-neutral-400 hover:text-foreground">
+                  <Button asChild variant="ghost" className="rounded-full h-12 px-8 text-sm font-bold text-neutral-600 hover:text-foreground">
                     <Link href={activeProject.demoUrl} target="_blank" rel="noopener noreferrer">
                       Live Preview <Globe className="ml-2 w-4 h-4" />
                     </Link>
@@ -286,7 +299,7 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
         ) : (
           <div className="flex flex-col items-center justify-center text-center p-20 bg-neutral-50 rounded-[40px] border border-dashed border-neutral-200">
             <Layers className="w-12 h-12 text-neutral-200 mb-4" />
-            <p className="text-neutral-400 font-medium">No featured projects found for {activeCategory?.label}.</p>
+            <p className="text-neutral-600 font-medium">No featured projects found for {activeCategory?.label}.</p>
           </div>
         )}
       </AnimatePresence>

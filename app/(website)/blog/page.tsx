@@ -1,5 +1,4 @@
 import Link from "next/link"
-import { Badge } from "@/components/ui/badge"
 import { Metadata } from "next"
 import { getPosts } from "@/lib/content"
 import { EmptyState } from "@/components/empty-state"

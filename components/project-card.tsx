@@ -1,6 +1,5 @@
 import Image from "next/image"
 import Link from "next/link"
-import { cn } from "@/lib/utils"
 
 interface ProjectCardProps {
   project: {
@@ -19,10 +18,6 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project, priority }: ProjectCardProps) {
-  const isMobile = project.tags?.some(tag => 
-    ['ios', 'mobile', 'machine learning', 'create ml'].includes(tag.toLowerCase())
-  )
-
   return (
     <div className="group flex flex-col space-y-3">
       {/* Image: Smaller, cleaner */}
@@ -47,7 +42,7 @@ export function ProjectCard({ project, priority }: ProjectCardProps) {
 
       {/* Info: Compact */}
       <div className="space-y-1.5">
-        <div className="flex flex-wrap items-center gap-1.5 text-[10px] font-medium tracking-wide uppercase text-muted-foreground/70">
+        <div className="flex flex-wrap items-center gap-1.5 text-[10px] font-medium tracking-wide uppercase text-muted-foreground">
           {(project.tags || []).slice(0, 2).map((tag, i) => (
             <span key={tag} className="flex items-center">
               {tag}

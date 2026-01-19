@@ -1,5 +1,4 @@
 import Link from "next/link"
-import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { getProjects, getPosts } from "@/lib/content"
 import { ProjectList } from "@/components/project-list"
