@@ -60,6 +60,11 @@ function SpotlightVideo({ src, isActive }: { src: string, isActive: boolean }) {
     const video = videoRef.current
     if (!video) return
     
+    // Check if video is already ready (e.g. from cache)
+    if (video.readyState >= 3) {
+      setIsLoaded(true)
+    }
+
     if (isActive) {
       // Small delay to ensure the transition has started
       const timer = setTimeout(() => {
@@ -72,13 +77,6 @@ function SpotlightVideo({ src, isActive }: { src: string, isActive: boolean }) {
       video.pause()
     }
   }, [isActive])
-
-  // Safety timeout: If video event doesn't fire (e.g. cached or minimal buffering),
-  // force show video after a short delay so user isn't stuck with skeleton.
-  React.useEffect(() => {
-    const timer = setTimeout(() => setIsLoaded(true), 2500)
-    return () => clearTimeout(timer)
-  }, [])
 
   return (
     <div className="relative w-full h-full">
@@ -101,9 +99,10 @@ function SpotlightVideo({ src, isActive }: { src: string, isActive: boolean }) {
 function IframeWrapper({ url, title, isActive }: { url: string, title: string, isActive: boolean }) {
   const [isLoaded, setIsLoaded] = React.useState(false)
 
-  // Safety timeout for iframe as well
+  // Safety timeout: Iframe events can sometimes be unreliable. 
+  // 1.5s is a reasonable max wait time for the skeleton before showing content.
   React.useEffect(() => {
-    const timer = setTimeout(() => setIsLoaded(true), 3000)
+    const timer = setTimeout(() => setIsLoaded(true), 1500)
     return () => clearTimeout(timer)
   }, [])
 
