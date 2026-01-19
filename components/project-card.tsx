@@ -34,8 +34,11 @@ export function ProjectCard({ project, priority }: ProjectCardProps) {
             priority={priority}
           />
         ) : (
-          <div className="absolute inset-0 flex items-center justify-center bg-muted text-muted-foreground">
-            <span className="text-xs uppercase tracking-widest font-medium opacity-50">No Preview</span>
+          <div className="absolute inset-0 flex items-center justify-center bg-muted/50 text-muted-foreground/40">
+            <div className="w-full h-full opacity-[0.05] bg-[linear-gradient(45deg,currentColor_25%,transparent_25%,transparent_50%,currentColor_50%,currentColor_75%,transparent_75%,transparent)] bg-[length:24px_24px]" />
+            <span className="absolute text-xs uppercase tracking-widest font-medium border border-border/50 px-3 py-1 rounded-full bg-background/50 backdrop-blur-sm">
+              No Preview
+            </span>
           </div>
         )}
       </Link>
