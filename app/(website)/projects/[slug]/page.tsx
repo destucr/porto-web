@@ -1,11 +1,33 @@
 import { getProject, getProjects } from "@/lib/content"
 import { notFound } from "next/navigation"
+import { Metadata } from "next"
 
 export async function generateStaticParams() {
   const projects = await getProjects()
   return projects.map((project) => ({
     slug: project.slug,
   }))
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params
+  const project = await getProject(slug)
+  
+  if (!project) {
+    return {
+      title: "Project Not Found",
+    }
+  }
+
+  return {
+    title: `${project.entry.title} | Projects`,
+    description: project.entry.description,
+    openGraph: {
+      title: project.entry.title,
+      description: project.entry.description,
+      images: project.entry.image ? [project.entry.image] : [],
+    }
+  }
 }
 
 import Link from "next/link"

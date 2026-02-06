@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { AmbientBackground } from "@/components/ambient-background";
+import { StructuredData } from "@/components/structured-data";
 
 
 const geistSans = Geist({
@@ -16,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://porto-web.destucr.workers.dev"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://destucikal.site"),
   title: {
     default: "Destu Cikal | iOS & Full-stack Developer",
     template: "%s | Destu Cikal",
@@ -61,6 +62,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <AmbientBackground />
+          <StructuredData />
           {children}
         </ThemeProvider>
       </body>
