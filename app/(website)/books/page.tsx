@@ -1,6 +1,6 @@
 import { getBooks } from "@/lib/content"
 import Image from "next/image"
-import { ExternalLink, BookOpen } from "lucide-react"
+import { ExternalLink } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Metadata } from "next"
 
@@ -24,14 +24,14 @@ export default async function BooksPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-16">
           {books.map((book) => (
-            <div key={book.title} className="group flex flex-col space-y-6">
+            <div key={book.title} className="group flex flex-col max-w-[280px] mx-auto md:mx-0">
               {/* Book Cover Container */}
-              <div className="relative aspect-[3/4] rounded-r-xl overflow-hidden shadow-2xl transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-primary/20 group-hover:shadow-3xl border-y border-r border-border/40">
+              <div className="relative aspect-[2/3] rounded-r-lg overflow-hidden shadow-2xl transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-primary/5 border-y border-r border-border/40">
                 {/* Spine Effect */}
-                <div className="absolute left-0 top-0 bottom-0 w-4 bg-black/30 z-20 backdrop-blur-[1px] border-r border-white/5" />
-                <div className="absolute left-4 top-0 bottom-0 w-[1px] bg-white/10 z-20" />
+                <div className="absolute left-0 top-0 bottom-0 w-4 bg-black/40 z-20 backdrop-blur-[1px] border-r border-white/10" />
+                <div className="absolute left-4 top-0 bottom-0 w-[1px] bg-white/5 z-20" />
                 
                 {/* Cover Image */}
                 <Image
@@ -46,13 +46,9 @@ export default async function BooksPage() {
                 <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-white/10 z-10 pointer-events-none" />
               </div>
               
-              <div className="space-y-4">
+              <div className="mt-8 space-y-4">
                 <div className="space-y-2">
-                  <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-primary/60">
-                    <BookOpen className="w-3 h-3" />
-                    <span>Recommended Reading</span>
-                  </div>
-                  <h3 className="text-xl font-semibold text-foreground leading-tight">
+                  <h3 className="text-xl font-semibold text-foreground leading-tight group-hover:text-primary transition-colors">
                     {book.title}
                   </h3>
                   <p className="text-sm text-muted-foreground font-medium">
