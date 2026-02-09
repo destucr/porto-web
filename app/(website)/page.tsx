@@ -128,13 +128,13 @@ export default async function Home() {
       </section>
 
       {/* Reading List */}
-      <section className="py-16 md:py-24 px-4 md:px-6 border-t border-border/40 bg-secondary/5">
+      <section className="py-16 md:py-24 px-4 md:px-6 border-t border-border/40">
         <div className="max-w-6xl mx-auto space-y-12">
           <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6">
             <div className="space-y-3">
               <h2 className="text-2xl md:text-3xl font-serif font-medium tracking-tight text-foreground">Reading List</h2>
               <p className="text-muted-foreground text-base md:text-lg leading-relaxed max-w-xl">
-                Books that shaped my perspective on engineering and design.
+                Technical texts that shaped my perspective.
               </p>
             </div>
             <Button asChild variant="ghost" className="rounded-full group pr-2">
@@ -144,16 +144,16 @@ export default async function Home() {
             </Button>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
             {featuredBooks.map((book) => (
-              <div key={book.title} className="flex flex-col group max-w-[260px] mx-auto md:mx-0">
+              <div key={book.title} className="flex flex-col group">
                 {/* Intentional Gallery Stage */}
-                <div className="relative aspect-[2/3] flex items-center justify-center bg-secondary/10 rounded-sm border border-border/50 overflow-hidden transition-colors duration-500 group-hover:bg-secondary/20">
+                <div className="relative aspect-[2/3] flex items-center justify-center bg-secondary/5 rounded-sm border border-border/40 overflow-hidden transition-colors duration-500 group-hover:bg-secondary/10">
                   {/* Perspective Shadow Layer */}
                   <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_50%_120%,rgba(0,0,0,0.1),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   
                   {/* The "Artifact" - respetcs ratio, never clipped */}
-                  <div className="relative w-[82%] h-[82%] transition-transform duration-500 group-hover:scale-[1.03] group-hover:-translate-y-1">
+                  <div className="relative w-[82%] h-[82%] transition-transform duration-500 group-hover:-translate-y-1">
                     <Image
                       src={book.coverImage}
                       alt={book.title}
@@ -162,24 +162,27 @@ export default async function Home() {
                       unoptimized
                     />
                     {/* Material Depth Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-white/5 pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/5 via-transparent to-white/5 pointer-events-none" />
                   </div>
                 </div>
 
-                <div className="mt-6 space-y-3">
-                  <h3 className="text-lg font-medium text-foreground leading-snug group-hover:text-primary transition-colors tracking-tight">
+                <div className="mt-6 space-y-2">
+                  <h3 className="text-base font-medium text-foreground leading-snug group-hover:text-primary transition-colors tracking-tight">
                     {book.title}
                   </h3>
-                  <p className="text-sm text-muted-foreground font-medium">
+                  <p className="text-xs text-muted-foreground">
                     {book.author}
                   </p>
-                  <div className="flex flex-wrap gap-2 pt-1">
+                  <div className="pt-2">
                     {book.amazonUrl && (
-                      <Button asChild size="sm" variant="ghost" className="rounded-none border-b border-border hover:bg-transparent hover:border-primary px-0 h-auto pb-1 text-[11px] font-bold uppercase tracking-widest">
-                        <a href={book.amazonUrl} target="_blank" rel="noopener noreferrer">
-                          Purchase <ExternalLink className="ml-1.5 w-3 h-3" />
-                        </a>
-                      </Button>
+                      <a 
+                        href={book.amazonUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-[11px] font-bold text-muted-foreground hover:text-primary transition-colors border-b border-border hover:border-primary pb-0.5"
+                      >
+                        Amazon
+                      </a>
                     )}
                   </div>
                 </div>

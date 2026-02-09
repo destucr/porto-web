@@ -17,52 +17,55 @@ export default async function BooksPage() {
       <div className="max-w-6xl mx-auto space-y-12">
         <div className="space-y-4 text-center md:text-left max-w-2xl">
           <h1 className="text-4xl md:text-5xl font-serif font-medium tracking-tight text-foreground">
-            Reading List
+            Books
           </h1>
           <p className="text-muted-foreground text-lg leading-relaxed">
-            A curated collection of books that have significantly influenced my engineering practice and technical philosophy.
+            Technical and philosophical texts that shaped my engineering practice.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-16">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-12 md:gap-x-12 md:gap-y-16">
           {books.map((book) => (
-            <div key={book.title} className="group flex flex-col max-w-[280px] mx-auto md:mx-0">
+            <div key={book.title} className="group flex flex-col">
               {/* Intentional Gallery Stage */}
-              <div className="relative aspect-[2/3] flex items-center justify-center bg-secondary/10 rounded-sm border border-border/50 overflow-hidden transition-colors duration-500 group-hover:bg-secondary/20">
+              <div className="relative aspect-[2/3] flex items-center justify-center bg-secondary/5 rounded-sm border border-border/40 overflow-hidden transition-colors duration-500 group-hover:bg-secondary/10">
                 {/* Perspective Shadow Layer */}
-                <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_50%_120%,rgba(0,0,0,0.15),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_50%_120%,rgba(0,0,0,0.1),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
                 {/* The "Artifact" - respetcs ratio, never clipped */}
-                <div className="relative w-[85%] h-[85%] transition-transform duration-500 group-hover:scale-[1.03] group-hover:-translate-y-1">
+                <div className="relative w-[85%] h-[85%] transition-transform duration-500 group-hover:-translate-y-1">
                   <Image
                     src={book.coverImage}
                     alt={book.title}
                     fill
-                    className="object-contain shadow-[5px_10px_30px_rgba(0,0,0,0.2),0px_0px_1px_rgba(0,0,0,0.1)] dark:shadow-[5px_10px_40px_rgba(0,0,0,0.6)]"
+                    className="object-contain shadow-[5px_10px_30px_rgba(0,0,0,0.15),0px_0px_1px_rgba(0,0,0,0.1)] dark:shadow-[5px_10px_40px_rgba(0,0,0,0.5)]"
                     unoptimized
                   />
                   {/* Material Depth Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-white/5 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/5 via-transparent to-white/5 pointer-events-none" />
                 </div>
               </div>
               
-              <div className="mt-8 space-y-4">
-                <div className="space-y-2">
-                  <h3 className="text-xl font-medium text-foreground leading-tight tracking-tight group-hover:text-primary transition-colors">
+              <div className="mt-6 space-y-3">
+                <div className="space-y-1">
+                  <h3 className="text-base font-medium text-foreground leading-tight tracking-tight group-hover:text-primary transition-colors">
                     {book.title}
                   </h3>
-                  <p className="text-sm text-muted-foreground font-medium">
+                  <p className="text-xs text-muted-foreground">
                     {book.author}
                   </p>
                 </div>
 
-                <div className="flex flex-wrap gap-3 pt-2">
+                <div className="flex flex-wrap gap-3 pt-1">
                   {book.amazonUrl && (
-                    <Button asChild size="sm" variant="ghost" className="rounded-none border-b border-border hover:bg-transparent hover:border-primary px-0 h-auto pb-1 text-xs font-bold uppercase tracking-widest">
-                      <a href={book.amazonUrl} target="_blank" rel="noopener noreferrer">
-                        Purchase <ExternalLink className="ml-2 w-3.5 h-3.5" />
-                      </a>
-                    </Button>
+                    <a 
+                      href={book.amazonUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-[11px] font-bold text-muted-foreground hover:text-primary transition-colors border-b border-border hover:border-primary pb-0.5"
+                    >
+                      Amazon
+                    </a>
                   )}
                 </div>
               </div>
