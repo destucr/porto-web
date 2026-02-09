@@ -54,12 +54,13 @@ const CATEGORIES = [
 
 function SpotlightVideo({ src, isActive }: { src: string, isActive: boolean }) {
   const videoRef = React.useRef<HTMLVideoElement>(null)
+  const containerRef = React.useRef<HTMLDivElement>(null)
   const [isLoaded, setIsLoaded] = React.useState(false)
   const [shouldLoad, setShouldLoad] = React.useState(false)
 
   React.useEffect(() => {
-    const video = videoRef.current
-    if (!video) return
+    const container = containerRef.current
+    if (!container) return
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -68,10 +69,10 @@ function SpotlightVideo({ src, isActive }: { src: string, isActive: boolean }) {
           observer.disconnect()
         }
       },
-      { rootMargin: "200px" }
+      { rootMargin: "400px" }
     )
 
-    observer.observe(video)
+    observer.observe(container)
     return () => observer.disconnect()
   }, [])
 
@@ -79,22 +80,15 @@ function SpotlightVideo({ src, isActive }: { src: string, isActive: boolean }) {
     const video = videoRef.current
     if (!video || !shouldLoad) return
     
-    if (video.readyState >= 3) {
-      setIsLoaded(true)
-    }
-
     if (isActive) {
-      const timer = setTimeout(() => {
-        video.play().catch(() => {})
-      }, 50)
-      return () => clearTimeout(timer)
+      video.play().catch(() => {})
     } else {
       video.pause()
     }
   }, [isActive, shouldLoad])
 
   return (
-    <div className="relative w-full h-full">
+    <div ref={containerRef} className="relative w-full h-full">
       {!isLoaded && <Skeleton className="absolute inset-0 w-full h-full rounded-none" />}
       {shouldLoad && (
         <video 
@@ -104,7 +98,6 @@ function SpotlightVideo({ src, isActive }: { src: string, isActive: boolean }) {
           muted 
           loop 
           playsInline 
-          preload="auto"
           onLoadedData={() => setIsLoaded(true)}
           onCanPlay={() => setIsLoaded(true)}
         />
@@ -115,29 +108,44 @@ function SpotlightVideo({ src, isActive }: { src: string, isActive: boolean }) {
 
 function IframeWrapper({ url, title, isActive }: { url: string, title: string, isActive: boolean }) {
   const [isLoaded, setIsLoaded] = React.useState(false)
+  const containerRef = React.useRef<HTMLDivElement>(null)
+  const [shouldLoad, setShouldLoad] = React.useState(false)
 
-  // Safety timeout: Iframe events can sometimes be unreliable. 
-  // 1.5s is a reasonable max wait time for the skeleton before showing content.
   React.useEffect(() => {
-    const timer = setTimeout(() => setIsLoaded(true), 1500)
-    return () => clearTimeout(timer)
+    const container = containerRef.current
+    if (!container) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoad(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: "400px" }
+    )
+
+    observer.observe(container)
+    return () => observer.disconnect()
   }, [])
 
   return (
-    <>
+    <div ref={containerRef} className="w-full h-full relative">
       {!isLoaded && <Skeleton className="absolute inset-0 w-full h-full rounded-none" />}
-      <iframe 
-        src={url} 
-        className={cn(
-          "absolute top-0 left-0 w-[140%] h-[140%] origin-top-left scale-[0.714] border-0 transition-opacity duration-500",
-          isActive && isLoaded ? "opacity-100" : "opacity-0 pointer-events-none"
-        )}
-        title={`${title} Demo`}
-        loading="lazy"
-        sandbox="allow-scripts allow-same-origin"
-        onLoad={() => setIsLoaded(true)}
-      />
-    </>
+      {shouldLoad && (
+        <iframe 
+          src={url} 
+          className={cn(
+            "absolute top-0 left-0 w-[140%] h-[140%] origin-top-left scale-[0.714] border-0 transition-opacity duration-500",
+            isActive && isLoaded ? "opacity-100" : "opacity-0 pointer-events-none"
+          )}
+          title={`${title} Demo`}
+          loading="lazy"
+          sandbox="allow-scripts allow-same-origin"
+          onLoad={() => setIsLoaded(true)}
+        />
+      )}
+    </div>
   )
 }
 
