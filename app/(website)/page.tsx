@@ -146,15 +146,23 @@ export default async function Home() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
             {featuredBooks.map((book) => (
-              <div key={book.title} className="flex flex-col space-y-5">
-                <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-sm border border-border/40 bg-muted">
+              <div key={book.title} className="flex flex-col space-y-5 group">
+                <div className="relative aspect-[3/4] rounded-r-xl overflow-hidden shadow-2xl transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-primary/10 border-y border-r border-border/40">
+                  {/* Spine Effect */}
+                  <div className="absolute left-0 top-0 bottom-0 w-3 bg-black/30 z-20 backdrop-blur-[1px] border-r border-white/5" />
+                  <div className="absolute left-3 top-0 bottom-0 w-[1px] bg-white/10 z-20" />
+
+                  {/* Cover Image */}
                   <Image
                     src={book.coverImage}
                     alt={book.title}
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                     unoptimized
                   />
+
+                  {/* Lighting/Gloss Effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-white/10 z-10 pointer-events-none" />
                 </div>
                 <div className="space-y-3">
                   <h3 className="text-lg font-semibold text-foreground leading-snug">

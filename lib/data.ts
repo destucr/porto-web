@@ -242,7 +242,7 @@ export const books = [
   {
     title: "UIKit Apprentice (Second Edition): Beginning IOS Development with Swift",
     author: "Fahim Farook and Matthijs Hollemans",
-    coverImage: "https://m.media-amazon.com/images/I/81sh96iaSJL._SL1500_.jpg",
+    coverImage: "https://m.media-amazon.com/images/P/1950325483.01._SCLZZZZZZZ_SX500_.jpg",
     amazonUrl: "https://www.amazon.com/UIKit-Apprentice-Second-Beginning-Development/dp/1950325483",
     idBookstoreUrl: "https://www.tokopedia.com/search?st=product&q=uikit%20apprentice",
   },

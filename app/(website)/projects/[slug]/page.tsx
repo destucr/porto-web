@@ -98,9 +98,6 @@ export default async function ProjectPage({ params }: PageProps) {
       {project.image && (
         <link rel="preload" as="image" href={project.image} fetchPriority="high" />
       )}
-      {project.videoUrl && (
-        <link rel="preload" as="video" href={project.videoUrl} />
-      )}
       <nav className="border-b sticky top-0 bg-background/80 backdrop-blur-md z-40 transition-all duration-300">
         <div className="container mx-auto px-6 h-16 flex items-center justify-between">
           <Button asChild variant="ghost" size="sm" className="-ml-2 text-muted-foreground hover:text-foreground">
