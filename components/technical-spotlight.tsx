@@ -88,7 +88,7 @@ function SpotlightVideo({ src, isActive }: { src: string, isActive: boolean }) {
         muted 
         loop 
         playsInline 
-        preload="auto"
+        preload="none"
         onLoadedData={() => setIsLoaded(true)}
         onCanPlay={() => setIsLoaded(true)}
       />
@@ -141,10 +141,6 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
 
   return (
     <div ref={containerRef} className="space-y-12 md:space-y-16">
-      {/* Preload all videos with high priority for instant availability */}
-      {spotlightContent.map(({ project }) => project?.videoUrl && (
-        <link key={`preload-${project.id}`} rel="preload" href={project.videoUrl} as="video" />
-      ))}
       
       {/* Section Header & Tabs */}
       <div className="flex flex-col items-center text-center space-y-8">
