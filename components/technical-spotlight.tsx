@@ -55,43 +55,60 @@ const CATEGORIES = [
 function SpotlightVideo({ src, isActive }: { src: string, isActive: boolean }) {
   const videoRef = React.useRef<HTMLVideoElement>(null)
   const [isLoaded, setIsLoaded] = React.useState(false)
+  const [shouldLoad, setShouldLoad] = React.useState(false)
 
   React.useEffect(() => {
     const video = videoRef.current
     if (!video) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoad(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: "200px" }
+    )
+
+    observer.observe(video)
+    return () => observer.disconnect()
+  }, [])
+
+  React.useEffect(() => {
+    const video = videoRef.current
+    if (!video || !shouldLoad) return
     
-    // Check if video is already ready (e.g. from cache)
     if (video.readyState >= 3) {
       setIsLoaded(true)
     }
 
     if (isActive) {
-      // Small delay to ensure the transition has started
       const timer = setTimeout(() => {
-        video.play().catch(() => {
-          // Autoplay might be blocked until user interaction
-        })
+        video.play().catch(() => {})
       }, 50)
       return () => clearTimeout(timer)
     } else {
       video.pause()
     }
-  }, [isActive])
+  }, [isActive, shouldLoad])
 
   return (
     <div className="relative w-full h-full">
       {!isLoaded && <Skeleton className="absolute inset-0 w-full h-full rounded-none" />}
-      <video 
-        ref={videoRef}
-        src={src} 
-        className={cn("w-full h-full object-cover object-top transition-opacity duration-500", isLoaded ? "opacity-100" : "opacity-0")}
-        muted 
-        loop 
-        playsInline 
-        preload="none"
-        onLoadedData={() => setIsLoaded(true)}
-        onCanPlay={() => setIsLoaded(true)}
-      />
+      {shouldLoad && (
+        <video 
+          ref={videoRef}
+          src={src} 
+          className={cn("w-full h-full object-cover object-top transition-opacity duration-500", isLoaded ? "opacity-100" : "opacity-0")}
+          muted 
+          loop 
+          playsInline 
+          preload="auto"
+          onLoadedData={() => setIsLoaded(true)}
+          onCanPlay={() => setIsLoaded(true)}
+        />
+      )}
     </div>
   )
 }
