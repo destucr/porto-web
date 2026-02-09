@@ -36,6 +36,7 @@ export default async function BooksPage() {
                     src={book.coverImage}
                     alt={book.title}
                     fill
+                    sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 280px"
                     className="object-contain shadow-[5px_10px_30px_rgba(0,0,0,0.15),0px_0px_1px_rgba(0,0,0,0.1)] dark:shadow-[5px_10px_40px_rgba(0,0,0,0.5)]"
                     unoptimized
                   />
