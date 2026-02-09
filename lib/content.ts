@@ -36,7 +36,6 @@ export interface Book {
   author: string;
   coverImage: string;
   amazonUrl?: string;
-  idBookstoreUrl?: string;
 }
 
 export async function getPosts() {

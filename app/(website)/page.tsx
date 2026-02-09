@@ -157,7 +157,7 @@ export default async function Home() {
                     src={book.coverImage}
                     alt={book.title}
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="object-cover"
                     unoptimized
                   />
 
@@ -176,13 +176,6 @@ export default async function Home() {
                       <Button asChild size="sm" variant="outline" className="rounded-full h-8 px-3 text-[11px] font-bold">
                         <a href={book.amazonUrl} target="_blank" rel="noopener noreferrer">
                           Amazon <ExternalLink className="ml-1 w-3 h-3" />
-                        </a>
-                      </Button>
-                    )}
-                    {book.idBookstoreUrl && (
-                      <Button asChild size="sm" variant="secondary" className="rounded-full h-8 px-3 text-[11px] font-bold">
-                        <a href={book.idBookstoreUrl} target="_blank" rel="noopener noreferrer">
-                          Tokopedia <ExternalLink className="ml-1 w-3 h-3" />
                         </a>
                       </Button>
                     )}

@@ -38,7 +38,7 @@ export default async function BooksPage() {
                   src={book.coverImage}
                   alt={book.title}
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="object-cover"
                   unoptimized
                 />
 
@@ -50,7 +50,7 @@ export default async function BooksPage() {
                 <div className="space-y-2">
                   <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-primary/60">
                     <BookOpen className="w-3 h-3" />
-                    <span>Highly Recommended</span>
+                    <span>Recommended Reading</span>
                   </div>
                   <h3 className="text-xl font-semibold text-foreground leading-tight">
                     {book.title}
@@ -65,13 +65,6 @@ export default async function BooksPage() {
                     <Button asChild size="sm" variant="outline" className="rounded-full h-9 px-4 text-xs font-bold">
                       <a href={book.amazonUrl} target="_blank" rel="noopener noreferrer">
                         Amazon <ExternalLink className="ml-1.5 w-3 h-3" />
-                      </a>
-                    </Button>
-                  )}
-                  {book.idBookstoreUrl && (
-                    <Button asChild size="sm" variant="secondary" className="rounded-full h-9 px-4 text-xs font-bold">
-                      <a href={book.idBookstoreUrl} target="_blank" rel="noopener noreferrer">
-                        Tokopedia <ExternalLink className="ml-1.5 w-3 h-3" />
                       </a>
                     </Button>
                   )}
