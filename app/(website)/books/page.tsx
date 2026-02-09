@@ -1,7 +1,5 @@
 import { getBooks } from "@/lib/content"
 import Image from "next/image"
-import { ExternalLink } from "lucide-react"
-import { Button } from "@/components/ui/button"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -33,7 +31,7 @@ export default async function BooksPage() {
                 <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_50%_120%,rgba(0,0,0,0.1),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
                 {/* The "Artifact" - respetcs ratio, never clipped */}
-                <div className="relative w-[85%] h-[85%] transition-transform duration-500 group-hover:-translate-y-1">
+                <div className="relative w-[92%] h-[92%] transition-transform duration-500 group-hover:-translate-y-1">
                   <Image
                     src={book.coverImage}
                     alt={book.title}

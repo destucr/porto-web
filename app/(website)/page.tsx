@@ -5,14 +5,14 @@ import { getProjects, getPosts, getBooks } from "@/lib/content"
 import { ProjectList } from "@/components/project-list"
 import { TechnicalSpotlight } from "@/components/technical-spotlight"
 import { ProfessionalCard } from "@/components/hero-professional-card"
-import { ArrowRight, BookOpen, ExternalLink } from "lucide-react"
+import { ArrowRight, BookOpen } from "lucide-react"
 
 export default async function Home() {
   const allProjects = await getProjects()
   const allPosts = await getPosts()
   const allBooks = await getBooks()
   const latestPosts = allPosts.slice(0, 2)
-  const featuredBooks = allBooks.slice(0, 3)
+  const featuredBooks = allBooks.slice(0, 4)
 
   return (
     <div className="min-h-screen relative font-sans selection:bg-primary/20 selection:text-foreground">
@@ -153,7 +153,7 @@ export default async function Home() {
                   <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_50%_120%,rgba(0,0,0,0.1),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   
                   {/* The "Artifact" - respetcs ratio, never clipped */}
-                  <div className="relative w-[82%] h-[82%] transition-transform duration-500 group-hover:-translate-y-1">
+                  <div className="relative w-[92%] h-[92%] transition-transform duration-500 group-hover:-translate-y-1">
                     <Image
                       src={book.coverImage}
                       alt={book.title}
