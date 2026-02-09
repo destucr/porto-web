@@ -147,35 +147,37 @@ export default async function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
             {featuredBooks.map((book) => (
               <div key={book.title} className="flex flex-col group max-w-[260px] mx-auto md:mx-0">
-                <div className="relative aspect-[2/3] rounded-r-lg overflow-hidden shadow-xl transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-2xl border-y border-r border-border/40">
-                  {/* Spine Effect */}
-                  <div className="absolute left-0 top-0 bottom-0 w-3 bg-black/40 z-20 backdrop-blur-[1px] border-r border-white/10" />
-                  <div className="absolute left-3 top-0 bottom-0 w-[1px] bg-white/5 z-20" />
-
-                  {/* Cover Image */}
-                  <Image
-                    src={book.coverImage}
-                    alt={book.title}
-                    fill
-                    className="object-cover"
-                    unoptimized
-                  />
-
-                  {/* Lighting/Gloss Effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-white/10 z-10 pointer-events-none" />
+                {/* Intentional Gallery Stage */}
+                <div className="relative aspect-[2/3] flex items-center justify-center bg-secondary/10 rounded-sm border border-border/50 overflow-hidden transition-colors duration-500 group-hover:bg-secondary/20">
+                  {/* Perspective Shadow Layer */}
+                  <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_50%_120%,rgba(0,0,0,0.1),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  
+                  {/* The "Artifact" - respetcs ratio, never clipped */}
+                  <div className="relative w-[82%] h-[82%] transition-transform duration-500 group-hover:scale-[1.03] group-hover:-translate-y-1">
+                    <Image
+                      src={book.coverImage}
+                      alt={book.title}
+                      fill
+                      className="object-contain shadow-[5px_10px_30px_rgba(0,0,0,0.15),0px_0px_1px_rgba(0,0,0,0.1)] dark:shadow-[5px_10px_40px_rgba(0,0,0,0.5)]"
+                      unoptimized
+                    />
+                    {/* Material Depth Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-white/5 pointer-events-none" />
+                  </div>
                 </div>
+
                 <div className="mt-6 space-y-3">
-                  <h3 className="text-lg font-semibold text-foreground leading-snug group-hover:text-primary transition-colors">
+                  <h3 className="text-lg font-medium text-foreground leading-snug group-hover:text-primary transition-colors tracking-tight">
                     {book.title}
                   </h3>
-                  <p className="text-sm text-muted-foreground">
-                    by {book.author}
+                  <p className="text-sm text-muted-foreground font-medium">
+                    {book.author}
                   </p>
                   <div className="flex flex-wrap gap-2 pt-1">
                     {book.amazonUrl && (
-                      <Button asChild size="sm" variant="outline" className="rounded-full h-8 px-3 text-[11px] font-bold">
+                      <Button asChild size="sm" variant="ghost" className="rounded-none border-b border-border hover:bg-transparent hover:border-primary px-0 h-auto pb-1 text-[11px] font-bold uppercase tracking-widest">
                         <a href={book.amazonUrl} target="_blank" rel="noopener noreferrer">
-                          Amazon <ExternalLink className="ml-1 w-3 h-3" />
+                          Purchase <ExternalLink className="ml-1.5 w-3 h-3" />
                         </a>
                       </Button>
                     )}

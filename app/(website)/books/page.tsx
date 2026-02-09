@@ -27,40 +27,40 @@ export default async function BooksPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-16">
           {books.map((book) => (
             <div key={book.title} className="group flex flex-col max-w-[280px] mx-auto md:mx-0">
-              {/* Book Cover Container */}
-              <div className="relative aspect-[2/3] rounded-r-lg overflow-hidden shadow-2xl transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-primary/5 border-y border-r border-border/40">
-                {/* Spine Effect */}
-                <div className="absolute left-0 top-0 bottom-0 w-4 bg-black/40 z-20 backdrop-blur-[1px] border-r border-white/10" />
-                <div className="absolute left-4 top-0 bottom-0 w-[1px] bg-white/5 z-20" />
+              {/* Intentional Gallery Stage */}
+              <div className="relative aspect-[2/3] flex items-center justify-center bg-secondary/10 rounded-sm border border-border/50 overflow-hidden transition-colors duration-500 group-hover:bg-secondary/20">
+                {/* Perspective Shadow Layer */}
+                <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_50%_120%,rgba(0,0,0,0.15),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
-                {/* Cover Image */}
-                <Image
-                  src={book.coverImage}
-                  alt={book.title}
-                  fill
-                  className="object-cover"
-                  unoptimized
-                />
-
-                {/* Lighting/Gloss Effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-white/10 z-10 pointer-events-none" />
+                {/* The "Artifact" - respetcs ratio, never clipped */}
+                <div className="relative w-[85%] h-[85%] transition-transform duration-500 group-hover:scale-[1.03] group-hover:-translate-y-1">
+                  <Image
+                    src={book.coverImage}
+                    alt={book.title}
+                    fill
+                    className="object-contain shadow-[5px_10px_30px_rgba(0,0,0,0.2),0px_0px_1px_rgba(0,0,0,0.1)] dark:shadow-[5px_10px_40px_rgba(0,0,0,0.6)]"
+                    unoptimized
+                  />
+                  {/* Material Depth Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-white/5 pointer-events-none" />
+                </div>
               </div>
               
               <div className="mt-8 space-y-4">
                 <div className="space-y-2">
-                  <h3 className="text-xl font-semibold text-foreground leading-tight group-hover:text-primary transition-colors">
+                  <h3 className="text-xl font-medium text-foreground leading-tight tracking-tight group-hover:text-primary transition-colors">
                     {book.title}
                   </h3>
                   <p className="text-sm text-muted-foreground font-medium">
-                    by {book.author}
+                    {book.author}
                   </p>
                 </div>
 
                 <div className="flex flex-wrap gap-3 pt-2">
                   {book.amazonUrl && (
-                    <Button asChild size="sm" variant="outline" className="rounded-full h-9 px-4 text-xs font-bold">
+                    <Button asChild size="sm" variant="ghost" className="rounded-none border-b border-border hover:bg-transparent hover:border-primary px-0 h-auto pb-1 text-xs font-bold uppercase tracking-widest">
                       <a href={book.amazonUrl} target="_blank" rel="noopener noreferrer">
-                        Amazon <ExternalLink className="ml-1.5 w-3 h-3" />
+                        Purchase <ExternalLink className="ml-2 w-3.5 h-3.5" />
                       </a>
                     </Button>
                   )}
