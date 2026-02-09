@@ -111,14 +111,14 @@ export default async function ProjectPage({ params }: PageProps) {
           <div className="flex gap-3">
             {project.githubUrl && (
               <Button asChild variant="outline" size="sm" className="rounded-full">
-                <Link href={project.githubUrl} target="_blank">
+                <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
                   <Github className="mr-2 h-4 w-4" /> Code
                 </Link>
               </Button>
             )}
             {project.appStoreUrl && (
               <Button asChild size="sm" className="rounded-full">
-                <Link href={project.appStoreUrl} target="_blank">
+                <Link href={project.appStoreUrl} target="_blank" rel="noopener noreferrer">
                   <ExternalLink className="mr-2 h-4 w-4" /> App Store
                 </Link>
               </Button>

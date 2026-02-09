@@ -105,7 +105,7 @@ export function Navbar() {
           </div>
           <div className="flex items-center gap-1">
             <Button variant="ghost" size="icon" className="h-9 w-9" asChild>
-              <a href="https://linkedin.com/in/destucikal" target="_blank" rel="noreferrer">
+              <a href="https://linkedin.com/in/destucikal" target="_blank" rel="noopener noreferrer">
                 <Linkedin className="h-4 w-4" />
                 <span className="sr-only">LinkedIn</span>
               </a>

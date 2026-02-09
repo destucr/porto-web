@@ -10,7 +10,7 @@ export function SiteFooter() {
           <a
             href="https://linkedin.com/in/destucikal"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="font-medium underline underline-offset-4"
           >
             Destu Cikal
@@ -21,15 +21,15 @@ export function SiteFooter() {
              <Link href="/admin" className="text-[10px] text-muted-foreground/30 hover:text-muted-foreground transition-colors mr-2">
                System
              </Link>
-             <Link href="https://github.com/destucr" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground">
+             <Link href="https://github.com/destucr" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground">
                  <Github className="h-5 w-5" />
                  <span className="sr-only">GitHub</span>
              </Link>
-             <Link href="https://linkedin.com/in/destucikal" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground">
+             <Link href="https://linkedin.com/in/destucikal" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground">
                  <Linkedin className="h-5 w-5" />
                  <span className="sr-only">LinkedIn</span>
              </Link>
-             <Link href="mailto:destucr@gmail.com" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground">
+             <Link href="mailto:destucr@gmail.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground">
                  <Mail className="h-5 w-5" />
                  <span className="sr-only">Email</span>
              </Link>

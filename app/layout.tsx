@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { AmbientBackground } from "@/components/ambient-background";
 import { StructuredData } from "@/components/structured-data";
+import { GoogleAnalytics } from "@/components/google-analytics";
 
 
 const geistSans = Geist({
@@ -30,6 +31,9 @@ export const metadata: Metadata = {
     siteName: "Destu Cikal Portfolio",
     locale: "en_US",
     type: "website",
+  },
+  alternates: {
+    canonical: "./",
   },
   twitter: {
     card: "summary_large_image",
@@ -63,6 +67,7 @@ export default function RootLayout({
         >
           <AmbientBackground />
           <StructuredData />
+          <GoogleAnalytics ga_id={process.env.NEXT_PUBLIC_GA_ID || "G-XXXXXXXXXX"} />
           {children}
         </ThemeProvider>
       </body>
