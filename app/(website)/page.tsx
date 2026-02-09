@@ -1,15 +1,18 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { getProjects, getPosts } from "@/lib/content"
+import { getProjects, getPosts, getBooks } from "@/lib/content"
 import { ProjectList } from "@/components/project-list"
 import { TechnicalSpotlight } from "@/components/technical-spotlight"
 import { ProfessionalCard } from "@/components/hero-professional-card"
-import { ArrowRight, BookOpen } from "lucide-react"
+import { ArrowRight, BookOpen, ExternalLink } from "lucide-react"
 
 export default async function Home() {
   const allProjects = await getProjects()
   const allPosts = await getPosts()
+  const allBooks = await getBooks()
   const latestPosts = allPosts.slice(0, 2)
+  const featuredBooks = allBooks.slice(0, 3)
 
   return (
     <div className="min-h-screen relative font-sans selection:bg-primary/20 selection:text-foreground">
@@ -119,6 +122,65 @@ export default async function Home() {
                   Read article <ArrowRight className="ml-1.5 w-3.5 h-3.5" />
                 </div>
               </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Reading List */}
+      <section className="py-16 md:py-24 px-4 md:px-6 border-t border-border/40 bg-secondary/5">
+        <div className="max-w-6xl mx-auto space-y-12">
+          <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6">
+            <div className="space-y-3">
+              <h2 className="text-2xl md:text-3xl font-serif font-medium tracking-tight text-foreground">Reading List</h2>
+              <p className="text-muted-foreground text-base md:text-lg leading-relaxed max-w-xl">
+                Books that shaped my perspective on engineering and design.
+              </p>
+            </div>
+            <Button asChild variant="ghost" className="rounded-full group pr-2">
+              <Link href="/books">
+                View all books <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </Button>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+            {featuredBooks.map((book) => (
+              <div key={book.title} className="flex flex-col space-y-5">
+                <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-sm border border-border/40 bg-muted">
+                  <Image
+                    src={book.coverImage}
+                    alt={book.title}
+                    fill
+                    className="object-cover"
+                    unoptimized
+                  />
+                </div>
+                <div className="space-y-3">
+                  <h3 className="text-lg font-semibold text-foreground leading-snug">
+                    {book.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    by {book.author}
+                  </p>
+                  <div className="flex flex-wrap gap-2 pt-1">
+                    {book.amazonUrl && (
+                      <Button asChild size="sm" variant="outline" className="rounded-full h-8 px-3 text-[11px] font-bold">
+                        <a href={book.amazonUrl} target="_blank" rel="noopener noreferrer">
+                          Amazon <ExternalLink className="ml-1 w-3 h-3" />
+                        </a>
+                      </Button>
+                    )}
+                    {book.idBookstoreUrl && (
+                      <Button asChild size="sm" variant="secondary" className="rounded-full h-8 px-3 text-[11px] font-bold">
+                        <a href={book.idBookstoreUrl} target="_blank" rel="noopener noreferrer">
+                          Tokopedia <ExternalLink className="ml-1 w-3 h-3" />
+                        </a>
+                      </Button>
+                    )}
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
