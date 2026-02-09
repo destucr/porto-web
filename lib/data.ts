@@ -245,4 +245,10 @@ export const books = [
     coverImage: "https://assets.alexandria.kodeco.com/books/26138d8a757dd1dc09df6301bc4a47f0a1f7f785a725ae72574c6862127a2201/images/e4412cdfc9c3976de1a172ec826bcd81/original.png",
     amazonUrl: "https://us.amazon.com/UIKit-Apprentice-Second-Beginning-Development/dp/1950325474",
   },
+  {
+    title: "Continuous Discovery Habits: Discover Products that Create Customer Value and Business Value",
+    author: "Teresa Torres",
+    coverImage: "https://m.media-amazon.com/images/I/611QkQ+CXES._SL1500_.jpg",
+    amazonUrl: "https://www.amazon.com/Continuous-Discovery-Habits-Discover-Products/dp/1736633309",
+  },
 ]
