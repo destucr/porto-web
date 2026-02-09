@@ -237,3 +237,13 @@ The "Architecture of Intent" changes here, too. To be a good mid-level developer
 The transition is hard because it forces you to be a craftsman of the "invisible." You have to care about the memory cycles, the layout passes, and the manual synchronization of every label. But there is a hidden reward: once you master UIKit, you finally understand what SwiftUI is actually doing under the hood. You realize that the "magic" isn"""t magic at all—it’s just a very good puppeteer hiding the strings. Building in UIKit makes you more precise, more defensive, and ultimately, more intentional about every single frame you put in front of a user.`,
   },
 ]
+
+export const books = [
+  {
+    title: "UIKit Apprentice (Second Edition): Beginning IOS Development with Swift",
+    author: "Fahim Farook and Matthijs Hollemans",
+    coverImage: "https://m.media-amazon.com/images/I/81sh96iaSJL._SL1500_.jpg",
+    amazonUrl: "https://www.amazon.com/UIKit-Apprentice-Second-Beginning-Development/dp/1950325483",
+    idBookstoreUrl: "https://www.tokopedia.com/search?st=product&q=uikit%20apprentice",
+  },
+]

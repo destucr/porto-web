@@ -27,6 +27,10 @@ export function Navbar() {
       href: "/blog",
       label: "Blog",
     },
+    {
+      href: "/books",
+      label: "Books",
+    },
   ]
 
   const Logo = () => (

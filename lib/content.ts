@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import Markdoc from '@markdoc/markdoc';
-import { blogPosts as fallbackPosts, projects as fallbackProjects } from './data';
+import { blogPosts as fallbackPosts, projects as fallbackProjects, books as fallbackBooks } from './data';
 
 const POSTS_DIR = path.join(process.cwd(), 'content/posts');
 const PROJECTS_DIR = path.join(process.cwd(), 'content/projects');
@@ -29,6 +29,14 @@ interface Project {
   videoUrl: string;
   screenshots: readonly string[];
   details: string;
+}
+
+export interface Book {
+  title: string;
+  author: string;
+  coverImage: string;
+  amazonUrl?: string;
+  idBookstoreUrl?: string;
 }
 
 export async function getPosts() {
@@ -66,6 +74,10 @@ export async function getPosts() {
       title: post.title || 'Untitled Post',
     }));
   }
+}
+
+export async function getBooks() {
+  return fallbackBooks as Book[];
 }
 
 export async function getPost(slug: string) {
