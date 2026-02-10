@@ -195,13 +195,6 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-10 md:py-12 px-4 md:px-6 border-t border-border/40">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
-          
-        </div>
-      </footer>
-
     </div>
   )
 }

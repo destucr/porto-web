@@ -1,13 +1,8 @@
 "use client"
 
-import { useState } from "react"
 import Image from "next/image"
-import { ChevronDown, ChevronUp, GraduationCap, Code2, Sparkles } from "lucide-react"
-import { cn } from "@/lib/utils"
 
 export function ProfessionalCard() {
-  const [isExpanded, setIsExpanded] = useState(false)
-
   return (
     <div className="lg:col-span-2 w-full lg:pl-12">
       <div className="relative pl-6 md:pl-8 border-l border-border/60 space-y-12 py-2">
