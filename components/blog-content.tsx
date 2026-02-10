@@ -52,7 +52,7 @@ export function BlogContent({ content }: BlogContentProps) {
   const parsedContent = React.useMemo(() => JSON.parse(content), [content])
   
   return (
-    <div className="prose prose-sm md:prose-lg dark:prose-invert max-w-none prose-headings:font-serif prose-headings:font-medium prose-p:leading-relaxed prose-p:text-muted-foreground prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-pre:p-0 prose-pre:bg-transparent prose-pre:border-0">
+    <div className="prose prose-sm md:prose-lg dark:prose-invert max-w-none prose-headings:font-medium prose-p:leading-relaxed prose-p:text-muted-foreground prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-pre:p-0 prose-pre:bg-transparent prose-pre:border-0">
       {Markdoc.renderers.react(parsedContent, React, { components })}
     </div>
   )

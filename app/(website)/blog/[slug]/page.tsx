@@ -66,7 +66,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               ))}
             </div>
             
-            <h1 className="text-2xl md:text-4xl lg:text-5xl font-serif font-medium tracking-tight text-foreground leading-tight">
+            <h1 className="text-2xl md:text-4xl lg:text-5xl font-medium tracking-tight text-foreground leading-tight">
               {post.entry.title || 'Untitled Post'}
             </h1>
             
@@ -79,7 +79,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
       {/* Article Content */}
       <div className="container mx-auto px-4 md:px-6 py-10 md:py-16 max-w-3xl">
-        <div className="prose prose-sm md:prose-lg dark:prose-invert max-w-none prose-headings:font-serif prose-headings:font-medium prose-p:leading-relaxed prose-p:text-muted-foreground prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-pre:p-0 prose-pre:bg-transparent prose-pre:border-0">
+        <div className="prose prose-sm md:prose-lg dark:prose-invert max-w-none prose-headings:font-medium prose-p:leading-relaxed prose-p:text-muted-foreground prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-pre:p-0 prose-pre:bg-transparent prose-pre:border-0">
           <p className="lead text-lg md:text-xl lg:text-2xl text-foreground/80 font-light mb-8 md:mb-12">
             {post.entry.excerpt}
           </p>

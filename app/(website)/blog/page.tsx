@@ -25,7 +25,7 @@ export default async function BlogPage() {
       <section className="relative border-b border-border/40">
         <div className="container mx-auto px-4 md:px-6 py-12 md:py-28">
           <div className="max-w-2xl space-y-4 md:space-y-6">
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif font-medium tracking-tight text-foreground">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-medium tracking-tight text-foreground">
               Blog
             </h1>
             <p className="text-base md:text-xl text-muted-foreground leading-relaxed font-light">
@@ -45,7 +45,7 @@ export default async function BlogPage() {
                   <div className="text-[10px] font-bold text-primary/60 uppercase tracking-widest mb-3 md:mb-4">
                     {post.date ? new Date(post.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : 'Unknown Date'}
                   </div>
-                  <h2 className="text-xl md:text-2xl font-serif font-medium leading-snug mb-2 md:mb-3 group-hover:text-primary transition-colors">
+                  <h2 className="text-xl md:text-2xl font-medium leading-snug mb-2 md:mb-3 group-hover:text-primary transition-colors">
                     {post.title}
                   </h2>
                   <p className="text-muted-foreground text-sm md:text-base leading-relaxed line-clamp-3 flex-1 mb-4 md:mb-6">

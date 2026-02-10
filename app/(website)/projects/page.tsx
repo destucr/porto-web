@@ -19,7 +19,7 @@ export default async function ProjectsPage() {
       <section className="relative border-b border-border/40">
         <div className="container mx-auto px-6 py-12 md:py-16">
           <div className="max-w-2xl space-y-4">
-            <h1 className="text-4xl md:text-5xl font-serif font-medium tracking-tight text-foreground">
+            <h1 className="text-4xl md:text-5xl font-medium tracking-tight text-foreground">
               Selected Works
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed font-light">

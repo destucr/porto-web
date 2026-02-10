@@ -171,8 +171,3 @@
 .text-balance {
   text-wrap: balance;
 }
-
-/* Serif font utility if not available in tailwind config */
-.font-serif {
-  font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-}

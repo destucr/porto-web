@@ -130,7 +130,7 @@ export default async function ProjectPage({ params }: PageProps) {
           <header className="space-y-8 text-center max-w-2xl mx-auto">
             <div className="space-y-4">
               <div className="text-xs font-medium uppercase tracking-widest text-muted-foreground">Project Case Study</div>
-              <h1 className="text-4xl md:text-5xl font-serif font-medium tracking-tight text-foreground">
+              <h1 className="text-4xl md:text-5xl font-medium tracking-tight text-foreground">
                 {project.title || 'Untitled Project'}
               </h1>
             </div>
@@ -257,7 +257,7 @@ export default async function ProjectPage({ params }: PageProps) {
               </section>
 
               <section className="prose dark:prose-invert max-w-none 
-                prose-headings:font-serif prose-headings:font-medium prose-headings:tracking-tight
+                prose-headings:font-medium prose-headings:tracking-tight
                 prose-h4:text-2xl prose-h4:mt-12 prose-h4:mb-6
                 prose-p:text-muted-foreground prose-p:text-[17px] prose-p:leading-relaxed
                 prose-li:text-muted-foreground prose-li:text-[17px] prose-li:my-2

@@ -14,7 +14,7 @@ export default async function BooksPage() {
     <div className="min-h-screen bg-background py-12 md:py-20 px-4 md:px-6">
       <div className="max-w-6xl mx-auto space-y-12">
         <div className="space-y-4 text-center md:text-left max-w-2xl">
-          <h1 className="text-4xl md:text-5xl font-serif font-medium tracking-tight text-foreground">
+          <h1 className="text-4xl md:text-5xl font-medium tracking-tight text-foreground">
             Books
           </h1>
           <p className="text-muted-foreground text-lg leading-relaxed">

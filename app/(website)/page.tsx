@@ -23,7 +23,7 @@ export default async function Home() {
           
           <div className="lg:col-span-3 space-y-12 pt-4">
             <div className="space-y-8">
-              <h1 className="text-6xl md:text-7xl font-serif font-medium tracking-tight text-foreground leading-[0.95]">
+              <h1 className="text-6xl md:text-7xl font-medium tracking-tight text-foreground leading-[0.95]">
                 Destu Cikal
               </h1>
               <p className="text-xl md:text-2xl text-muted-foreground max-w-xl leading-relaxed font-light">
@@ -61,7 +61,7 @@ export default async function Home() {
       <section className="py-20 md:py-32 px-4 md:px-6">
         <div className="max-w-6xl mx-auto space-y-12">
           <div className="space-y-4 max-w-2xl">
-            <h2 className="text-4xl md:text-5xl font-serif font-medium tracking-tight text-foreground">Selected Works</h2>
+            <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-foreground">Selected Works</h2>
             <p className="text-lg text-muted-foreground font-light leading-relaxed">
               A collection of iOS apps, full-stack systems, and engineering experiments.
             </p>
@@ -89,7 +89,7 @@ export default async function Home() {
         <div className="max-w-6xl mx-auto space-y-16">
           <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-10">
             <div className="space-y-4 max-w-2xl">
-              <h2 className="text-4xl md:text-5xl font-serif font-medium tracking-tight text-foreground">Writing</h2>
+              <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-foreground">Writing</h2>
               <p className="text-lg text-muted-foreground font-light leading-relaxed">
                 Deep dives into engineering challenges, software philosophy, and the craft of building.
               </p>
@@ -134,7 +134,7 @@ export default async function Home() {
         <div className="max-w-6xl mx-auto space-y-16">
           <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-10">
             <div className="space-y-4 max-w-2xl">
-              <h2 className="text-4xl md:text-5xl font-serif font-medium tracking-tight text-foreground">Reading List</h2>
+              <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-foreground">Reading List</h2>
               <p className="text-lg text-muted-foreground font-light leading-relaxed">
                 A selection of technical and philosophical texts that shaped my engineering practice.
               </p>

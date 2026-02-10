@@ -170,7 +170,7 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
       {/* Section Header & Tabs */}
       <div className="flex flex-col items-center text-center space-y-10">
         <div className="space-y-4">
-          <h2 className="text-4xl md:text-5xl font-serif font-medium tracking-tight text-foreground">Technical Spotlight</h2>
+          <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-foreground">Technical Spotlight</h2>
           <p className="text-lg text-muted-foreground max-w-xl mx-auto font-light leading-relaxed">
             Deep dives into specific engineering domains and architectural decisions.
           </p>
@@ -323,7 +323,7 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
                     </div>
 
                     <div className="space-y-6">
-                      <h3 className="text-3xl md:text-4xl font-serif text-foreground leading-tight tracking-tight">
+                      <h3 className="text-3xl md:text-4xl text-foreground leading-tight tracking-tight">
                         {project.title}
                       </h3>
                       <p className="text-lg text-muted-foreground leading-relaxed font-light">
