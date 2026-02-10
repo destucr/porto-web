@@ -27,7 +27,7 @@ export default async function Home() {
                 Destu Cikal
               </h1>
               <p className="text-xl md:text-2xl text-muted-foreground max-w-xl leading-relaxed font-light">
-                iOS Developer specializing in native engineering, full-stack systems, and intentional user experiences.
+                iOS Developer building high-performance native applications with UIKit and SwiftUI.
               </p>
             </div>
 

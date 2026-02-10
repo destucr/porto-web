@@ -20,13 +20,13 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://destucikal.site"),
   title: {
-    default: "Destu Cikal | iOS & Full-stack Developer",
+    default: "Destu Cikal | iOS Developer",
     template: "%s | Destu Cikal",
   },
-  description: "Technical portfolio showcasing native iOS engineering, full-stack systems, and machine learning projects.",
+  description: "Native iOS Developer building high-performance applications with UIKit and SwiftUI.",
   openGraph: {
-    title: "Destu Cikal | iOS & Full-stack Developer",
-    description: "Technical portfolio showcasing native iOS engineering, full-stack systems, and machine learning projects.",
+    title: "Destu Cikal | iOS Developer",
+    description: "Native iOS Developer building high-performance applications with UIKit and SwiftUI.",
     url: "./",
     siteName: "Destu Cikal Portfolio",
     locale: "en_US",
@@ -37,8 +37,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Destu Cikal | iOS & Full-stack Developer",
-    description: "Technical portfolio showcasing native iOS engineering, full-stack systems, and machine learning projects.",
+    title: "Destu Cikal | iOS Developer",
+    description: "Native iOS Developer building high-performance applications with UIKit and SwiftUI.",
   },
 };
 
