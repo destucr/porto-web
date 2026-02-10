@@ -45,24 +45,24 @@ export function ProjectCard({ project, priority }: ProjectCardProps) {
       </Link>
 
       {/* Info: Compact */}
-      <div className="space-y-1.5">
-        <div className="flex flex-wrap items-center gap-1.5 text-[10px] font-medium tracking-wide uppercase text-muted-foreground">
+      <div className="space-y-3 pt-2">
+        <div className="flex flex-wrap items-center gap-3 text-[10px] font-bold tracking-widest uppercase text-muted-foreground/60">
           {(project.tags || []).slice(0, 2).map((tag, i) => (
             <span key={tag} className="flex items-center">
               {tag}
               {i < (project.tags || []).slice(0, 2).length - 1 && (
-                <span className="mx-1.5 opacity-30">•</span>
+                <span className="ml-3 opacity-20">/</span>
               )}
             </span>
           ))}
         </div>
 
-        <h3 className="text-base md:text-lg font-medium leading-tight text-foreground group-hover:text-foreground/70 transition-colors">
+        <h3 className="text-xl font-medium leading-tight text-foreground group-hover:text-primary transition-colors tracking-tight">
           <Link href={`/projects/${project.slug}`}>
             {project.title}
           </Link>
         </h3>
-        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
+        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2 font-light">
           {project.description}
         </p>
       </div>

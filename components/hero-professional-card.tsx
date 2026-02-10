@@ -9,135 +9,106 @@ export function ProfessionalCard() {
   const [isExpanded, setIsExpanded] = useState(false)
 
   return (
-    <div className="lg:col-span-2 w-full">
-      <div className="relative pl-6 md:pl-8 border-l-2 border-primary/20 space-y-8 py-2">
+    <div className="lg:col-span-2 w-full lg:pl-12">
+      <div className="relative pl-6 md:pl-8 border-l border-border/60 space-y-12 py-2">
         
         {/* Current Role Node */}
         <div className="relative">
-          {/* Centered Indicator */}
-          <div className="absolute -left-[31px] md:-left-[39px] top-1.5 w-5 h-5 rounded-full bg-primary border-4 border-background shadow-sm z-10" />
+          {/* Subtle Indicator */}
+          <div className="absolute -left-[29px] md:-left-[37px] top-2 w-3.5 h-3.5 rounded-full bg-primary ring-4 ring-background z-10" />
           
-          <div className="space-y-4">
+          <div className="space-y-5">
             <div className="flex items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[9px] font-bold uppercase tracking-widest">
-                <Sparkles className="w-2.5 h-2.5" /> Now
+              <span className="text-[10px] font-bold uppercase tracking-widest text-primary/60">
+                Current Focus
               </span>
             </div>
 
             <div className="flex items-start gap-6 group">
-              <div className="relative w-16 h-16 flex items-center justify-center shrink-0">
+              <div className="relative w-12 h-12 flex items-center justify-center shrink-0">
                 <Image 
                   src="/images/bullion-logo.webp" 
                   alt="Bullion Ecosystem International" 
                   fill
                   priority
-                  className="object-contain transition-transform group-hover:scale-110"
+                  className="object-contain transition-opacity group-hover:opacity-80"
                 />
               </div>
-              <div className="space-y-1 pt-1">
-                <h2 className="font-bold text-xl text-foreground leading-tight tracking-tight">iOS Developer</h2>
-                <p className="text-sm text-muted-foreground font-medium">Bullion Ecosystem International</p>
-                <div className="flex flex-wrap gap-1.5 pt-1.5">
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-neutral-100 text-neutral-600 border border-neutral-200">UIKit</span>
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-neutral-100 text-neutral-600 border border-neutral-200">SwiftUI</span>
+              <div className="space-y-1">
+                <h2 className="font-bold text-lg text-foreground leading-tight tracking-tight">iOS Developer</h2>
+                <p className="text-sm text-muted-foreground font-normal">Bullion Ecosystem International</p>
+                <div className="flex flex-wrap gap-2 pt-1">
+                  <span className="text-[9px] font-medium text-muted-foreground border-b border-border">UIKit</span>
+                  <span className="text-[9px] font-medium text-muted-foreground border-b border-border">SwiftUI</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Desktop View / Mobile Collapsible */}
-        <div className="space-y-8">
-          <div className="hidden lg:block h-px bg-gradient-to-r from-border/60 to-transparent" />
-          
-          {/* Mobile Toggle */}
-          <button 
-            className="lg:hidden flex items-center gap-2 text-[10px] font-bold text-primary uppercase tracking-widest"
-            onClick={() => setIsExpanded(!isExpanded)}
-          >
-            {isExpanded ? "Show Less" : "Education & Specialties"}
-            {isExpanded ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
-          </button>
+        {/* Education & specialties */}
+        <div className="space-y-10">
+          {/* Combined Education Node */}
+          <div className="relative">
+            {/* Subtle Indicator */}
+            <div className="absolute -left-[29px] md:-left-[37px] top-1 w-3 h-3 rounded-full bg-border ring-4 ring-background z-10" />
+            <div className="space-y-6">
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">Professional Background</span>
+              </div>
 
-          <div className={cn(
-            "space-y-8 transition-all duration-500 overflow-hidden lg:overflow-visible lg:max-h-none",
-            isExpanded ? "max-h-[1200px] opacity-100" : "max-h-0 opacity-0 lg:opacity-100"
-          )}>
-            
-            {/* Combined Education Node */}
-            <div className="relative">
-              {/* Centered Indicator */}
-              <div className="absolute -left-[31px] md:-left-[39px] top-0 w-4 h-4 rounded-full bg-neutral-200 border-4 border-background z-10" />
-              <div className="space-y-5">
-                <div className="flex items-center gap-2">
-                  <GraduationCap className="w-3.5 h-3.5 text-muted-foreground" />
-                  <span className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground/80">Education & Training</span>
+              <div className="space-y-8">
+                {/* Academy */}
+                <div className="flex items-center gap-6 group">
+                  <div className="relative w-10 h-10 flex items-center justify-center shrink-0 grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all">
+                    <Image 
+                      src="/images/apple-developer-academy-binus.webp" 
+                      alt="Apple Developer Academy @ BINUS" 
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                  <div className="space-y-0.5">
+                    <h3 className="font-bold text-sm leading-tight text-foreground/90">Apple Developer Academy</h3>
+                    <p className="text-[11px] text-muted-foreground">Cohort 2025 Graduate</p>
+                  </div>
                 </div>
 
-                <div className="space-y-6">
-                  {/* Academy */}
-                  <div className="flex items-center gap-6 group">
-                    <div className="relative w-14 h-14 flex items-center justify-center shrink-0">
-                      <Image 
-                        src="/images/apple-developer-academy-binus.webp" 
-                        alt="Apple Developer Academy @ BINUS" 
-                        fill
-                        className="object-contain opacity-90 grayscale group-hover:grayscale-0 transition-all group-hover:scale-110"
-                      />
-                    </div>
-                    <div className="space-y-0.5">
-                      <h3 className="font-bold text-sm leading-tight">Apple Developer Academy @ BINUS</h3>
-                      <p className="text-xs text-muted-foreground font-medium">Graduate Cohort 2025</p>
-                    </div>
+                {/* University */}
+                <div className="flex items-center gap-6 group">
+                  <div className="relative w-10 h-10 flex items-center justify-center shrink-0 grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all">
+                    <Image 
+                      src="/images/telkom-university-logo.webp" 
+                      alt="Telkom University" 
+                      fill
+                      className="object-contain"
+                    />
                   </div>
-
-                  {/* University */}
-                  <div className="flex items-center gap-6 group">
-                    <div className="relative w-14 h-14 flex items-center justify-center shrink-0">
-                      <Image 
-                        src="/images/telkom-university-logo.webp" 
-                        alt="Telkom University" 
-                        fill
-                        className="object-contain opacity-90 grayscale group-hover:grayscale-0 transition-all group-hover:scale-110"
-                      />
-                    </div>
-                    <div className="space-y-0.5">
-                      <h3 className="font-bold text-sm leading-tight">Telkom University</h3>
-                      <p className="text-xs text-muted-foreground font-medium">Software Engineering (Exp. 2026)</p>
-                    </div>
+                  <div className="space-y-0.5">
+                    <h3 className="font-bold text-sm leading-tight text-foreground/90">Telkom University</h3>
+                    <p className="text-[11px] text-muted-foreground">Software Engineering (2026)</p>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
 
-            <div className="h-px bg-gradient-to-r from-border/60 to-transparent" />
-
-            {/* Specialized Focus */}
-            <div className="space-y-5">
-              <div className="flex items-center gap-2">
-                <Code2 className="w-3.5 h-3.5 text-muted-foreground" />
-                <span className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground/80">Specialized Focus</span>
-              </div>
-              
-              <div className="space-y-5 pl-1">
-                {[
-                  { title: "iOS Engineering", tech: ["UIKit", "SwiftUI"], desc: "Native interfaces & complex app lifecycles." },
-                  { title: "Backend", tech: ["Go", "PostgreSQL"], desc: "Concurrent services & robust data systems." },
-                  { title: "DevOps", tech: ["Docker", "Cloudflare"], desc: "Automated deployment & edge infrastructure." }
-                ].map((item, i) => (
-                  <div key={i} className="group space-y-1 relative">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[13px] font-bold text-foreground group-hover:text-primary transition-colors">{item.title}</span>
-                      <div className="flex gap-1">
-                        {item.tech.map(t => (
-                          <span key={t} className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-neutral-100 text-neutral-600 border border-neutral-200">{t}</span>
-                        ))}
-                      </div>
-                    </div>
-                    <p className="text-[11px] text-muted-foreground leading-snug max-w-[240px]">{item.desc}</p>
+          {/* Specialties */}
+          <div className="space-y-6">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">Expertise</span>
+            <div className="grid grid-cols-1 gap-6">
+              {[
+                { title: "iOS Engineering", tech: "UIKit • SwiftUI", desc: "Complex app lifecycles." },
+                { title: "Full-Stack", tech: "Go • Next.js", desc: "Scalable data systems." }
+              ].map((item, i) => (
+                <div key={i} className="group space-y-1">
+                  <div className="flex items-baseline justify-between gap-4">
+                    <span className="text-sm font-bold text-foreground/90">{item.title}</span>
+                    <span className="text-[10px] font-medium text-muted-foreground/60 whitespace-nowrap">{item.tech}</span>
                   </div>
-                ))}
-              </div>
+                  <p className="text-[11px] text-muted-foreground font-light">{item.desc}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
