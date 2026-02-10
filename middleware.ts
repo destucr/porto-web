@@ -2,11 +2,11 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
 export function middleware(request: NextRequest) {
-  // Check if the request is already HTTPS
-  // Cloudflare and most proxies pass x-forwarded-proto
+  const isProduction = process.env.NODE_ENV === 'production'
   const proto = request.headers.get('x-forwarded-proto')
   
-  if (proto === 'http') {
+  // Only redirect to HTTPS in production
+  if (isProduction && proto === 'http') {
     const httpsUrl = new URL(request.url)
     httpsUrl.protocol = 'https:'
     return NextResponse.redirect(httpsUrl, 301)
@@ -14,12 +14,14 @@ export function middleware(request: NextRequest) {
 
   const response = NextResponse.next()
 
-  // Protocol & Security Headers
-  response.headers.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload')
-  response.headers.set('X-Content-Type-Options', 'nosniff')
-  response.headers.set('X-Frame-Options', 'SAMEORIGIN')
-  response.headers.set('X-XSS-Protection', '1; mode=block')
-  response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin')
+  // Only apply strict security headers in production
+  if (isProduction) {
+    response.headers.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload')
+    response.headers.set('X-Content-Type-Options', 'nosniff')
+    response.headers.set('X-Frame-Options', 'SAMEORIGIN')
+    response.headers.set('X-XSS-Protection', '1; mode=block')
+    response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin')
+  }
 
   return response
 }
