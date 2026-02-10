@@ -335,7 +335,7 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
                   {/* Architectural Specs */}
                   {techHighlights.length > 0 && (
                     <div className="space-y-6">
-                      <div className="text-[9px] font-bold uppercase tracking-[0.2em] text-muted-foreground/40">Technical Highlights</div>
+                      <div className="text-[9px] font-bold tracking-[0.2em] text-muted-foreground/40">Technical Highlights</div>
                       <div className="space-y-6">
                         {techHighlights.map((highlight, i) => (
                           <div key={i} className="group/item flex items-start gap-4">
@@ -350,14 +350,14 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
                   )}
 
                   <div className="flex flex-wrap items-center gap-6 pt-4">
-                    <Button asChild className="rounded-none h-11 px-8 text-xs font-bold uppercase tracking-widest shadow-none border-b-2 border-primary hover:bg-transparent hover:text-primary transition-all">
+                    <Button asChild className="rounded-none h-11 px-8 text-xs font-bold tracking-widest shadow-none border-b-2 border-primary hover:bg-transparent hover:text-primary transition-all">
                       <Link href={`/projects/${project.slug}`}>
                         Read Case Study
                       </Link>
                     </Button>
                     
                     {project.demoUrl && (
-                      <Link href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="text-xs font-bold uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors border-b-2 border-transparent hover:border-primary pb-1">
+                      <Link href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="text-xs font-bold tracking-widest text-muted-foreground hover:text-primary transition-colors border-b-2 border-transparent hover:border-primary pb-1">
                         Live Preview
                       </Link>
                     )}

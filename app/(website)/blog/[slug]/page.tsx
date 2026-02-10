@@ -60,7 +60,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           <div className="space-y-4 md:space-y-6">
             <div className="flex flex-wrap justify-center gap-1.5 md:gap-2">
               {(post.entry.tags || []).map((tag: string) => (
-                <span key={tag} className="px-2.5 md:px-3 py-0.5 md:py-1 rounded-full bg-secondary text-secondary-foreground text-[10px] md:text-xs font-medium tracking-wide uppercase">
+                <span key={tag} className="px-2.5 md:px-3 py-0.5 md:py-1 rounded-full bg-secondary text-secondary-foreground text-[10px] md:text-xs font-medium tracking-wide">
                   {tag}
                 </span>
               ))}
@@ -70,7 +70,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               {post.entry.title || 'Untitled Post'}
             </h1>
             
-            <p className="text-[10px] md:text-sm font-medium tracking-widest text-muted-foreground uppercase">
+            <p className="text-[10px] md:text-sm font-medium tracking-widest text-muted-foreground">
               {new Date(post.entry.date || "").toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
             </p>
           </div>

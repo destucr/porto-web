@@ -46,7 +46,7 @@ export function ProjectCard({ project, priority }: ProjectCardProps) {
 
       {/* Info: Compact */}
       <div className="space-y-3 pt-2">
-        <div className="flex flex-wrap items-center gap-3 text-[10px] font-bold tracking-widest uppercase text-muted-foreground/60">
+        <div className="flex flex-wrap items-center gap-3 text-[10px] font-bold tracking-widest text-muted-foreground/60">
           {(project.tags || []).slice(0, 2).map((tag, i) => (
             <span key={tag} className="flex items-center">
               {tag}

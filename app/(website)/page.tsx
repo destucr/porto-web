@@ -94,7 +94,7 @@ export default async function Home() {
                 Deep dives into engineering challenges, software philosophy, and the craft of building.
               </p>
             </div>
-            <Button asChild variant="ghost" className="rounded-none border-b-2 border-transparent hover:border-primary hover:bg-transparent px-0 h-auto pb-1 text-sm font-bold uppercase tracking-widest">
+            <Button asChild variant="ghost" className="rounded-none border-b-2 border-transparent hover:border-primary hover:bg-transparent px-0 h-auto pb-1 text-sm font-bold tracking-widest">
               <Link href="/blog">
                 View All Posts
               </Link>
@@ -109,7 +109,7 @@ export default async function Home() {
                 className="group flex flex-col space-y-6"
               >
                 <div className="space-y-3">
-                  <div className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest text-primary/40 group-hover:text-primary transition-colors">
+                  <div className="flex items-center gap-3 text-[10px] font-bold tracking-widest text-primary/40 group-hover:text-primary transition-colors">
                     <BookOpen className="w-3 h-3" />
                     <span>Engineering Log</span>
                   </div>
@@ -139,7 +139,7 @@ export default async function Home() {
                 A selection of technical and philosophical texts that shaped my engineering practice.
               </p>
             </div>
-            <Button asChild variant="ghost" className="rounded-none border-b-2 border-transparent hover:border-primary hover:bg-transparent px-0 h-auto pb-1 text-sm font-bold uppercase tracking-widest">
+            <Button asChild variant="ghost" className="rounded-none border-b-2 border-transparent hover:border-primary hover:bg-transparent px-0 h-auto pb-1 text-sm font-bold tracking-widest">
               <Link href="/books">
                 View All Books
               </Link>

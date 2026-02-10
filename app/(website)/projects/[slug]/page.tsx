@@ -129,7 +129,7 @@ export default async function ProjectPage({ params }: PageProps) {
           {/* Header - Centered & Elegant */}
           <header className="space-y-8 text-center max-w-2xl mx-auto">
             <div className="space-y-4">
-              <div className="text-xs font-medium uppercase tracking-widest text-muted-foreground">Project Case Study</div>
+              <div className="text-xs font-medium tracking-widest text-muted-foreground">Project Case Study</div>
               <h1 className="text-4xl md:text-5xl font-medium tracking-tight text-foreground">
                 {project.title || 'Untitled Project'}
               </h1>
@@ -161,7 +161,7 @@ export default async function ProjectPage({ params }: PageProps) {
           {/* Video Demo Section */}
           {project.videoUrl && !project.demoUrl && (
             <section className="space-y-8">
-              <h3 className="text-[10px] font-bold uppercase tracking-widest text-primary flex items-center gap-2">
+              <h3 className="text-[10px] font-bold tracking-widest text-primary flex items-center gap-2">
                 <ExternalLink className="h-4 w-4" /> Video Demo
               </h3>
               <div className="rounded-2xl border bg-black overflow-hidden shadow-xl aspect-video md:aspect-[16/9] flex items-center justify-center">
@@ -185,11 +185,11 @@ export default async function ProjectPage({ params }: PageProps) {
           {galleryScreenshots.length > 0 && (
             <section className="space-y-8">
               <div className="flex items-center justify-between">
-                <h3 className="text-[10px] font-bold uppercase tracking-widest text-primary flex items-center gap-2">
+                <h3 className="text-[10px] font-bold tracking-widest text-primary flex items-center gap-2">
                   {isMobile ? <Smartphone className="h-4 w-4" /> : <Monitor className="h-4 w-4" />} 
                   {isMobile ? 'App Screens' : 'Platform Gallery'}
                 </h3>
-                <p className="text-[10px] text-muted-foreground uppercase tracking-widest">Swipe to see more →</p>
+                <p className="text-[10px] text-muted-foreground tracking-widest">Swipe to see more →</p>
               </div>
               <div className="relative -mx-4 px-4 md:-mx-8 md:px-8 overflow-x-auto pb-8 scrollbar-hide">
                 <div className="flex gap-6 min-w-max">
@@ -234,7 +234,7 @@ export default async function ProjectPage({ params }: PageProps) {
             {/* Sidebar Metadata */}
             <aside className="md:col-span-1 space-y-8">
               <div className="space-y-4 pt-1">
-                <h3 className="text-[10px] font-bold uppercase tracking-widest text-primary flex items-center gap-2">
+                <h3 className="text-[10px] font-bold tracking-widest text-primary flex items-center gap-2">
                   <Code2 className="h-4 w-4" /> The Focus
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
@@ -248,7 +248,7 @@ export default async function ProjectPage({ params }: PageProps) {
             {/* Main Content Area */}
             <div className="md:col-span-2 space-y-16">
               <section className="space-y-6">
-                <h3 className="text-[10px] font-bold uppercase tracking-widest text-primary flex items-center gap-2">
+                <h3 className="text-[10px] font-bold tracking-widest text-primary flex items-center gap-2">
                   <Layers className="h-4 w-4" /> Overview
                 </h3>
                 <p className="text-xl md:text-2xl text-foreground font-medium leading-relaxed tracking-tight">

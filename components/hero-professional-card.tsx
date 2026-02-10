@@ -19,7 +19,7 @@ export function ProfessionalCard() {
           
           <div className="space-y-5">
             <div className="flex items-center gap-2">
-              <span className="text-[10px] font-bold uppercase tracking-widest text-primary/60">
+              <span className="text-[10px] font-bold tracking-widest text-primary/60">
                 Experience
               </span>
             </div>
@@ -54,7 +54,7 @@ export function ProfessionalCard() {
             <div className="absolute -left-[29px] md:-left-[37px] top-1 w-3 h-3 rounded-full bg-border ring-4 ring-background z-10" />
             <div className="space-y-6">
               <div className="flex items-center gap-2">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">Education and Learning</span>
+                <span className="text-[10px] font-bold tracking-widest text-muted-foreground/60">Education and Learning</span>
               </div>
 
               <div className="space-y-8">
@@ -95,7 +95,7 @@ export function ProfessionalCard() {
 
           {/* Specialties */}
           <div className="space-y-6">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">Expertise</span>
+            <span className="text-[10px] font-bold tracking-widest text-muted-foreground/60">Expertise</span>
             <div className="grid grid-cols-1 gap-6">
               {[
                 { title: "iOS Engineering", tech: "UIKit • SwiftUI", desc: "Complex app lifecycles." },

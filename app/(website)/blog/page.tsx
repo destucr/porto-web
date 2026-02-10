@@ -42,7 +42,7 @@ export default async function BlogPage() {
             {blogPosts.map((post) => (
               <article key={post.slug} className="group flex flex-col h-full bg-card border border-border/60 rounded-lg md:rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1">
                 <Link href={`/blog/${post.slug}`} className="flex flex-col h-full p-5 md:p-6 lg:p-8">
-                  <div className="text-[10px] font-bold text-primary/60 uppercase tracking-widest mb-3 md:mb-4">
+                  <div className="text-[10px] font-bold text-primary/60 tracking-widest mb-3 md:mb-4">
                     {post.date ? new Date(post.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : 'Unknown Date'}
                   </div>
                   <h2 className="text-xl md:text-2xl font-medium leading-snug mb-2 md:mb-3 group-hover:text-primary transition-colors">
@@ -53,7 +53,7 @@ export default async function BlogPage() {
                   </p>
                   <div className="flex gap-1.5 md:gap-2 flex-wrap mt-auto pt-3 md:pt-4 border-t border-border/40">
                     {(post.tags || []).map((tag: string) => (
-                      <span key={tag} className="px-2 md:px-2.5 py-0.5 text-[9px] md:text-[10px] font-medium uppercase tracking-wider bg-secondary text-secondary-foreground rounded-full">
+                      <span key={tag} className="px-2 md:px-2.5 py-0.5 text-[9px] md:text-[10px] font-medium tracking-wider bg-secondary text-secondary-foreground rounded-full">
                         {tag}
                       </span>
                     ))}
