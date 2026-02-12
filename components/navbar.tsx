@@ -75,13 +75,31 @@ export function Navbar() {
     <>
       <header
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 h-16 bg-background/80 backdrop-blur-xl transition-[border-color] duration-500",
+          "fixed top-0 left-0 right-0 z-50 h-16",
+          "transition-[border-color] duration-500",
           scrolled
-            ? "border-b border-border"
+            ? "border-b border-foreground/[0.06]"
             : "border-b border-transparent"
         )}
       >
-        <div className="container mx-auto h-full flex items-center justify-between">
+        {/* Glass layers */}
+        <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+          {/* Very light tint — almost transparent */}
+          <div className="absolute inset-0 bg-background/15 dark:bg-background/10" />
+          {/* Light blur — enough to soften but not obscure */}
+          <div className="absolute inset-0 backdrop-blur-[12px] backdrop-saturate-[1.8] backdrop-brightness-[1.08] dark:backdrop-brightness-[0.95]" />
+          {/* Specular top edge */}
+          <div className={cn(
+            "absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 dark:via-white/10 to-transparent transition-opacity duration-500",
+            scrolled ? "opacity-100" : "opacity-0"
+          )} />
+          {/* Bottom edge refraction line */}
+          <div className={cn(
+            "absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-foreground/[0.05] to-transparent transition-opacity duration-500",
+            scrolled ? "opacity-100" : "opacity-0"
+          )} />
+        </div>
+        <div className="container mx-auto h-full flex items-center justify-between relative">
           {/* Logo */}
           <Link href="/" className="relative shrink-0 transition-opacity hover:opacity-70">
             <Image

@@ -3,7 +3,7 @@ import Image from "next/image"
 import { getProjects, getPosts } from "@/lib/content"
 import { TechnicalSpotlight } from "@/components/technical-spotlight"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, ArrowUpRight, ArrowDown, FileText } from "lucide-react"
+import { ArrowRight, ArrowUpRight, FileText } from "lucide-react"
 import { ScrollReveal } from "@/components/scroll-reveal"
 import { ParallaxImage } from "@/components/parallax-image"
 import { StaggerReveal } from "@/components/stagger-reveal"
@@ -34,14 +34,9 @@ export default async function Home() {
         <div className="container mx-auto">
           <ScrollReveal>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-              <div className="space-y-2">
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground text-balance">
-                  Projects
-                </h2>
-                <p className="text-muted-foreground text-pretty">
-                  A closer look at selected work across platforms.
-                </p>
-              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground text-balance">
+                Projects
+              </h2>
               <Link
                 href="/projects"
                 className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
