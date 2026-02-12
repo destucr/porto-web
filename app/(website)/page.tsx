@@ -7,7 +7,7 @@ import { ArrowRight, ArrowUpRight, ArrowDown, FileText } from "lucide-react"
 import { ScrollReveal } from "@/components/scroll-reveal"
 import { ParallaxImage } from "@/components/parallax-image"
 import { StaggerReveal } from "@/components/stagger-reveal"
-import { AuroraCanvas } from "@/components/aurora-canvas"
+import { HeroSection } from "@/components/hero-section"
 
 export default async function Home() {
   const allProjects = await getProjects()
@@ -18,80 +18,7 @@ export default async function Home() {
     <div className="min-h-dvh">
 
       {/* ── Hero ─────────────────────────────────────────── */}
-      <section className="relative min-h-[85vh] md:min-h-[90vh] flex items-end overflow-hidden">
-        {/* Canvas background */}
-        <AuroraCanvas />
-
-        {/* Content — pinned to bottom */}
-        <div className="container mx-auto relative z-10 pb-16 md:pb-24">
-          <div className="max-w-2xl space-y-5">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] text-foreground text-balance">
-              Building iOS apps that people actually use
-            </h1>
-            <p className="text-base md:text-lg text-muted-foreground leading-relaxed text-pretty max-w-md">
-              Destu Cikal &mdash; Swift, UIKit, SwiftUI. Currently at Bullion Ecosystem.
-            </p>
-            <div className="pt-2">
-              <Button asChild size="lg">
-                <Link href="/projects">
-                  See the work
-                  <ArrowDown className="size-4 ml-2" />
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Experience & Education ────────────────────────── */}
-      <section className="py-16 md:py-20 border-t border-border">
-        <div className="container mx-auto">
-          <ScrollReveal>
-            <p className="label-caps mb-8">Experience &amp; Education</p>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-              {[
-                {
-                  logo: "/images/bullion-logo.webp",
-                  alt: "Bullion Ecosystem International",
-                  name: "Bullion Ecosystem International",
-                  role: "iOS Developer",
-                  year: "2026",
-                },
-                {
-                  logo: "/images/apple-developer-academy-binus.webp",
-                  alt: "Apple Developer Academy @ BINUS",
-                  name: "Apple Developer Academy @ BINUS",
-                  role: "Graduated",
-                  year: "2025",
-                },
-                {
-                  logo: "/images/telkom-university-logo.webp",
-                  alt: "Telkom University",
-                  name: "Telkom University",
-                  role: "Software Engineering",
-                  year: "2026",
-                },
-              ].map((item, i) => (
-                <div key={i} className="group/item flex items-center gap-4 py-3 px-3 -mx-3 rounded-lg transition-all duration-200 hover:bg-foreground/[0.03]">
-                  <div className="flex-shrink-0 transition-transform duration-300 group-hover/item:scale-110">
-                    <Image
-                      src={item.logo}
-                      alt={item.alt}
-                      width={40}
-                      height={40}
-                      className="size-10 object-contain"
-                    />
-                  </div>
-                  <div className="flex-1 min-w-0 transition-transform duration-300 group-hover/item:translate-x-1">
-                    <p className="text-sm font-medium text-foreground leading-tight">{item.name}</p>
-                    <p className="text-[13px] text-muted-foreground mt-0.5">{item.role} &middot; {item.year}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
+      <HeroSection />
 
       {/* ── Technical Spotlight ──────────────────────────── */}
       <section className="py-20 md:py-28 bg-secondary/50">

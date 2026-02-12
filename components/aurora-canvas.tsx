@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils"
 
 /*──────────────────────────────────────────────────────────
   Simplex-style 2D noise (self-contained, no dependencies)
-  Based on the open-source reference implementation.
 ──────────────────────────────────────────────────────────*/
 const GRAD = [
   [1, 1], [-1, 1], [1, -1], [-1, -1],
@@ -14,7 +13,6 @@ const GRAD = [
 
 function buildPerm() {
   const p = Array.from({ length: 256 }, (_, i) => i)
-  // Fisher-Yates with a fixed seed for determinism
   let seed = 42
   for (let i = 255; i > 0; i--) {
     seed = (seed * 16807 + 0) % 2147483647
@@ -65,17 +63,21 @@ function noise2D(x: number, y: number): number {
     const g = GRAD[perm[ii + 1 + perm[jj + 1]] % 8]
     n2 = t2 * t2 * (g[0] * x2 + g[1] * y2)
   }
-  return 70 * (n0 + n1 + n2) // range ≈ -1..1
+  return 70 * (n0 + n1 + n2)
 }
 
 /*──────────────────────────────────────────────────────────
-  Aurora Canvas Component
+  Halftone Canvas — crisp dot grid with content-aware
+  exclusion. Dots organically shrink to nothing around
+  a referenced DOM element.
 ──────────────────────────────────────────────────────────*/
 interface AuroraCanvasProps {
   className?: string
+  /** Ref to a DOM element — dots will clear around it */
+  excludeRef?: React.RefObject<HTMLElement | null>
 }
 
-export function AuroraCanvas({ className }: AuroraCanvasProps) {
+export function AuroraCanvas({ className, excludeRef }: AuroraCanvasProps) {
   const canvasRef = React.useRef<HTMLCanvasElement>(null)
   const rafRef = React.useRef(0)
   const timeRef = React.useRef(0)
@@ -84,98 +86,179 @@ export function AuroraCanvas({ className }: AuroraCanvasProps) {
     const canvas = canvasRef.current
     if (!canvas) return
 
-    // Respect reduced-motion
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)")
-    if (mq.matches) return
-
     const ctx = canvas.getContext("2d", { alpha: false })
     if (!ctx) return
 
-    // Render at reduced resolution for performance
-    const SCALE = 3 // each "pixel" is 3x3 CSS pixels
-    let w = 0
-    let h = 0
+    const DOT_SPACING = 18
+    const MAX_RADIUS = DOT_SPACING * 0.42
+    const dpr = Math.min(window.devicePixelRatio || 1, 2)
+    const FADE_MARGIN = 60 // px — how far outside the box dots start reappearing
+
+    let cssW = 0
+    let cssH = 0
+
+    // Exclusion zone (relative to canvas top-left)
+    let exRect: { x: number; y: number; w: number; h: number } | null = null
 
     function resize() {
       const rect = canvas!.getBoundingClientRect()
-      w = Math.ceil(rect.width / SCALE)
-      h = Math.ceil(rect.height / SCALE)
-      canvas!.width = w
-      canvas!.height = h
+      cssW = rect.width
+      cssH = rect.height
+      canvas!.width = Math.round(cssW * dpr)
+      canvas!.height = Math.round(cssH * dpr)
+      ctx!.setTransform(dpr, 0, 0, dpr, 0, 0)
+      updateExclusionRect()
+    }
+
+    function updateExclusionRect() {
+      if (!excludeRef?.current || !canvas) {
+        exRect = null
+        return
+      }
+      const cr = canvas.getBoundingClientRect()
+      const er = excludeRef.current.getBoundingClientRect()
+      exRect = {
+        x: er.left - cr.left,
+        y: er.top - cr.top,
+        w: er.width,
+        h: er.height,
+      }
     }
 
     resize()
     window.addEventListener("resize", resize)
 
-    // Detect theme
     function isDark() {
       return document.documentElement.classList.contains("dark")
     }
 
+    // How much a dot is suppressed by the exclusion zone (0 = full, 1 = none)
+    function exclusionFactor(px: number, py: number): number {
+      if (!exRect) return 1
+
+      // Signed distance from the exclusion box edge (negative = inside)
+      const dx = Math.max(exRect.x - px, 0, px - (exRect.x + exRect.w))
+      const dy = Math.max(exRect.y - py, 0, py - (exRect.y + exRect.h))
+      const dist = Math.sqrt(dx * dx + dy * dy)
+
+      // Inside the box?
+      if (px >= exRect.x && px <= exRect.x + exRect.w &&
+          py >= exRect.y && py <= exRect.y + exRect.h) {
+        return 0
+      }
+
+      // Fade zone
+      if (dist < FADE_MARGIN) {
+        const t = dist / FADE_MARGIN
+        return t * t // ease-in: dots grow slowly at edge, then pop
+      }
+
+      return 1
+    }
+
+    // Color palettes
+    const lightColors = [
+      [237, 92, 92],    // #ED5C5C
+      [254, 166, 16],   // #FEA610
+      [245, 201, 89],   // #F5C959
+      [240, 237, 209],  // #F0EDD1
+      [223, 255, 247],  // #DFFFF7
+      [217, 242, 229],  // #D9F2E5
+      [216, 239, 230],  // #D8EFE6
+      [209, 223, 232],  // #D1DFE8
+    ]
+    const darkColors = [
+      [0, 0, 0],        // #000000
+      [10, 10, 20],     // #0A0A14
+      [15, 15, 31],     // #0F0F1F
+      [20, 20, 46],     // #14142E
+      [26, 26, 61],     // #1A1A3D
+      [31, 31, 71],     // #1F1F47
+      [36, 36, 82],     // #242452
+      [61, 61, 102],    // #3D3D66
+      [92, 92, 143],    // #5C5C8F
+    ]
+
     function draw() {
-      timeRef.current += 0.003 // slow drift
+      if (!mq.matches) {
+        timeRef.current += 0.003
+      }
       const t = timeRef.current
       const dark = isDark()
 
-      const imageData = ctx!.createImageData(w, h)
-      const data = imageData.data
+      // Re-read exclusion rect each frame (handles scroll, layout shifts)
+      updateExclusionRect()
 
-      for (let y = 0; y < h; y++) {
-        const ny = y / h
-        for (let x = 0; x < w; x++) {
-          const nx = x / w
-          const idx = (y * w + x) * 4
+      ctx!.fillStyle = dark ? "#141414" : "#FAFAF8"
+      ctx!.fillRect(0, 0, cssW, cssH)
 
-          // Layer 1: large-scale flow
-          const n1 = noise2D(nx * 2.5 + t * 0.4, ny * 1.8 + t * 0.25)
-          // Layer 2: medium detail
-          const n2 = noise2D(nx * 5 + t * 0.3 + 100, ny * 4 + t * 0.15 + 100)
-          // Layer 3: fine shimmer
-          const n3 = noise2D(nx * 10 - t * 0.5, ny * 8 - t * 0.2)
+      const cols = Math.ceil(cssW / DOT_SPACING) + 1
+      const rows = Math.ceil(cssH / DOT_SPACING) + 1
+      const palette = dark ? darkColors : lightColors
 
-          // Combine layers
-          const v = n1 * 0.55 + n2 * 0.3 + n3 * 0.15 // range ~-1..1
-          const nv = (v + 1) * 0.5 // normalize to 0..1
+      const batches: Map<string, Array<[number, number, number]>> = new Map()
 
-          // Vertical fade: aurora concentrated in upper half
-          const vertFade = 1 - ny * ny * 0.6
+      for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
+          const cx = col * DOT_SPACING
+          const cy = row * DOT_SPACING
 
-          // Final intensity
-          const intensity = nv * vertFade
+          // Content-aware exclusion
+          const ef = exclusionFactor(cx, cy)
+          if (ef < 0.01) continue
 
-          if (dark) {
-            // Dark mode: deep indigo / teal / faint emerald
-            const r = Math.floor(20 + intensity * 35)
-            const g = Math.floor(20 + intensity * 55)
-            const b = Math.floor(25 + intensity * 70)
-            data[idx] = r
-            data[idx + 1] = g
-            data[idx + 2] = b
-          } else {
-            // Light mode: warm off-white with faint peach / lavender veins
-            const base = 250  // near-white base
-            const r = Math.floor(base - intensity * 12)
-            const g = Math.floor(base - intensity * 16)
-            const b = Math.floor(base - intensity * 8)
-            data[idx] = r
-            data[idx + 1] = g
-            data[idx + 2] = b
-          }
-          data[idx + 3] = 255
+          const nx = cx / cssW
+          const ny = cy / cssH
+
+          const n1 = noise2D(nx * 2.5 + t * 0.4, ny * 2.5 + t * 0.25)
+          const n2 = noise2D(nx * 4 + t * 0.2 + 50, ny * 3 - t * 0.15 + 50)
+
+          const raw = (n1 * 0.65 + n2 * 0.35 + 1) * 0.5
+          const size = raw * raw
+
+          const radius = size * MAX_RADIUS * ef
+          if (radius < 0.5) continue
+
+          const nc = noise2D(nx * 1.5 + t * 0.15 + 200, ny * 1.5 - t * 0.1 + 200)
+          const colorIdx = Math.floor(((nc + 1) * 0.5) * palette.length) % palette.length
+          const c = palette[colorIdx]
+
+          const alpha = dark
+            ? (0.35 + size * 0.55) * ef
+            : (0.30 + size * 0.50) * ef
+          const key = `rgba(${c[0]},${c[1]},${c[2]},${alpha.toFixed(2)})`
+
+          if (!batches.has(key)) batches.set(key, [])
+          batches.get(key)!.push([cx, cy, radius])
         }
       }
 
-      ctx!.putImageData(imageData, 0, 0)
+      const TAU = Math.PI * 2
+      for (const [color, dots] of batches) {
+        ctx!.fillStyle = color
+        ctx!.beginPath()
+        for (const [x, y, r] of dots) {
+          ctx!.moveTo(x + r, y)
+          ctx!.arc(x, y, r, 0, TAU)
+        }
+        ctx!.fill()
+      }
+
       rafRef.current = requestAnimationFrame(draw)
     }
 
-    rafRef.current = requestAnimationFrame(draw)
+    if (mq.matches) {
+      draw()
+    } else {
+      rafRef.current = requestAnimationFrame(draw)
+    }
 
     return () => {
       cancelAnimationFrame(rafRef.current)
       window.removeEventListener("resize", resize)
     }
-  }, [])
+  }, [excludeRef])
 
   return (
     <canvas
@@ -184,7 +267,6 @@ export function AuroraCanvas({ className }: AuroraCanvasProps) {
         "absolute inset-0 w-full h-full",
         className
       )}
-      style={{ imageRendering: "auto" }}
       aria-hidden="true"
     />
   )
