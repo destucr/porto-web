@@ -4,25 +4,24 @@ import { Metadata } from "next"
 import { Suspense } from "react"
 
 export const metadata: Metadata = {
-  title: "Projects | Software Engineering Portfolio",
-  description: "A showcase of native iOS applications, full-stack web platforms, and machine learning experiments.",
+  title: "Projects",
+  description: "Native iOS applications, full-stack web platforms, and machine learning implementations by Destu Cikal.",
 }
 
 export default async function ProjectsPage() {
-  const isAdmin = false
-
   const projects = await getProjects()
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       {/* Header */}
-      <section className="relative border-b border-border/40">
-        <div className="container mx-auto px-6 py-12 md:py-16">
+      <section className="border-b border-border">
+        <div className="container mx-auto py-16 md:py-24">
           <div className="max-w-2xl space-y-4">
-            <h1 className="text-4xl md:text-5xl font-medium tracking-tight text-foreground">
-              Selected Works
+            <span className="label-caps text-primary">Selected Work</span>
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">
+              Projects
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed font-light">
+            <p className="text-lg text-muted-foreground leading-relaxed">
               Technical case studies spanning native iOS engineering, system architecture, and product design.
             </p>
           </div>
@@ -30,10 +29,10 @@ export default async function ProjectsPage() {
       </section>
 
       {/* Project list */}
-      <section className="relative">
-        <div className="container mx-auto px-6 py-16 md:py-24">
-          <Suspense fallback={<div>Loading projects...</div>}>
-            <ProjectList projects={projects} isAdmin={isAdmin} />
+      <section>
+        <div className="container mx-auto py-16 md:py-24">
+          <Suspense fallback={<div className="text-muted-foreground">Loading projects...</div>}>
+            <ProjectList projects={projects} />
           </Suspense>
         </div>
       </section>

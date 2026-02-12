@@ -29,6 +29,7 @@ interface Project {
   videoUrl: string;
   screenshots: readonly string[];
   details: string;
+  articleOnly?: boolean;
 }
 
 export interface Book {
@@ -142,6 +143,7 @@ export async function getProjects() {
         videoUrl: project.videoUrl || '',
         screenshots: Array.isArray(project.screenshots) ? (project.screenshots as readonly string[]) : [],
         details: project.details || project.content || '',
+        articleOnly: project.articleOnly || false,
       }))
       .sort((a, b) => {
         const aIsIOS = a.tags.some((tag: string) => tag.toLowerCase() === 'ios');
@@ -233,6 +235,7 @@ export async function getProject(slug: string) {
         videoUrl: data.videoUrl,
         screenshots: Array.isArray(data.screenshots) ? data.screenshots : [],
         details: content, // string
+        articleOnly: data.articleOnly || false,
       },
     };
   } catch (error) {

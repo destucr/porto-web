@@ -29,7 +29,7 @@ const components = {
   ),
   Image: ({ src, alt, title }: { src: string; alt?: string; title?: string }) => (
     <figure className="my-8">
-      <div className="rounded-xl overflow-hidden border border-border/40 bg-muted/30">
+      <div className="overflow-hidden border border-border bg-muted/30">
         <Image
           src={src}
           alt={alt || ""}
@@ -52,7 +52,14 @@ export function BlogContent({ content }: BlogContentProps) {
   const parsedContent = React.useMemo(() => JSON.parse(content), [content])
   
   return (
-    <div className="prose prose-sm md:prose-lg dark:prose-invert max-w-none prose-headings:font-medium prose-p:leading-relaxed prose-p:text-muted-foreground prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-pre:p-0 prose-pre:bg-transparent prose-pre:border-0">
+    <div className="prose dark:prose-invert max-w-none
+      prose-headings:font-bold prose-headings:tracking-tight
+      prose-p:text-[17px] prose-p:leading-[1.8] prose-p:text-muted-foreground
+      prose-a:text-primary prose-a:no-underline hover:prose-a:underline
+      prose-pre:p-0 prose-pre:bg-transparent prose-pre:border-0
+      prose-li:text-[17px] prose-li:leading-[1.8] prose-li:text-muted-foreground
+      prose-strong:text-foreground prose-strong:font-bold
+      prose-code:text-foreground prose-code:font-normal">
       {Markdoc.renderers.react(parsedContent, React, { components })}
     </div>
   )

@@ -2,124 +2,187 @@
 
 import * as React from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { usePathname } from "next/navigation"
+import { useTheme } from "next-themes"
 import { cn } from "@/lib/utils"
 import { ModeToggle } from "@/components/mode-toggle"
-import { Button } from "@/components/ui/button"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Menu, Linkedin, Mail } from "lucide-react"
+
+const navItems = [
+  { href: "/projects", label: "Projects" },
+  { href: "/blog", label: "Writing" },
+  { href: "/#contact", label: "Contact" },
+]
 
 export function Navbar() {
   const pathname = usePathname()
-  const [isOpen, setIsOpen] = React.useState(false)
+  const { resolvedTheme } = useTheme()
+  const [scrolled, setScrolled] = React.useState(false)
+  const [mobileOpen, setMobileOpen] = React.useState(false)
+  const [mounted, setMounted] = React.useState(false)
 
-  const routes = [
-    {
-      href: "/",
-      label: "Home",
-    },
-    {
-      href: "/projects",
-      label: "Projects",
-    },
-    {
-      href: "/blog",
-      label: "Blog",
-    },
-    {
-      href: "/books",
-      label: "Books",
-    },
-  ]
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
 
-  const Logo = () => (
-    <div className="w-8 h-8 rounded-lg bg-foreground text-background flex items-center justify-center font-bold text-sm">
-      DC
-    </div>
-  )
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 8)
+    }
+    handleScroll()
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  // Lock body scroll when mobile menu is open
+  React.useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
+    return () => {
+      document.body.style.overflow = ""
+    }
+  }, [mobileOpen])
+
+  // Close mobile menu on route change
+  React.useEffect(() => {
+    setMobileOpen(false)
+  }, [pathname])
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    // Handle hash links on the homepage
+    if (href.startsWith("/#")) {
+      const hash = href.slice(1) // e.g. "#about"
+      if (pathname === "/") {
+        e.preventDefault()
+        const el = document.querySelector(hash)
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" })
+        }
+      }
+    }
+    setMobileOpen(false)
+  }
+
+  const isActive = (href: string) => {
+    if (href.startsWith("/#")) return false
+    return pathname === href || pathname.startsWith(href + "/")
+  }
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto flex h-14 items-center px-4 md:px-6">
-        <div className="mr-4 hidden md:flex">
-          <Link href="/" className="mr-6 flex items-center">
-            <Logo />
+    <>
+      <header
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 h-16 bg-background/80 backdrop-blur-xl transition-[border-color] duration-500",
+          scrolled
+            ? "border-b border-border"
+            : "border-b border-transparent"
+        )}
+      >
+        <div className="container mx-auto h-full flex items-center justify-between">
+          {/* Logo */}
+          <Link href="/" className="relative shrink-0 transition-opacity hover:opacity-70">
+            <Image
+              src={mounted && resolvedTheme === "dark" ? "/images/logo/logo-dark.webp" : "/images/logo/logo-light.webp"}
+              alt="Destu Cikal"
+              width={48}
+              height={48}
+              className="size-12 object-contain"
+              priority
+            />
           </Link>
-          <nav className="flex items-center space-x-6 text-sm font-medium">
-            {routes.map((route) => (
+
+          {/* Desktop nav */}
+          <nav className="hidden md:flex items-center gap-1">
+            {navItems.map((item) => (
               <Link
-                key={route.href}
-                href={route.href}
+                key={item.href}
+                href={item.href}
+                onClick={(e) => handleNavClick(e, item.href)}
                 className={cn(
-                  "transition-colors hover:text-foreground/80",
-                  pathname === route.href ? "text-foreground" : "text-foreground/60"
+                  "relative px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200",
+                  isActive(item.href)
+                    ? "text-foreground bg-foreground/[0.05]"
+                    : "text-muted-foreground hover:text-foreground hover:bg-foreground/[0.04]"
                 )}
               >
-                {route.label}
+                {item.label}
               </Link>
             ))}
-          </nav>
-        </div>
-        <Sheet open={isOpen} onOpenChange={setIsOpen}>
-          <SheetTrigger asChild>
-            <Button
-              variant="ghost"
-              className="px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
-            >
-              <Menu className="h-5 w-5" />
-              <span className="sr-only">Toggle Menu</span>
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="left" className="pr-0">
-            <Link
-              href="/"
-              className="flex items-center space-x-3"
-              onClick={() => setIsOpen(false)}
-            >
-              <Logo />
-              <span className="font-medium">Destu Cikal</span>
-            </Link>
-            <ScrollArea className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
-              <div className="flex flex-col space-y-3">
-                {routes.map((route) => (
-                  <Link
-                    key={route.href}
-                    href={route.href}
-                    className="text-foreground/70 transition-colors hover:text-foreground"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {route.label}
-                  </Link>
-                ))}
-              </div>
-            </ScrollArea>
-          </SheetContent>
-        </Sheet>
-        <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-          <div className="w-full flex-1 md:w-auto md:flex-none md:hidden">
-            {/* Mobile logo */}
-            <Link href="/" className="flex items-center">
-              <Logo />
-            </Link>
-          </div>
-          <div className="flex items-center gap-1">
-            <Button variant="ghost" size="icon" className="h-9 w-9" asChild>
-              <a href="https://linkedin.com/in/destucikal" target="_blank" rel="noopener noreferrer">
-                <Linkedin className="h-4 w-4" />
-                <span className="sr-only">LinkedIn</span>
-              </a>
-            </Button>
-            <Button variant="ghost" size="icon" className="h-9 w-9" asChild>
-              <a href="mailto:destucr@gmail.com">
-                <Mail className="h-4 w-4" />
-                <span className="sr-only">Email</span>
-              </a>
-            </Button>
+            <div className="w-px h-4 bg-border mx-2" />
             <ModeToggle />
+          </nav>
+
+          {/* Mobile controls */}
+          <div className="flex md:hidden items-center gap-2">
+            <ModeToggle />
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="relative w-9 h-9 flex items-center justify-center text-foreground"
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileOpen}
+            >
+              <span
+                className={cn(
+                  "absolute w-5 h-[1.5px] bg-current transition-all duration-300",
+                  mobileOpen ? "rotate-45 translate-y-0" : "-translate-y-1.5"
+                )}
+              />
+              <span
+                className={cn(
+                  "absolute w-5 h-[1.5px] bg-current transition-all duration-300",
+                  mobileOpen ? "opacity-0" : "opacity-100"
+                )}
+              />
+              <span
+                className={cn(
+                  "absolute w-5 h-[1.5px] bg-current transition-all duration-300",
+                  mobileOpen ? "-rotate-45 translate-y-0" : "translate-y-1.5"
+                )}
+              />
+            </button>
           </div>
         </div>
+      </header>
+
+      {/* Mobile overlay */}
+      <div
+        className={cn(
+          "fixed inset-0 z-40 bg-background/98 backdrop-blur-md transition-all duration-300 md:hidden",
+          mobileOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        )}
+      >
+        <nav className="flex flex-col items-start justify-center h-full container mx-auto gap-8">
+          {navItems.map((item, i) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={(e) => handleNavClick(e, item.href)}
+              className={cn(
+                "text-4xl font-bold tracking-tight transition-all duration-300",
+                mobileOpen
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-4",
+                isActive(item.href)
+                  ? "text-foreground"
+                  : "text-foreground/60 hover:text-foreground"
+              )}
+              style={{
+                transitionDelay: mobileOpen ? `${100 + i * 75}ms` : "0ms",
+              }}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
       </div>
-    </header>
+
+      {/* Spacer to account for fixed header */}
+      <div className="h-16" />
+    </>
   )
 }

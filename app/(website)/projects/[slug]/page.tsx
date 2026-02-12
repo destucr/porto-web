@@ -12,27 +12,25 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
   const project = await getProject(slug)
-  
+
   if (!project) {
-    return {
-      title: "Project Not Found",
-    }
+    return { title: "Project Not Found" }
   }
 
   return {
-    title: `${project.entry.title} | Projects`,
+    title: project.entry.title,
     description: project.entry.description,
     openGraph: {
       title: project.entry.title,
       description: project.entry.description,
       images: project.entry.image ? [project.entry.image] : [],
-    }
+    },
   }
 }
 
 import Link from "next/link"
 import Image from "next/image"
-import { ChevronLeft, Github, ExternalLink, Code2, Layers, Smartphone, Monitor } from "lucide-react"
+import { ChevronLeft, Github, ExternalLink, Smartphone, Monitor } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Markdoc from "@markdoc/markdoc"
 import React from "react"
@@ -56,26 +54,26 @@ export default async function ProjectPage({ params }: PageProps) {
     slug: slug,
   }
 
-  const isMobile = project.tags?.some((tag: string) => 
-    tag.toLowerCase() === 'ios' || tag.toLowerCase() === 'mobile'
+  const isMobile = project.tags?.some(
+    (tag: string) => tag.toLowerCase() === "ios" || tag.toLowerCase() === "mobile"
   )
 
-  const isLandscape = project.tags?.some((tag: string) => 
-    tag.toLowerCase() === 'spritekit' || tag.toLowerCase() === 'game'
+  const isLandscape = project.tags?.some(
+    (tag: string) => tag.toLowerCase() === "spritekit" || tag.toLowerCase() === "game"
   )
 
-  // Filter out the thumbnail from screenshots to avoid duplication
-  const galleryScreenshots = project.screenshots?.filter((s: string) => s !== project.image) || []
+  const galleryScreenshots =
+    project.screenshots?.filter((s: string) => s !== project.image) || []
 
   interface ImageProps {
-    src: string;
-    alt?: string;
-    title?: string;
+    src: string
+    alt?: string
+    title?: string
   }
 
-  const renderImage = (props: ImageProps) => (
+  const renderImage = (props: ImageProps) =>
     props.src ? (
-      <div className="my-8 rounded-xl overflow-hidden border bg-muted/30">
+      <div className="my-8 overflow-hidden border border-border bg-muted/30">
         <Image
           src={props.src}
           alt={props.alt || ""}
@@ -85,38 +83,44 @@ export default async function ProjectPage({ params }: PageProps) {
           unoptimized
         />
         {props.title && (
-          <p className="text-center text-xs text-muted-foreground py-3 border-t bg-background/50">
+          <p className="text-center text-xs text-muted-foreground py-3 border-t">
             {props.title}
           </p>
         )}
       </div>
     ) : null
-  );
 
   return (
-    <article className="min-h-screen bg-background pb-24">
+    <article className="min-h-screen pb-24">
       {project.image && (
         <link rel="preload" as="image" href={project.image} fetchPriority="high" />
       )}
-      <nav className="border-b sticky top-0 bg-background/80 backdrop-blur-md z-40 transition-all duration-300">
-        <div className="container mx-auto px-6 h-16 flex items-center justify-between">
-          <Button asChild variant="ghost" size="sm" className="-ml-2 text-muted-foreground hover:text-foreground">
+
+      {/* Sub-nav */}
+      <nav className="border-b border-border">
+        <div className="container mx-auto h-14 flex items-center justify-between">
+          <Button
+            asChild
+            variant="ghost"
+            size="sm"
+            className="-ml-2 text-muted-foreground hover:text-foreground"
+          >
             <Link href="/projects">
-              <ChevronLeft className="mr-1 h-4 w-4" /> Back to Works
+              <ChevronLeft className="mr-1 h-4 w-4" /> Back to Projects
             </Link>
           </Button>
           <div className="flex gap-3">
-            {project.githubUrl && (
-              <Button asChild variant="outline" size="sm" className="rounded-full">
+            {project.githubUrl && !project.articleOnly && (
+              <Button asChild variant="outline" size="sm">
                 <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
                   <Github className="mr-2 h-4 w-4" /> Code
                 </Link>
               </Button>
             )}
             {project.appStoreUrl && (
-              <Button asChild size="sm" className="rounded-full">
+              <Button asChild size="sm">
                 <Link href={project.appStoreUrl} target="_blank" rel="noopener noreferrer">
-                  <ExternalLink className="mr-2 h-4 w-4" /> App Store
+                  <ExternalLink className="mr-2 h-4 w-4" /> Visit Website
                 </Link>
               </Button>
             )}
@@ -124,54 +128,58 @@ export default async function ProjectPage({ params }: PageProps) {
         </div>
       </nav>
 
-      <div className="container mx-auto px-6 py-12 md:py-20">
-        <div className="max-w-4xl mx-auto space-y-16">
-          {/* Header - Centered & Elegant */}
-          <header className="space-y-8 text-center max-w-2xl mx-auto">
-            <div className="space-y-4">
-              <div className="text-xs font-medium tracking-widest text-muted-foreground">Project Case Study</div>
-              <h1 className="text-4xl md:text-5xl font-medium tracking-tight text-foreground">
-                {project.title || 'Untitled Project'}
-              </h1>
+      <div className="container mx-auto py-12 md:py-20">
+        <div className="max-w-[680px] mx-auto space-y-16">
+          {/* Header */}
+          <header className="space-y-6">
+            <span className="label-caps text-primary">Case Study</span>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground leading-tight">
+              {project.title || "Untitled Project"}
+            </h1>
+
+            <div className="flex flex-wrap gap-2">
+              {Array.isArray(project.tags) &&
+                project.tags.map((tag: string) => (
+                  <span
+                    key={tag}
+                    className="px-3 py-1 bg-secondary text-secondary-foreground text-xs font-medium tracking-wide"
+                  >
+                    {tag}
+                  </span>
+                ))}
             </div>
 
-            <div className="flex flex-wrap justify-center gap-2">
-              {Array.isArray(project.tags) && project.tags.map((tag: string) => (
-                <span key={tag} className="px-3 py-1 rounded-full bg-secondary text-secondary-foreground text-xs font-medium tracking-wide">
-                  {tag}
-                </span>
-              ))}
-            </div>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              {project.description}
+            </p>
           </header>
 
-          {/* Hero Image - Simple & Clean */}
+          {/* Hero Image */}
           {project.image && (
-            <div className="rounded-2xl overflow-hidden shadow-sm border border-border/40 aspect-video relative bg-muted">
-               <Image
-                 src={project.image}
-                 alt={project.title}
-                 fill
-                 sizes="(max-width: 1200px) 100vw, 1200px"
-                 className="object-cover object-top"
-                 priority
-               />
+            <div className="overflow-hidden border border-border aspect-video relative bg-muted">
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                sizes="(max-width: 1200px) 100vw, 680px"
+                className="object-cover object-top"
+                priority
+              />
             </div>
           )}
 
-          {/* Video Demo Section */}
+          {/* Video Demo */}
           {project.videoUrl && !project.demoUrl && (
-            <section className="space-y-8">
-              <h3 className="text-[10px] font-bold tracking-widest text-primary flex items-center gap-2">
-                <ExternalLink className="h-4 w-4" /> Video Demo
-              </h3>
-              <div className="rounded-2xl border bg-black overflow-hidden shadow-xl aspect-video md:aspect-[16/9] flex items-center justify-center">
-                <video 
+            <section className="space-y-4">
+              <span className="label-caps text-muted-foreground">Video Demo</span>
+              <div className="border border-border bg-black overflow-hidden aspect-video flex items-center justify-center">
+                <video
                   src={project.videoUrl}
                   autoPlay
                   muted
                   loop
                   playsInline
-                  controls 
+                  controls
                   className="w-full h-full"
                   poster={project.image || undefined}
                 >
@@ -183,19 +191,26 @@ export default async function ProjectPage({ params }: PageProps) {
 
           {/* Screenshots Gallery */}
           {galleryScreenshots.length > 0 && (
-            <section className="space-y-8">
+            <section className="space-y-4">
               <div className="flex items-center justify-between">
-                <h3 className="text-[10px] font-bold tracking-widest text-primary flex items-center gap-2">
-                  {isMobile ? <Smartphone className="h-4 w-4" /> : <Monitor className="h-4 w-4" />} 
-                  {isMobile ? 'App Screens' : 'Platform Gallery'}
-                </h3>
-                <p className="text-[10px] text-muted-foreground tracking-widest">Swipe to see more →</p>
+                <span className="label-caps text-muted-foreground flex items-center gap-2">
+                  {isMobile ? (
+                    <Smartphone className="h-3.5 w-3.5" />
+                  ) : (
+                    <Monitor className="h-3.5 w-3.5" />
+                  )}
+                  {isMobile ? "App Screens" : "Platform Gallery"}
+                </span>
+                <span className="text-xs text-muted-foreground">Swipe to see more</span>
               </div>
-              <div className="relative -mx-4 px-4 md:-mx-8 md:px-8 overflow-x-auto pb-8 scrollbar-hide">
-                <div className="flex gap-6 min-w-max">
-                  {galleryScreenshots.map((screenshot: string, index: number) => (
+              <div className="relative -mx-4 px-4 md:-mx-8 md:px-8 overflow-x-auto pb-6 scrollbar-hide">
+                <div className="flex gap-4 min-w-max">
+                  {galleryScreenshots.map((screenshot: string, index: number) =>
                     isMobile && !isLandscape ? (
-                      <div key={index} className="relative h-[500px] aspect-[9/19.5] rounded-[2rem] border-[6px] border-muted shadow-lg overflow-hidden bg-background">
+                      <div
+                        key={index}
+                        className="relative h-[440px] aspect-[9/19.5] border border-border overflow-hidden bg-background"
+                      >
                         {screenshot && (
                           <Image
                             src={screenshot}
@@ -206,11 +221,12 @@ export default async function ProjectPage({ params }: PageProps) {
                             unoptimized
                           />
                         )}
-                        {/* Dynamic Island Mockup */}
-                        <div className="absolute top-3 left-1/2 -translate-x-1/2 w-20 h-5 bg-black rounded-full z-10" />
                       </div>
                     ) : (
-                      <div key={index} className="relative h-[300px] md:h-[400px] aspect-video rounded-xl border border-muted shadow-lg overflow-hidden bg-background">
+                      <div
+                        key={index}
+                        className="relative h-[280px] md:h-[360px] aspect-video border border-border overflow-hidden bg-background"
+                      >
                         {screenshot && (
                           <Image
                             src={screenshot}
@@ -223,73 +239,46 @@ export default async function ProjectPage({ params }: PageProps) {
                         )}
                       </div>
                     )
-                  ))}
+                  )}
                 </div>
               </div>
             </section>
           )}
 
           {/* Case Study Body */}
-          <div className="grid md:grid-cols-3 gap-16 pt-8">
-            {/* Sidebar Metadata */}
-            <aside className="md:col-span-1 space-y-8">
-              <div className="space-y-4 pt-1">
-                <h3 className="text-[10px] font-bold tracking-widest text-primary flex items-center gap-2">
-                  <Code2 className="h-4 w-4" /> The Focus
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {isMobile 
-                    ? "I built this as a native iOS app using clean code and a simple design."
-                    : "I developed this as a responsive web platform with a focus on high-performance data visualization."}
-                </p>
-              </div>
-            </aside>
-
-            {/* Main Content Area */}
-            <div className="md:col-span-2 space-y-16">
-              <section className="space-y-6">
-                <h3 className="text-[10px] font-bold tracking-widest text-primary flex items-center gap-2">
-                  <Layers className="h-4 w-4" /> Overview
-                </h3>
-                <p className="text-xl md:text-2xl text-foreground font-medium leading-relaxed tracking-tight">
-                  {project.description}
-                </p>
-              </section>
-
-              <section className="prose dark:prose-invert max-w-none 
-                prose-headings:font-medium prose-headings:tracking-tight
-                prose-h4:text-2xl prose-h4:mt-12 prose-h4:mb-6
-                prose-p:text-muted-foreground prose-p:text-[17px] prose-p:leading-relaxed
-                prose-li:text-muted-foreground prose-li:text-[17px] prose-li:my-2
-                prose-strong:text-foreground prose-strong:font-bold">
-                {project.details && typeof project.details === 'string' ? (
-                  /* Handle raw Markdoc string (Static mode) */
-                  Markdoc.renderers.react(
-                    Markdoc.transform(Markdoc.parse(project.details), {
-                      nodes: {
-                        image: {
-                          render: 'Image',
-                          attributes: {
-                            src: { type: String },
-                            alt: { type: String },
-                            title: { type: String }
-                          }
-                        }
-                      }
-                    }), 
-                    React, 
-                    {
-                      components: {
-                        Image: renderImage
-                      }
-                    }
-                  )
-                ) : (
-                  <p className="text-muted-foreground italic text-sm">No details provided.</p>
-                )}
-              </section>
-            </div>
-          </div>
+          <section
+            className="prose dark:prose-invert max-w-none
+              prose-headings:prose-headings:font-bold prose-headings:tracking-tight
+              prose-h4:text-2xl prose-h4:mt-12 prose-h4:mb-6
+              prose-p:text-muted-foreground prose-p:text-[17px] prose-p:leading-[1.8]
+              prose-li:text-muted-foreground prose-li:text-[17px] prose-li:my-2
+              prose-strong:text-foreground prose-strong:font-bold"
+          >
+            {project.details && typeof project.details === "string" ? (
+              Markdoc.renderers.react(
+                Markdoc.transform(Markdoc.parse(project.details), {
+                  nodes: {
+                    image: {
+                      render: "Image",
+                      attributes: {
+                        src: { type: String },
+                        alt: { type: String },
+                        title: { type: String },
+                      },
+                    },
+                  },
+                }),
+                React,
+                {
+                  components: {
+                    Image: renderImage,
+                  },
+                }
+              )
+            ) : (
+              <p className="text-muted-foreground italic text-sm">No details provided.</p>
+            )}
+          </section>
         </div>
       </div>
     </article>

@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og'
 
-export const alt = 'Destu Cikal - iOS & Full-stack Developer'
+export const alt = 'Destu Cikal — iOS Developer'
 export const size = {
   width: 1200,
   height: 630,
@@ -9,10 +9,6 @@ export const size = {
 export const contentType = 'image/png'
 
 export default async function Image() {
-  // We can load a font here if needed, but for now we'll use a system font stack approach 
-  // or a fetch if we wanted a specific font. 
-  // For simplicity and speed/robustness in this "fix", we stick to basic styling.
-
   return new ImageResponse(
     (
       <div
@@ -23,7 +19,7 @@ export default async function Image() {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          backgroundColor: '#0A0A0A',
+          backgroundColor: '#141414',
           color: 'white',
         }}
       >
@@ -58,11 +54,10 @@ export default async function Image() {
               fontSize: 32,
               color: '#888',
               letterSpacing: '-0.01em',
-              textTransform: 'uppercase',
-              fontWeight: 600,
+              fontWeight: 500,
             }}
           >
-            iOS & Full-stack Developer
+            iOS Developer
           </div>
         </div>
         <div
@@ -73,7 +68,7 @@ export default async function Image() {
             color: '#444',
           }}
         >
-          destucr.dev
+          destucikal.site
         </div>
       </div>
     ),

@@ -6,7 +6,6 @@ import Image from "next/image"
 import Link from "next/link"
 import { Smartphone, Globe, Cpu, Gamepad2 } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
 import { Skeleton } from "@/components/ui/skeleton"
 
 interface Project {
@@ -30,29 +29,38 @@ const CATEGORIES = [
     id: "mobile",
     label: "iOS",
     icon: Smartphone,
-    filter: (tags: string[]) => tags.includes("ios")
+    filter: (tags: string[]) => tags.includes("ios"),
   },
   {
     id: "systems",
     label: "Full-Stack",
     icon: Globe,
-    filter: (tags: string[]) => tags.includes("web") || tags.includes("go") || tags.includes("react")
+    filter: (tags: string[]) =>
+      tags.includes("web") || tags.includes("go") || tags.includes("react"),
   },
   {
     id: "ai",
     label: "ML",
     icon: Cpu,
-    filter: (tags: string[]) => tags.includes("machine learning") || tags.includes("create ml")
+    filter: (tags: string[]) =>
+      tags.includes("machine learning") || tags.includes("create ml"),
   },
   {
     id: "game",
     label: "Games",
     icon: Gamepad2,
-    filter: (tags: string[]) => tags.includes("spritekit") || tags.includes("game")
+    filter: (tags: string[]) =>
+      tags.includes("spritekit") || tags.includes("game"),
   },
 ]
 
-function SpotlightVideo({ src, isActive }: { src: string, isActive: boolean }) {
+function SpotlightVideo({
+  src,
+  isActive,
+}: {
+  src: string
+  isActive: boolean
+}) {
   const videoRef = React.useRef<HTMLVideoElement>(null)
   const containerRef = React.useRef<HTMLDivElement>(null)
   const [isLoaded, setIsLoaded] = React.useState(false)
@@ -79,7 +87,7 @@ function SpotlightVideo({ src, isActive }: { src: string, isActive: boolean }) {
   React.useEffect(() => {
     const video = videoRef.current
     if (!video || !shouldLoad) return
-    
+
     if (isActive) {
       video.play().catch(() => {})
     } else {
@@ -89,15 +97,20 @@ function SpotlightVideo({ src, isActive }: { src: string, isActive: boolean }) {
 
   return (
     <div ref={containerRef} className="relative w-full h-full">
-      {!isLoaded && <Skeleton className="absolute inset-0 w-full h-full rounded-none" />}
+      {!isLoaded && (
+        <Skeleton className="absolute inset-0 w-full h-full rounded-none" />
+      )}
       {shouldLoad && (
-        <video 
+        <video
           ref={videoRef}
-          src={src} 
-          className={cn("w-full h-full object-cover object-top transition-opacity duration-500", isLoaded ? "opacity-100" : "opacity-0")}
-          muted 
-          loop 
-          playsInline 
+          src={src}
+          className={cn(
+            "w-full h-full object-cover object-top transition-opacity duration-500",
+            isLoaded ? "opacity-100" : "opacity-0"
+          )}
+          muted
+          loop
+          playsInline
           onLoadedData={() => setIsLoaded(true)}
           onCanPlay={() => setIsLoaded(true)}
         />
@@ -106,9 +119,18 @@ function SpotlightVideo({ src, isActive }: { src: string, isActive: boolean }) {
   )
 }
 
-function IframeWrapper({ url, title, isActive }: { url: string, title: string, isActive: boolean }) {
+function IframeWrapper({
+  url,
+  title,
+  isActive,
+}: {
+  url: string
+  title: string
+  isActive: boolean
+}) {
   const [isLoaded, setIsLoaded] = React.useState(false)
   const containerRef = React.useRef<HTMLDivElement>(null)
+  const iframeRef = React.useRef<HTMLIFrameElement>(null)
   const [shouldLoad, setShouldLoad] = React.useState(false)
 
   React.useEffect(() => {
@@ -129,18 +151,39 @@ function IframeWrapper({ url, title, isActive }: { url: string, title: string, i
     return () => observer.disconnect()
   }, [])
 
+  // When the tab becomes active, trigger a resize event inside the iframe
+  // so Leaflet recalculates its map tile positions
+  React.useEffect(() => {
+    if (isActive && isLoaded && iframeRef.current?.contentWindow) {
+      const timer = setTimeout(() => {
+        try {
+          iframeRef.current?.contentWindow?.dispatchEvent(
+            new Event("resize")
+          )
+        } catch {
+          // Cross-origin safety — ignore if sandbox blocks access
+        }
+      }, 100)
+      return () => clearTimeout(timer)
+    }
+  }, [isActive, isLoaded])
+
   return (
     <div ref={containerRef} className="w-full h-full relative">
-      {!isLoaded && <Skeleton className="absolute inset-0 w-full h-full rounded-none" />}
+      {!isLoaded && (
+        <Skeleton className="absolute inset-0 w-full h-full rounded-none" />
+      )}
       {shouldLoad && (
-        <iframe 
-          src={url} 
+        <iframe
+          ref={iframeRef}
+          src={url}
           className={cn(
             "absolute top-0 left-0 w-[140%] h-[140%] origin-top-left scale-[0.714] border-0 transition-opacity duration-500",
-            isActive && isLoaded ? "opacity-100" : "opacity-0 pointer-events-none"
+            isActive && isLoaded
+              ? "opacity-100"
+              : "opacity-0 pointer-events-none"
           )}
           title={`${title} Demo`}
-          loading="lazy"
           sandbox="allow-scripts allow-same-origin"
           onLoad={() => setIsLoaded(true)}
         />
@@ -152,12 +195,11 @@ function IframeWrapper({ url, title, isActive }: { url: string, title: string, i
 export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
   const [activeTab, setActiveTab] = React.useState(CATEGORIES[0].id)
   const containerRef = React.useRef(null)
-  
-  // High performance: track all projects for spotlight categories
+
   const spotlightContent = React.useMemo(() => {
-    return CATEGORIES.map(cat => {
-      const project = projects.find(p => {
-        const lowerTags = p.tags.map(t => t.toLowerCase())
+    return CATEGORIES.map((cat) => {
+      const project = projects.find((p) => {
+        const lowerTags = p.tags.map((t) => t.toLowerCase())
         return cat.filter(lowerTags)
       })
       return { categoryId: cat.id, project }
@@ -165,143 +207,181 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
   }, [projects])
 
   return (
-    <div ref={containerRef} className="space-y-12 md:space-y-16">
-      
-      {/* Section Header & Tabs */}
-      <div className="flex flex-col items-center text-center space-y-10">
-        <div className="space-y-4">
-          <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-foreground">Technical Spotlight</h2>
-          <p className="text-lg text-muted-foreground max-w-xl mx-auto font-light leading-relaxed">
-            Deep dives into specific engineering domains and architectural decisions.
-          </p>
-        </div>
-
-        {/* iOS-style Segmented Control */}
-        <div className="inline-flex p-1 bg-secondary/40 rounded-full border border-border/40 backdrop-blur-sm">
-          {CATEGORIES.map((category) => (
-            <button
-              key={category.id}
-              onClick={() => setActiveTab(category.id)}
-              aria-label={`View ${category.label} projects`}
-              className={cn(
-                "relative flex items-center gap-2 px-6 md:px-8 py-2 rounded-full text-xs md:text-sm font-bold tracking-tight transition-all duration-300",
-                activeTab === category.id 
-                  ? "text-foreground" 
-                  : "text-muted-foreground hover:text-foreground/80"
-              )}
-            >
-              <category.icon className="w-3.5 h-3.5 md:w-4 h-4" />
-              <span className="hidden sm:inline">{category.label}</span>
-              {activeTab === category.id && (
-                <motion.div
-                  layoutId="activeTabSpotlight"
-                  className="absolute inset-0 bg-background rounded-full -z-10 shadow-sm border border-border/20"
-                  transition={{ type: "spring", bounce: 0.1, duration: 0.6 }}
-                />
-              )}
-            </button>
-          ))}
-        </div>
+    <div ref={containerRef} className="space-y-10">
+      {/* Section Header */}
+      <div className="space-y-2">
+        <h2 className="text-3xl md:text-4xl font-bold text-foreground text-balance">
+          Technical Spotlight
+        </h2>
+        <p className="text-muted-foreground text-pretty">
+          A closer look at selected work across platforms.
+        </p>
       </div>
 
-      {/* Content Area - Permanent Mounting for Instant Switching */}
-      <div className="relative min-h-[600px] lg:min-h-[500px]">
+      {/* Category Tabs — editorial underline style */}
+      <div className="flex gap-6 border-b border-border pb-0">
+        {CATEGORIES.map((category) => (
+          <button
+            key={category.id}
+            onClick={() => setActiveTab(category.id)}
+            aria-label={`View ${category.label} projects`}
+            className={cn(
+              "relative flex items-center gap-2 pb-3 text-sm font-medium transition-colors whitespace-nowrap",
+              activeTab === category.id
+                ? "text-foreground"
+                : "text-muted-foreground hover:text-foreground"
+            )}
+          >
+            <category.icon className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">{category.label}</span>
+            {activeTab === category.id && (
+              <motion.div
+                layoutId="spotlightTab"
+                className="absolute bottom-0 left-0 right-0 h-[2px] bg-primary"
+                transition={{ type: "spring", bounce: 0.15, duration: 0.5 }}
+              />
+            )}
+          </button>
+        ))}
+      </div>
+
+      {/* Content Area */}
+      <div className="relative min-h-[560px] lg:min-h-[480px]">
         {spotlightContent.map(({ categoryId, project }) => {
           if (!project) return null
-          
+
           const isActive = activeTab === categoryId
-          const showIframe = project.demoUrl && (project.slug === 'gtfs-web' || project.tags.some(t => t.toLowerCase() === 'web'))
+          const showIframe =
+            project.demoUrl &&
+            (project.slug === "gtfs-web" ||
+              project.tags.some((t) => t.toLowerCase() === "web"))
           const showVideo = project.videoUrl && !showIframe
-          const isGame = project.tags.some(t => ['game', 'spritekit'].includes(t.toLowerCase()))
-          const isVerticalMobile = project.tags.some(t => ['ios', 'mobile', 'machine learning', 'create ml'].includes(t.toLowerCase())) && !isGame
+          const isGame = project.tags.some((t) =>
+            ["game", "spritekit"].includes(t.toLowerCase())
+          )
+          const isVerticalMobile =
+            project.tags.some((t) =>
+              ["ios", "mobile", "machine learning", "create ml"].includes(
+                t.toLowerCase()
+              )
+            ) && !isGame
 
           const techHighlights = project.details
             ? project.details
-                .split('\n')
-                .filter(l => l.trim().startsWith('-'))
+                .split("\n")
+                .filter((l) => l.trim().startsWith("-"))
                 .slice(0, 3)
-                .map(line => line.replace('-', '').replace(/\*\*/g, '').trim())
+                .map((line) => line.replace("-", "").replace(/\*\*/g, "").trim())
             : []
 
           return (
-            <div 
+            <div
               key={project.id}
               className={cn(
-                "transition-all duration-700 ease-[0.23,1,0.32,1]",
-                isActive 
-                  ? "opacity-100 translate-y-0 relative z-10 block" 
+                "transition-all duration-500 ease-out",
+                isActive
+                  ? "opacity-100 translate-y-0 relative z-10 block"
                   : "opacity-0 translate-y-4 absolute inset-0 z-0 pointer-events-none"
               )}
             >
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
-                {/* Left: Immersive Media Stage */}
-                <div className={cn(
-                  "flex justify-center w-full",
-                  showIframe ? "lg:col-span-8" : "lg:col-span-7"
-                )}>
-                  <div className={cn(
-                    "relative w-full rounded-2xl bg-secondary/5 border border-border/40 flex items-center justify-center p-4 md:p-10 overflow-hidden",
-                    showIframe ? "aspect-[16/10]" : isVerticalMobile ? "aspect-[4/5] lg:aspect-square" : "aspect-[16/10] lg:aspect-[16/9]"
-                  )}>
-                    
-                    <div className={cn(
-                      "relative transition-transform duration-500",
-                      showIframe ? "w-full h-full shadow-2xl rounded-xl overflow-hidden border border-border/60" : 
-                      isVerticalMobile ? "h-full w-auto aspect-[393/852]" : "w-full aspect-video rounded-xl overflow-hidden border border-border/60 shadow-xl"
-                    )}>
-                      
-                      {/* iPhone 15 Pro Mockup */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+                {/* Left: Media Stage */}
+                <div
+                  className={cn(
+                    "flex justify-center w-full",
+                    showIframe ? "lg:col-span-8" : "lg:col-span-7"
+                  )}
+                >
+                  <div
+                    className={cn(
+                      "relative w-full bg-muted rounded-lg border border-border flex items-center justify-center p-6 md:p-10 overflow-hidden",
+                      showIframe
+                        ? "aspect-[16/10]"
+                        : isVerticalMobile
+                          ? "aspect-[4/5] lg:aspect-square"
+                          : "aspect-[16/10] lg:aspect-[16/9]"
+                    )}
+                  >
+                    <div
+                      className={cn(
+                        "relative transition-transform duration-500",
+                        showIframe
+                          ? "w-full h-full overflow-hidden border border-border"
+                          : isVerticalMobile
+                            ? "h-full w-auto aspect-[393/852]"
+                            : "w-full aspect-video overflow-hidden border border-border"
+                      )}
+                    >
+                      {/* iPhone Mockup for vertical mobile */}
                       {isVerticalMobile && !showIframe && (
-                        <div className="relative bg-[#050505] rounded-[44px] md:rounded-[55px] p-[10px] md:p-[12px] shadow-2xl mx-auto border border-white/5">
-                          <div className="relative bg-black rounded-[34px] md:rounded-[43px] overflow-hidden aspect-[393/852]">
+                        <div className="relative bg-[#1a1a1a] rounded-[40px] md:rounded-[48px] p-[8px] md:p-[10px] shadow-lg mx-auto border border-neutral-700">
+                          <div className="relative bg-black rounded-[32px] md:rounded-[38px] overflow-hidden aspect-[393/852]">
                             {showVideo ? (
-                              <SpotlightVideo 
+                              <SpotlightVideo
                                 src={project.videoUrl!}
-                                isActive={isActive} 
+                                isActive={isActive}
                               />
                             ) : (
-                              <Image src={project.image} alt={project.title} fill className="object-cover object-top" />
+                              <Image
+                                src={project.image}
+                                alt={project.title}
+                                fill
+                                className="object-cover object-top"
+                              />
                             )}
-                            <Link href={`/projects/${project.slug}`} className="absolute inset-0 z-20" aria-label={`View ${project.title} case study`} />
+                            <Link
+                              href={`/projects/${project.slug}`}
+                              className="absolute inset-0 z-20"
+                              aria-label={`View ${project.title} case study`}
+                            />
                           </div>
                         </div>
                       )}
-                      
+
                       {/* Web iframe */}
                       {showIframe && (
                         <div className="w-full h-full flex flex-col bg-background">
-                          <div className="h-10 bg-secondary/40 border-b border-border/60 flex items-center px-4 gap-3 shrink-0">
+                          <div className="h-9 bg-muted border-b border-border flex items-center px-4 gap-3 shrink-0">
                             <div className="flex gap-1.5">
-                              <div className="w-2 h-2 rounded-full bg-border" />
-                              <div className="w-2 h-2 rounded-full bg-border" />
-                              <div className="w-2 h-2 rounded-full bg-border" />
+                              <div className="w-2.5 h-2.5 rounded-full bg-border" />
+                              <div className="w-2.5 h-2.5 rounded-full bg-border" />
+                              <div className="w-2.5 h-2.5 rounded-full bg-border" />
                             </div>
-                            <div className="flex-1 flex justify-center font-mono text-[9px] text-muted-foreground/60">
+                            <div className="flex-1 flex justify-center text-[10px] text-muted-foreground font-mono">
                               {project.slug}.dev
                             </div>
                           </div>
                           <div className="flex-1 relative overflow-hidden bg-background">
-                             <IframeWrapper 
-                               url={project.demoUrl!} 
-                               title={project.title} 
-                               isActive={isActive} 
-                             />
+                            <IframeWrapper
+                              url={project.demoUrl!}
+                              title={project.title}
+                              isActive={isActive}
+                            />
                           </div>
                         </div>
                       )}
-                      
+
                       {/* Landscape Media */}
                       {!isVerticalMobile && !showIframe && (
                         <>
                           {showVideo ? (
-                            <SpotlightVideo 
+                            <SpotlightVideo
                               src={project.videoUrl!}
-                              isActive={isActive} 
+                              isActive={isActive}
                             />
                           ) : (
-                            <Image src={project.image} alt={project.title} fill className="object-cover object-top" />
+                            <Image
+                              src={project.image}
+                              alt={project.title}
+                              fill
+                              className="object-cover object-top"
+                            />
                           )}
-                          <Link href={`/projects/${project.slug}`} className="absolute inset-0 z-10" aria-label={`View ${project.title} case study`} />
+                          <Link
+                            href={`/projects/${project.slug}`}
+                            className="absolute inset-0 z-10"
+                            aria-label={`View ${project.title} case study`}
+                          />
                         </>
                       )}
                     </div>
@@ -309,38 +389,46 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
                 </div>
 
                 {/* Right: Detail Panel */}
-                <div className={cn(
-                  "space-y-12 lg:pt-2",
-                  showIframe ? "lg:col-span-4" : "lg:col-span-5"
-                )}>
-                  <div className="space-y-8">
-                    <div className="flex flex-wrap gap-3">
-                      {project.tags.slice(0, 3).map(tag => (
-                        <span key={tag} className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">
+                <div
+                  className={cn(
+                    "space-y-8 lg:pt-2",
+                    showIframe ? "lg:col-span-4" : "lg:col-span-5"
+                  )}
+                >
+                  <div className="space-y-6">
+                    <div className="flex flex-wrap gap-2">
+                      {project.tags.slice(0, 3).map((tag) => (
+                        <span
+                          key={tag}
+                          className="label-caps text-muted-foreground"
+                        >
                           {tag}
                         </span>
                       ))}
                     </div>
 
-                    <div className="space-y-6">
-                      <h3 className="text-3xl md:text-4xl text-foreground leading-tight tracking-tight">
-                        {project.title}
-                      </h3>
-                      <p className="text-lg text-muted-foreground leading-relaxed font-light">
-                        {project.description}
-                      </p>
-                    </div>
+                    <h3 className="text-2xl md:text-3xl font-bold leading-tight tracking-tight text-foreground">
+                      {project.title}
+                    </h3>
+                    <p className="text-base text-muted-foreground leading-relaxed">
+                      {project.description}
+                    </p>
                   </div>
 
-                  {/* Architectural Specs */}
+                  {/* Technical Highlights */}
                   {techHighlights.length > 0 && (
-                    <div className="space-y-6">
-                      <div className="text-[9px] font-bold tracking-[0.2em] text-muted-foreground/40">Technical Highlights</div>
-                      <div className="space-y-6">
+                    <div className="space-y-4">
+                      <span className="label-caps text-muted-foreground">
+                        Technical Highlights
+                      </span>
+                      <div className="space-y-3">
                         {techHighlights.map((highlight, i) => (
-                          <div key={i} className="group/item flex items-start gap-4">
-                            <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-border group-hover/item:bg-primary transition-colors" />
-                            <p className="text-sm text-muted-foreground leading-relaxed font-medium">
+                          <div
+                            key={i}
+                            className="flex items-start gap-3"
+                          >
+                            <div className="mt-2 w-1 h-1 rounded-full bg-primary shrink-0" />
+                            <p className="text-sm text-muted-foreground leading-relaxed">
                               {highlight}
                             </p>
                           </div>
@@ -349,15 +437,21 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
                     </div>
                   )}
 
-                  <div className="flex flex-wrap items-center gap-6 pt-4">
-                    <Button asChild className="rounded-none h-11 px-8 text-xs font-bold tracking-widest shadow-none border-b-2 border-primary hover:bg-transparent hover:text-primary transition-all">
-                      <Link href={`/projects/${project.slug}`}>
-                        Read Case Study
-                      </Link>
-                    </Button>
-                    
+                  <div className="flex flex-wrap items-center gap-6 pt-2">
+                    <Link
+                      href={`/projects/${project.slug}`}
+                      className="text-sm font-medium text-foreground hover:text-foreground/70 transition-colors link-underline"
+                    >
+                      Read Case Study
+                    </Link>
+
                     {project.demoUrl && (
-                      <Link href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="text-xs font-bold tracking-widest text-muted-foreground hover:text-primary transition-colors border-b-2 border-transparent hover:border-primary pb-1">
+                      <Link
+                        href={project.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                      >
                         Live Preview
                       </Link>
                     )}
