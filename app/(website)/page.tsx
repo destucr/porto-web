@@ -3,12 +3,11 @@ import Image from "next/image"
 import { getProjects, getPosts } from "@/lib/content"
 import { TechnicalSpotlight } from "@/components/technical-spotlight"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, ArrowUpRight, FileText } from "lucide-react"
+import { ArrowRight, ArrowUpRight, ArrowDown, FileText } from "lucide-react"
 import { ScrollReveal } from "@/components/scroll-reveal"
-import { FloatingShapes } from "@/components/floating-shapes"
 import { ParallaxImage } from "@/components/parallax-image"
 import { StaggerReveal } from "@/components/stagger-reveal"
-import { HeroDevices } from "@/components/hero-devices"
+import { AuroraCanvas } from "@/components/aurora-canvas"
 
 export default async function Home() {
   const allProjects = await getProjects()
@@ -19,31 +18,28 @@ export default async function Home() {
     <div className="min-h-dvh">
 
       {/* ── Hero ─────────────────────────────────────────── */}
-      <section className="relative pt-28 md:pt-36 lg:pt-44 pb-8 md:pb-12 overflow-hidden">
-        <FloatingShapes />
-        <div className="container mx-auto relative">
+      <section className="relative min-h-[85vh] md:min-h-[90vh] flex items-end overflow-hidden">
+        {/* Canvas background */}
+        <AuroraCanvas />
 
-          {/* Text — centered */}
-          <div className="text-center max-w-3xl mx-auto space-y-5 mb-16 md:mb-20">
-            <h1 className="text-5xl md:text-6xl lg:text-[5rem] font-bold leading-[1.05] text-foreground text-balance">
-              Destu Cikal
+        {/* Content — pinned to bottom */}
+        <div className="container mx-auto relative z-10 pb-16 md:pb-24">
+          <div className="max-w-2xl space-y-5">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] text-foreground text-balance">
+              Building iOS apps that people actually use
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed text-pretty max-w-lg mx-auto opacity-0 animate-fade-in delay-100">
-              iOS Developer crafting native apps with Swift, UIKit, and SwiftUI.
+            <p className="text-base md:text-lg text-muted-foreground leading-relaxed text-pretty max-w-md">
+              Destu Cikal &mdash; Swift, UIKit, SwiftUI. Currently at Bullion Ecosystem.
             </p>
-            <div className="flex flex-wrap justify-center gap-3 pt-2 opacity-0 animate-fade-in delay-200">
+            <div className="pt-2">
               <Button asChild size="lg">
-                <Link href="/projects">See my work</Link>
-              </Button>
-              <Button asChild variant="outline" size="lg">
-                <Link href="#contact">Get in touch</Link>
+                <Link href="/projects">
+                  See the work
+                  <ArrowDown className="size-4 ml-2" />
+                </Link>
               </Button>
             </div>
           </div>
-
-          {/* Device showcase */}
-          <HeroDevices />
-
         </div>
       </section>
 
