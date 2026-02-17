@@ -139,14 +139,14 @@ The game's biggest challenge was creating an interface responsive enough for rap
     details: `#### Transit Management System
 Developed a robust ecosystem for managing General Transit Feed Specification (GTFS) data, optimized for high-density information display and intuitive operator workflows.
 
-- Proximal Hub Overlay Pattern: Implemented a custom UI architecture where sidebars handle entity selection while floating, draggable hubs facilitate deep-data editing, maximizing map visibility.
-- Dual-Frontend Architecture: Engineered a specialized CMS for transit operators with X-Style high-density layouts and a separate Web Viewer for public commuters.
-- Geospatial Route Studio: Built an interactive mapping engine using Leaflet and React for real-time stop placement, route pathfinding, and visual trip pattern validation.
+- Contextual Spatial UI: Architected a map-centric interface using a non-blocking overlay pattern. Sidebars manage entity selection while draggable floating modules enable deep-data editing without obscuring the geospatial context.
+- Multi-Tenant System Design: Engineered a bifurcated architecture featuring a data-dense Administrative CMS for transit operators and a high-performance Web Viewer optimized for public commuter access.
+- GIS Route Engine: Developed an interactive mapping suite with Leaflet and React, implementing automated pathfinding and visual validation for complex transit trip patterns and stop-to-path snapping.
 
 #### How I built it
 - **Full-Stack Transit Engine**: Built a Go backend with PostgreSQL using GORM to handle complex relational integrity across agencies, routes, and schedules.
-- **Dual-Frontend Architecture**: Created specialized React interfaces—a high-density CMS for operators and a clean Leaflet-based map viewer for the public.
-- **Geospatial Studio**: Built an interactive route editor allowing real-time map-based stop placement and trip pattern validation.
+- **Multi-Interface Architecture**: Created specialized React interfaces—a high-density administrative CMS for operators and a performant Leaflet-based map viewer for public commuters.
+- **GIS Route Engine**: Built an interactive route editor allowing real-time map-based stop placement, heuristic pathfinding, and automated trip pattern validation.
 - **Containerized Orchestration**: Dockerized the entire ecosystem for consistent deployment and scaling.
 
 #### Challenges
