@@ -1,64 +1,40 @@
-# Porto-Web: Engineering Portfolio
+# Destu Cikal | iOS Engineer
 
-**Live Site:** [porto-web.destucr.workers.dev](https://porto-web.destucr.workers.dev/)
-
-A high-performance personal portfolio built with `Next.js 15` (`App Router`) and deployed on the edge via `Cloudflare Pages`. This codebase serves as a technical showcase, emphasizing high-density data management and interactive geospatial components.
-
-## Developer Perspective
-
-As an `iOS Engineer`, I’ve built this portfolio to mirror the performance and precision of native development. The architecture is designed to handle complex technical case studies (`iOS`, `Audio Engineering`, `GIS`) using a structured content-as-code approach.
-
-### Key Architectural Patterns
-- **Content-as-Code:** Uses `Markdoc` to render deeply nested technical documentation. Case studies are stored in `/content` and parsed with custom validation logic in `lib/content.ts`.
-- **Bifurcated Data Layer:** Project metadata is managed via `lib/data.ts` (for the high-level grid), while deep-dive technical details are fetched from localized `.mdoc` files.
-- **Geospatial Integration:** Includes pre-compiled interactive demos (`GTFS-CMS`) hosted within `/public`, integrated via non-blocking iframes to showcase `GIS Route Engines`.
-- **Edge-First Deployment:** Optimized for `Cloudflare`'s global network using `OpenNext`, ensuring sub-100ms latency for a native-feel web experience.
-
-## Tech Stack
-
-- **Framework:** `Next.js 15` (`React 19`, `TypeScript`)
-- **Content:** `Markdoc` (`.mdoc`) for extensible technical writing
-- **Styling:** `Tailwind CSS 4` and `Framer Motion` for micro-interactions
-- **Deployment:** `Cloudflare Pages` + `OpenNext`
-- **Type Safety:** Strict `TypeScript` configuration mirroring `Swift`'s type-safe philosophy
-
-## Project Structure
-
-```text
-├── app/                # Next.js App Router (Entry points & SEO)
-├── components/         # Atomic UI & specialized visualization components
-├── content/            # Source for Case Studies & Technical Highlights
-│   ├── posts/          # Engineering blog content
-│   └── projects/       # Detailed project deep-dives (.mdoc)
-├── lib/                # Core logic: Content parsers, metadata, and GIS utilities
-├── public/             # Static assets & bundled interactive demos
-└── open-next.config.ts # OpenNext adapter configuration for Cloudflare
-```
-
-## Development
-
-### Prerequisites
-- `Node.js` >= 20.x
-- `Cloudflare Wrangler CLI` (for edge preview)
-
-### Local Setup
-```bash
-# Install dependencies
-npm install
-
-# Run standard dev server
-npm run dev
-
-# Build and preview on local edge environment
-npm run build:cloudflare
-npx wrangler pages dev .open-next/cloudflare
-```
-
-## CI/CD
-The project uses `GitHub Actions` for automated deployment. Every push to `main` triggers:
-1. Linting and Type-checking
-2. `OpenNext` build process
-3. Deployment to `Cloudflare Pages` edge network
+[**Portfolio**](https://porto-web.destucr.workers.dev/) • [**LinkedIn**](https://linkedin.com/in/destucikal) • [**Email**](mailto:destucr@gmail.com)
 
 ---
-*Built with intent by [Destu Cikal](https://linkedin.com/in/destucikal).*
+
+### **About Me**
+I am a **Native iOS Engineer** dedicated to building mobile applications with high technical precision and clear purpose. My background in **Product Management** allows me to bridge the gap between complex engineering and intuitive user experiences.
+
+### **Core Expertise**
+![Swift](https://img.shields.io/badge/Swift-F05138?style=flat&logo=swift&logoColor=white)
+![SwiftUI](https://img.shields.io/badge/SwiftUI-007ACC?style=flat&logo=swift&logoColor=white)
+![UIKit](https://img.shields.io/badge/UIKit-1572B6?style=flat&logo=apple&logoColor=white)
+![AVFoundation](https://img.shields.io/badge/AVFoundation-white?style=flat&logo=apple&logoColor=black)
+![CoreML](https://img.shields.io/badge/CoreML-white?style=flat&logo=apple&logoColor=black)
+
+*   **Audio Engineering:** Advanced signal processing using `AVFoundation` and `AudioKit`.
+*   **On-Device AI:** Privacy-first machine learning integration with `CoreML`.
+*   **Spatial Data:** Real-time tracking and mapping with `MapKit` and `Core Location`.
+*   **System Architecture:** Building scalable apps using `Clean Architecture` and `SwiftData`.
+
+---
+
+### **The Project: Porto-Web**
+This repository hosts my engineering portfolio. It is built to mirror the performance and precision of a native app on the web.
+
+**Tech Stack:**
+- **Framework:** `Next.js 15`
+- **Deployment:** `Cloudflare Pages` (Edge)
+- **Content:** `Markdoc` for technical case studies
+
+---
+
+### **Development**
+```bash
+npm install
+npm run dev
+```
+
+*Built with intent.*
