@@ -28,8 +28,9 @@ transit maps and timetables in real-time.
 #### How I built it
 - **Full-Stack Transit Engine**: Built a Go backend with PostgreSQL using GORM to handle complex relational integrity
 across agencies, routes, and schedules.
-- **Multi-Interface Architecture**: Created specialized React interfaces—a high-density administrative CMS for operators and a performant Leaflet-based map viewer for public commuters.
-- **GIS Route Engine**: Built an interactive route editor allowing real-time map-based stop placement, heuristic pathfinding, and automated trip pattern validation.
+- **Map-First Interface**: Architected a UI where the map is always visible. Instead of full-page menus, I used draggable floating panels for editing data, so users never lose their geographic context while working.
+- **Admin Dashboard & Public App**: Built a two-part system: a high-capacity management portal for transit operators to handle thousands of rows of data, and a separate, lightweight viewer designed for fast performance on commuter's phones.
+- **Automated Route Mapping**: Developed a custom engine that automatically "snaps" bus stops to the nearest roads. It uses real-time pathfinding to draw routes instantly, replacing the need for manual line drawing.
 - **Containerized Orchestration**: Dockerized the entire ecosystem for consistent deployment and scaling.
 
 #### Challenges

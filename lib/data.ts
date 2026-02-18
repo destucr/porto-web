@@ -139,9 +139,9 @@ The game's biggest challenge was creating an interface responsive enough for rap
     details: `#### Transit Management System
 Developed a robust ecosystem for managing General Transit Feed Specification (GTFS) data, optimized for high-density information display and intuitive operator workflows.
 
-- Contextual Spatial UI: Architected a map-centric interface using a non-blocking overlay pattern. Sidebars manage entity selection while draggable floating modules enable deep-data editing without obscuring the geospatial context.
-- Multi-Tenant System Design: Engineered a bifurcated architecture featuring a data-dense Administrative CMS for transit operators and a high-performance Web Viewer optimized for public commuter access.
-- GIS Route Engine: Developed an interactive mapping suite with Leaflet and React, implementing automated pathfinding and visual validation for complex transit trip patterns and stop-to-path snapping.
+- Map-First Interface: Architected a UI where the map is always visible. Instead of full-page menus, I used draggable floating panels for editing data, so users never lose their geographic context while working.
+- Admin Dashboard & Public App: Built a two-part system: a high-capacity management portal for transit operators to handle thousands of rows of data, and a separate, lightweight viewer designed for fast performance on commuter's phones.
+- Automated Route Mapping: Developed a custom engine that automatically "snaps" bus stops to the nearest roads. It uses real-time pathfinding to draw routes instantly, replacing the need for manual line drawing.
 
 #### How I built it
 - **Full-Stack Transit Engine**: Built a Go backend with PostgreSQL using GORM to handle complex relational integrity across agencies, routes, and schedules.
