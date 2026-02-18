@@ -130,7 +130,7 @@ The game's biggest challenge was creating an interface responsive enough for rap
     id: "gtfs-web",
     slug: "gtfs-web",
     title: "GTFS-Web: High-Performance Transit Management Ecosystem",
-    description: "A comprehensive GTFS management platform featuring a dual-frontend architecture, interactive route studio, and real-time geospatial data processing.",
+    description: "A comprehensive GTFS management platform featuring a multi-interface architecture, custom GIS route engine, and real-time geospatial data processing.",
     image: "/images/gtfs-web/dashboard.webp",
     tags: ["Go", "React", "TypeScript", "PostgreSQL", "Leaflet", "Docker"],
     githubUrl: "https://github.com/destucr/GTFS-Web",
