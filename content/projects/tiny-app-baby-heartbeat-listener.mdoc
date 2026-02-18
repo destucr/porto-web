@@ -33,17 +33,11 @@ detect fetal heartbeats—always consult your healthcare provider for medical co
 Built the app in SwiftUI with a focus on creating a tactile, high-end experience that makes parents feel connected
 to their baby.
 
-- The "Orb" Visualization: Created a custom Canvas-based component that transforms audio input into fluid,
-organic animations. The OrbLiveListenViewModel maps real-time sound amplitude to dynamic shape changes, giving
-the interface a "living" quality that reacts to what parents hear.
+- Reactive UI Architecture: Developed a custom SwiftUI Canvas-based visualization that maps real-time audio amplitude to organic shape animations, providing immediate visual feedback for auditory input.
 
-- Audio Processing: Used AVFoundation and AudioKit to process microphone input through a Parametric EQ
-and High Shelf Filter, emphasizing lower frequencies around 200Hz to highlight rhythmic sounds while preserving
-the natural ambient audio of the experience.
+- Custom DSP Chain: Implemented a specialized audio processing pipeline using AVFoundation and AudioKit, featuring a Parametric EQ and High-Shelf Filter to isolate 200Hz rhythmic patterns while maintaining acoustic transparency.
 
-- Signal Analysis: Built a custom audio analyzer using the Accelerate framework with FFT processing. A
-dynamic peak buffer detects rhythmic patterns in the audio without aggressive filtering, keeping the soundscape
-natural and immersive rather than artificially silent.
+- FFT Signal Processing: Engineered a real-time audio analyzer using the Accelerate framework for high-performance Fast Fourier Transform (FFT) analysis, implementing a dynamic peak-detection buffer to identify audio patterns with sub-millisecond latency.
 
 - AirPods Integration: Implemented seamless audio routing for AirPods using AVAudioSession, ensuring
 low-latency monitoring while simultaneously recording high-quality audio to Firebase Storage for safekeeping.
