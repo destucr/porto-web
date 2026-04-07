@@ -5,7 +5,12 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ArrowDown } from "lucide-react"
-import { AuroraCanvas } from "@/components/aurora-canvas"
+import dynamic from "next/dynamic"
+
+const AuroraCanvas = dynamic(() => import("@/components/aurora-canvas").then(mod => mod.AuroraCanvas), { 
+  ssr: false,
+  loading: () => <div className="absolute inset-0 bg-background" /> 
+})
 
 const workItems = [
   {
