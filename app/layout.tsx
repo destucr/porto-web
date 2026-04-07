@@ -3,7 +3,6 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { StructuredData } from "@/components/structured-data";
-import { GoogleAnalytics } from "@/components/google-analytics";
 
 const rocGrotesk = localFont({
   variable: "--font-roc-grotesk",
@@ -100,7 +99,6 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <StructuredData />
-          <GoogleAnalytics ga_id={process.env.NEXT_PUBLIC_GA_ID || "G-XXXXXXXXXX"} />
           {children}
         </ThemeProvider>
       </body>
