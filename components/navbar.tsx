@@ -101,15 +101,16 @@ export function Navbar() {
         </div>
         <div className="container mx-auto h-full flex items-center justify-between relative">
           {/* Logo */}
-          <Link href="/" className="relative shrink-0 transition-opacity hover:opacity-70">
+          <Link href="/" className="relative shrink-0 transition-opacity hover:opacity-70 flex items-center gap-2">
             <Image
               src={mounted && resolvedTheme === "dark" ? "/images/logo/logo-dark.webp" : "/images/logo/logo-light.webp"}
               alt="Destu Cikal"
               width={48}
               height={48}
-              className="size-12 object-contain"
+              className="size-10 md:size-12 object-contain hidden md:block"
               priority
             />
+            <span className="text-lg font-bold tracking-tight md:hidden">Destu Cikal</span>
           </Link>
 
           {/* Desktop nav */}
