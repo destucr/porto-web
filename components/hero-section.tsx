@@ -18,7 +18,7 @@ const workItems = [
     alt: "Bullion Ecosystem International",
     name: "Bullion Ecosystem International",
     role: "iOS Developer",
-    year: "2026",
+    year: "Jan–Apr 2026",
   },
 ]
 

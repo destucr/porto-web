@@ -9,10 +9,6 @@ export function StructuredData() {
       'https://linkedin.com/in/destucikal',
       'https://github.com/destucr',
     ],
-    worksFor: {
-      '@type': 'Organization',
-      name: 'Bullion Ecosystem International',
-    },
     alumniOf: [
       {
         '@type': 'EducationalOrganization',
