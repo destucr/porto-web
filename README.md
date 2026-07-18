@@ -15,10 +15,12 @@ I build native iOS apps — from regulated fintech products used by real custome
 ![CoreML](https://img.shields.io/badge/CoreML-white?style=flat&logo=apple&logoColor=black)
 
 ### What I've Built
-* **[Tring! by Pegadaian](https://apps.apple.com/us/app/tring-by-pegadaian/id1350501409)** — Production app for gold savings, gold-backed loans, and sharia-compliant investment, serving Pegadaian's customer base nationwide.
 * **Nunomics** — Gold trading platform regulated under BAPPEBTI on the JFX (Jakarta Futures Exchange), built during my time at Bullion Ecosystem International.
 * **[Tiny: Baby Heartbeat Listener](https://tinymiracle.life)** — Lets expecting parents listen to womb sounds via AirPods, with a custom `AVFoundation`/`AudioKit` DSP chain and real-time FFT analysis (via `Accelerate`) driving a reactive SwiftUI visualization.
 * **Telly: BISINDO Sign Language Learning** — Teaches Indonesian Sign Language through on-device gesture recognition; trained a `Create ML` model on 50+ signs, self-collected and annotated due to scarce BISINDO datasets.
+
+### Currently Contributing To
+* **[Tring! by Pegadaian](https://apps.apple.com/us/app/tring-by-pegadaian/id1350501409)** — Joined Pegadaian's dedicated squad after this app was already live; working on ongoing iOS development for its gold savings, gold-backed loan, and sharia-investment features.
 
 ---
 
