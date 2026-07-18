@@ -211,7 +211,7 @@ export function TechnicalSpotlight({ projects }: TechnicalSpotlightProps) {
       {/* Section Header */}
       <div className="space-y-2">
         <h2 className="text-3xl md:text-4xl font-bold text-foreground text-balance">
-          Technical Spotlight
+          What I&apos;ve Built
         </h2>
         <p className="text-muted-foreground text-pretty">
           A closer look at selected work across platforms.

@@ -173,7 +173,7 @@ export default async function Home() {
       )}
 
       {/* ── Contact ──────────────────────────────────────── */}
-      <section id="contact" className="py-24 md:py-36 bg-foreground text-background">
+      <section id="contact" className="py-24 md:py-36 bg-[#141414] text-[#EDEDEC]">
         <div className="container mx-auto">
           <ScrollReveal>
             <div className="max-w-2xl mx-auto text-center space-y-8">
@@ -181,24 +181,24 @@ export default async function Home() {
                 Let&apos;s work together
               </h2>
               {/* Animated gradient line beneath headline */}
-              <div className="mx-auto h-[2px] w-24 rounded-full bg-gradient-to-r from-transparent via-background/50 to-transparent animate-gradient-shift" style={{ backgroundSize: "200% 100%" }} />
-              <p className="text-background/60 text-lg">
+              <div className="mx-auto h-[2px] w-24 rounded-full bg-gradient-to-r from-transparent via-[#EDEDEC]/50 to-transparent animate-gradient-shift" style={{ backgroundSize: "200% 100%" }} />
+              <p className="text-[#EDEDEC]/60 text-lg">
                 Available for iOS development, freelance projects, and collaborations.
               </p>
               <div>
-                <Button asChild size="lg" variant="outline" className="bg-transparent border-background/25 text-background shadow-none hover:bg-background hover:text-foreground hover:border-background dark:bg-transparent dark:border-background/25 dark:hover:bg-background dark:hover:text-foreground">
+                <Button asChild size="lg" variant="outline" className="bg-transparent border-[#EDEDEC]/25 text-[#EDEDEC] shadow-none hover:bg-[#EDEDEC] hover:text-[#141414] hover:border-[#EDEDEC]">
                   <a href="mailto:destucr@gmail.com">
                     destucr@gmail.com
                     <ArrowUpRight className="size-4 ml-2" />
                   </a>
                 </Button>
               </div>
-              <div className="flex items-center justify-center gap-8 text-sm text-background/40">
+              <div className="flex items-center justify-center gap-8 text-sm text-[#EDEDEC]/40">
                 <Link
                   href="https://linkedin.com/in/destucikal"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-background transition-all duration-200 hover:-translate-y-0.5"
+                  className="hover:text-[#EDEDEC] transition-all duration-200 hover:-translate-y-0.5"
                 >
                   LinkedIn
                 </Link>
@@ -206,7 +206,7 @@ export default async function Home() {
                   href="https://github.com/destucr"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-background transition-all duration-200 hover:-translate-y-0.5"
+                  className="hover:text-[#EDEDEC] transition-all duration-200 hover:-translate-y-0.5"
                 >
                   GitHub
                 </Link>

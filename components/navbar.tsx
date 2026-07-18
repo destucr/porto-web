@@ -4,7 +4,6 @@ import * as React from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { useTheme } from "next-themes"
 import { cn } from "@/lib/utils"
 import { ModeToggle } from "@/components/mode-toggle"
 
@@ -16,14 +15,8 @@ const navItems = [
 
 export function Navbar() {
   const pathname = usePathname()
-  const { resolvedTheme } = useTheme()
   const [scrolled, setScrolled] = React.useState(false)
   const [mobileOpen, setMobileOpen] = React.useState(false)
-  const [mounted, setMounted] = React.useState(false)
-
-  React.useEffect(() => {
-    setMounted(true)
-  }, [])
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -103,11 +96,19 @@ export function Navbar() {
           {/* Logo */}
           <Link href="/" className="relative shrink-0 transition-opacity hover:opacity-70 flex items-center gap-2">
             <Image
-              src={mounted && resolvedTheme === "dark" ? "/images/logo/logo-dark.webp" : "/images/logo/logo-light.webp"}
+              src="/images/logo/logo-light.webp"
               alt="Destu Cikal"
               width={48}
               height={48}
-              className="size-10 md:size-12 object-contain hidden md:block"
+              className="size-10 md:size-12 object-contain hidden md:block dark:hidden"
+              priority
+            />
+            <Image
+              src="/images/logo/logo-dark.webp"
+              alt="Destu Cikal"
+              width={48}
+              height={48}
+              className="size-10 md:size-12 object-contain hidden dark:md:block"
               priority
             />
             <span className="text-lg font-bold tracking-tight md:hidden">Destu Cikal</span>
