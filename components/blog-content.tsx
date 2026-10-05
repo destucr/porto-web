@@ -19,8 +19,8 @@ interface BlogContentProps {
 
 // Custom components for Markdoc
 const components = {
-  CodeBlock: ({ children, language, filename }: { children: string; language?: string; filename?: string }) => (
-    <CodeBlock language={language} filename={filename}>
+  CodeBlock: ({ children, language }: { children: string; language?: string }) => (
+    <CodeBlock language={language}>
       {children}
     </CodeBlock>
   ),
@@ -53,12 +53,12 @@ export function BlogContent({ content }: BlogContentProps) {
   
   return (
     <div className="prose dark:prose-invert max-w-none
-      prose-headings:font-bold prose-headings:tracking-tight
-      prose-p:text-[17px] prose-p:leading-[1.8] prose-p:text-muted-foreground
+      prose-headings:font-semibold prose-headings:tracking-tight
+      prose-p:text-[1rem] prose-p:leading-[1.8] prose-p:text-foreground/80
       prose-a:text-primary prose-a:no-underline hover:prose-a:underline
       prose-pre:p-0 prose-pre:bg-transparent prose-pre:border-0
-      prose-li:text-[17px] prose-li:leading-[1.8] prose-li:text-muted-foreground
-      prose-strong:text-foreground prose-strong:font-bold
+      prose-li:text-[1rem] prose-li:leading-[1.8] prose-li:text-foreground/80
+      prose-strong:text-foreground prose-strong:font-semibold
       prose-code:text-foreground prose-code:font-normal">
       {Markdoc.renderers.react(parsedContent, React, { components })}
     </div>

@@ -4,37 +4,29 @@ import { Metadata } from "next"
 import { Suspense } from "react"
 
 export const metadata: Metadata = {
-  title: "Projects",
-  description: "Native iOS applications, full-stack web platforms, and machine learning implementations by Destu Cikal.",
+  title: "Work",
+  description: "Everything I've made that survived contact with real users. iOS apps, systems, ML.",
 }
 
 export default async function ProjectsPage() {
   const projects = await getProjects()
 
   return (
-    <div className="min-h-screen">
-      {/* Header */}
-      <section className="border-b border-border">
-        <div className="container mx-auto py-16 md:py-24">
-          <div className="max-w-2xl space-y-4">
-            <span className="label-caps text-primary">Selected Work</span>
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">
-              Projects
-            </h1>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Technical case studies spanning native iOS engineering, system architecture, and product design.
-            </p>
-          </div>
-        </div>
+    <div className="pb-28">
+      <section className="pt-16 md:pt-24 pb-12">
+        <p className="caps mb-5">Work</p>
+        <h1 className="text-[clamp(2.25rem,6vw,3.25rem)] leading-[1.05] font-semibold tracking-[-0.03em]">
+          What I&apos;ve made.
+        </h1>
+        <p className="lede mt-7 max-w-[34rem]">
+          No filler. Everything below taught me something I use every day.
+        </p>
       </section>
 
-      {/* Project list */}
-      <section>
-        <div className="container mx-auto py-16 md:py-24">
-          <Suspense fallback={<div className="text-muted-foreground">Loading projects...</div>}>
-            <ProjectList projects={projects} />
-          </Suspense>
-        </div>
+      <section className="pb-4">
+        <Suspense fallback={<p className="meta">Loading…</p>}>
+          <ProjectList projects={projects} />
+        </Suspense>
       </section>
     </div>
   )

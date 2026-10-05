@@ -2,8 +2,9 @@ export const projects = [
   {
     id: "tiny-app-baby-heartbeat-listener",
     slug: "tiny-app-baby-heartbeat-listener",
+    short: "Tiny",
     title: "Tiny App: Baby Heartbeat Listener",
-    description: "An iOS app using AirPods and AVFoundation to create an intimate bonding experience for expecting parents.",
+    description: "An iOS app that helps parents-to-be listen to womb sounds through AirPods.",
     image: "/images/tiny-thumbnail.webp",
     tags: ["iOS", "AudioKit", "AVFoundation", "Accelerate", "SwiftUI", "Firebase"],
     githubUrl: "https://github.com/destucr",
@@ -41,8 +42,9 @@ The biggest challenge was creating an immersive audio experience that felt authe
   {
     id: "telly-bisindo-sign-language-learning",
     slug: "telly-bisindo-sign-language-learning",
+    short: "Telly",
     title: "Telly: BISINDO Sign Language Learning",
-    description: "A native iOS app teaching Indonesian Sign Language (BISINDO) through real-time gesture recognition.",
+    description: "Teaches Indonesian Sign Language using the camera. Trained on signs we collected and annotated ourselves.",
     image: "/images/telly-thumbnail.webp",
     tags: ["iOS", "SwiftUI", "Create ML", "SwiftData"],
     githubUrl: "https://github.com/destucr",
@@ -56,7 +58,7 @@ Users learn BISINDO signs by watching demonstrations, then practicing with their
 - **Local Data Persistence**: Used SwiftData to manage user progress, lesson states, and achievement history without server dependency.
 
 #### Challenges
-The hardest part was getting enough training data—BISINDO resources are scarce compared to ASL. I had to film and annotate my own reference videos, then augment the dataset with rotations and lighting variations to make the model robust to different environments.
+The hardest part was getting enough training data—BISINDO resources are scarce compared to ASL. We had to film and annotate our own reference videos, then augment the dataset with rotations and lighting variations to make the model robust to different environments.
 
 Balancing model accuracy with file size was tricky since the entire model ships with the app.`,
     videoUrl: "/images/telly-demo.mp4",
@@ -74,8 +76,9 @@ Balancing model accuracy with file size was tricky since the entire model ships 
   {
     id: "solari-running-companion",
     slug: "solari-running-companion",
+    short: "Solari",
     title: "Solari: Running Tracker",
-    description: "Running tracker app using SwiftUI, MapKit, and Core Location for real-time metrics and route visualization.",
+    description: "A running tracker that draws your route live and keeps every run on your phone.",
     image: "/images/solari-thumbnail.webp",
     tags: ["iOS", "SwiftUI", "MapKit", "Core Location", "SwiftData"],
     githubUrl: "https://github.com/destucr",
@@ -100,8 +103,9 @@ Developed a comprehensive running tracker that prioritizes accuracy and real-tim
   {
     id: "go-line",
     slug: "go-line",
+    short: "Go Line",
     title: "Go Line: Transit Puzzle Simulator",
-    description: "A zen-inspired transit management game where players draw railway lines, connect stations, and keep the city moving smoothly.",
+    description: "A transit puzzle game about drawing railway lines and keeping a city moving.",
     image: "/images/goline-thumbnail.webp",
     tags: ["Swift", "SpriteKit", "SwiftUI", "RxSwift", "iOS", "GLSL"],
     githubUrl: "https://github.com/destucr/go-line",
@@ -129,8 +133,9 @@ The game's biggest challenge was creating an interface responsive enough for rap
   {
     id: "gtfs-web",
     slug: "gtfs-web",
+    short: "GTFS-Web",
     title: "GTFS-Web: High-Performance Transit Management Ecosystem",
-    description: "A comprehensive GTFS management platform featuring a multi-interface architecture, custom GIS route engine, and real-time geospatial data processing.",
+    description: "Manages bus routes and timetables.",
     image: "/images/gtfs-web/dashboard.webp",
     tags: ["Go", "React", "TypeScript", "PostgreSQL", "Leaflet", "Docker"],
     githubUrl: "https://github.com/destucr/GTFS-Web",
@@ -163,8 +168,9 @@ The hardest part was designing the CMS interface to display high-density transit
   {
     id: "snorkeling-booking-app",
     slug: "snorkeling-booking-app",
+    short: "Snorkeling",
     title: "Snorkeling Booking App",
-    description: "Led cross-functional teams to improve the post-purchase experience for a consumer snorkeling app.",
+    description: "Improving a snorkeling app after customers book.",
     image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=1000",
     tags: ["Product Management", "UX Research", "Metric Definition"],
     githubUrl: "https://github.com/destucr",
@@ -177,8 +183,9 @@ The hardest part was designing the CMS interface to display high-density transit
   {
     id: "p2p-lending-app-fraud-prevention",
     slug: "p2p-lending-app-fraud-prevention",
+    short: "P2P Lending",
     title: "P2P Lending App: Fraud Prevention",
-    description: "Developed document liveness detection using machine learning to prevent user fraud.",
+    description: "Spotting fake identity documents during loan sign-up.",
     image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=1000",
     tags: ["Machine Learning", "Image Classification", "Computer Vision"],
     githubUrl: "https://github.com/destucr",

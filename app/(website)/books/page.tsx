@@ -1,72 +1,50 @@
 import { getBooks } from "@/lib/content"
-import Image from "next/image"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Books",
-  description: "Books that shaped my engineering practice.",
+  title: "Reading",
+  description: "Books that changed how I build software.",
 }
 
 export default async function BooksPage() {
   const books = await getBooks()
 
   return (
-    <div className="min-h-screen">
-      {/* Header */}
-      <section className="border-b border-border">
-        <div className="container mx-auto py-16 md:py-24">
-          <div className="max-w-2xl space-y-4">
-            <span className="label-caps text-primary">Library</span>
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">
-              Books
-            </h1>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Technical texts that shaped my engineering practice.
-            </p>
-          </div>
-        </div>
+    <div className="pb-28">
+      <section className="pt-16 md:pt-24 pb-12">
+        <p className="caps mb-5">Reading</p>
+        <h1 className="text-[clamp(2.25rem,6vw,3.25rem)] leading-[1.05] font-semibold tracking-[-0.03em]">
+          What I&apos;m reading.
+        </h1>
+        <p className="lede mt-7 max-w-[34rem]">
+          A short shelf. I re-read more than I buy. These are the ones with margin notes.
+        </p>
       </section>
 
-      {/* Book grid */}
-      <section>
-        <div className="container mx-auto py-16 md:py-24">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-12">
-            {books.map((book) => (
-              <div key={book.title} className="group flex flex-col">
-                {/* Book cover */}
-                <div className="relative aspect-[2/3] flex items-center justify-center bg-muted border border-border overflow-hidden transition-colors duration-300 group-hover:bg-muted/80">
-                  <div className="relative w-[90%] h-[90%] transition-transform duration-300 group-hover:-translate-y-1">
-                    <Image
-                      src={book.coverImage}
-                      alt={book.title}
-                      fill
-                      sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 280px"
-                      className="object-contain"
-                      unoptimized
-                    />
-                  </div>
-                </div>
-
-                <div className="mt-4 space-y-1">
-                  <h3 className="text-sm font-medium text-foreground leading-tight tracking-tight group-hover:text-primary transition-colors">
-                    {book.title}
-                  </h3>
-                  <p className="text-xs text-muted-foreground">{book.author}</p>
-                  {book.amazonUrl && (
+      <section className="pb-4">
+        <ul className="divide-y divide-border border-y border-border">
+          {books.map((book) => (
+            <li key={book.title} className="py-6">
+              <p className="text-[1.125rem] tracking-tight">{book.title}</p>
+              <p className="meta mt-1.5">
+                {book.author}
+                {book.amazonUrl && (
+                  <>
+                    {"  ·  "}
                     <a
                       href={book.amazonUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-block text-xs text-muted-foreground hover:text-primary transition-colors mt-2"
+                      className="essay-link"
                     >
-                      Amazon
+                      Find it
                     </a>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+                  </>
+                )}
+              </p>
+            </li>
+          ))}
+        </ul>
       </section>
     </div>
   )

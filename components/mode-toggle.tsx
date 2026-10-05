@@ -4,20 +4,24 @@ import * as React from "react"
 import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 
-import { Button } from "@/components/ui/button"
-
 export function ModeToggle() {
-  const { setTheme, theme } = useTheme()
+  const { setTheme, resolvedTheme } = useTheme()
+  const [mounted, setMounted] = React.useState(false)
+
+  React.useEffect(() => setMounted(true), [])
 
   return (
-    <Button
-      variant="ghost"
-      size="icon"
-      onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+    <button
+      type="button"
+      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
       aria-label="Toggle theme"
+      className="grid place-items-center size-7 rounded-md text-muted-foreground hover:text-foreground hover:rotate-[20deg] active:rotate-90 active:scale-90 transition-all duration-200"
     >
-      <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-      <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-    </Button>
+      {mounted && resolvedTheme === "dark" ? (
+        <Sun className="size-4" aria-hidden="true" />
+      ) : (
+        <Moon className="size-4" aria-hidden="true" />
+      )}
+    </button>
   )
 }

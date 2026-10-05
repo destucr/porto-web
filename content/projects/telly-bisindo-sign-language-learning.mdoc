@@ -1,6 +1,7 @@
 ---
 title: "Telly: BISINDO Sign Language Learning"
-description: A native iOS app teaching Indonesian Sign Language (BISINDO) through real-time gesture recognition.
+short: "Telly"
+description: Teaches Indonesian Sign Language using the camera. Trained on signs we collected and annotated ourselves.
 image: /images/telly-thumbnail.webp
 tags:
 - iOS
@@ -30,8 +31,8 @@ on-device machine learning to verify their hand shapes and provide instant feedb
 - **Local Data Persistence**: Used SwiftData to manage user progress, lesson states, and achievement history without server dependency.
 
 #### Challenges
-The hardest part was getting enough training data—BISINDO resources are scarce compared to ASL. I had to film
-and annotate my own reference videos, then augment the dataset with rotations and lighting variations to
+The hardest part was getting enough training data—BISINDO resources are scarce compared to ASL. We had to film
+and annotate our own reference videos, then augment the dataset with rotations and lighting variations to
 make the model robust to different environments.
 
 Balancing model accuracy with file size was tricky since the entire model ships with the app.

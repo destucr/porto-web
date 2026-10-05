@@ -144,6 +144,11 @@ export async function getProjects() {
         screenshots: Array.isArray(project.screenshots) ? (project.screenshots as readonly string[]) : [],
         details: project.details || project.content || '',
         articleOnly: project.articleOnly || false,
+        // Optional `year:` frontmatter (e.g. 2025). Absent until added —
+        // never invented.
+        year: project.year || '',
+        // Optional `short:` display name for ledger rows. Falls back to title.
+        short: project.short || project.title || '',
       }))
       .sort((a, b) => {
         const aIsIOS = a.tags.some((tag: string) => tag.toLowerCase() === 'ios');
@@ -187,6 +192,9 @@ export async function getProjects() {
         videoUrl: data.videoUrl,
         screenshots: data.screenshots,
         details: content,
+        articleOnly: data.articleOnly || false,
+        year: data.year || '',
+        short: data.short || '',
       };
     });
 

@@ -1,78 +1,60 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Newsreader, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { StructuredData } from "@/components/structured-data";
 
-const rocGrotesk = localFont({
-  variable: "--font-roc-grotesk",
+const newsreader = Newsreader({
+  variable: "--font-newsreader",
+  subsets: ["latin"],
   display: "swap",
-  src: [
-    {
-      path: "../public/fonts/fonnts.com-Roc_Grotesk_Thin.otf",
-      weight: "100",
-      style: "normal",
-    },
-    {
-      path: "../public/fonts/fonnts.com-Roc_Grotesk_Light.otf",
-      weight: "300",
-      style: "normal",
-    },
-    {
-      path: "../public/fonts/fonnts.com-Roc_Grotesk_Regular.otf",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../public/fonts/fonnts.com-Roc_Grotesk_Medium.otf",
-      weight: "500",
-      style: "normal",
-    },
-    {
-      path: "../public/fonts/fonnts.com-Roc_Grotesk_Bold.otf",
-      weight: "700",
-      style: "normal",
-    },
-    {
-      path: "../public/fonts/fonnts.com-Roc_Grotesk_Black.otf",
-      weight: "900",
-      style: "normal",
-    },
-  ],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600"],
+});
+
+const jbmono = JetBrains_Mono({
+  variable: "--font-jbmono",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://destucikal.site"),
   title: {
-    default: "Destu Cikal — iOS Developer",
-    template: "%s — Destu Cikal",
+    default: "Destu Cikal, iOS developer",
+    template: "%s, Destu Cikal",
   },
-  description: "iOS Developer crafting native apps with Swift, UIKit, and SwiftUI. Apple Developer Academy graduate building production mobile applications.",
-  keywords: ["iOS Developer", "Swift", "UIKit", "SwiftUI", "mobile app developer", "Destu Cikal", "Apple Developer Academy", "portfolio"],
+  description: "I'm Destu Cikal. I build native iOS apps people trust. Fintech, health, transit. Notes on how I work, what I've made, and where I'm going.",
+  keywords: ["Destu Cikal", "iOS Developer", "Swift", "SwiftUI", "UIKit", "portfolio", "essays"],
   openGraph: {
-    title: "Destu Cikal — iOS Developer",
-    description: "iOS Developer crafting native apps with Swift, UIKit, and SwiftUI.",
+    title: "Destu Cikal, iOS developer",
+    description: "I build native iOS apps people trust. Work, notes, and ambitions.",
     url: "./",
     siteName: "Destu Cikal",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/images/logo/og-cover.png",
+        width: 1200,
+        height: 630,
+        alt: "Destu Cikal",
+      },
+    ],
   },
   alternates: {
     canonical: "./",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Destu Cikal — iOS Developer",
-    description: "iOS Developer crafting native apps with Swift, UIKit, and SwiftUI.",
+    title: "Destu Cikal, iOS developer",
+    description: "I build native iOS apps people trust. Work, notes, and ambitions.",
+    images: ["/images/logo/og-cover.png"],
   },
   icons: {
-    icon: [
-      { url: "/images/logo/logo-light.webp", media: "(prefers-color-scheme: light)" },
-      { url: "/images/logo/logo-dark.webp", media: "(prefers-color-scheme: dark)" },
-    ],
-    apple: [
-      { url: "/images/logo/logo-light.webp" }
-    ],
+    icon: [{ url: "/images/logo/icon.png", sizes: "64x64", type: "image/png" }],
+    apple: [{ url: "/images/logo/apple-touch-icon.png", sizes: "180x180" }],
   },
 };
 
@@ -83,21 +65,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
-        <link rel="preconnect" href="https://www.google-analytics.com" />
-      </head>
       <body
-        className={`${rocGrotesk.variable} ${rocGrotesk.className} antialiased min-h-screen bg-background text-foreground`}
+        className={`${newsreader.variable} ${jbmono.variable} antialiased min-h-screen bg-background text-foreground`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ThemeProvider>
           <StructuredData />
           {children}
         </ThemeProvider>

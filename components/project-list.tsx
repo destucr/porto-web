@@ -1,95 +1,58 @@
-"use client"
-
-import { useState } from "react"
-import { ProjectCard } from "@/components/project-card"
-import { EmptyState } from "@/components/empty-state"
-import { LayoutGrid } from "lucide-react"
-import { cn } from "@/lib/utils"
+import Link from "next/link"
+import { ChevronRight } from "lucide-react"
 
 interface Project {
   id: string
   slug: string
   title: string
+  short?: string
   description: string
-  image: string
   tags: readonly string[]
-  githubUrl?: string
-  appStoreUrl?: string | null
-  details?: string
-  videoUrl?: string
   articleOnly?: boolean
+  year?: string
 }
 
-interface ProjectListProps {
-  projects: Project[]
-  isAdmin?: boolean
-  layout?: "grid" | "scroll"
-  limit?: number
-  showFilters?: boolean
-}
-
-type FilterCategory = "All" | "iOS" | "Systems" | "Machine Learning"
-
-export function ProjectList({ projects, isAdmin, limit, showFilters = true }: ProjectListProps) {
-  const [selectedCategory, setSelectedCategory] = useState<FilterCategory>("All")
-
-  const filteredProjects = projects.filter((project) => {
-    if (selectedCategory === "All") return true
-
-    const tags = project.tags.map((t) => t.toLowerCase())
-
-    if (selectedCategory === "iOS") return tags.includes("ios")
-    if (selectedCategory === "Systems")
-      return tags.includes("web") || tags.includes("backend") || tags.includes("go")
-    if (selectedCategory === "Machine Learning")
-      return tags.includes("machine learning") || tags.includes("create ml")
-
-    return false
-  })
-
-  const displayedProjects = limit ? filteredProjects.slice(0, limit) : filteredProjects
-
-  const categories: FilterCategory[] = ["All", "iOS", "Systems", "Machine Learning"]
+// Quiet ledger, same voice as the homepage: hairlines, serif titles,
+// one mono index number per row, a single platform tag. No boxes.
+export function ProjectList({ projects }: { projects: Project[] }) {
+  if (projects.length === 0) {
+    return <p className="text-foreground/70">No projects yet.</p>
+  }
 
   return (
-    <div className="space-y-8">
-      {/* Filter tabs */}
-      {showFilters && (
-        <div className="overflow-x-auto scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0">
-          <div className="flex gap-6 border-b border-border pb-0 min-w-max md:min-w-0">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={cn(
-                  "text-sm font-medium transition-colors pb-3 relative whitespace-nowrap",
-                  selectedCategory === category
-                    ? "text-foreground after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-primary"
-                    : "text-muted-foreground hover:text-foreground"
-                )}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {filteredProjects.length === 0 ? (
-        <EmptyState
-          icon={LayoutGrid}
-          title="No projects found"
-          description={`No ${selectedCategory !== "All" ? selectedCategory : ""} projects found.`}
-          actionLabel={isAdmin ? "Go to Admin" : undefined}
-          actionHref={isAdmin ? "/admin" : undefined}
-        />
-      ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {displayedProjects.map((project, i) => (
-            <ProjectCard key={project.id} project={project} priority={i < 3} />
-          ))}
-        </div>
-      )}
-    </div>
+    <ul className="divide-y divide-border border-y border-border">
+      {projects.map((project, i) => (
+        <li key={project.id}>
+          <Link
+            href={`/projects/${project.slug}`}
+            className="group flex items-baseline gap-4 py-6"
+          >
+            <span className="meta tnum shrink-0 tabular-nums">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="flex items-baseline">
+                <span className="index-link font-serif text-[1.25rem] tracking-tight text-foreground min-w-0 leading-snug">
+                  {project.short || project.title}
+                </span>
+                <span className="leader" aria-hidden="true" />
+                <span className="meta tnum shrink-0">
+                  {project.tags[0]}
+                  {project.year ? ` · ${project.year}` : ""}
+                  {project.articleOnly ? " · Essay" : ""}
+                </span>
+              </span>
+              <span className="mt-1.5 block text-[0.9375rem] leading-[1.65] text-muted-foreground">
+                {project.description}
+              </span>
+            </span>
+            <ChevronRight
+              className="size-4 shrink-0 self-center text-muted-foreground/50 transition-all duration-200 group-hover:translate-x-1 group-hover:text-foreground"
+              aria-hidden="true"
+            />
+          </Link>
+        </li>
+      ))}
+    </ul>
   )
 }

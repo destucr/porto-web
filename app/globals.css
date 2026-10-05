@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* Class-based dark mode, driven by next-themes. System default, persisted. */
 @variant dark (&:where(.dark, .dark *));
 
 @theme {
@@ -9,106 +10,41 @@
   --color-ring: var(--ring);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  
+
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
-  
+
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
-  
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  
+
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
-  
+
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
-  
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  
+
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
 
-  --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
-
-  --animate-accordion-down: accordion-down 0.2s ease-out;
-  --animate-accordion-up: accordion-up 0.2s ease-out;
-
-  /* Roc Grotesk — single typeface system */
-  --font-serif: var(--font-roc-grotesk);
-  --font-sans: var(--font-roc-grotesk);
-  --font-condensed: var(--font-roc-grotesk);
-
-  @keyframes accordion-down {
-    from { height: 0; }
-    to { height: var(--radix-accordion-content-height); }
-  }
-  @keyframes accordion-up {
-    from { height: var(--radix-accordion-content-height); }
-    to { height: 0; }
-  }
-
-  @keyframes shimmer {
-    100% {
-      transform: translateX(100%);
-    }
-  }
-
-  /* Playful looping animations */
-  @keyframes gentle-float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-  }
-  @keyframes gentle-drift {
-    0%, 100% { transform: translate(0, 0) rotate(0deg); }
-    33% { transform: translate(4px, -6px) rotate(0.5deg); }
-    66% { transform: translate(-3px, -3px) rotate(-0.5deg); }
-  }
-  @keyframes gradient-shift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-  @keyframes gradient-shift-vertical {
-    0% { background-position: 0% 0%; }
-    50% { background-position: 0% 100%; }
-    100% { background-position: 0% 0%; }
-  }
-  @keyframes pulse-soft {
-    0%, 100% { opacity: 0.4; }
-    50% { opacity: 0.7; }
-  }
-  @keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
+  /* One pairing, committed: Newsreader for voice, system sans for UI,
+     JetBrains Mono for meta. No other typefaces on the page. */
+  --font-serif: var(--font-newsreader), Georgia, "Times New Roman", serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-mono: var(--font-jbmono), ui-monospace, SFMono-Regular, monospace;
 }
 
-
-@utility container {
+/* The one column. Plain CSS so nothing in the framework can empty it. */
+.wrap {
   margin-inline: auto;
   padding-inline: 1.25rem;
-  @media (width >= 768px) {
-    padding-inline: 2.5rem;
-  }
-  @media (width >= 1024px) {
-    padding-inline: 5rem;
-    max-width: 1440px;
-  }
-  @media (width >= 1440px) {
-    padding-inline: 7.5rem;
+  max-width: 42rem;
+}
+@media (width >= 768px) {
+  .wrap {
+    padding-inline: 1.5rem;
   }
 }
 
-/*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with v3.
-*/
 @layer base {
   *,
   ::after,
@@ -119,71 +55,42 @@
   }
 }
 
-
 @layer base {
   :root {
-    /* ===================================
-       WARM MODERN LIGHT MODE
-       =================================== */
-    --background: #FAFAF8;       /* Warm Off-White */
-    --foreground: #1A1A1A;       /* Soft Black */
-
-    --card: #FFFFFF;
-    --card-foreground: #1A1A1A;
-
-    --popover: #FFFFFF;
-    --popover-foreground: #1A1A1A;
-
-    --primary: #1A1A1A;           /* Primary = text tone */
-    --primary-foreground: #FAFAF8;
-
-    --secondary: #F3F1EE;         /* Warm Sand */
-    --secondary-foreground: #1A1A1A;
-
-    --muted: #F3F1EE;
-    --muted-foreground: #71717A;  /* Zinc 500 */
-
-    --accent: #F3F1EE;
-    --accent-foreground: #1A1A1A;
-
-    --destructive: #DC2626;
-    --destructive-foreground: #FFFFFF;
-
-    --border: #E8E5E0;            /* Warm Border */
-    --input: #E8E5E0;
-    --ring: #1A1A1A;
-
-    --radius: 0.625rem;           /* Softer rounded corners */
+    --background: #faf8f4;
+    --foreground: #1b1a17;
+    --card: #ffffff;
+    --card-foreground: #1b1a17;
+    --primary: #1b1a17;
+    --primary-foreground: #faf8f4;
+    --secondary: #f1eee7;
+    --secondary-foreground: #1b1a17;
+    --muted: #f1eee7;
+    --muted-foreground: #77736a;
+    --accent: #e8a33d;
+    --accent-foreground: #1b1a17;
+    --border: #e7e2d8;
+    --input: #e7e2d8;
+    --ring: #1b1a17;
+    --radius: 0.375rem;
   }
 
   .dark {
-    /* ===================================
-       WARM MODERN DARK MODE
-       =================================== */
-    --background: #141414;       /* Rich Black */
-    --foreground: #EDEDEC;       /* Warm White */
-
-    --card: #1C1C1C;
-    --card-foreground: #EDEDEC;
-
-    --popover: #1C1C1C;
-    --popover-foreground: #EDEDEC;
-
-    --primary: #EDEDEC;
-    --primary-foreground: #141414;
-
-    --secondary: #262626;
-    --secondary-foreground: #EDEDEC;
-
-    --muted: #262626;
-    --muted-foreground: #A1A1AA;  /* Zinc 400 */
-
-    --accent: #262626;
-    --accent-foreground: #EDEDEC;
-
-    --border: rgba(255, 255, 255, 0.08);
-    --input: rgba(255, 255, 255, 0.08);
-    --ring: #EDEDEC;
+    --background: #111110;
+    --foreground: #d8d4cc;
+    --card: #1a1917;
+    --card-foreground: #d8d4cc;
+    --primary: #d8d4cc;
+    --primary-foreground: #111110;
+    --secondary: #201f1c;
+    --secondary-foreground: #d8d4cc;
+    --muted: #201f1c;
+    --muted-foreground: #9c988e;
+    --accent: #e8a33d;
+    --accent-foreground: #111110;
+    --border: rgba(216, 212, 204, 0.14);
+    --input: rgba(216, 212, 204, 0.14);
+    --ring: #d8d4cc;
   }
 }
 
@@ -195,22 +102,41 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-background text-foreground antialiased font-sans;
-    font-feature-settings: "ss01", "ss02", "cv01", "cv02";
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-serif);
+    font-size: 1.125rem;
+    line-height: 1.8;
+    font-kerning: normal;
+    font-optical-sizing: auto;
+    font-feature-settings: "kern" 1, "liga" 1, "onum" 1;
+    text-rendering: optimizeLegibility;
   }
 
-  /* Selection highlight */
-  ::selection {
-    background: var(--foreground);
-    color: var(--background);
+  p {
+    text-wrap: pretty;
+    orphans: 3;
+    widows: 3;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold tracking-tight;
+  h1, h2, h3, h4 {
+    font-family: var(--font-serif);
+    @apply font-medium;
+    letter-spacing: -0.015em;
     text-wrap: balance;
+    line-height: 1.2;
   }
 
-  /* Subtle scrollbar */
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-foreground);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
   ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
@@ -222,75 +148,179 @@
     background: var(--border);
     border-radius: 3px;
   }
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--muted-foreground);
-  }
 }
 
 @layer utilities {
-  /* Editorial Section Divider -- subtle accent bar */
-  .editorial-divider {
-    @apply w-12 h-[2px] bg-foreground/20;
+  /* Meta: small mono microcopy. Normal case, quiet tracking —
+     uppercase only shouts, and nothing here needs shouting. */
+  .meta {
+    font-family: var(--font-mono);
+    @apply text-[11px] leading-relaxed text-muted-foreground;
+    letter-spacing: 0.02em;
   }
 
-  /* Small caps label style */
-  .label-caps {
-    @apply text-xs font-medium tracking-[0.06em] uppercase text-muted-foreground font-sans;
+  .caps {
+    font-family: var(--font-mono);
+    @apply text-[11px] font-medium text-muted-foreground;
+    letter-spacing: 0.02em;
+  }
+
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .lede {
+    font-size: 1.25rem;
+    line-height: 1.65;
+    color: color-mix(in srgb, var(--foreground) 85%, transparent);
+    text-wrap: pretty;
+  }
+
+  /* Voice aside: serif italic. Facts in roman, voice here. */
+  .voice {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: color-mix(in srgb, var(--foreground) 75%, transparent);
+    text-wrap: pretty;
+  }
+
+  .essay-link {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+    text-decoration-color: color-mix(in srgb, currentColor 38%, transparent);
+    transition: text-decoration-color 0.2s ease, text-underline-offset 0.2s ease;
+  }
+  .essay-link:hover {
+    text-decoration-color: currentColor;
+    text-underline-offset: 0.28em;
+  }
+
+  .index-link {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+    text-decoration-color: transparent;
+    transition: text-decoration-color 0.2s ease, text-underline-offset 0.2s ease;
+  }
+  .index-link:hover {
+    text-decoration-color: color-mix(in srgb, currentColor 60%, transparent);
+    text-underline-offset: 0.28em;
+  }
+
+  /* Hovering a whole row lights its title — the row is the hit area. */
+  .group:hover .index-link {
+    text-decoration-color: color-mix(in srgb, currentColor 60%, transparent);
+  }
+
+  /* Sweep underline for navigation: grows from the left on hover. */
+  .nav-link {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    padding-bottom: 2px;
+    transition: background-size 0.25s ease, color 0.2s ease;
+  }
+  .nav-link:hover {
+    background-size: 100% 1px;
+  }
+
+  /* Dotted leader between a title and its meta — classic index rhythm. */
+  .leader {
+    flex: 1 1 auto;
+    min-width: 1.5rem;
+    margin-inline: 0.75rem;
+    border-bottom: 2px dotted color-mix(in srgb, var(--foreground) 22%, transparent);
+    transform: translateY(-4px);
+  }
+
+  .essay-rule {
+    @apply border-t border-border my-0;
+  }
+
+  /* The single accent usage: a soft wash behind the thesis phrase. */
+  .marker {
+    background: linear-gradient(
+      to top,
+      color-mix(in srgb, var(--accent) 38%, transparent) 42%,
+      transparent 42%
+    );
+    padding-inline: 0.08em;
+    border-radius: 2px;
+  }
+
+  /* Dotted leader between a title and its meta. */
+  .leader {
+    flex: 1 1 auto;
+    min-width: 1.5rem;
+    margin-inline: 0.75rem;
+    border-bottom: 2px dotted color-mix(in srgb, var(--foreground) 22%, transparent);
+    transform: translateY(-4px);
+  }
+
+  /* Physical press button. Tasteful places only. */
+  .btn-press {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 2px solid var(--foreground);
+    border-radius: 10px;
+    background: var(--card);
+    color: var(--foreground);
+    padding: 0.55rem 1.1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    box-shadow: 3px 3px 0 0 var(--foreground);
+    transition: transform 150ms ease, box-shadow 150ms ease;
+    cursor: pointer;
+    user-select: none;
+  }
+  .btn-press:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0 0 var(--foreground);
+  }
+  .btn-press:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0 0 0 0 var(--foreground);
+  }
+
+  /* Page-load reveal: blur-to-sharp + 8px rise. Stagger via inline delay. */
+  @keyframes rise-in {
+    from {
+      opacity: 0;
+      filter: blur(6px);
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      filter: blur(0);
+      transform: translateY(0);
+    }
+  }
+  .reveal {
+    animation: rise-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(16px); }
-  to { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
-
-.animate-fade-in {
-  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.delay-100 { animation-delay: 100ms; }
-.delay-200 { animation-delay: 200ms; }
-.delay-300 { animation-delay: 300ms; }
 
 .text-balance {
   text-wrap: balance;
-}
-
-/* Looping animation utilities */
-.animate-float {
-  animation: gentle-float 6s cubic-bezier(0.37, 0, 0.63, 1) infinite;
-}
-.animate-drift {
-  animation: gentle-drift 8s cubic-bezier(0.37, 0, 0.63, 1) infinite;
-}
-.animate-gradient-shift {
-  background-size: 200% 200%;
-  animation: gradient-shift 6s ease infinite;
-}
-.animate-pulse-soft {
-  animation: pulse-soft 4s ease-in-out infinite;
-}
-.animate-marquee {
-  animation: marquee 30s linear infinite;
-}
-
-/* Link underline animation from center */
-.link-underline {
-  position: relative;
-  text-decoration: none;
-}
-.link-underline::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 50%;
-  width: 0;
-  height: 1px;
-  background: currentColor;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.link-underline:hover::after {
-  left: 0;
-  width: 100%;
 }

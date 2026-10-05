@@ -1,4 +1,4 @@
-import { Navbar } from "@/components/navbar";
+import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 
 export default function WebsiteLayout({
@@ -8,8 +8,10 @@ export default function WebsiteLayout({
 }) {
   return (
     <div className="flex flex-col min-h-screen">
-      <Navbar />
-      <main className="flex-1">{children}</main>
+      <SiteHeader />
+      <main className="flex-1">
+        <div className="wrap">{children}</div>
+      </main>
       <SiteFooter />
     </div>
   );
