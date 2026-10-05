@@ -17,7 +17,7 @@ export default async function BooksPage() {
           What I&apos;m reading.
         </h1>
         <p className="lede mt-7 max-w-[34rem]">
-          A short shelf. I re-read more than I buy. These are the ones with margin notes.
+          A short shelf.
         </p>
       </section>
 
