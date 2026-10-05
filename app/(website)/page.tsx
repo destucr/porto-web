@@ -63,7 +63,7 @@ export default async function Home() {
           >
             LinkedIn
           </Link>
-          . I read every message and answer within a few days.
+          .
         </p>
       </div>
 

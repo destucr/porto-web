@@ -22,8 +22,7 @@ export default function ContactPage() {
       <section className="pb-4">
         <CopyEmail email="destucr@gmail.com" className="text-xl" />
         <p className="mt-6 text-foreground/75 leading-[1.75] max-w-[34rem]">
-          Tell me what you&apos;re building, when you need it, and what done looks like. I read
-          every message and answer within a few days.
+          Tell me what you&apos;re building, when you need it, and what done looks like.
         </p>
         <p className="meta tnum mt-6">
           <Link
