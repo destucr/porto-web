@@ -2,7 +2,7 @@ import { DemoShowcase } from "./demo-showcase";
 import styles from "./urai.module.css";
 
 const inviteEmail =
-  "mailto:business@destucikal.site?subject=Urai%20early%20access&body=Hi%2C%20I'd%20like%20to%20try%20Urai.%20My%20Apple%20ID%20email%20for%20TestFlight%20is%3A%20";
+  "mailto:business@destucikal.site?subject=Urai%20waitlist&body=Hi%2C%20please%20add%20me%20to%20the%20Urai%20waitlist.%20My%20Apple%20ID%20email%20for%20TestFlight%20is%3A%20";
 
 export default function UraiLandingPage() {
   return (
@@ -14,7 +14,7 @@ export default function UraiLandingPage() {
           Urai
         </span>
         <a href={inviteEmail} className={styles.navButton}>
-          Get early access
+          Join the waitlist
         </a>
       </header>
 
@@ -22,7 +22,7 @@ export default function UraiLandingPage() {
         <div className={styles.intro}>
           <p className={styles.badge}>
             <span className={styles.badgeDot} aria-hidden="true" />
-            Landing on iPhone soon
+            iPhone beta opening soon
           </p>
           <h1>
             Notes on what <span className={styles.coralText}>you&apos;re into</span>.
@@ -33,9 +33,9 @@ export default function UraiLandingPage() {
           </p>
           <div className={styles.actions}>
             <a href={inviteEmail} className={styles.primaryButton}>
-              Get early access
+              Join the waitlist
             </a>
-            <span className={styles.actionNote}>Try it first on TestFlight, free</span>
+            <span className={styles.actionNote}>We&apos;ll email you when the first invites go out.</span>
           </div>
         </div>
 
