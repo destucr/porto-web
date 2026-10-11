@@ -10,7 +10,7 @@ const nunito = Nunito({
 });
 
 const description =
-  "You already post what you learn from technical books. On Urai, every take is filed by book and chapter, next to everyone reading the same thing.";
+  "An iPhone app for short takes on the programming books you're reading. Quote a passage, add what you learned, and see what others took from the same chapter.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://urai.destucikal.site"),
