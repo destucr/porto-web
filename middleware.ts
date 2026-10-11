@@ -20,8 +20,10 @@ export function middleware(request: NextRequest) {
   if (isProduction && !isLocalhost && !isUraiHost && request.nextUrl.pathname.startsWith('/urai')) {
     return NextResponse.redirect('https://urai.destucikal.site/', 301)
   }
-  const response = isUraiHost && request.nextUrl.pathname === '/'
-    ? NextResponse.rewrite(new URL('/urai', request.url))
+  const uraiPagePaths: Record<string, string> = { '/': '/urai', '/mac': '/urai/mac' }
+  const uraiPagePath = isUraiHost ? uraiPagePaths[request.nextUrl.pathname] : undefined
+  const response = uraiPagePath
+    ? NextResponse.rewrite(new URL(uraiPagePath, request.url))
     : NextResponse.next()
 
   // Only apply strict security headers in production and never on localhost
