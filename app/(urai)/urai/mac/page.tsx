@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import styles from "../urai.module.css";
+import { MacKeyCopy } from "./mac-key-copy";
 
 export const metadata: Metadata = {
   title: { absolute: "Save to Urai from your Mac" },
@@ -29,16 +30,19 @@ export default function UraiMacSetupPage() {
           Select a line in your reading app, press your shortcut, and it waits in Urai on your iPhone.
         </p>
 
-        <a href="/urai/Save-to-Urai.shortcut" className={styles.primaryButton} download="Save to Urai.shortcut">
-          Add to Shortcuts
-        </a>
-
         <ol className={styles.macSteps}>
           <li>
-            <strong>Add to Shortcuts</strong>, then <strong>Add Shortcut</strong>.
+            <strong>Copy your key:</strong>
+            <MacKeyCopy />
           </li>
           <li>
-            When it asks for your key, press <kbd>⌘V</kbd>. Urai on your iPhone already copied it.
+            <a href="/urai/Save-to-Urai.shortcut" className={styles.secondaryLink} download="Save to Urai.shortcut">
+              Add to Shortcuts
+            </a>
+            , open the downloaded file and click <strong>Add Shortcut</strong>.
+          </li>
+          <li>
+            When it asks for your key, press <kbd>⌘V</kbd>.
           </li>
           <li>
             Optional: in the shortcut&apos;s details, choose <strong>Add Keyboard Shortcut</strong>, like <kbd>⌥⌘U</kbd>.
@@ -46,9 +50,7 @@ export default function UraiMacSetupPage() {
         </ol>
 
         <p className={styles.macHint}>
-          No key on your clipboard? In Urai on your iPhone, go to Settings → Mac → Set Up on Mac.
-          <br />
-          Without a keyboard shortcut: select text, right-click, Services → Save to Urai.
+          To save a line: select it in your reading app, then right-click → Services → Save to Urai (or your keyboard shortcut).
         </p>
       </main>
 
