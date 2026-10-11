@@ -14,7 +14,11 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(httpsUrl, 301)
   }
 
-  const response = NextResponse.next()
+  // urai.destucikal.site serves the Urai landing page from /urai.
+  const isUraiHost = host?.startsWith('urai.')
+  const response = isUraiHost && request.nextUrl.pathname === '/'
+    ? NextResponse.rewrite(new URL('/urai', request.url))
+    : NextResponse.next()
 
   // Only apply strict security headers in production and never on localhost
   if (isProduction && !isLocalhost) {
