@@ -13,8 +13,24 @@ export default async function Home() {
       <HeroSection />
 
       <div className="mt-4 space-y-4 leading-[1.75] text-foreground/85 max-w-[38rem]">
+        <p className="reveal" style={{ animationDelay: "100ms" }}>
+          Right now I&apos;m building{" "}
+          <Image
+            src="/images/urai-icon.png"
+            alt=""
+            width={20}
+            height={20}
+            className="inline-block size-5 rounded-[5px] border border-border align-[-3px] mr-1"
+            unoptimized
+          />
+          <a href="https://urai.destucikal.site" className="essay-link text-foreground">
+            Urai
+          </a>
+          , a place to share what you learn from programming books. The iPhone beta opens soon.
+        </p>
+
         <p className="reveal" style={{ animationDelay: "120ms" }}>
-          Outside that work, I also make my own apps.{" "}
+          Outside my day job, I also make my own apps.{" "}
           <Link href="/projects/tiny-app-baby-heartbeat-listener" className="essay-link text-foreground">
             Tiny
           </Link>{" "}
@@ -34,22 +50,6 @@ export default async function Home() {
           <Link href="/projects" className="essay-link text-foreground whitespace-nowrap">
             Everything I&apos;ve made →
           </Link>
-        </p>
-
-        <p className="reveal" style={{ animationDelay: "140ms" }}>
-          Right now I&apos;m building{" "}
-          <Image
-            src="/images/urai-icon.png"
-            alt=""
-            width={20}
-            height={20}
-            className="inline-block size-5 rounded-[5px] border border-border align-[-3px] mr-1"
-            unoptimized
-          />
-          <a href="https://urai.destucikal.site" className="essay-link text-foreground">
-            Urai
-          </a>
-          , a place to share what you learn from programming books. The iPhone beta opens soon.
         </p>
 
         <p className="reveal" style={{ animationDelay: "160ms" }}>
