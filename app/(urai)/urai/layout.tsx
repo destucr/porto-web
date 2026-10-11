@@ -10,7 +10,7 @@ const nunito = Nunito({
 });
 
 const description =
-  "Your takes on programming books, next to everyone reading them. Quote the line that clicked, add what you learned, and see what other developers took from the same chapter.";
+  "Share what you learn from programming books. Quote the line that clicked, add your take, and see what other developers took from the same chapter.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://urai.destucikal.site"),

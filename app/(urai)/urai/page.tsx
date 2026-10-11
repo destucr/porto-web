@@ -22,11 +22,10 @@ export default function UraiLandingPage() {
         <div className={styles.intro}>
           <p className={styles.tagline}>Never read alone.</p>
           <h1>
-            Your takes on <span className={styles.coralText}>programming books</span>, next to everyone reading them.
+            Share what you learn from <span className={styles.coralText}>programming books</span>.
           </h1>
           <p className={styles.lede}>
-            Quote the line that clicked, add what you learned, and see what other developers took from the same
-            chapter.
+            Quote the line that clicked, add your take, and see what other developers took from the same chapter.
           </p>
           <div className={styles.actions}>
             <a href={inviteEmail} className={styles.primaryButton}>
@@ -38,8 +37,8 @@ export default function UraiLandingPage() {
             </span>
           </div>
           <p className={styles.maker}>
-            Built by <a href="https://destucikal.site">Destu Cikal</a>, an Apple Developer Academy alum. Cohort 8
-            alumni get the first invites.
+            Made by <a href="https://destucikal.site">Destu Cikal</a>, an iOS developer who kept tweeting about every
+            chapter.
           </p>
         </div>
 
