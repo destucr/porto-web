@@ -4,6 +4,7 @@
   --coral: #ff7a59;
   --coral-shadow: #e85f3f;
   --sunshine: #ffc542;
+  --mint: #3ccb9a;
   --grape: #9b6bff;
   --ink: #2b2340;
   --ink-soft: #6b6380;
@@ -14,23 +15,24 @@
   --media: #d9467f;
 
   color-scheme: light;
-  min-height: 100vh;
-  background: var(--paper);
+  min-height: 100svh;
+  background:
+    radial-gradient(60rem 40rem at 85% 10%, #fff1e9 0%, transparent 60%),
+    radial-gradient(40rem 30rem at 0% 100%, #f3edff 0%, transparent 60%),
+    var(--paper);
   color: var(--ink);
   font-family: ui-rounded, "SF Pro Rounded", var(--font-nunito), system-ui, sans-serif;
   font-feature-settings: normal;
-  font-size: 1.0625rem;
-  line-height: 1.6;
+  font-size: 1rem;
+  line-height: 1.55;
   overflow-x: clip;
 }
 
-.page h1,
-.page h2,
-.page h3 {
+.page h1 {
   font-family: inherit;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  line-height: 1.12;
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
   color: var(--ink);
   margin: 0;
 }
@@ -52,31 +54,32 @@
 .page :focus-visible {
   outline: 3px solid var(--grape);
   outline-offset: 3px;
-  border-radius: 8px;
+  border-radius: 12px;
+}
+
+.screenFit {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100svh;
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
 /* Navigation */
 .nav {
-  position: sticky;
-  top: 0;
-  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 72rem;
-  margin: 0 auto;
-  padding: 0.875rem 1rem;
-  background: color-mix(in srgb, var(--paper) 85%, transparent);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  padding: 0.875rem 0;
 }
 
 .brand {
   display: flex;
   align-items: center;
-  gap: 0.625rem;
+  gap: 0.5rem;
   font-weight: 900;
-  font-size: 1.25rem;
+  font-size: 1.1875rem;
 }
 
 .brand img {
@@ -86,8 +89,8 @@
 
 .navButton {
   font-weight: 800;
-  font-size: 0.9375rem;
-  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  padding: 0.45rem 0.95rem;
   border-radius: 999px;
   background: var(--raised-paper);
   transition: background 0.2s;
@@ -97,13 +100,89 @@
   background: var(--hairline);
 }
 
-/* Buttons: the app's raised coral button */
+/* Hero: intro and steps on the left, the phone on the right */
+.hero {
+  display: grid;
+  gap: 1.5rem;
+  align-content: center;
+  padding: 0.5rem 0 1.5rem;
+}
+
+.showcase {
+  display: contents;
+}
+
+.intro {
+  max-width: 34rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  color: var(--technology);
+  background: #efe8ff;
+  padding: 0.25rem 0.75rem 0.25rem 0.6rem;
+  border-radius: 999px;
+}
+
+.badgeDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--mint);
+  animation: pulse 2s ease-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgb(60 203 154 / 0.6);
+  }
+  70%,
+  100% {
+    box-shadow: 0 0 0 7px rgb(60 203 154 / 0);
+  }
+}
+
+.intro h1 {
+  font-size: clamp(2.25rem, 7vw, 3.75rem);
+  margin-top: 0.875rem;
+}
+
+.coralText {
+  color: var(--coral);
+}
+
+.lede {
+  font-size: 1.0625rem;
+  color: var(--ink-soft);
+  margin-top: 0.875rem !important;
+  max-width: 30rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  margin-top: 1.25rem;
+}
+
+.actionNote {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+
+/* The app's raised coral button */
 .primaryButton {
   display: inline-block;
   font-weight: 800;
   color: #fff !important;
   background: var(--coral);
-  padding: 0.875rem 1.5rem;
+  padding: 0.75rem 1.375rem;
   border-radius: 999px;
   box-shadow: 0 4px 0 var(--coral-shadow);
   transition: transform 0.15s, box-shadow 0.15s;
@@ -119,255 +198,220 @@
   box-shadow: 0 1px 0 var(--coral-shadow);
 }
 
-.secondaryButton {
-  display: inline-block;
-  font-weight: 800;
-  padding: 0.875rem 1.25rem;
-  border-radius: 999px;
-  color: var(--ink);
-}
-
-.secondaryButton:hover {
-  background: var(--raised-paper);
-}
-
-/* Hero */
-.hero {
+/* Demo steps */
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: grid;
-  gap: 3rem;
-  align-items: center;
-  max-width: 72rem;
-  margin: 0 auto;
-  padding: 2.5rem 1rem 4rem;
+  gap: 0.375rem;
+  max-width: 30rem;
 }
 
-.heroCopy h1 {
-  font-size: clamp(2.5rem, 8vw, 4.25rem);
-  font-weight: 900;
-  margin-top: 1rem;
-}
-
-.coralText {
-  color: var(--coral);
-}
-
-.badge {
-  display: inline-block;
-  font-size: 0.875rem;
-  font-weight: 800;
-  color: var(--technology);
-  background: #efe8ff;
-  padding: 0.25rem 0.75rem;
-  border-radius: 999px;
-}
-
-.lede {
-  font-size: 1.1875rem;
-  color: var(--ink-soft);
-  margin-top: 1.25rem !important;
-  max-width: 32rem;
-}
-
-.heroActions {
+.step {
+  position: relative;
   display: flex;
-  flex-wrap: wrap;
   gap: 0.75rem;
-  margin-top: 2rem;
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  text-align: left;
+  font: inherit;
+  color: var(--ink-soft);
+  background: transparent;
+  border: 0;
+  border-radius: 18px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: background 0.25s, color 0.25s, box-shadow 0.25s;
 }
 
-.heroPhone {
+.step:hover {
+  background: rgb(247 241 232 / 0.7);
+}
+
+.stepActive,
+.stepActive:hover {
+  color: var(--ink);
+  background: #fff;
+  box-shadow: 0 8px 24px -14px rgb(43 35 64 / 0.35), 0 0 0 1px var(--hairline);
+}
+
+.stepNumber {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  font-size: 0.8125rem;
+  font-weight: 900;
+  border-radius: 50%;
+  background: var(--raised-paper);
+  transition: background 0.25s, color 0.25s;
+}
+
+.stepActive .stepNumber {
+  color: #fff;
+  background: var(--coral);
+}
+
+.stepText {
+  display: grid;
+}
+
+.stepTitle {
+  font-weight: 800;
+  font-size: 1rem;
+  line-height: 26px;
+}
+
+.stepBody {
+  max-height: 0;
+  overflow: hidden;
+  font-size: 0.9375rem;
+  color: var(--ink-soft);
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+}
+
+.stepActive .stepBody {
+  max-height: 5rem;
+  opacity: 1;
+}
+
+.stepProgress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 100%;
+  background: var(--coral);
+  transform-origin: left;
+  animation: fill linear forwards;
+}
+
+@keyframes fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Phone stage */
+.stage {
   position: relative;
   justify-self: center;
+  padding: 0 2rem;
 }
 
-.heroMascot {
+.phone {
+  position: relative;
+  height: min(440px, 54svh);
+  aspect-ratio: 720 / 1469;
+  border-radius: 40px;
+  background: #1d1a24;
+  box-shadow:
+    0 0 0 1px #3a3542 inset,
+    0 30px 60px -20px rgb(43 35 64 / 0.4),
+    0 12px 24px -12px rgb(43 35 64 / 0.25);
+}
+
+.screen {
   position: absolute;
-  width: 110px;
+  inset: 8px;
+  width: calc(100% - 16px);
+  height: calc(100% - 16px);
+  object-fit: cover;
+  object-position: top;
+  border-radius: 32px;
+  background: var(--paper);
+  opacity: 0;
+  transform: scale(0.985);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.screenVisible {
+  opacity: 1;
+  transform: none;
+}
+
+.callout {
+  position: absolute;
+  right: -0.5rem;
+  top: 20%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 13rem;
+  padding: 0.5rem 0.875rem 0.5rem 0.5rem;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 12px 30px -12px rgb(43 35 64 / 0.35), 0 0 0 1px var(--hairline);
+  animation: pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.35s both;
+}
+
+.callout img {
+  flex: none;
+  width: 30px;
+  height: 30px;
+}
+
+.callout span {
+  display: grid;
+  line-height: 1.2;
+}
+
+.callout strong {
+  font-size: 0.875rem;
+  font-weight: 900;
+}
+
+.callout small {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+
+.calloutTech strong {
+  color: var(--technology);
+}
+
+.calloutMedia strong {
+  color: var(--media);
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.mascot {
+  position: absolute;
+  width: 84px;
   height: auto;
-  left: -64px;
-  bottom: 24px;
+  left: -0.75rem;
+  bottom: -0.75rem;
   animation: bob 3.2s ease-in-out infinite;
 }
 
 @keyframes bob {
   50% {
-    transform: translateY(-8px) rotate(-3deg);
+    transform: translateY(-7px) rotate(-3deg);
   }
 }
 
-/* Phone frame around screenshots and the video */
-.phone {
-  width: min(300px, 78vw);
-  aspect-ratio: 720 / 1469;
-  padding: 10px;
-  border-radius: 46px;
-  background: #1d1a24;
-  box-shadow:
-    0 0 0 1px #3a3542 inset,
-    0 30px 60px -20px rgb(43 35 64 / 0.35),
-    0 12px 24px -12px rgb(43 35 64 / 0.25);
-}
-
-.phone img,
-.phone video {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 36px;
-  background: var(--paper);
-}
-
-/* Understanding section */
-.understanding {
-  max-width: 44rem;
-  margin: 0 auto;
-  padding: 4rem 1rem;
-  text-align: center;
-}
-
-.eyebrow {
-  font-size: 0.875rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--coral);
-  margin-bottom: 0.75rem !important;
-}
-
-.understanding h2,
-.feature h2,
-.closing h2 {
-  font-size: clamp(1.75rem, 5vw, 2.5rem);
-}
-
-.sectionLede {
-  color: var(--ink-soft);
-  margin-top: 1rem !important;
-}
-
-.sampleNote {
-  margin-top: 2.5rem;
-  padding: 1.5rem;
-  text-align: left;
-  border-radius: 24px;
-  background: #fff;
-  border: 1px solid var(--hairline);
-  box-shadow: 0 10px 30px -15px rgb(43 35 64 / 0.2);
-  font-size: 1.1875rem;
-  font-weight: 500;
-}
-
-.mediaMention {
-  color: var(--media);
-  font-weight: 700;
-}
-
-.techMention {
-  color: var(--technology);
-  font-weight: 700;
-}
-
-.chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 1rem;
-}
-
-.chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  font-size: 0.9375rem;
-  font-weight: 800;
-  padding: 0.3rem 0.875rem 0.3rem 0.375rem;
-  border-radius: 999px;
-}
-
-.chip img {
-  width: 22px;
-  height: 22px;
-}
-
-.mediaChip {
-  color: var(--media);
-  background: #fbe7ef;
-}
-
-.techChip {
-  color: var(--technology);
-  background: #ece6fb;
-}
-
-/* Feature rows */
-.feature {
-  display: grid;
-  gap: 2.5rem;
-  align-items: center;
-  max-width: 64rem;
-  margin: 0 auto;
-  padding: 3rem 1rem;
-}
-
-.featureCopy p:not(.eyebrow) {
-  color: var(--ink-soft);
-  margin-top: 1rem;
-  max-width: 28rem;
-}
-
-.featureImage {
-  justify-self: center;
-}
-
-/* Smaller features */
-.smallerFeatures {
-  display: grid;
-  gap: 1rem;
-  max-width: 64rem;
-  margin: 0 auto;
-  padding: 3rem 1rem;
-}
-
-.smallerFeature {
-  padding: 1.5rem;
-  border-radius: 24px;
-  background: var(--raised-paper);
-}
-
-.smallerFeature h3 {
-  font-size: 1.1875rem;
-}
-
-.smallerFeature p {
-  color: var(--ink-soft);
-  margin-top: 0.5rem;
-  font-size: 1rem;
-}
-
-/* Closing call to action */
-.closing {
-  max-width: 36rem;
-  margin: 0 auto;
-  padding: 4rem 1rem 5rem;
-  text-align: center;
-}
-
-.closing img {
-  margin: 0 auto 1rem;
-}
-
-.closing p {
-  color: var(--ink-soft);
-  margin: 1rem 0 2rem;
-}
-
 .footer {
-  padding: 2rem 1rem 3rem;
+  padding: 0.75rem 0 1rem;
   text-align: center;
-  font-size: 0.9375rem;
+  font-size: 0.8125rem;
   color: var(--ink-soft);
-  border-top: 1px solid var(--hairline);
 }
 
 .footer a {
@@ -375,51 +419,86 @@
   color: var(--ink);
 }
 
-@media (width >= 640px) {
-  .smallerFeatures {
-    grid-template-columns: repeat(2, 1fr);
+/* Phones: intro, then the phone, then the steps */
+@media (width < 900px) {
+  .intro {
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .lede {
+    margin-inline: auto !important;
+  }
+
+  .actions {
+    justify-content: center;
+  }
+
+  .stage {
+    order: 2;
+  }
+
+  .steps {
+    order: 3;
+    margin: 0 auto;
+    width: 100%;
   }
 }
 
 @media (width >= 900px) {
-  .nav {
-    padding: 1rem 1.5rem;
+  .screenFit {
+    padding: 0 1.5rem;
   }
 
   .hero {
-    grid-template-columns: 1.1fr 0.9fr;
-    padding: 4rem 1.5rem 6rem;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto auto;
+    column-gap: 3rem;
+    row-gap: 1.75rem;
   }
 
-  .heroPhone .phone {
-    width: 320px;
+  .intro {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: end;
   }
 
-  .feature {
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    padding: 4rem 1.5rem;
+  .steps {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: start;
   }
 
-  .featureReversed .featureCopy {
-    order: 2;
+  .stage {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    align-self: center;
+    padding: 0 4.5rem 0 3rem;
   }
 
-  .smallerFeatures {
-    grid-template-columns: repeat(4, 1fr);
+  .phone {
+    height: min(620px, calc(100svh - 150px));
   }
-}
 
-@media (width < 520px) {
-  .heroMascot {
-    width: 80px;
-    left: -24px;
-    bottom: -20px;
+  .callout {
+    right: 0;
+  }
+
+  .mascot {
+    width: 100px;
+    left: -1.75rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .heroMascot {
+  .mascot,
+  .badgeDot,
+  .callout {
     animation: none;
+  }
+
+  .screen,
+  .stepBody {
+    transition: none;
   }
 }
