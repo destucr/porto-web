@@ -41,7 +41,7 @@ export default function UraiLandingPage() {
       </main>
 
       <footer className={styles.footer}>
-        Built by <a href="https://destucikal.site">Destu Cikal ↗</a>
+        © 2026 URAI RUANG DIGITAL · Built by <a href="https://destucikal.site">Destu Cikal ↗</a>
       </footer>
 
     </div>
