@@ -41,6 +41,10 @@ export default function UraiLandingPage() {
         <DemoShowcase />
       </main>
 
+      <footer className={styles.footer}>
+        Built by <a href="https://destucikal.site">Destu Cikal ↗</a>
+      </footer>
+
     </div>
   );
 }
