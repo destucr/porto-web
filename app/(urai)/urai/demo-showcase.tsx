@@ -6,9 +6,8 @@ import styles from "./urai.module.css";
 type DemoStep = {
   title: string;
   body: string;
-  durationMs: number;
-  screen: { kind: "video"; src: string; poster: string } | { kind: "image"; src: string };
-  screenLabel: string;
+  clipName: string;
+  clipLabel: string;
   callout: { sticker: string; label: string; caption: string; tone: "tech" | "media" };
 };
 
@@ -16,58 +15,65 @@ const demoSteps: DemoStep[] = [
   {
     title: "Write like you text",
     body: "Mention a book or a topic. Urai spots it while you type: no hashtags, no waiting.",
-    durationMs: 12500,
-    screen: { kind: "video", src: "/images/urai/urai-writing.mp4", poster: "/images/urai/urai-writing-poster.webp" },
-    screenLabel: "Typing a note about UIKit Apprentice; a UIKit chip appears above the keyboard",
+    clipName: "urai-writing",
+    clipLabel: "Typing a note about UIKit Apprentice; a UIKit chip appears above the keyboard",
     callout: { sticker: "/images/urai/sticker-code.svg", label: "UIKit", caption: "spotted as you type", tone: "tech" },
   },
   {
-    title: "Find people into the same thing",
-    body: "Your feed fills with notes about what you follow. Tap any coloured name to see everyone else on it.",
-    durationMs: 5500,
-    screen: { kind: "image", src: "/images/urai/urai-feed.webp" },
-    screenLabel: "The Urai feed with notes about Grokking Algorithms and Swift concurrency",
+    title: "A feed of takes, not ads",
+    body: "Quotes and short takes from people reading what you read. Every book and idea is tappable.",
+    clipName: "urai-feed",
+    clipLabel: "Scrolling the feed: quotes from A Philosophy of Software Design and notes about Swift and DDIA",
     callout: {
       sticker: "/images/urai/sticker-book.svg",
-      label: "Grokking Algorithms",
-      caption: "tap to see who's reading it",
+      label: "A Philosophy of Software Design",
+      caption: "quoted in the feed",
       tone: "media",
     },
   },
   {
-    title: "Watch your shelf grow",
-    body: "Every book and topic you write about becomes a sticker on your profile, next to what you're reading now.",
-    durationMs: 5500,
-    screen: { kind: "image", src: "/images/urai/urai-profile.webp" },
-    screenLabel: "A profile reading Structure and Interpretation of Computer Programs, with stickers for books and topics",
-    callout: { sticker: "/images/urai/sticker-book.svg", label: "Reading now · SICP", caption: "chapter 1.2", tone: "media" },
+    title: "Add a thought",
+    body: "Reply to a note with a short thought. One level deep, so conversations stay readable.",
+    clipName: "urai-thoughts",
+    clipLabel: "Opening a note with a quote and reading the thought under it",
+    callout: { sticker: "/images/urai/sticker-book.svg", label: "1 thought", caption: "under sena's quote", tone: "media" },
+  },
+  {
+    title: "Read together",
+    body: "See who's reading the same book and which chapter they're on. Tap “I'm reading this” to join.",
+    clipName: "urai-reading-together",
+    clipLabel: "Opening a book from a profile, tapping I'm reading this, and adding a chapter",
+    callout: { sticker: "/images/urai/sticker-book.svg", label: "2 reading now", caption: "you're on chapter 6", tone: "media" },
   },
 ];
+
+const fallbackStepDurationMs = 8000;
 
 export function DemoShowcase() {
   const [activeStepIndex, setActiveStepIndex] = useState(0);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-  const writingVideoRef = useRef<HTMLVideoElement>(null);
-  const activeStep = demoSteps[activeStepIndex];
+  const [clipDurationsMs, setClipDurationsMs] = useState<Record<number, number>>({});
+  const clipRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   useEffect(() => {
-    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setPrefersReducedMotion(motionQuery.matches);
+    setPrefersReducedMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
   }, []);
 
   useEffect(() => {
-    const writingVideo = writingVideoRef.current;
-    if (writingVideo && activeStep.screen.kind === "video" && !prefersReducedMotion) {
-      writingVideo.currentTime = 0;
-      writingVideo.play().catch(() => {});
-    }
-    if (prefersReducedMotion) return;
-    const advanceTimer = window.setTimeout(
-      () => setActiveStepIndex((index) => (index + 1) % demoSteps.length),
-      activeStep.durationMs,
-    );
-    return () => window.clearTimeout(advanceTimer);
-  }, [activeStep, prefersReducedMotion]);
+    clipRefs.current.forEach((clip, index) => {
+      if (!clip) return;
+      if (index === activeStepIndex && !prefersReducedMotion) {
+        clip.currentTime = 0;
+        clip.play().catch(() => {});
+      } else {
+        clip.pause();
+      }
+    });
+  }, [activeStepIndex, prefersReducedMotion]);
+
+  const showNextStep = () => setActiveStepIndex((index) => (index + 1) % demoSteps.length);
+  const activeClipDurationMs = clipDurationsMs[activeStepIndex] ?? fallbackStepDurationMs;
+  const activeStep = demoSteps[activeStepIndex];
 
   return (
     <div className={styles.showcase}>
@@ -91,7 +97,7 @@ export function DemoShowcase() {
                   <span
                     key={activeStepIndex}
                     className={styles.stepProgress}
-                    style={{ animationDuration: `${step.durationMs}ms` }}
+                    style={{ animationDuration: `${activeClipDurationMs}ms` }}
                   />
                 )}
               </button>
@@ -102,33 +108,27 @@ export function DemoShowcase() {
 
       <div className={styles.stage}>
         <div className={styles.phone}>
-          {demoSteps.map((step, index) => {
-            const screenClass = `${styles.screen} ${index === activeStepIndex ? styles.screenVisible : ""}`;
-            return step.screen.kind === "video" ? (
-              <video
-                key={step.title}
-                ref={writingVideoRef}
-                className={screenClass}
-                src={step.screen.src}
-                poster={step.screen.poster}
-                muted
-                playsInline
-                preload="auto"
-                aria-label={step.screenLabel}
-              />
-            ) : (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                key={step.title}
-                className={screenClass}
-                src={step.screen.src}
-                alt={step.screenLabel}
-                width={720}
-                height={1469}
-                decoding="async"
-              />
-            );
-          })}
+          {demoSteps.map((step, index) => (
+            <video
+              key={step.clipName}
+              ref={(clip) => {
+                clipRefs.current[index] = clip;
+              }}
+              className={`${styles.screen} ${index === activeStepIndex ? styles.screenVisible : ""}`}
+              src={`/images/urai/${step.clipName}.mp4`}
+              poster={`/images/urai/${step.clipName}-poster.webp`}
+              muted
+              playsInline
+              preload={index === 0 ? "auto" : "metadata"}
+              onLoadedMetadata={(event) => {
+                const clipDurationMs = event.currentTarget.duration * 1000;
+                setClipDurationsMs((durations) => ({ ...durations, [index]: clipDurationMs }));
+              }}
+              onEnded={index === activeStepIndex ? showNextStep : undefined}
+              aria-label={step.clipLabel}
+              aria-hidden={index !== activeStepIndex}
+            />
+          ))}
         </div>
 
         <div
