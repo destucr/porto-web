@@ -15,7 +15,7 @@ type DemoStep = {
 
 const demoSteps: DemoStep[] = [
   {
-    title: "Quote the line that clicked",
+    title: "While you read: save the line",
     body: "Share a highlight from your EPUB reader, or copy it from Books. The book and author come along; you add your take.",
     clipName: "urai-quote-from-book.298b5a06",
     clipLabel: "Sharing a highlight from Everything but the Code to Urai, then writing a take under the quote",
@@ -27,7 +27,7 @@ const demoSteps: DemoStep[] = [
     },
   },
   {
-    title: "See what others took from it",
+    title: "After: see what others took from it",
     body: "Quotes and takes from developers reading the books you read. Tap a book or a concept to see every take on it.",
     clipName: "urai-feed.1483c074",
     clipLabel: "Scrolling the feed: quotes from A Philosophy of Software Design and notes about Swift and DDIA",
@@ -39,14 +39,14 @@ const demoSteps: DemoStep[] = [
     },
   },
   {
-    title: "Add a thought",
+    title: "Talk it through",
     body: "Agree, push back, or share the bug that taught you the same lesson. Short replies, one level deep.",
     clipName: "urai-thoughts.2cd04fa3",
     clipLabel: "Opening a note with a quote and reading the thought under it",
     callout: { sticker: "/images/urai/sticker-book.svg", label: "1 thought", caption: "under sena's quote", tone: "media" },
   },
   {
-    title: "Find people on the same chapter",
+    title: "Find people on your chapter",
     body: "See who's reading the same book right now, and where they are. Tap “I'm reading this” to join them.",
     clipName: "urai-reading-together.e6211662",
     clipLabel: "Opening a book from a profile, tapping I'm reading this, and adding a chapter",
