@@ -36,6 +36,22 @@ export default async function Home() {
           </Link>
         </p>
 
+        <p className="reveal" style={{ animationDelay: "140ms" }}>
+          Right now I&apos;m building{" "}
+          <Image
+            src="/images/urai-icon.png"
+            alt=""
+            width={20}
+            height={20}
+            className="inline-block size-5 rounded-[5px] border border-border align-[-3px] mr-1"
+            unoptimized
+          />
+          <a href="https://urai.destucikal.site" className="essay-link text-foreground">
+            Urai
+          </a>
+          , a place to share what you learn from programming books. The iPhone beta opens soon.
+        </p>
+
         <p className="reveal" style={{ animationDelay: "160ms" }}>
           I completed the Apple Developer Academy @ BINUS, then worked at Bullion Ecosystem
           International (Nunomics, a gold trading app) and Nusantara Beta Studio before joining
