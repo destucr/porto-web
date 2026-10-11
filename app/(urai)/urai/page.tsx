@@ -32,7 +32,6 @@ export default function UraiLandingPage() {
               Join the waitlist
             </a>
             <span className={styles.actionNote}>
-              <span className={styles.badgeDot} aria-hidden="true" />
               iPhone beta opening soon
             </span>
           </div>

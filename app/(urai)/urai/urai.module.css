@@ -116,36 +116,6 @@
   max-width: 40rem;
 }
 
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.8125rem;
-  font-weight: 800;
-  color: var(--technology);
-  background: #efe8ff;
-  padding: 0.25rem 0.75rem 0.25rem 0.6rem;
-  border-radius: 999px;
-}
-
-.badgeDot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--mint);
-  animation: pulse 2s ease-out infinite;
-}
-
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgb(60 203 154 / 0.6);
-  }
-  70%,
-  100% {
-    box-shadow: 0 0 0 7px rgb(60 203 154 / 0);
-  }
-}
-
 .tagline {
   font-size: 0.9375rem;
   font-weight: 900;
@@ -177,12 +147,9 @@
 }
 
 .actionNote {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
   font-size: 0.875rem;
-  font-weight: 800;
-  color: var(--technology);
+  font-weight: 700;
+  color: var(--ink-soft);
 }
 
 /* The app's raised coral button */
@@ -505,7 +472,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .mascot,
-  .badgeDot,
   .callout {
     animation: none;
   }
