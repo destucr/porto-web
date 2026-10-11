@@ -10,15 +10,15 @@ const nunito = Nunito({
 });
 
 const description =
-  "Write a line about the book you're reading or the thing you're learning. Urai understands what it's about and puts it next to everyone else who's into it.";
+  "You already post what you learn from technical books. On Urai, every take is filed by book and chapter, next to everyone reading the same thing.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://urai.destucikal.site"),
-  title: { absolute: "Urai: notes on what you're into" },
+  title: { absolute: "Urai: never read alone" },
   description,
   alternates: { canonical: "https://urai.destucikal.site" },
   openGraph: {
-    title: "Urai: notes on what you're into",
+    title: "Urai: never read alone",
     description,
     url: "https://urai.destucikal.site",
     siteName: "Urai",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Urai: notes on what you're into",
+    title: "Urai: never read alone",
     description,
     images: ["/images/urai/app-icon-512.png"],
   },

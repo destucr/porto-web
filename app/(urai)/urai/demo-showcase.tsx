@@ -13,15 +13,15 @@ type DemoStep = {
 
 const demoSteps: DemoStep[] = [
   {
-    title: "Write like you text",
-    body: "Mention a book or a topic. Urai spots it while you type: no hashtags, no waiting.",
+    title: "Write your take",
+    body: "Say what clicked, or paste the line that did. Urai picks out the book and the concepts as you type.",
     clipName: "urai-writing",
     clipLabel: "Typing a note about UIKit Apprentice; a UIKit chip appears above the keyboard",
     callout: { sticker: "/images/urai/sticker-code.svg", label: "UIKit", caption: "spotted as you type", tone: "tech" },
   },
   {
-    title: "A feed of takes, not ads",
-    body: "Quotes and short takes from people reading what you read. Every book and idea is tappable.",
+    title: "See what others took from it",
+    body: "Quotes and takes from developers reading the books you read. Tap a book or a concept to see every take on it.",
     clipName: "urai-feed",
     clipLabel: "Scrolling the feed: quotes from A Philosophy of Software Design and notes about Swift and DDIA",
     callout: {
@@ -33,14 +33,14 @@ const demoSteps: DemoStep[] = [
   },
   {
     title: "Add a thought",
-    body: "Reply to a note with a short thought. One level deep, so conversations stay readable.",
+    body: "Agree, push back, or share the bug that taught you the same lesson. Short replies, one level deep.",
     clipName: "urai-thoughts",
     clipLabel: "Opening a note with a quote and reading the thought under it",
     callout: { sticker: "/images/urai/sticker-book.svg", label: "1 thought", caption: "under sena's quote", tone: "media" },
   },
   {
-    title: "Read together",
-    body: "See who's reading the same book and which chapter they're on. Tap “I'm reading this” to join.",
+    title: "Find people on the same chapter",
+    body: "See who's reading the same book right now, and where they are. Tap “I'm reading this” to join them.",
     clipName: "urai-reading-together",
     clipLabel: "Opening a book from a profile, tapping I'm reading this, and adding a chapter",
     callout: { sticker: "/images/urai/sticker-book.svg", label: "2 reading now", caption: "you're on chapter 6", tone: "media" },

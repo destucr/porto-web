@@ -25,11 +25,11 @@ export default function UraiLandingPage() {
             iPhone beta opening soon
           </p>
           <h1>
-            Notes on what <span className={styles.coralText}>you&apos;re into</span>.
+            Never read <span className={styles.coralText}>alone</span>.
           </h1>
           <p className={styles.lede}>
-            Jot a line about what you&apos;re reading or learning. Urai gets what it&apos;s about and connects you
-            with people into the same thing.
+            You already post what you learn from technical books. On Urai, every take is filed by book and
+            chapter, next to everyone reading the same thing.
           </p>
           <div className={styles.actions}>
             <a href={inviteEmail} className={styles.primaryButton}>
@@ -43,7 +43,7 @@ export default function UraiLandingPage() {
       </main>
 
       <footer className={styles.footer}>
-        Made in Jakarta by <a href="https://destucikal.site">Destu Cikal</a>
+        Made by <a href="https://destucikal.site">Destu Cikal</a>
       </footer>
     </div>
   );
