@@ -14,9 +14,9 @@ type DemoStep = {
 const demoSteps: DemoStep[] = [
   {
     title: "Quote the line that clicked",
-    body: "Share a passage from your EPUB reader, or copy it from Books. The book and author come along; you add your take.",
+    body: "Share a highlight from your EPUB reader, or copy it from Books. The book and author come along; you add your take.",
     clipName: "urai-quote-from-book",
-    clipLabel: "Sharing a passage from Everything but the Code to Urai, then writing a take under the quote",
+    clipLabel: "Sharing a highlight from Everything but the Code to Urai, then writing a take under the quote",
     callout: {
       sticker: "/images/urai/sticker-book.svg",
       label: "Everything but the Code",
