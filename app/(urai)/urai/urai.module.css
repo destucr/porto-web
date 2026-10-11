@@ -59,7 +59,7 @@
 
 .screenFit {
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto 1fr;
   min-height: 100svh;
   max-width: 72rem;
   margin: 0 auto;
@@ -552,4 +552,143 @@
   color: var(--coral) !important;
   text-decoration: underline !important;
   text-underline-offset: 3px;
+}
+
+/* Invite form */
+.waitlistForm {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.waitlistInput {
+  flex: 1 1 14rem;
+  min-width: 0;
+  font: inherit;
+  font-size: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--hairline);
+  background: #fff;
+  color: var(--ink);
+}
+
+.waitlistInput:focus {
+  outline: 3px solid var(--grape);
+  outline-offset: 2px;
+}
+
+.waitlistForm .primaryButton {
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+}
+
+.waitlistForm .primaryButton:disabled {
+  opacity: 0.7;
+  cursor: progress;
+}
+
+.waitlistProblem {
+  flex-basis: 100%;
+  font-size: 0.875rem;
+  color: #c2410c;
+}
+
+.waitlistJoined {
+  font-weight: 800;
+  color: var(--ink);
+  padding: 0.75rem 1rem;
+  border-radius: 16px;
+  background: var(--raised-paper);
+}
+
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Below the fold */
+.worksWith,
+.privacy,
+.closing {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.worksWith h2,
+.closing h2 {
+  font-family: inherit;
+  font-weight: 900;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0;
+}
+
+.worksWith ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1.25rem 0;
+  padding: 0;
+}
+
+.worksWith li {
+  font-weight: 800;
+  font-size: 0.9375rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  background: var(--raised-paper);
+}
+
+.worksWith p,
+.closing p {
+  color: var(--ink-soft);
+}
+
+.privacy {
+  padding-top: 0.5rem;
+  padding-bottom: 1rem;
+}
+
+.privacy p {
+  font-size: 0.9375rem;
+  color: var(--ink-soft);
+  padding: 1rem 1.25rem;
+  border-radius: 18px;
+  border: 1px solid var(--hairline);
+}
+
+.privacy strong {
+  color: var(--ink);
+}
+
+.closing .waitlistForm {
+  justify-content: center;
+  max-width: 30rem;
+  margin: 1.5rem auto 0;
+}
+
+.actions .waitlistForm {
+  flex: 1 1 100%;
+  max-width: 30rem;
 }
