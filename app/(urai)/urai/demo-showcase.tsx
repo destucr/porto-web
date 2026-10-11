@@ -13,11 +13,16 @@ type DemoStep = {
 
 const demoSteps: DemoStep[] = [
   {
-    title: "Write your take",
-    body: "Say what clicked, or paste the line that did. Urai picks out the book and the concepts as you type.",
-    clipName: "urai-writing",
-    clipLabel: "Typing a note about UIKit Apprentice; a UIKit chip appears above the keyboard",
-    callout: { sticker: "/images/urai/sticker-code.svg", label: "UIKit", caption: "spotted as you type", tone: "tech" },
+    title: "Quote the line that clicked",
+    body: "Share a passage from your EPUB reader, or copy it from Books. The book and author come along; you add your take.",
+    clipName: "urai-quote-from-book",
+    clipLabel: "Sharing a passage from Everything but the Code to Urai, then writing a take under the quote",
+    callout: {
+      sticker: "/images/urai/sticker-book.svg",
+      label: "Everything but the Code",
+      caption: "Paul Hudson · filled in for you",
+      tone: "media",
+    },
   },
   {
     title: "See what others took from it",

@@ -28,8 +28,8 @@ export default function UraiLandingPage() {
             Never read <span className={styles.coralText}>alone</span>.
           </h1>
           <p className={styles.lede}>
-            You already post what you learn from technical books. On Urai, every take is filed by book and
-            chapter, next to everyone reading the same thing.
+            An iPhone app for short takes on the programming books you&apos;re reading. Quote a passage, add what
+            you learned, and see what others took from the same chapter.
           </p>
           <div className={styles.actions}>
             <a href={inviteEmail} className={styles.primaryButton}>
