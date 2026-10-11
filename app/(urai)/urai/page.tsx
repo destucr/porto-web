@@ -20,31 +20,32 @@ export default function UraiLandingPage() {
 
       <main className={styles.hero}>
         <div className={styles.intro}>
-          <p className={styles.badge}>
-            <span className={styles.badgeDot} aria-hidden="true" />
-            iPhone beta opening soon
-          </p>
+          <p className={styles.tagline}>Never read alone.</p>
           <h1>
-            Never read <span className={styles.coralText}>alone</span>.
+            Your takes on <span className={styles.coralText}>programming books</span>, next to everyone reading them.
           </h1>
           <p className={styles.lede}>
-            An iPhone app for short takes on the programming books you&apos;re reading. Quote a line, add what
-            you learned, and see what others took from the same chapter.
+            Quote the line that clicked, add what you learned, and see what other developers took from the same
+            chapter.
           </p>
           <div className={styles.actions}>
             <a href={inviteEmail} className={styles.primaryButton}>
               Join the waitlist
             </a>
-            <span className={styles.actionNote}>We&apos;ll email you when the first invites go out.</span>
+            <span className={styles.actionNote}>
+              <span className={styles.badgeDot} aria-hidden="true" />
+              iPhone beta opening soon
+            </span>
           </div>
+          <p className={styles.maker}>
+            Built by <a href="https://destucikal.site">Destu Cikal</a>, an Apple Developer Academy alum. Cohort 8
+            alumni get the first invites.
+          </p>
         </div>
 
         <DemoShowcase />
       </main>
 
-      <footer className={styles.footer}>
-        Made by <a href="https://destucikal.site">Destu Cikal</a>
-      </footer>
     </div>
   );
 }
