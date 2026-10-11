@@ -14,8 +14,12 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(httpsUrl, 301)
   }
 
-  // urai.destucikal.site serves the Urai landing page from /urai.
+  // urai.destucikal.site serves the Urai landing page from /urai; that's its
+  // only address, so /urai on any other host redirects there.
   const isUraiHost = host?.startsWith('urai.')
+  if (isProduction && !isLocalhost && !isUraiHost && request.nextUrl.pathname.startsWith('/urai')) {
+    return NextResponse.redirect('https://urai.destucikal.site/', 301)
+  }
   const response = isUraiHost && request.nextUrl.pathname === '/'
     ? NextResponse.rewrite(new URL('/urai', request.url))
     : NextResponse.next()
