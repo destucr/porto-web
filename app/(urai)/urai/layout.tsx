@@ -10,7 +10,7 @@ const nunito = Nunito({
 });
 
 const description =
-  "An iPhone app for short takes on the programming books you're reading. Quote a line, add what you learned, and see what others took from the same chapter.";
+  "Your takes on programming books, next to everyone reading them. Quote the line that clicked, add what you learned, and see what other developers took from the same chapter.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://urai.destucikal.site"),
