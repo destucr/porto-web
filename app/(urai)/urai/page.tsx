@@ -36,10 +36,6 @@ export default function UraiLandingPage() {
               iPhone beta opening soon
             </span>
           </div>
-          <p className={styles.maker}>
-            Made by <a href="https://destucikal.site">Destu Cikal</a>, an iOS developer who kept tweeting about every
-            chapter.
-          </p>
         </div>
 
         <DemoShowcase />

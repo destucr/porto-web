@@ -185,21 +185,6 @@
   color: var(--technology);
 }
 
-.maker {
-  margin-top: 0.875rem !important;
-  font-size: 0.875rem;
-  color: var(--ink-soft);
-  max-width: 34rem;
-}
-
-.maker a {
-  font-weight: 800;
-  color: var(--ink) !important;
-  text-decoration: underline !important;
-  text-decoration-color: var(--hairline) !important;
-  text-underline-offset: 3px;
-}
-
 /* The app's raised coral button */
 .primaryButton {
   display: inline-block;
