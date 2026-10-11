@@ -54,7 +54,9 @@ key_text_id = str(uuid.uuid4()).upper()
 request_id = str(uuid.uuid4()).upper()
 saved_check_group = str(uuid.uuid4()).upper()
 key_text = {"Type": "ActionOutput", "OutputUUID": key_text_id, "OutputName": "Text"}
+response_text_id = str(uuid.uuid4()).upper()
 request_response = {"Type": "ActionOutput", "OutputUUID": request_id, "OutputName": "Contents of URL"}
+response_text = {"Type": "ActionOutput", "OutputUUID": response_text_id, "OutputName": "Text"}
 
 actions = [
     # Filled in when the shortcut is added (the import question below).
@@ -69,6 +71,12 @@ actions = [
         WFHTTPHeaders=dictionary([("Authorization", text_with_variable("Bearer ", key_text))]),
         WFJSONValues=dictionary([("text", text_with_variable("", shortcut_input))]),
     ),
+    # The reply is a file to Shortcuts; as text, "contains" gets its value.
+    action(
+        "is.workflow.actions.detect.text",
+        UUID=response_text_id,
+        WFInput={"Value": request_response, "WFSerializationType": "WFTextTokenAttachment"},
+    ),
     # The API answers a saved line with its fields; anything else is an error.
     action(
         "is.workflow.actions.conditional",
@@ -76,7 +84,7 @@ actions = [
         WFControlFlowMode=0,
         WFCondition=99,
         WFConditionalActionString="saved_at",
-        WFInput={"Type": "Variable", "Variable": {"Value": request_response, "WFSerializationType": "WFTextTokenAttachment"}},
+        WFInput={"Type": "Variable", "Variable": {"Value": response_text, "WFSerializationType": "WFTextTokenAttachment"}},
     ),
     action("is.workflow.actions.notification", WFNotificationActionTitle="Urai", WFNotificationActionBody="Saved to your saved lines"),
     action("is.workflow.actions.conditional", GroupingIdentifier=saved_check_group, WFControlFlowMode=1),
