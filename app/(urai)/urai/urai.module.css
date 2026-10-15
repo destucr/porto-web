@@ -482,6 +482,53 @@
   }
 }
 
+/* /demo: the Back Tap clip */
+.demoPage {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+  justify-items: center;
+  width: 100%;
+  padding: 1.5rem 0 2.5rem;
+}
+
+.demoPage > div:first-child {
+  width: 100%;
+  max-width: 30rem;
+}
+
+.demoPage h1 {
+  font-size: clamp(1.875rem, 5vw, 2.5rem);
+  margin: 0.375rem 0 0;
+}
+
+.demoPhone {
+  height: min(620px, 72svh);
+  aspect-ratio: 720 / 1560;
+  padding: 8px;
+  border-radius: 44px;
+  background: #1d1a24;
+  box-shadow:
+    0 0 0 1px #3a3542 inset,
+    0 30px 60px -20px rgb(43 35 64 / 0.4);
+}
+
+.demoPhone video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 36px;
+  background: var(--paper);
+}
+
+@media (width >= 900px) {
+  .demoPage {
+    grid-template-columns: minmax(0, 30rem) auto;
+    justify-content: center;
+    gap: 4rem;
+  }
+}
+
 /* /mac: setting up the Save to Urai shortcut */
 .macSetup {
   max-width: 34rem;
