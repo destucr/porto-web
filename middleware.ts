@@ -20,7 +20,7 @@ export function middleware(request: NextRequest) {
   if (isProduction && !isLocalhost && !isUraiHost && request.nextUrl.pathname.startsWith('/urai')) {
     return NextResponse.redirect('https://urai.destucikal.site/', 301)
   }
-  const uraiPagePaths: Record<string, string> = { '/': '/urai', '/mac': '/urai/mac' }
+  const uraiPagePaths: Record<string, string> = { '/': '/urai', '/mac': '/urai/mac', '/demo': '/urai/demo' }
   const uraiPagePath = isUraiHost ? uraiPagePaths[request.nextUrl.pathname] : undefined
   const response = uraiPagePath
     ? NextResponse.rewrite(new URL(uraiPagePath, request.url))
