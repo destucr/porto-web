@@ -3,17 +3,19 @@ import Image from "next/image"
 import { getPosts } from "@/lib/content"
 import { HeroSection } from "@/components/hero-section"
 import { CopyEmail } from "@/components/copy-email"
+import { getKeypauseUpvotes } from "@/lib/producthunt"
 
 export default async function Home() {
   const allPosts = await getPosts()
   const post = allPosts[0]
+  const upvotes = await getKeypauseUpvotes()
 
   return (
     <div className="pb-16">
       <HeroSection />
 
       <div className="mt-4 space-y-4 leading-[1.75] text-foreground/85 max-w-[38rem]">
-        <p className="reveal" style={{ animationDelay: "100ms" }}>
+        <p className="reveal" style={{ animationDelay: "60ms" }}>
           Right now I&apos;m building{" "}
           <Image
             src="/images/urai-icon.png"
@@ -29,40 +31,77 @@ export default async function Home() {
           , a place to share what you learn from programming books. The iPhone beta opens soon.
         </p>
 
+        <p className="reveal" style={{ animationDelay: "100ms" }}>
+          I also just released{" "}
+          <Image
+            src="/images/keypause-icon.png"
+            alt=""
+            width={20}
+            height={20}
+            className="inline-block size-5 rounded-[5px] border border-border align-[-3px] mr-1"
+            unoptimized
+          />
+          <span className="text-foreground">Keypause</span>, a free Mac app that turns every key off while you clean the keyboard.{" "}
+          <a href="https://destucr.github.io/Keypause/" className="essay-link text-foreground">
+            Download it for Mac
+          </a>
+          , or read{" "}
+          <Link href="/projects/keypause" className="essay-link text-foreground">
+            how I built it
+          </Link>
+          .
+        </p>
+
+        {upvotes !== null && (
+          <div className="reveal -mt-1" style={{ animationDelay: "110ms" }}>
+            <a
+              href="https://www.producthunt.com/products/keypause"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${upvotes} upvotes on Product Hunt`}
+              title={`${upvotes} upvotes on Product Hunt`}
+              className="inline-flex items-center gap-2 whitespace-nowrap rounded-[8px] border border-[#ff6154] bg-white py-[3px] pl-1.5 pr-2.5 font-sans text-[#ff6154] no-underline transition-transform duration-200 hover:scale-[1.04]"
+            >
+              <svg viewBox="0 0 31 31" className="size-[18px] shrink-0" aria-hidden="true">
+                <circle cx="15.5" cy="15.5" r="15.5" fill="#ff6154" />
+                <path
+                  fill="#fff"
+                  d="M17.43 15.96h-4.34v-4.65h4.34a2.33 2.33 0 1 1 0 4.65m0-7.75h-7.4v15.5h3.06v-4.65h4.34c2.96 0 5.37-2.43 5.37-5.43s-2.4-5.42-5.37-5.42"
+                />
+              </svg>
+              <span className="flex flex-col leading-none">
+                <span className="text-[0.5rem] font-bold uppercase tracking-wide">Featured on</span>
+                <span className="text-[0.9375rem] font-bold tracking-tight">Product Hunt</span>
+              </span>
+              <span className="flex flex-col items-center leading-none tabular-nums">
+                <svg viewBox="0 0 12 10" className="h-[7px] w-[9px]" aria-hidden="true" fill="currentColor">
+                  <path d="M6 0l6 10H0z" />
+                </svg>
+                <span className="mt-[2px] text-[0.75rem] font-bold">{upvotes}</span>
+              </span>
+            </a>
+          </div>
+        )}
+
         <p className="reveal" style={{ animationDelay: "120ms" }}>
-          Outside my day job, I also make my own apps.{" "}
-          <Link href="/projects/tiny-app-baby-heartbeat-listener" className="essay-link text-foreground">
-            Tiny
-          </Link>{" "}
-          lets parents-to-be listen to womb sounds through AirPods.{" "}
-          <Link href="/projects/telly-bisindo-sign-language-learning" className="essay-link text-foreground">
-            Telly
-          </Link>{" "}
-          teaches Indonesian Sign Language using the camera.{" "}
-          <Link href="/projects/solari-running-companion" className="essay-link text-foreground">
-            Solari
-          </Link>{" "}
-          tracks runs.{" "}
-          <Link href="/projects/gtfs-web" className="essay-link text-foreground">
-            GTFS-Web
-          </Link>{" "}
-          manages bus routes and timetables.{" "}
+          Before these, I made{" "}
+          <span className="text-foreground">Tiny</span>, which plays womb sounds through AirPods, and{" "}
+          <span className="text-foreground">Telly</span>, which teaches Indonesian Sign Language.{" "}
           <Link href="/projects" className="essay-link text-foreground whitespace-nowrap">
             Everything I&apos;ve made →
           </Link>
         </p>
 
         <p className="reveal" style={{ animationDelay: "160ms" }}>
-          I completed the Apple Developer Academy @ BINUS, then worked at Bullion Ecosystem
-          International (Nunomics, a gold trading app) and Nusantara Beta Studio before joining
-          Tring!.
+          Before Tring!, I was in the Apple Developer Academy @ BINUS (2025) and worked at Bullion
+          Ecosystem International and Nusantara Beta Studio.
         </p>
 
         {post && (
           <p className="reveal" style={{ animationDelay: "200ms" }}>
-            I wrote{" "}
+            I wrote about{" "}
             <Link href={`/blog/${post.slug}`} className="essay-link text-foreground">
-              {post.title}
+              why SwiftUI habits clash with UIKit
             </Link>
             .
           </p>
