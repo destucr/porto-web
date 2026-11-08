@@ -60,8 +60,8 @@ export default async function Home() {
         </p>
 
         <p className="reveal" style={{ animationDelay: "160ms" }}>
-          Apple Developer Academy @ BINUS in 2025, then Bullion Ecosystem International and
-          Nusantara Beta Studio, before Tring!.
+          Before Tring!, I was in the Apple Developer Academy @ BINUS (2025) and worked at Bullion
+          Ecosystem International and Nusantara Beta Studio.
         </p>
 
         {post && (
