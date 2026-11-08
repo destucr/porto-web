@@ -13,6 +13,27 @@ export default async function Home() {
       <HeroSection />
 
       <div className="mt-4 space-y-4 leading-[1.75] text-foreground/85 max-w-[38rem]">
+        <p className="reveal" style={{ animationDelay: "60ms" }}>
+          I just released{" "}
+          <Image
+            src="/images/keypause-icon.png"
+            alt=""
+            width={20}
+            height={20}
+            className="inline-block size-5 rounded-[5px] border border-border align-[-3px] mr-1"
+            unoptimized
+          />
+          <a href="https://destucr.github.io/Keypause/" className="essay-link text-foreground">
+            Keypause
+          </a>
+          , a free Mac app that turns every key off while you clean the keyboard. You can try it in your
+          browser, and read{" "}
+          <Link href="/projects/keypause" className="essay-link text-foreground">
+            how I built it
+          </Link>
+          .
+        </p>
+
         <p className="reveal" style={{ animationDelay: "100ms" }}>
           Right now I&apos;m building{" "}
           <Image
@@ -43,10 +64,6 @@ export default async function Home() {
             Solari
           </Link>{" "}
           tracks runs.{" "}
-          <Link href="/projects/keypause" className="essay-link text-foreground">
-            Keypause
-          </Link>{" "}
-          turns your Mac keyboard off while you clean it.{" "}
           <Link href="/projects/gtfs-web" className="essay-link text-foreground">
             GTFS-Web
           </Link>{" "}
