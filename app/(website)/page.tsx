@@ -26,8 +26,11 @@ export default async function Home() {
           <a href="https://destucr.github.io/Keypause/" className="essay-link text-foreground">
             Keypause
           </a>
-          , a free Mac app that turns every key off while you clean the keyboard. You can try it in your
-          browser, and read{" "}
+          , a free Mac app that turns every key off while you clean the keyboard.{" "}
+          <a href="https://destucr.github.io/Keypause/" className="essay-link text-foreground">
+            Download it for Mac
+          </a>
+          , or read{" "}
           <Link href="/projects/keypause" className="essay-link text-foreground">
             how I built it
           </Link>
