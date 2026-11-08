@@ -3,10 +3,12 @@ import Image from "next/image"
 import { getPosts } from "@/lib/content"
 import { HeroSection } from "@/components/hero-section"
 import { CopyEmail } from "@/components/copy-email"
+import { getKeypauseUpvotes } from "@/lib/producthunt"
 
 export default async function Home() {
   const allPosts = await getPosts()
   const post = allPosts[0]
+  const upvotes = await getKeypauseUpvotes()
 
   return (
     <div className="pb-16">
@@ -48,6 +50,19 @@ export default async function Home() {
             how I built it
           </Link>
           .
+          {upvotes !== null && (
+            <>
+              {" "}
+              <a
+                href="https://www.producthunt.com/products/keypause"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {upvotes}&nbsp;upvotes on Product Hunt.
+              </a>
+            </>
+          )}
         </p>
 
         <p className="reveal" style={{ animationDelay: "120ms" }}>
