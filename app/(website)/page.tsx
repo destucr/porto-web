@@ -68,7 +68,7 @@ export default async function Home() {
           <p className="reveal" style={{ animationDelay: "200ms" }}>
             I wrote{" "}
             <Link href={`/blog/${post.slug}`} className="essay-link text-foreground">
-              {post.title.split(":")[0]}
+              {post.title}
             </Link>
             .
           </p>
