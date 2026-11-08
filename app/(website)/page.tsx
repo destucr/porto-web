@@ -54,32 +54,31 @@ export default async function Home() {
         </p>
 
         <p className="reveal" style={{ animationDelay: "120ms" }}>
-          Before these, I made my own apps too.{" "}
+          Before these, I made{" "}
           <Link href="/projects/tiny-app-baby-heartbeat-listener" className="essay-link text-foreground">
             Tiny
-          </Link>{" "}
-          lets parents-to-be listen to womb sounds through AirPods.{" "}
+          </Link>
+          , which lets parents-to-be listen to womb sounds through AirPods, and{" "}
           <Link href="/projects/telly-bisindo-sign-language-learning" className="essay-link text-foreground">
             Telly
-          </Link>{" "}
-          teaches Indonesian Sign Language using the camera.{" "}
+          </Link>
+          , which teaches Indonesian Sign Language with the camera. There are a few more, including{" "}
           <Link href="/projects/solari-running-companion" className="essay-link text-foreground">
             Solari
           </Link>{" "}
-          tracks runs.{" "}
-          <Link href="/projects/gtfs-web" className="essay-link text-foreground">
+          and{" "}
+          <Link href="/projects/gtfs-web" className="essay-link text-foreground whitespace-nowrap">
             GTFS-Web
-          </Link>{" "}
-          manages bus routes and timetables.{" "}
+          </Link>
+          .{" "}
           <Link href="/projects" className="essay-link text-foreground whitespace-nowrap">
             Everything I&apos;ve made →
           </Link>
         </p>
 
         <p className="reveal" style={{ animationDelay: "160ms" }}>
-          I completed the Apple Developer Academy @ BINUS, then worked at Bullion Ecosystem
-          International (Nunomics, a gold trading app) and Nusantara Beta Studio before joining
-          Tring!.
+          I studied at the Apple Developer Academy @ BINUS, then worked at Bullion Ecosystem
+          International and Nusantara Beta Studio before joining Tring!.
         </p>
 
         {post && (
