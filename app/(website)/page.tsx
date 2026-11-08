@@ -66,9 +66,9 @@ export default async function Home() {
 
         {post && (
           <p className="reveal" style={{ animationDelay: "200ms" }}>
-            I wrote{" "}
+            I wrote about{" "}
             <Link href={`/blog/${post.slug}`} className="essay-link text-foreground">
-              {post.title}
+              why SwiftUI habits clash with UIKit
             </Link>
             .
           </p>
