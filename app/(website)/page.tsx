@@ -50,25 +50,38 @@ export default async function Home() {
             how I built it
           </Link>
           .
-          {upvotes !== null && (
-            <>
-              {" "}
-              <a
-                href="https://www.producthunt.com/products/keypause"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${upvotes} upvotes on Product Hunt`}
-                title={`${upvotes} upvotes on Product Hunt`}
-                className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-md border border-[#ff6154]/50 px-1.5 py-px align-[1px] text-[0.8125rem] font-semibold leading-snug text-[#ff6154] tabular-nums transition-colors hover:bg-[#ff6154] hover:text-white"
-              >
-                <svg viewBox="0 0 12 10" className="h-[9px] w-[11px]" aria-hidden="true" fill="currentColor">
+        </p>
+
+        {upvotes !== null && (
+          <div className="reveal -mt-1" style={{ animationDelay: "110ms" }}>
+            <a
+              href="https://www.producthunt.com/products/keypause"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${upvotes} upvotes on Product Hunt`}
+              title={`${upvotes} upvotes on Product Hunt`}
+              className="inline-flex items-center gap-2 whitespace-nowrap rounded-[8px] border border-[#ff6154] bg-white py-[3px] pl-1.5 pr-2.5 font-sans text-[#ff6154] no-underline transition-transform duration-200 hover:scale-[1.04]"
+            >
+              <svg viewBox="0 0 31 31" className="size-[18px] shrink-0" aria-hidden="true">
+                <circle cx="15.5" cy="15.5" r="15.5" fill="#ff6154" />
+                <path
+                  fill="#fff"
+                  d="M17.43 15.96h-4.34v-4.65h4.34a2.33 2.33 0 1 1 0 4.65m0-7.75h-7.4v15.5h3.06v-4.65h4.34c2.96 0 5.37-2.43 5.37-5.43s-2.4-5.42-5.37-5.42"
+                />
+              </svg>
+              <span className="flex flex-col leading-none">
+                <span className="text-[0.5rem] font-bold uppercase tracking-wide">Featured on</span>
+                <span className="text-[0.9375rem] font-bold tracking-tight">Product Hunt</span>
+              </span>
+              <span className="flex flex-col items-center leading-none tabular-nums">
+                <svg viewBox="0 0 12 10" className="h-[7px] w-[9px]" aria-hidden="true" fill="currentColor">
                   <path d="M6 0l6 10H0z" />
                 </svg>
-                {upvotes}
-              </a>
-            </>
-          )}
-        </p>
+                <span className="mt-[2px] text-[0.75rem] font-bold">{upvotes}</span>
+              </span>
+            </a>
+          </div>
+        )}
 
         <p className="reveal" style={{ animationDelay: "120ms" }}>
           Before these, I made{" "}
