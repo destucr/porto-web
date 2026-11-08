@@ -57,9 +57,18 @@ export default async function Home() {
                 href="https://www.producthunt.com/products/keypause"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground transition-colors hover:text-foreground"
+                aria-label={`${upvotes} upvotes on Product Hunt`}
+                title={`${upvotes} upvotes on Product Hunt`}
+                className="inline-flex items-center gap-1 whitespace-nowrap align-[-1px] text-[0.875rem] text-muted-foreground tabular-nums transition-colors hover:text-[#ff6154]"
               >
-                {upvotes}&nbsp;upvotes on Product Hunt.
+                <svg viewBox="0 0 31 31" className="size-[14px]" aria-hidden="true" fill="currentColor">
+                  <path d="M31 15.5C31 24.06 24.06 31 15.5 31S0 24.06 0 15.5 6.94 0 15.5 0 31 6.94 31 15.5" />
+                  <path
+                    fill="var(--background)"
+                    d="M17.43 15.96h-4.34v-4.65h4.34a2.33 2.33 0 1 1 0 4.65m0-7.75h-7.4v15.5h3.06v-4.65h4.34c2.96 0 5.37-2.43 5.37-5.43s-2.4-5.42-5.37-5.42"
+                  />
+                </svg>
+                {upvotes}
               </a>
             </>
           )}
