@@ -14,7 +14,23 @@ export default async function Home() {
 
       <div className="mt-4 space-y-4 leading-[1.75] text-foreground/85 max-w-[38rem]">
         <p className="reveal" style={{ animationDelay: "60ms" }}>
-          I just released{" "}
+          Right now I&apos;m building{" "}
+          <Image
+            src="/images/urai-icon.png"
+            alt=""
+            width={20}
+            height={20}
+            className="inline-block size-5 rounded-[5px] border border-border align-[-3px] mr-1"
+            unoptimized
+          />
+          <a href="https://urai.destucikal.site" className="essay-link text-foreground">
+            Urai
+          </a>
+          , a place to share what you learn from programming books. The iPhone beta opens soon.
+        </p>
+
+        <p className="reveal" style={{ animationDelay: "100ms" }}>
+          I also just released{" "}
           <Image
             src="/images/keypause-icon.png"
             alt=""
@@ -37,24 +53,8 @@ export default async function Home() {
           .
         </p>
 
-        <p className="reveal" style={{ animationDelay: "100ms" }}>
-          Right now I&apos;m building{" "}
-          <Image
-            src="/images/urai-icon.png"
-            alt=""
-            width={20}
-            height={20}
-            className="inline-block size-5 rounded-[5px] border border-border align-[-3px] mr-1"
-            unoptimized
-          />
-          <a href="https://urai.destucikal.site" className="essay-link text-foreground">
-            Urai
-          </a>
-          , a place to share what you learn from programming books. The iPhone beta opens soon.
-        </p>
-
         <p className="reveal" style={{ animationDelay: "120ms" }}>
-          Outside my day job, I also make my own apps.{" "}
+          Before these, I made my own apps too.{" "}
           <Link href="/projects/tiny-app-baby-heartbeat-listener" className="essay-link text-foreground">
             Tiny
           </Link>{" "}
