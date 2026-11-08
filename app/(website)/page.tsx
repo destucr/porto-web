@@ -58,27 +58,19 @@ export default async function Home() {
           <Link href="/projects/tiny-app-baby-heartbeat-listener" className="essay-link text-foreground">
             Tiny
           </Link>
-          , which lets parents-to-be listen to womb sounds through AirPods, and{" "}
+          , which plays womb sounds through AirPods, and{" "}
           <Link href="/projects/telly-bisindo-sign-language-learning" className="essay-link text-foreground">
             Telly
           </Link>
-          , which teaches Indonesian Sign Language with the camera. There are a few more, including{" "}
-          <Link href="/projects/solari-running-companion" className="essay-link text-foreground">
-            Solari
-          </Link>{" "}
-          and{" "}
-          <Link href="/projects/gtfs-web" className="essay-link text-foreground whitespace-nowrap">
-            GTFS-Web
-          </Link>
-          .{" "}
+          , which teaches Indonesian Sign Language.{" "}
           <Link href="/projects" className="essay-link text-foreground whitespace-nowrap">
             Everything I&apos;ve made →
           </Link>
         </p>
 
         <p className="reveal" style={{ animationDelay: "160ms" }}>
-          I studied at the Apple Developer Academy @ BINUS, then worked at Bullion Ecosystem
-          International and Nusantara Beta Studio before joining Tring!.
+          Apple Developer Academy @ BINUS in 2025, then Bullion Ecosystem International and
+          Nusantara Beta Studio, before Tring!.
         </p>
 
         {post && (
