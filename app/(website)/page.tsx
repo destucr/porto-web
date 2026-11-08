@@ -43,6 +43,10 @@ export default async function Home() {
             Solari
           </Link>{" "}
           tracks runs.{" "}
+          <Link href="/projects/keypause" className="essay-link text-foreground">
+            Keypause
+          </Link>{" "}
+          turns your Mac keyboard off while you clean it.{" "}
           <Link href="/projects/gtfs-web" className="essay-link text-foreground">
             GTFS-Web
           </Link>{" "}

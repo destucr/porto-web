@@ -122,6 +122,7 @@ export async function getProjects() {
     'tiny-app-baby-heartbeat-listener',
     'telly-bisindo-sign-language-learning',
     'solari-running-companion',
+    'keypause',
     'gtfs-web',
     'snorkeling-booking-app',
     'p2p-lending-app-fraud-prevention'

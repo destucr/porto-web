@@ -1,0 +1,36 @@
+---
+title: "Keypause: Turn Your Mac Keyboard Off While You Clean It"
+short: "Keypause"
+description: A free Mac menu bar app that switches every key off while you clean the keyboard, then back on by itself.
+image: /images/keypause/keypause-thumbnail.webp
+year: "2026"
+tags:
+  - macOS
+  - Swift
+  - SwiftUI
+  - AppKit
+  - Core Graphics
+githubUrl: https://github.com/destucr/Keypause
+appStoreUrl: ""
+videoUrl: ""
+screenshots:
+  - /images/keypause/keypause-three-moments.webp
+---
+#### What it does
+Wiping a Mac keyboard sets off random shortcuts and sends half typed messages. Keypause switches every key off for a time you choose, from 30 seconds to 10 minutes, then switches them back on by itself. The mouse and trackpad keep working, so unlocking is always one click away.
+
+It is free and open source. You can try the lock in your browser on [the website](https://destucr.github.io/Keypause/) before you install it.
+
+![Keypause locked: Shh, your keys are napping, with a timer under the notch](/images/keypause/keypause-locked.webp)
+
+![Keypause when the timer ends: Good morning, your keys are back](/images/keypause/keypause-keys-back.webp)
+
+#### How I built it
+- **Every key off**: A CGEventTap swallows all keyboard input, including shortcuts, function keys and media keys, for as long as the timer runs.
+- **Quick to start**: A system wide hotkey (Control, Option, Command and K) from anywhere, the menu bar icon, a keypause command in Terminal, and keypause:// links for Raycast and Shortcuts.
+- **Calm while you wait**: A small panel under the notch shows the timer. The sky turns from night to sunrise as time runs out, and Kip, a sleepy keycap, wakes up when the keys come back.
+- **Private**: It never reads, stores or sends what you type. The only network request is an optional update check against the public GitHub releases.
+- **Shipped like a real app**: DMG and ZIP releases on GitHub, a Homebrew cask, an update check and launch at login.
+
+#### Challenges
+The lock has to be easy to leave. A keyboard that stays off is the worst way for a cleaning tool to fail, so the timer always ends the lock, and unlocking works with the mouse even if something goes wrong. The other hard part was making a utility feel friendly without getting in the way of the job.
