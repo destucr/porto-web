@@ -39,10 +39,7 @@ export default async function Home() {
             className="inline-block size-5 rounded-[5px] border border-border align-[-3px] mr-1"
             unoptimized
           />
-          <a href="https://destucr.github.io/Keypause/" className="essay-link text-foreground">
-            Keypause
-          </a>
-          , a free Mac app that turns every key off while you clean the keyboard.{" "}
+          <span className="text-foreground">Keypause</span>, a free Mac app that turns every key off while you clean the keyboard.{" "}
           <a href="https://destucr.github.io/Keypause/" className="essay-link text-foreground">
             Download it for Mac
           </a>
@@ -55,14 +52,8 @@ export default async function Home() {
 
         <p className="reveal" style={{ animationDelay: "120ms" }}>
           Before these, I made{" "}
-          <Link href="/projects/tiny-app-baby-heartbeat-listener" className="essay-link text-foreground">
-            Tiny
-          </Link>
-          , which plays womb sounds through AirPods, and{" "}
-          <Link href="/projects/telly-bisindo-sign-language-learning" className="essay-link text-foreground">
-            Telly
-          </Link>
-          , which teaches Indonesian Sign Language.{" "}
+          <span className="text-foreground">Tiny</span>, which plays womb sounds through AirPods, and{" "}
+          <span className="text-foreground">Telly</span>, which teaches Indonesian Sign Language.{" "}
           <Link href="/projects" className="essay-link text-foreground whitespace-nowrap">
             Everything I&apos;ve made →
           </Link>
